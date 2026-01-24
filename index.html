@@ -1,460 +1,2407 @@
-<!--
-    Código HTML do Portfólio de Davi Castro (davicjc).
-    Este código foi originalmente desenvolvido por Davi Castro.
--->
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <!-- Define o conjunto de caracteres para UTF-8, suportando acentos e caracteres especiais. -->
     <meta charset="UTF-8">
-    <!-- Configura a viewport para responsividade, ajustando a largura ao dispositivo e escala inicial. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Título da página exibido na aba do navegador. Associado a: Aba do Navegador -->
-    <title>Davi Castro - Desenvolvedor Back-End</title>
-    <!-- Favicon - ícone exibido na aba do navegador -->
-    <link rel="icon" type="image/png" href="imagens/Site_icon.png">
-    <!-- Link para a folha de estilos CSS principal. Associado a: estilos/style.css -->
-    <link rel="stylesheet" href="estilos/style.css">
-    <!-- Link para fontes do Google Fonts (Audiowide e Montserrat). Associado a: Tipografia do site -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Davi Castro Jorge da Costa | Desenvolvedor Full Stack</title>
+    <meta name="description" content="Portfólio de Davi Castro Jorge da Costa - Desenvolvedor Full Stack com expertise em criação de sites, softwares e automação.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3QS8BKCC6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-J3QS8BKCC6');
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #050507;
+            --bg-secondary: #0d0d12;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --text-primary: #ffffff;
+            --text-secondary: #9898a8;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #a855f7;
+            --glow-color: rgba(99, 102, 241, 0.4);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -7s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, 50px) scale(1.1); }
+            50% { transform: translate(0, 100px) scale(0.9); }
+            75% { transform: translate(-50px, 50px) scale(1.05); }
+        }
+
+        /* Liquid Glass Effect - Apple Style */
+        .glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+        }
+
+        .glass-strong {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(60px) saturate(200%);
+            -webkit-backdrop-filter: blur(60px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 16px 48px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        /* Liquid Glass Glow Effect */
+        .liquid-glass {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-glass::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x) var(--mouse-y),
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.08) 20%,
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .liquid-glass:hover::after {
+            opacity: 1;
+        }
+
+        /* Border glow effect */
+        .liquid-glass-border {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+            position: relative;
+        }
+
+        .liquid-glass-border::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: radial-gradient(
+                400px circle at var(--mouse-x) var(--mouse-y),
+                rgba(255, 255, 255, 0.4) 0%,
+                rgba(255, 255, 255, 0.1) 30%,
+                transparent 60%
+            );
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .liquid-glass-border:hover::before {
+            opacity: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: linear-gradient(135deg, rgba(10, 10, 15, 0.7) 0%, rgba(10, 10, 15, 0.8) 100%);
+            backdrop-filter: blur(50px) saturate(180%);
+            -webkit-backdrop-filter: blur(50px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 .gradient {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 
+                0 8px 25px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 20px 50px rgba(99, 102, 241, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* Profile Card - Liquid Glass Apple Style */
+        .profile-card {
+            position: relative;
+            transition: all 0.6s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .profile-inner {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.12) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            backdrop-filter: blur(60px) saturate(200%);
+            -webkit-backdrop-filter: blur(60px) saturate(200%);
+            border-radius: 30px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.35),
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.25),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.15) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%
+            );
+            border-radius: 30px 30px 0 0;
+            pointer-events: none;
+        }
+
+        .profile-inner::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            right: 1px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            border-radius: 30px;
+        }
+
+        .profile-card:hover .profile-inner {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 35px 80px rgba(0, 0, 0, 0.4),
+                0 15px 40px rgba(99, 102, 241, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3),
+                inset 0 -1px 1px rgba(255, 255, 255, 0.08);
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-card:hover .profile-image {
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .profile-inner h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-inner .role {
+            color: var(--accent-primary);
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            padding: 1rem;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.08) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-card:hover .stat-item {
+            background: linear-gradient(
+                135deg,
+                rgba(99, 102, 241, 0.15) 0%,
+                rgba(99, 102, 241, 0.05) 100%
+            );
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 
+                0 10px 30px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -3rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.3); opacity: 0; }
+        }
+
+        .timeline-content {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .timeline-content:hover {
+            border-color: rgba(99, 102, 241, 0.2);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.25),
+                0 0 50px rgba(99, 102, 241, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: translateY(-6px);
+        }
+
+        .timeline-content:hover .timeline-company {
+            color: var(--accent-primary);
+        }
+
+        .timeline-content:hover .timeline-period {
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .timeline-content:hover .career-step {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline-company {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .timeline-period {
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-role {
+            color: var(--accent-secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .career-path {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .career-step {
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .career-step i {
+            color: var(--accent-primary);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .skill-category:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(99, 102, 241, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .skill-category:hover .skill-category-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-category-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.4s ease;
+            cursor: default;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(99, 102, 241, 0.1) 100%);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        /* AI Highlight Card */
+        .skill-category.ai-highlight {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(99, 102, 241, 0.1));
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            position: relative;
+        }
+
+        .skill-category.ai-highlight:hover {
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(168, 85, 247, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* AI Philosophy Section */
+        .ai-philosophy {
+            margin-top: 3rem;
+            background: linear-gradient(145deg, rgba(168, 85, 247, 0.08) 0%, rgba(99, 102, 241, 0.04) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-radius: 24px;
+            padding: 2.5rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-philosophy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.4), rgba(99, 102, 241, 0.4), transparent);
+        }
+
+        .ai-philosophy:hover {
+            transform: translateY(-6px);
+            border-color: rgba(168, 85, 247, 0.25);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.25),
+                0 0 50px rgba(168, 85, 247, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .philosophy-icon {
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        .ai-philosophy:hover .philosophy-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .philosophy-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .philosophy-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .philosophy-content strong {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+        }
+
+        .philosophy-content em {
+            color: #a855f7;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .philosophy-content .highlight {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3));
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .ai-philosophy {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .philosophy-icon {
+                margin: 0 auto;
+            }
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            z-index: 1;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.2);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(99, 102, 241, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--accent-primary);
+        }
+
+        .project-card:hover .project-link {
+            transform: translateX(5px);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-badge {
+            transform: scale(1.05);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tech span {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-tech span {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--text-primary);
+        }
+
+        .project-link {
+            transition: all 0.3s ease;
+        }
+
+        .project-tech span {
+            padding: 0.3rem 0.7rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .project-link {
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Certifications */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .cert-card:hover {
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.2),
+                0 0 40px rgba(99, 102, 241, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .cert-card:hover .cert-icon {
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .cert-card:hover .cert-info h4 {
+            color: var(--accent-primary);
+        }
+
+        .cert-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            flex-shrink: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cert-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .cert-info p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            border-radius: 35px;
+            z-index: -1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        .cta-inner {
+            background: var(--bg-secondary);
+            border-radius: 32px;
+            padding: 4rem;
+        }
+
+        .cta-inner h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-inner h2 .gradient {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-inner p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .cookies-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cookies-link:hover {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: var(--text-primary);
+        }
+
+        .cookies-link i {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(99, 102, 241, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            opacity: 0.3;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            padding: 3px;
+            flex-shrink: 0;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-role {
+            color: var(--accent-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .testimonial-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            color: var(--accent-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-link:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .testimonial-card:hover .testimonial-avatar {
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .profile-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .cta-inner {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .cta-inner h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.65rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Notificação Nova Versão -->
-    <div id="newVersionNotification" class="version-notification">
-        <div class="notification-content">
-            <div class="notification-header">
-                <div class="notification-icon">🚀</div>
-                <h3>Nova Versão Disponível!</h3>
-                <button class="notification-close" onclick="closeNotification()">&times;</button>
-            </div>
-            <div class="notification-body">
-                <p>Uma nova versão do meu portfólio está sendo desenvolvida com tema <strong>Matrix/Cyberpunk</strong> e recursos avançados!</p>
-                <div class="notification-features">
-                    <div class="feature">✨ Design Matrix com efeitos cyberpunk</div>
-                    <div class="feature">🎮 Animações interativas avançadas</div>
-                    <div class="feature">🔥 Interface terminal em tempo real</div>
-                    <div class="feature">⚡ Performance otimizada</div>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">DAVICJC.COM</a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#experiencia">Experiência</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Olá, eu sou<br>
+                    <span class="gradient">Davi Castro</span>
+                </h1>
+                <p>
+                    Desenvolvedor Full Stack com expertise em criação de sites, softwares, automação 
+                    de processos e infraestrutura de redes. Especialista em sistemas de segurança 
+                    corporativa com reconhecimento facial e controle de acesso biométrico.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projetos" class="btn-primary">
+                        <i class="fas fa-rocket"></i> Ver Projetos
+                    </a>
+                    <a href="Curriculo/index.html" class="btn-secondary">
+                        <i class="fas fa-file-alt"></i> Currículo
+                    </a>
                 </div>
-                <div class="notification-actions">
-                    <button class="btn-prototype" onclick="goToPrototype()">
-                        <span>🎯 Acessar Protótipo</span>
-                    </button>
-                    <button class="btn-remind" onclick="remindLater()">
-                        Lembrar depois
-                    </button>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-inner">
+                    <div class="profile-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGs7SgoH5ce-Q/profile-displayphoto-shrink_200_200/B4DZc9mQB0GgAc-/0/1749085127526?e=1770854400&v=beta&t=yufAnFvhqq2hIJmjcNoUclj0x3DC9sVf2zfnlOTcMnI" alt="Davi Castro" />
+                    </div>
+                    <h3>Davi Castro</h3>
+                    <p class="role">Vice Supervisor & Desenvolvedor Full Stack</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Sites</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Anos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1º</div>
+                            <div class="stat-label">Lugar</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="notification-overlay"></div>
-    </div>
+    </section>
 
-    <!-- Canvas para animação de partículas no fundo. Associado a: script.js (animação de partículas) -->
-    <canvas id="particle-canvas"></canvas>
-
-    <!-- Cabeçalho principal do site. Associado a: Navegação e Identidade Visual -->
-    <header id="main-header">
-        <!-- Contêiner da barra de navegação. -->
-        <nav>
-            <!-- Logo ou nome do site. Associado a: Identidade Visual -->
-            <div class="logo">Davi Castro</div>
-            <!-- Lista de links de navegação principal. Associado a: Navegação entre seções -->
-            <ul class="nav-links">
-                <li><a href="#hero">Início</a></li>
-                <li><a href="#sobre-mim">Sobre</a></li>
-                <li><a href="#experiencia">Experiência</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#formacao">Formação</a></li>
-                <li><a href="#certificacoes">Certificações</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Controles de Efeitos Visuais -->
-    <div class="effects-control">
-        <button id="enableEffects" class="active" title="Ativar todos os efeitos visuais">🌟 HD</button>
-        <button id="disableEffects" title="Modo performance - desativar efeitos">🥔 Potato</button>
-    </div>
-
-    <!-- Conteúdo principal da página. -->
-    <main>
-        <!-- Seção Hero: primeira seção visível, de apresentação. Associado a: #hero -->
-        <section id="hero" class="hero-section section-padding">
-            <!-- Conteúdo da seção Hero. -->
-            <div class="hero-content">
-                <!-- Foto de perfil na seção Hero. Associado a: Imagem de Perfil -->
-                <img src="imagens/profile-pic.jpg" alt="Foto de Davi Castro" class="profile-pic-hero">
-                <!-- Nome principal exibido. -->
-                <h1>Davi Castro</h1>
-                <!-- Container para botões de Call to Action -->
-                <div class="cta-buttons-container">
-                    <a href="#contato" class="cta-button">Entre em contato</a>
-                    <a href="https://davicjc.github.io/SitesPersonalizado/" target="_blank" class="cta-button cta-secondary">Quero um site!</a>
+    <!-- About Section -->
+    <section id="sobre">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <div class="section-icon">
+                    <i class="fas fa-user"></i>
                 </div>
+                <h2 class="section-title">Sobre Mim</h2>
             </div>
-            <!-- Botão para download do currículo com o mesmo estilo do lang-button -->
-            <a href="documentos/Currículo - Davi Castro Jorge da Costa.pdf" download="Currículo - Davi Castro Jorge da Costa.pdf" class="lang-button download-curriculum">Download Currículo PT</a>
-            <!-- Botões para alternar idioma do site. Associado a: script.js (lógica de troca de idioma) -->
-            <div class="lang-container">
-                <span class="lang-button active lang-button-style">Português</span>
-                <a href="paginas/index_en.html" class="lang-button lang-button-style">English</a>
-                <a href="paginas/index_es.html" class="lang-button lang-button-style">Español</a>
+            
+            <div class="glass-strong" style="border-radius: 24px; padding: 2.5rem;">
+                <p style="font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary);" class="fade-up">
+                    <strong style="color: var(--text-primary);">Profissional de tecnologia</strong> com expertise em 
+                    <strong style="color: var(--accent-primary);">desenvolvimento full-stack, criação de sites e softwares, automação de processos</strong> e 
+                    <strong style="color: var(--accent-secondary);">infraestrutura de redes</strong>. Mais de 20 sites desenvolvidos para clientes corporativos 
+                    e individuais. Experiência internacional com suporte bilíngue para empresas como 
+                    <strong style="color: var(--text-primary);">Verizon, BT e China Telecom</strong>.
+                </p>
+                <br>
+                <p style="font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary);" class="fade-up">
+                    Conquistei o <strong style="color: #f59e0b;">1º lugar entre 60 projetos acadêmicos</strong> 
+                    com o sistema Face Safety de reconhecimento facial. Atualmente sou <strong style="color: var(--accent-tertiary);">Vice Supervisor 
+                    & Desenvolvedor</strong> na Audicom Telecom, liderando projetos de segurança corporativa, automação e desenvolvimento web.
+                </p>
             </div>
-            <!-- Descrição ou instrução na seção Hero. -->
-            <p class="hero-description hero-description-spacing">Role para baixo para saber mais sobre mim.</p>
-            <!-- Elemento de seta para indicar rolagem para a próxima seção. Associado a: #sobre-mim -->
-            <div class="arrow-container">
-                <a href="#sobre-mim" class="arrow-link">
-                    <span class="arrow-symbol">&#8595;</span>
-                </a>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Seção Sobre Mim. Associado a: #sobre-mim -->
-        <section id="sobre-mim" class="section-padding">
-            <!-- Título da seção. -->
-            <h2 class="section-title">Sobre Mim</h2>
-            <!-- Conteúdo textual da seção Sobre Mim. -->
-            <div class="about-content">
-                <p>Sou graduando em Tecnologia da Informação pela Uniube, com especialização em desenvolvimento back-end e forte aptidão para a resolução analítica de problemas. Minha formação é complementada por uma dedicação ao aprendizado contínuo e à aplicação de tecnologias emergentes na criação de soluções robustas.</p>
-                <p>Com proficiência em C#, GitHub e Visual Studio, e certificações em Python, Inglês avançado e Win-Prompt, busco o aprimoramento constante. Meu propósito é contribuir para o avanço da TI, entregando resultados de excelência e soluções inovadoras. Desejo integrar equipes de alto desempenho, aplicando minhas competências para o desenvolvimento de projetos significativos.</p>
+    <!-- Experience Section -->
+    <section id="experiencia">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <div class="section-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h2 class="section-title">Experiência</h2>
             </div>
-        </section>
 
-        <!-- Seção Experiência Profissional. Associado a: #experiencia -->
-        <section id="experiencia" class="section-padding dark-section">
-            <!-- Título da seção. -->
-            <h2 class="section-title">Experiência Profissional</h2>
-            <!-- Contêiner da timeline de experiências. -->
             <div class="timeline">
-                <!-- Item individual da timeline (Audicom/Telecom - Analista de Suporte e Desenvolvedor). -->
-                <article class="timeline-item">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>Analista de Suporte e Desenvolvedor</h3>
-                        <p class="company-info"><strong>Audicom Telecom & Audicom Tecnologia</strong> | Uberlândia, MG (Presencial)</p>
-                        <p class="date-info">Setembro 2025 – Presente</p>
-                        <ul>
-                            <li><strong>Área Tecnologia:</strong> Desenvolvimento de sistemas de segurança com catracas eletrônicas, reconhecimento facial e controle de acesso. Criação de códigos em Python e C# para automação de processos de segurança corporativa.</li>
-                            <li><strong>Área Telecom:</strong> Atuação em help desk especializado e desenvolvimento de automações internas. Criação de sites corporativos e ferramentas web para otimização de processos da empresa.</li>
-                            <li><strong>Desenvolvimento Full-Stack:</strong> Programação em Python, Java, C#, JavaScript e Node.js para soluções integradas de software e automação empresarial.</li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Item individual da timeline (Algar Telecom). -->
-                <article class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Analista de Suporte Computacional Bilíngue</h3>
-                        <p class="company-info"><strong>Algar Telecom</strong> | Uberlândia, MG (Remoto)</p>
-                        <p class="date-info">Dezembro 2023 – Setembro 2025</p>
-                        <ul>
-                            <li>Responsável por gerenciar relacionamentos comerciais na Algar, atendendo grandes clientes como Verizon, BT e China Telecom.</li>
-                            <li>Suporte técnico, resolução de problemas e auxílio com dispositivos.</li>
-                            <li>Execução de atividades operacionais essenciais para garantir a continuidade dos negócios dos clientes.</li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Item individual da timeline (Callink). -->
-                <article class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Agente de Call Center "Sac Alô Bradesco"</h3>
-                        <p class="company-info"><strong>Callink</strong> | Uberlândia, MG</p>
-                        <p class="date-info">Outubro 2023 – Dezembro 2023</p>
-                        <ul>
-                            <li>Atendimento ao cliente (SAC) focado em soluções rápidas e eficazes.</li>
-                            <li>Aplicação de técnicas de sondagem para identificar e resolver demandas dos clientes com eficiência.</li>
-                        </ul>
-                    </div>
-                </article>
-                <!-- Item individual da timeline (Universidade de Uberaba - Desenvolvedor Python). -->
-                <article class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Desenvolvedor de Software Python</h3>
-                        <p class="company-info"><strong>Universidade de Uberaba</strong> | Uberlândia, MG</p>
-                        <p class="date-info">Outubro 2023 – Dezembro 2023</p>
-                        <ul>
-                            <li>Desenvolvimento de software de reconhecimento facial e segurança para a empresa.</li>
-                            <li>Implementação de algoritmos de detecção e verificação facial; software classificado em primeiro lugar entre 60 alunos.</li>
-                        </ul>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Seção Projetos em Destaque. Associado a: #projetos -->
-        <section id="projetos" class="section-padding">
-            <!-- Título da seção. -->
-            <h2 class="section-title">Projetos em Destaque</h2>
-            <!-- Container principal para os projetos. -->
-            <div class="projects-timeline">
-                <!-- Grid para exibição dos projetos. -->
-                <div class="projects-grid">
-                <!-- Projeto Hub Audicom -->
-                <article class="project-timeline-item project-side-by-side">
-                    <div class="project-timeline-content">
-                        <img src="imagens/Audicom-projetos/Hub.jpg" alt="Hub Audicom - Interface da plataforma centralizada" class="project-image float-left">
-                        <h3>Hub Audicom</h3>
-                        <p class="project-info"><strong>Audicom Telecom & Tecnologia</strong> | Plataforma Corporativa Integrada</p>
-                        <p class="date-info">2025</p>
-                        <p>
-                            Plataforma empresarial centralizada que unifica todos os sistemas operacionais essenciais da empresa em uma interface moderna e responsiva. Desenvolvida com JavaScript ES6+, Python e API REST, a solução transformou processos fragmentados em um ecossistema integrado, implementando sistema de tickets com categorização automática, gestão completa de roteadores, controle de inventário, scripts de atendimento padronizados, assistente de IA 24/7 e sistema de documentação com busca avançada. O resultado foi uma redução de 60% no tempo de resolução de tickets e integração completa dos processos operacionais da empresa.
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-company">Audicom Telecom & Audicom Tecnologia</h3>
+                                <p class="timeline-role">Vice Supervisor & Desenvolvedor</p>
+                            </div>
+                            <span class="timeline-period">Set 2025 – Atual</span>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Desenvolvimento de sistemas integrados com catracas eletrônicas, reconhecimento facial e 
+                            controle de acesso biométrico usando Python e C#. Criação de +20 sites corporativos e 
+                            ferramentas web para otimização de processos empresariais.
                         </p>
-                    </div>
-                </article>
-
-                <!-- Projeto IA Audinha -->
-                <article class="project-timeline-item project-side-by-side">
-                    <div class="project-timeline-content">
-                        <img src="imagens/Audicom-projetos/Audinha.jpg" alt="IA Audinha - Assistente virtual de suporte técnico" class="project-image float-left">
-                        <h3>IA Audinha</h3>
-                        <p class="project-info"><strong>Audicom Telecom & Tecnologia</strong> | Assistente de Inteligência Artificial</p>
-                        <p class="date-info">2025</p>
-                        <p>
-                            Assistente virtual especializado em suporte técnico para telecomunicações, desenvolvido com Python, Machine Learning, NLP e TensorFlow. O sistema autônomo fornece diagnósticos automáticos com 95% de precisão, integra base de conhecimento técnico, oferece resolução guiada personalizada por equipamento, realiza análise automática de logs, suporte multilíngue em português, inglês e espanhol, e conexão direta com sistemas de ticketing via API. Com tempo médio de resposta de 2 segundos, resolve 80% dos casos sem necessidade de escalação humana.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- Projeto Scripts de Atendimento -->
-                <article class="project-timeline-item project-side-by-side">
-                    <div class="project-timeline-content">
-                        <img src="imagens/Audicom-projetos/Scripts.jpg" alt="Scripts de Atendimento - Interface de correção com IA" class="project-image float-left">
-                        <h3>Scripts de Atendimento com IA</h3>
-                        <p class="project-info"><strong>Audicom Telecom & Tecnologia</strong> | Sistema de Comunicação Automatizada</p>
-                        <p class="date-info">2025</p>
-                        <p>
-                            Sistema inteligente de padronização de comunicação corporativa desenvolvido com JavaScript ES6+, NLP e API REST. A plataforma implementa correção linguística automática para gramática e tom profissional, utiliza scripts padronizados com templates para cenários técnicos recorrentes, oferece campos dinâmicos com validação automática, possui workflow integrado para criação, correção e aprovação de comunicações, controle de qualidade com análise de conformidade corporativa e histórico completo para rastreabilidade. O resultado foi uma redução de 90% em erros de comunicação e padronização completa do atendimento técnico.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- Projeto Sistema de Chamados -->
-                <article class="project-timeline-item project-side-by-side">
-                    <div class="project-timeline-content">
-                        <img src="imagens/Audicom-projetos/Sistema-de-Chamados.jpg" alt="Sistema de Chamados - Dashboard de controle" class="project-image float-left">
-                        <h3>Sistema de Chamados</h3>
-                        <p class="project-info"><strong>Audicom Telecom & Tecnologia</strong> | Plataforma de Gestão de Tickets</p>
-                        <p class="date-info">2025</p>
-                        <p>
-                            Sistema completo de gestão de tickets e solicitações técnicas desenvolvido com JavaScript ES6+, Node.js e WebSocket. A plataforma centraliza todas as demandas operacionais em interface unificada, implementando categorização inteligente automática por prioridade e departamento, workflow customizado baseado em regras de negócio, dashboard executivo com métricas de SLA e performance em tempo real, histórico detalhado com rastreabilidade completa, notificações automáticas por email e relatórios analíticos com insights de produtividade. O resultado foi uma redução de 65% no tempo médio de resolução de tickets.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- Projeto Sistema de Notas -->
-                <article class="project-timeline-item project-side-by-side">
-                    <div class="project-timeline-content">
-                        <img src="imagens/Audicom-projetos/Notas.jpg" alt="Sistema de Notas - Interface de documentação" class="project-image float-left">
-                        <h3>Sistema de Gestão Documental</h3>
-                        <p class="project-info"><strong>Audicom Telecom & Tecnologia</strong> | Plataforma de Knowledge Management</p>
-                        <p class="date-info">2025</p>
-                        <p>
-                            Plataforma enterprise de gestão documental desenvolvida com JavaScript ES6+, Web Crypto API, IndexedDB e PWA que centraliza todo o conhecimento técnico organizacional em ambiente altamente seguro. O sistema implementa criptografia AES-256 de nível financeiro, controle de acesso hierárquico com segregação de documentos corporativos e pessoais, motor de busca inteligente com indexação full-text e filtros contextuais, versionamento automático com auditoria completa, categorização automática por IA baseada em contexto organizacional e backup redundante com sincronização em tempo real. A solução resultou em 85% de redução no tempo de busca documental e 100% de centralização do conhecimento técnico da empresa.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- Projeto Portfólio Interativo -->
-                <article class="project-timeline-item">
-                    <div class="project-timeline-content">
-                        <div class="project-content-area">
-                            <h3>Portfólio Interativo com Efeitos Liquid Glass</h3>
-                            <p class="project-info"><strong>Projeto Pessoal</strong> (Desenvolvimento Web Front-End)</p>
-                            <p class="date-info">Junho 2025</p>
-                            <p>
-                                Portfólio web moderno e interativo desenvolvido com HTML5, CSS3 e JavaScript vanilla. Implementa efeitos visuais avançados de "liquid glass" com morphismo de vidro, sistema de partículas animadas, cursor interativo com ripple effects e design responsivo. O projeto demonstra competências em desenvolvimento front-end moderno, animações CSS avançadas, manipulação de Canvas API e técnicas de UX/UI contemporâneas.
-                            </p>
-                            <p><strong>Tecnologias utilizadas:</strong> HTML5, CSS3, JavaScript ES6+, Canvas API, CSS Grid/Flexbox, Git, GitHub Pages</p>
+                        <div class="career-path">
+                            <span class="career-step"><i class="fas fa-arrow-right"></i> Atendente de Suporte</span>
+                            <span class="career-step"><i class="fas fa-arrow-right"></i> Programador</span>
+                            <span class="career-step"><i class="fas fa-crown"></i> Vice Supervisor & Programador</span>
                         </div>
                     </div>
-                </article>
+                </div>
 
-                <!-- Projeto Sites Personalizado -->
-                <article class="project-timeline-item">
-                    <div class="project-timeline-content">
-                        <div class="project-content-area">
-                            <h3>Sites Personalizado - Showcase de Serviços Web</h3>
-                            <p class="project-info"><strong>Projeto Comercial</strong> (Desenvolvimento Web Full-Stack)</p>
-                            <p class="date-info">Agosto 2025</p>
-                            <p>
-                                Plataforma completa de apresentação de serviços de criação de sites personalizados, incluindo 6 exemplos funcionais de diferentes tipos de negócios (pizzaria, e-commerce, site corporativo, salão de beleza, portfólio e academia). Cada exemplo demonstra funcionalidades específicas como sistemas de pedidos, carrinho de compras, agendamentos e formulários de contato. Desenvolvido com foco em conversão e experiência do usuário.
-                            </p>
-                            <p><strong>Tecnologias utilizadas:</strong> HTML5, CSS3, JavaScript ES6+, Design Responsivo, Animações CSS, UX/UI Design, Git, GitHub Pages</p>
-                            <!-- Botão para visualizar o projeto -->
-                            <div class="project-actions">
-                                <a href="https://davicjc.github.io/SitesPersonalizado/" target="_blank" class="cta-button">Ver Projeto Online</a>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-company">Algar Telecom</h3>
+                                <p class="timeline-role">Gerente de Relacionamentos Empresariais Bilíngue</p>
+                            </div>
+                            <span class="timeline-period">Dez 2023 – Jun 2025</span>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Gestão de relacionamentos com clientes internacionais de grande porte: Verizon, BT e China Telecom. 
+                            Suporte técnico avançado em inglês com resolução de problemas críticos de infraestrutura.
+                            Monitoramento e análise de infraestrutura com <strong style="color: #10b981;">Grafana</strong> e <strong style="color: #10b981;">Zabbix</strong>.
+                        </p>
+                        <div class="career-path">
+                            <span class="career-step"><i class="fas fa-arrow-right"></i> Atendente</span>
+                            <span class="career-step"><i class="fas fa-arrow-right"></i> Time Premium</span>
+                            <span class="career-step"><i class="fas fa-star"></i> Time Atacado – Gerência Empresarial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-company">Web pra Você</h3>
+                                <p class="timeline-role">Fundador & Desenvolvedor</p>
+                            </div>
+                            <span class="timeline-period">2023 – Atual</span>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Negócio próprio focado em desenvolvimento de sites personalizados para 
+                            pequenas e médias empresas, oferecendo soluções web completas e acessíveis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-company">Universidade de Uberaba</h3>
+                                <p class="timeline-role">Desenvolvedor Python</p>
+                            </div>
+                            <span class="timeline-period">Out – Dez 2023</span>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            🏆 <strong style="color: #f59e0b;">1º Lugar</strong> entre 60 projetos acadêmicos com sistema de reconhecimento facial. 
+                            Desenvolvimento de software de controle de acesso com Python, OpenCV e Tkinter.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="timeline-company">Callink (Bradesco)</h3>
+                                <p class="timeline-role">Agente de Atendimento</p>
+                            </div>
+                            <span class="timeline-period">Out – Dez 2023</span>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            Atendimento ao cliente com foco em soluções efetivas e satisfação. 
+                            Técnicas avançadas de sondagem para resolução de demandas complexas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <div class="section-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h2 class="section-title">Habilidades</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category fade-up">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Linguagens</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">C++</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-up">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3>Ferramentas & Tech</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">Visual Studio</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Linux Server</span>
+                        <span class="skill-tag">Raspberry Pi</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-up">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Redes & Dados</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">TCP/IP</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-up">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Segurança</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Reconhecimento Facial</span>
+                        <span class="skill-tag">RFID/NFC</span>
+                        <span class="skill-tag">Catracas</span>
+                        <span class="skill-tag">Biometria</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-up">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>3D & Design</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Blender</span>
+                        <span class="skill-tag">Unity</span>
+                        <span class="skill-tag">Unreal Engine</span>
+                        <span class="skill-tag">Cinema 4D</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-up">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <h3>Idiomas</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Inglês Avançado</span>
+                        <span class="skill-tag">Espanhol Básico</span>
+                        <span class="skill-tag">Português Nativo</span>
+                    </div>
+                </div>
+
+                <div class="skill-category ai-highlight fade-up">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #a855f7, #6366f1);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Inteligência Artificial</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Criação de IA</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Automação com IA</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Integração de APIs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Philosophy -->
+            <div class="ai-philosophy fade-up">
+                <div class="philosophy-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="philosophy-content">
+                    <h3>Minha Visão sobre Inteligência Artificial</h3>
+                    <p>
+                        <strong>"Aplico IA onde agrega valor e a utilizo como aliada estratégica."</strong><br>
+                        A Inteligência Artificial é uma ferramenta de <em>potencialização</em>, não de substituição. 
+                        Combino o poder da IA com expertise humana para maximizar resultados — 
+                        entregando <span class="highlight">qualidade superior</span>, 
+                        <span class="highlight">agilidade</span> e <span class="highlight">excelência</span> em cada projeto.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projetos">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <div class="section-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h2 class="section-title">Projetos em Destaque</h2>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">ATUAL</span>
+                            <span class="project-badge" style="background: rgba(99, 102, 241, 0.2); color: #6366f1;">CORPORATIVO</span>
+                        </div>
+                        <h3 class="project-title">Sistemas de Segurança Corporativa</h3>
+                        <p class="project-description">
+                            Catracas eletrônicas, reconhecimento facial e controle de acesso biométrico. 
+                            +20 sites corporativos desenvolvidos.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>C#</span>
+                                <span>OpenCV</span>
                             </div>
                         </div>
                     </div>
-                </article>
-                
-                <!-- Projeto Software de Reconhecimento Facial -->
-                <article class="project-timeline-item">
-                    <div class="project-timeline-content">
-                        <div class="project-content-area">
-                            <h3>Software de Reconhecimento Facial e Segurança</h3>
-                            <p class="project-info"><strong>Universidade de Uberaba</strong> (Projeto Acadêmico Aplicado)</p>
-                            <p class="date-info">Março 2023 – Maio 2023</p>
-                            <p>
-                                Este projeto consiste em um software de reconhecimento facial desenvolvido em Python, com foco em segurança e automação de processos. O sistema permite cadastrar, remover e identificar pessoas através de imagens capturadas pela câmera, tornando o controle de acesso mais eficiente e seguro para empresas e instituições. Projeto classificado em 1º lugar entre 60 projetos acadêmicos.
-                            </p>
-                            <p><strong>Tecnologias utilizadas:</strong> Python, OpenCV, Machine Learning, Algoritmos de Visão Computacional, Tkinter, Manipulação de Banco de Dados</p>
+                </div>
+
+                <a href="https://github.com/Davicjc/Face-Safety" target="_blank" class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">🏆 1º LUGAR</span>
                         </div>
-                        <!-- Galeria de imagens do projeto. -->
-                        <div class="project-gallery-grid">
-                            <div><img src="https://github.com/Davicjc/Face-Safety/blob/main/Fotos/1-Lobby.jpg?raw=true" width="55%" alt="Página inicial do programa"></div>
-                            <div><img src="https://github.com/Davicjc/Face-Safety/blob/main/Fotos/4-Scanner.jpg?raw=true" width="50%" alt="Tela do scanner facial"></div>
-                            <div><img src="https://github.com/Davicjc/Face-Safety/blob/main/Fotos/2-Add.jpg?raw=true" width="70%" alt="Tela de adicionar pessoa"></div>
-                            <div><img src="https://github.com/Davicjc/Face-Safety/blob/main/Fotos/3-Rmv.jpg?raw=true" width="70%" alt="Tela de remover pessoa"></div>
+                        <h3 class="project-title">Face Safety</h3>
+                        <p class="project-description">
+                            Sistema de controle de acesso com reconhecimento facial premiado 
+                            em 1º lugar entre 60 projetos acadêmicos.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>OpenCV</span>
+                                <span>Tkinter</span>
+                            </div>
+                            <span class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </span>
                         </div>
                     </div>
-                </article>
+                </a>
+
+                <a href="https://davicjc.com" target="_blank" class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">PORTFÓLIO</span>
+                        </div>
+                        <h3 class="project-title">Meu Portfólio</h3>
+                        <p class="project-description">
+                            Site interativo com efeitos visuais avançados, responsivo 
+                            e hospedado via GitHub Pages.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JS</span>
+                            </div>
+                            <span class="project-link">
+                                <i class="fas fa-external-link-alt"></i> davicjc.com
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://audicomtelecom.com.br/" target="_blank" class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">CLIENTE</span>
+                        </div>
+                        <h3 class="project-title">Audicom Telecom</h3>
+                        <p class="project-description">
+                            Site responsivo para empresa de telecomunicações 
+                            com design moderno e profissional.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JS</span>
+                            </div>
+                            <span class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Ver Site
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://webpravoce.shop/" target="_blank" class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">NEGÓCIO PRÓPRIO</span>
+                        </div>
+                        <h3 class="project-title">Web pra Você</h3>
+                        <p class="project-description">
+                            Plataforma para criação de sites personalizados 
+                            para empresas de pequeno e médio porte.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JS</span>
+                            </div>
+                            <span class="project-link">
+                                <i class="fas fa-external-link-alt"></i> webpravoce.shop
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://ddwilber.site/" target="_blank" class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(249, 115, 22, 0.2); color: #f97316;">CLIENTE VIP</span>
+                        </div>
+                        <h3 class="project-title">Portfólio Xiaomi Brasil</h3>
+                        <p class="project-description">
+                            Portfólio profissional para Supervisor da Xiaomi 
+                            Oficial Brasil com design personalizado.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JS</span>
+                            </div>
+                            <span class="project-link">
+                                <i class="fas fa-external-link-alt"></i> ddwilber.site
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/Davicjc/SimuladorFinanceiro" target="_blank" class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">PRIMEIRO PROJETO</span>
+                        </div>
+                        <h3 class="project-title">Simulador Financeiro</h3>
+                        <p class="project-description">
+                            Primeiro projeto de programação – simulador para 
+                            planejamento de finanças pessoais.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>Python</span>
+                            </div>
+                            <span class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://audicomsitereuniao.davicjc.com/" target="_blank" class="project-card fade-up">
+                    <div class="project-content">
+                        <div class="project-badges">
+                            <span class="project-badge" style="background: rgba(100, 116, 139, 0.2); color: #64748b;">CORPORATIVO</span>
+                        </div>
+                        <h3 class="project-title">Audicom – Painel Sala de Reunião</h3>
+                        <p class="project-description">
+                            Site desenvolvido para exibição em TV na sala de 
+                            reuniões com informações corporativas.
+                        </p>
+                        <div class="project-footer">
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JS</span>
+                            </div>
+                            <span class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Ver Site
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="depoimentos">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <div class="section-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h2 class="section-title">O Que Dizem Sobre Mim</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Depoimento 1 - Geisa Paula -->
+                <div class="testimonial-card fade-up">
+                    <span class="testimonial-quote">"</span>
+                    <p class="testimonial-content">
+                        "Davi demonstra alto nível de comprometimento, competência e proatividade, 
+                        entregando todas as demandas com qualidade e excelência."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="fotos/sobremimterceiros/Geisa Paula.jpg" alt="Geisa Paula" />
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Geisa Paula</h4>
+                            <p class="testimonial-role">Supervisora de Relacionamento - Algar Telecom</p>
+                            <a href="https://www.linkedin.com/in/geisa-paula-1a66a0175/" target="_blank" class="testimonial-link">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 2 - Dennis Wilber -->
+                <div class="testimonial-card fade-up">
+                    <span class="testimonial-quote">"</span>
+                    <p class="testimonial-content">
+                        "Muito obrigado pelo site que você fez sobre minhas experiências profissionais. 
+                        Aquilo fez muita diferença para mim. Graças a esse trabalho, consegui crescer, 
+                        ser reconhecido e hoje sou supervisor."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="fotos/sobremimterceiros/Dennis Wilber.jpg" alt="Dennis Wilber" />
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Dennis Wilber</h4>
+                            <p class="testimonial-role">Supervisor de Loja - Xiaomi Brasil</p>
+                            <a href="https://www.linkedin.com/in/dennis-wilber-10aa33259/" target="_blank" class="testimonial-link">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Seção Habilidades e Competências. Associado a: #habilidades -->
-        <section id="habilidades" class="section-padding dark-section">
-            <!-- Título da seção. -->
-            <h2 class="section-title">Habilidades & Competências</h2>
-            <!-- Contêiner para exibição das habilidades em categorias. -->
-            <div class="skills-showcase">
-                <!-- Categoria de Habilidades: Linguagens & Frameworks -->
-                <div class="skill-category">
-                    <h4>Linguagens & Frameworks</h4>
-                    <ul>
-                        <li>C#</li>
-                        <li>Python</li>
-                        <li>SQL</li>
-                        <li>JavaScript</li>
-                        <li>Node.js</li>
-                        <li>C++</li>
-                        <li>Pascal</li>
-                    </ul>
+    <!-- Certifications Section -->
+    <section id="formacao">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <div class="section-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
-                <!-- Categoria de Habilidades: Ferramentas & Plataformas -->
-                <div class="skill-category">
-                    <h4>Ferramentas & Plataformas</h4>
-                    <ul>
-                        <li>GitHub</li>
-                        <li>Visual Studio</li>
-                        <li>Unreal Engine</li>
-                        <li>Unity3D</li>
-                        <li>Raspberry Pi</li>
-                        <li>Microsoft Office</li>
-                    </ul>
+                <h2 class="section-title">Formação Acadêmica</h2>
+            </div>
+
+            <div class="glass-strong fade-up" style="border-radius: 24px; padding: 2rem; display: flex; align-items: center; gap: 2rem;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); border-radius: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <i class="fas fa-university" style="font-size: 2rem; color: white;"></i>
                 </div>
-                <!-- Categoria de Habilidades: Sistemas & Conceitos -->
-                <div class="skill-category">
-                    <h4>Sistemas & Conceitos</h4>
-                    <ul>
-                        <li>Sistemas Operacionais (Windows, Linux, MacOS)</li>
-                        <li>Desenvolvimento Back-End</li>
-                        <li>Resolução de Problemas</li>
-                        <li>Análise de Sistemas</li>
-                        <li>Segurança da Informação</li>
-                        <li>Internet das Coisas (IoT)</li>
-                    </ul>
-                </div>
-                <!-- Categoria de Habilidades: Competências Adicionais -->
-                <div class="skill-category">
-                    <h4>Competências Adicionais</h4>
-                    <ul>
-                        <li>Autodidatismo contínuo</li>
-                        <li>Comunicação eficaz</li>
-                        <li>Raciocínio lógico</li>
-                        <li>Adaptabilidade</li>
-                        <li>Trabalho sob pressão</li>
-                    </ul>
-                </div>
-                <!-- Categoria de Habilidades: Idiomas -->
-                <div class="skill-category">
-                    <h4>Idiomas</h4>
-                    <ul>
-                        <li>Português (Nativo)</li>
-                        <li>Inglês (Avançado)</li>
-                        <li>Espanhol (Básico)</li>
-                    </ul>
+                <div>
+                    <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem;">Bacharelado em Sistemas de Informação</h3>
+                    <p style="color: var(--accent-primary); font-weight: 600; margin-bottom: 0.3rem;">Universidade de Uberaba (Uniube)</p>
+                    <p style="color: var(--text-secondary);">Fev 2023 – Dez 2026</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Seção Formação Acadêmica. Associado a: #formacao -->
-        <section id="formacao" class="section-padding">
-            <!-- Título da seção. -->
-            <h2 class="section-title">Formação Acadêmica</h2>
-            <!-- Entrada de formação individual. -->
-            <div class="education-entry">
-                <h3>Bacharelado em Sistemas de Informação</h3>
-                <p class="institution-info"><strong>Universidade de Uberaba</strong> - Uberlândia</p>
-                <p class="date-info">Fevereiro 2023 – Dezembro 2026 (Em curso)</p>
-                <p>Foco em desenvolvimento de software, sistemas de informação e infraestrutura de TI, com habilidades desenvolvidas em diversas tecnologias e metodologias listadas na seção de habilidades.</p>
+    <!-- Certifications Section -->
+    <section id="certificacoes">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <div class="section-icon" style="background: linear-gradient(135deg, #06b6d4, #0284c7);">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h2 class="section-title">Certificações</h2>
             </div>
-        </section>
 
-        <!-- Seção Certificações. Associado a: #certificacoes -->
-        <section id="certificacoes" class="section-padding dark-section">
-            <!-- Título da seção. -->
-            <h2 class="section-title">Certificações</h2>
-            <!-- Wrapper para aplicar o estilo de card -->
-            <div class="certification-card-wrapper">
-                <!-- Lista de certificações (carregada dinamicamente via JavaScript) -->
-                <ul class="certification-list" id="dynamic-certifications">
-                    <!-- Os certificados serão carregados automaticamente aqui -->
-                </ul>
-                
-                <!-- Texto com link para o perfil do LinkedIn. -->
-                <p class="center-text">
-                    Clique para visualizar os certificados em PDF ou visite meu perfil no <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" rel="noopener noreferrer" class="linkedin-link">LinkedIn</a>.
+            <div class="certs-grid">
+                <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon"><i class="fab fa-python"></i></div>
+                    <div class="cert-info">
+                        <h4>Python</h4>
+                        <p>Alura • 2021</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-language"></i></div>
+                    <div class="cert-info">
+                        <h4>Inglês Avançado</h4>
+                        <p>Wizard • 2019</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-language"></i></div>
+                    <div class="cert-info">
+                        <h4>Inglês</h4>
+                        <p>Alura • 2021-2022</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);"><i class="fas fa-terminal"></i></div>
+                    <div class="cert-info">
+                        <h4>CMD/PowerShell</h4>
+                        <p>Alura • 2022</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);"><i class="fas fa-shield-alt"></i></div>
+                    <div class="cert-info">
+                        <h4>Segurança da Informação</h4>
+                        <p>Hacker Rangers • 2024</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);"><i class="fas fa-user-shield"></i></div>
+                    <div class="cert-info">
+                        <h4>LGPD</h4>
+                        <p>Algar Telecom • 2024</p>
+                    </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/davicjc/details/certifications/" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);"><i class="fas fa-handshake"></i></div>
+                    <div class="cert-info">
+                        <h4>Código de Conduta</h4>
+                        <p>Algar Telecom • 2024</p>
+                    </div>
+                </a>
+
+                <div class="cert-card fade-up" style="opacity: 0.6;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #f97316, #ea580c);"><i class="fab fa-aws"></i></div>
+                    <div class="cert-info">
+                        <h4>AWS Cloud</h4>
+                        <p><i class="fas fa-spinner fa-spin" style="margin-right: 5px;"></i>Em progresso</p>
+                    </div>
+                </div>
+
+                <div class="cert-card fade-up" style="opacity: 0.6;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);"><i class="fab fa-java"></i></div>
+                    <div class="cert-info">
+                        <h4>Java</h4>
+                        <p><i class="fas fa-spinner fa-spin" style="margin-right: 5px;"></i>Em progresso</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contato">
+        <div class="cta-container fade-up">
+            <div class="cta-inner">
+                <h2>Vamos trabalhar <span class="gradient">juntos</span>?</h2>
+                <p>
+                    Estou sempre aberto a novos projetos e oportunidades. 
+                    Entre em contato e vamos criar algo incrível!
                 </p>
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com/in/davicjc" target="_blank" class="btn-primary">
+                        <i class="fab fa-linkedin"></i> Conectar no LinkedIn
+                    </a>
+                    <a href="https://github.com/Davicjc" target="_blank" class="btn-secondary">
+                        <i class="fab fa-github"></i> Ver GitHub
+                    </a>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Seção Contato. Associado a: #contato -->
-        <section id="contato" class="section-padding">
-            <!-- Título da seção. -->
-            <h2 class="section-title">Vamos Conversar?</h2>
-            <!-- Bloco de informações de contato. -->
-            <div class="contact-info-block">
-                <p>Estou sempre aberto a novas oportunidades, projetos desafiadores e colaborações. Sinta-se à vontade para entrar em contato!</p>
-                <p><strong>Email:</strong> <a href="mailto:davicjc@gmail.com">davicjc@gmail.com</a></p>
-                <p><strong>Telefone:</strong> <a href="tel:+5534993336186">+55 34 99333-6186</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/davicjc/" target="_blank" rel="noopener noreferrer">linkedin.com/in/davicjc/</a></p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <span class="footer-logo">DAVICJC.COM</span>
+            <div class="footer-links">
+                <a href="https://davicjc.com" target="_blank" title="Website">
+                    <i class="fas fa-globe"></i>
+                </a>
+                <a href="https://github.com/Davicjc" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/davicjc" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
             </div>
-        </section>
-    </main>
-
-    <!-- Rodapé do site. -->
-    <footer id="main-footer">
-        <!-- Direitos autorais e ano dinâmico. Associado a: script.js (atualização do ano) -->
-        <p>&copy; <span id="year"></span> Davi Castro. Todos os direitos reservados.</p>
-        <!-- Informação de versão do site. -->
-        <p>Versão 3.5</p>
-        <!-- Informação sobre último update -->
-        <p class="footer-small-text">
-            <strong>Último Update:</strong> Adicionados controles de efeitos visuais (🌟 HD / 🥔 Potato Mode) para melhor performance e acessibilidade.
-        </p>
-        
-        <!-- Logo de Parceria -->
-        <div class="footer-partnership">
-            <a href="https://webpravoce.shop" target="_blank" rel="noopener noreferrer" class="partnership-link">
-                <img src="logo/Selo_Parceria-de.png" alt="Selo de Parceria" class="partnership-logo">
+            <p class="footer-copyright">
+                <i class="fas fa-code"></i> Desenvolvido por <strong>Davi Castro</strong> • 2026
+            </p>
+            <a href="https://policies.google.com/technologies/partner-sites?hl=pt-BR" target="_blank" class="cookies-link">
+                <i class="fas fa-cookie-bite"></i> Política de Cookies e Rastreamento
             </a>
         </div>
     </footer>
 
-    <!-- Modal para expansão de imagens -->
-    <div id="imageModal" class="image-modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeImageModal()">&times;</button>
-            <img id="modalImage" class="modal-image" src="" alt="">
-            <div id="modalCaption" class="modal-caption"></div>
-        </div>
-    </div>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    <!-- Link para o arquivo de configuração de certificados -->
-    <script src="scripts/certifications-config.js"></script>
-    <!-- Link para o arquivo JavaScript principal. Associado a: scripts/script.js -->
-    <script src="scripts/script.js"></script>
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button visibility
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Fade up animation on scroll
+        const fadeUpElements = document.querySelectorAll('.fade-up');
+        
+        const fadeUpObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        fadeUpElements.forEach(el => fadeUpObserver.observe(el));
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Liquid Glass Mouse Tracking Effect
+        const liquidGlassElements = document.querySelectorAll('.profile-inner, .skill-category, .project-card, .timeline-content, .cert-card, .ai-philosophy');
+        
+        liquidGlassElements.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                el.style.setProperty('--mouse-x', `${x}px`);
+                el.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Apply liquid glass class to elements
+        liquidGlassElements.forEach(el => {
+            el.classList.add('liquid-glass');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/davicjc/FooterDavicjc@main/footer_cjc.js"></script>
 </body>
 </html>
