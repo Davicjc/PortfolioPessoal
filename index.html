@@ -1526,6 +1526,383 @@
             transform: translateY(0);
         }
 
+        /* Mobile description - hidden by default */
+        .mobile-description {
+            display: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        /* Mobile buttons - hidden by default */
+        .mobile-buttons {
+            display: none;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content {
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-container {
+                max-width: 1000px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .profile-card {
+                max-width: 420px;
+                margin: 0 auto;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                left: 5px;
+            }
+
+            .timeline-dot {
+                left: -2rem;
+            }
+
+            .ai-philosophy {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Hide desktop nav */
+            nav {
+                display: none;
+            }
+
+            /* Hide hero description/buttons and show mobile versions */
+            .hero-description,
+            .desktop-buttons {
+                display: none;
+            }
+            
+            .mobile-description {
+                display: block;
+            }
+            
+            .mobile-buttons {
+                display: flex;
+            }
+
+            .mobile-buttons .btn-primary,
+            .mobile-buttons .btn-secondary {
+                flex: 1;
+                max-width: 200px;
+                justify-content: center;
+                padding: 0.9rem 1.5rem;
+            }
+
+            /* Ensure background effects are visible on mobile */
+            .bg-grid, .bg-noise {
+                display: block;
+                position: fixed;
+            }
+
+            .orb {
+                display: block;
+                position: fixed;
+                animation: float 20s infinite ease-in-out;
+            }
+
+            .orb-1 {
+                width: 400px;
+                height: 400px;
+                top: -100px;
+                left: -100px;
+            }
+
+            .orb-2 {
+                width: 350px;
+                height: 350px;
+                bottom: -80px;
+                right: -80px;
+            }
+
+            .orb-3 {
+                width: 300px;
+                height: 300px;
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            /* Hero improvements */
+            .hero {
+                padding: 2rem 1rem;
+                padding-top: 4rem;
+                position: relative;
+                z-index: 1;
+                background: transparent;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+                line-height: 1.2;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Sections improvements */
+            section {
+                padding: 3rem 1rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            /* Maintain glass effects on mobile */
+            .glass, .glass-strong {
+                backdrop-filter: blur(40px) saturate(180%);
+                -webkit-backdrop-filter: blur(40px) saturate(180%);
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            }
+
+            /* Profile card mobile enhancements */
+            .profile-card {
+                position: relative;
+                z-index: 2;
+            }
+
+            .profile-inner {
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+                backdrop-filter: blur(50px) saturate(200%);
+                -webkit-backdrop-filter: blur(50px) saturate(200%);
+                box-shadow: 
+                    0 20px 50px rgba(0, 0, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+
+            /* Skills - Enhanced glass effects for mobile */
+            .skills-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .skill-category {
+                background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+                backdrop-filter: blur(40px) saturate(180%);
+                -webkit-backdrop-filter: blur(40px) saturate(180%);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 
+                    0 15px 40px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+                position: relative;
+                z-index: 1;
+            }
+
+            /* AI card improvements for mobile */
+            .skill-category.ai-highlight {
+                margin-top: 1.5rem;
+                display: flex !important;
+                flex-direction: column;
+                background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(99, 102, 241, 0.08));
+                border: 2px solid rgba(168, 85, 247, 0.4);
+                box-shadow: 
+                    0 20px 50px rgba(0, 0, 0, 0.4),
+                    0 0 40px rgba(168, 85, 247, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+
+            .skill-category.ai-highlight > div:first-child {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .skill-category.ai-highlight > div:first-child > div:last-child {
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid rgba(168, 85, 247, 0.3);
+                padding-top: 1.5rem;
+            }
+
+            /* Timeline improvements */
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            /* Projects improvements with enhanced glass */
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-card {
+                background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+                backdrop-filter: blur(40px) saturate(180%);
+                -webkit-backdrop-filter: blur(40px) saturate(180%);
+                box-shadow: 
+                    0 15px 40px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            /* Testimonials improvements with glass effects */
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .testimonial-card {
+                background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+                backdrop-filter: blur(40px) saturate(180%);
+                -webkit-backdrop-filter: blur(40px) saturate(180%);
+                box-shadow: 
+                    0 15px 40px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+
+            .testimonial-author {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            /* Certifications - Show only key ones */
+            .certs-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            /* CTA improvements */
+            .cta-section {
+                padding: 4rem 1rem;
+            }
+
+            .cta-inner {
+                padding: 2.5rem 1.5rem;
+                border-radius: 24px;
+            }
+
+            .cta-inner h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .cta-buttons .btn-primary,
+            .cta-buttons .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            /* Footer improvements */
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .certs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-inner h2 {
+                font-size: 1.8rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero-content {
@@ -1618,12 +1995,12 @@
                     Olá, eu sou<br>
                     <span class="gradient">Davi Castro</span>
                 </h1>
-                <p>
+                <p class="hero-description">
                     Desenvolvedor Full Stack com expertise em criação de sites, softwares, automação 
                     de processos e infraestrutura de redes. Especialista em sistemas de segurança 
                     corporativa com reconhecimento facial e controle de acesso biométrico.
                 </p>
-                <div class="hero-buttons">
+                <div class="hero-buttons desktop-buttons">
                     <a href="#projetos" class="btn-primary">
                         <i class="fas fa-rocket"></i> Ver Projetos
                     </a>
@@ -1656,6 +2033,21 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="mobile-buttons">
+                <a href="#projetos" class="btn-primary">
+                    <i class="fas fa-rocket"></i> Ver Projetos
+                </a>
+                <a href="Curriculo/index.html" class="btn-secondary">
+                    <i class="fas fa-file-alt"></i> Currículo
+                </a>
+            </div>
+            
+            <p class="mobile-description">
+                Desenvolvedor Full Stack com expertise em criação de sites, softwares, automação 
+                de processos e infraestrutura de redes. Especialista em sistemas de segurança 
+                corporativa com reconhecimento facial e controle de acesso biométrico.
+            </p>
         </div>
     </section>
 
@@ -1809,12 +2201,13 @@
             </div>
 
             <div class="skills-grid">
+                <!-- Card combinado: Tecnologias -->
                 <div class="skill-category fade-up">
                     <div class="skill-category-header">
                         <div class="skill-category-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
                             <i class="fas fa-code"></i>
                         </div>
-                        <h3>Linguagens</h3>
+                        <h3>Tecnologias</h3>
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
@@ -1823,49 +2216,25 @@
                         <span class="skill-tag">JavaScript</span>
                         <span class="skill-tag">Node.js</span>
                         <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">Linux Server</span>
                     </div>
                 </div>
 
+                <!-- Card combinado: Infraestrutura & Dados -->
                 <div class="skill-category fade-up">
                     <div class="skill-category-header">
                         <div class="skill-category-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <h3>Ferramentas & Tech</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">Visual Studio</span>
-                        <span class="skill-tag">OpenCV</span>
-                        <span class="skill-tag">Linux Server</span>
-                        <span class="skill-tag">Raspberry Pi</span>
-                    </div>
-                </div>
-
-                <div class="skill-category fade-up">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
                             <i class="fas fa-database"></i>
                         </div>
-                        <h3>Redes & Dados</h3>
+                        <h3>Infraestrutura & Dados</h3>
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">SQL Server</span>
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">TCP/IP</span>
-                    </div>
-                </div>
-
-                <div class="skill-category fade-up">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Segurança</h3>
-                    </div>
-                    <div class="skill-tags">
                         <span class="skill-tag">Reconhecimento Facial</span>
                         <span class="skill-tag">RFID/NFC</span>
                         <span class="skill-tag">Catracas</span>
@@ -1873,66 +2242,61 @@
                     </div>
                 </div>
 
+                <!-- Card combinado: Design & Idiomas -->
                 <div class="skill-category fade-up">
                     <div class="skill-category-header">
                         <div class="skill-category-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
-                            <i class="fas fa-cube"></i>
+                            <i class="fas fa-palette"></i>
                         </div>
-                        <h3>3D & Design</h3>
+                        <h3>Design & Idiomas</h3>
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">Blender</span>
                         <span class="skill-tag">Unity</span>
                         <span class="skill-tag">Unreal Engine</span>
                         <span class="skill-tag">Cinema 4D</span>
-                    </div>
-                </div>
-
-                <div class="skill-category fade-up">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
-                            <i class="fas fa-globe-americas"></i>
-                        </div>
-                        <h3>Idiomas</h3>
-                    </div>
-                    <div class="skill-tags">
                         <span class="skill-tag">Inglês Avançado</span>
                         <span class="skill-tag">Espanhol Básico</span>
                         <span class="skill-tag">Português Nativo</span>
                     </div>
                 </div>
-
-                <div class="skill-category ai-highlight fade-up">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon" style="background: linear-gradient(135deg, #a855f7, #6366f1);">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3>Inteligência Artificial</h3>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Criação de IA</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                        <span class="skill-tag">Automação com IA</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Integração de APIs</span>
-                    </div>
-                </div>
             </div>
 
-            <!-- AI Philosophy -->
-            <div class="ai-philosophy fade-up">
-                <div class="philosophy-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <div class="philosophy-content">
-                    <h3>Minha Visão sobre Inteligência Artificial</h3>
-                    <p>
-                        <strong>"Aplico IA onde agrega valor e a utilizo como aliada estratégica."</strong><br>
-                        A Inteligência Artificial é uma ferramenta de <em>potencialização</em>, não de substituição. 
-                        Combino o poder da IA com expertise humana para maximizar resultados — 
-                        entregando <span class="highlight">qualidade superior</span>, 
-                        <span class="highlight">agilidade</span> e <span class="highlight">excelência</span> em cada projeto.
-                    </p>
+            <!-- Card de IA esticado (largura completa) -->
+            <div class="skill-category ai-highlight fade-up" style="grid-column: 1 / -1; margin-top: 2rem;">
+                <div style="display: flex; gap: 2rem; align-items: flex-start;">
+                    <div style="flex: 1;">
+                        <div class="skill-category-header">
+                            <div class="skill-category-icon" style="background: linear-gradient(135deg, #a855f7, #6366f1);">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>Inteligência Artificial</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Criação de IA</span>
+                            <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">Automação com IA</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Integração de APIs</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Minha Visão sobre IA ao lado -->
+                    <div style="flex: 1; padding-left: 2rem; border-left: 1px solid rgba(168, 85, 247, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #a855f7, #6366f1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white;">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 style="margin: 0; font-size: 1.2rem; background: linear-gradient(135deg, #a855f7, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Minha Visão</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.7; font-size: 1rem;">
+                            <strong style="color: var(--text-primary);">"Aplico IA onde agrega valor e a utilizo como aliada estratégica."</strong><br><br>
+                            A Inteligência Artificial é uma ferramenta de <em style="color: #a855f7; font-style: normal; font-weight: 600;">potencialização</em>, não de substituição. 
+                            Combino o poder da IA com expertise humana para maximizar resultados — 
+                            entregando <span style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3)); padding: 0.2rem 0.5rem; border-radius: 6px; color: white; font-weight: 500;">qualidade superior</span>, 
+                            <span style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3)); padding: 0.2rem 0.5rem; border-radius: 6px; color: white; font-weight: 500;">agilidade</span> e <span style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3)); padding: 0.2rem 0.5rem; border-radius: 6px; color: white; font-weight: 500;">excelência</span> em cada projeto.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2180,6 +2544,26 @@
                             <h4 class="testimonial-name">Dennis Wilber</h4>
                             <p class="testimonial-role">Supervisor de Loja - Xiaomi Brasil</p>
                             <a href="https://www.linkedin.com/in/dennis-wilber-10aa33259/" target="_blank" class="testimonial-link">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 3 - Fábio Marques Barbosa -->
+                <div class="testimonial-card fade-up">
+                    <span class="testimonial-quote">"</span>
+                    <p class="testimonial-content">
+                        "Ver o trabalho do Davi na prática foi uma experiência excelente. Ele une conhecimentos sólidos em programação e hardware com um atendimento profissional, ágil e bem organizado. Diagnostica problemas com precisão, entrega soluções consistentes e mantém uma comunicação clara do início ao fim. Um profissional confiável e acima da média."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="fotos/sobremimterceiros/Fabio Marques.jpg" alt="Fábio Marques Barbosa" />
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Fábio Marques Barbosa</h4>
+                            <p class="testimonial-role">Analista de Processos - Lyon Engenharia</p>
+                            <a href="https://www.linkedin.com/in/fabiomarquesbarbosa/" target="_blank" class="testimonial-link">
                                 <i class="fab fa-linkedin"></i> LinkedIn
                             </a>
                         </div>
