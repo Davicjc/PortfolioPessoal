@@ -609,13 +609,13 @@
         /* Experience Timeline */
         .timeline {
             position: relative;
-            padding-left: 3rem;
+            padding-left: 60px;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 7px;
+            left: 24px;
             top: 0;
             bottom: 0;
             width: 2px;
@@ -643,14 +643,16 @@
 
         .timeline-dot {
             position: absolute;
-            left: -3rem;
+            left: -35px;
             top: 0.5rem;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
+            margin-left: -1px;
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 50%;
             border: 3px solid var(--bg-primary);
             box-shadow: 0 0 20px var(--glow-color);
+            box-sizing: border-box;
         }
 
         .timeline-dot::before {
@@ -661,6 +663,24 @@
             border-radius: 50%;
             opacity: 0.3;
             animation: pulse 2s infinite;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -60px;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .timeline-icon i {
+            font-size: 1.2rem;
+            color: white;
         }
 
         @keyframes pulse {
@@ -1758,15 +1778,25 @@
             }
 
             .timeline {
-                padding-left: 2rem;
+                padding-left: 50px;
             }
 
             .timeline::before {
-                left: 5px;
+                left: 20px;
             }
 
             .timeline-dot {
                 left: -2rem;
+            }
+
+            .timeline-icon {
+                left: -50px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .timeline-icon i {
+                font-size: 1rem;
             }
 
             .ai-philosophy {
@@ -1943,7 +1973,21 @@
 
             /* Timeline improvements */
             .timeline {
-                padding-left: 1.5rem;
+                padding-left: 45px;
+            }
+
+            .timeline::before {
+                left: 17px;
+            }
+
+            .timeline-icon {
+                left: -45px;
+                width: 35px;
+                height: 35px;
+            }
+
+            .timeline-icon i {
+                font-size: 0.9rem;
             }
 
             .timeline-content {
@@ -2134,6 +2178,69 @@
                 font-size: 0.65rem;
             }
         }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+
+        .lang-switcher a {
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .lang-switcher a.active {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+        }
+
+        .lang-switcher a:hover:not(.active) {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Mobile Language Button (Circle) */
+        .mobile-lang-btn {
+            display: none;
+            position: absolute;
+            top: 1.5rem;
+            left: 1rem;
+            z-index: 99;
+        }
+
+        .mobile-lang-btn a {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 50%;
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 12px rgba(99, 102, 241, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-lang-btn a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-lang-btn {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2150,14 +2257,18 @@
             <a href="#" class="logo">DAVICJC.COM</a>
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre Mim</a></li>
-                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#projetos">Projetos</a></li>
                 <li><a href="#experiencia">Experiência</a></li>
                 <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#projetos">Projetos em Destaque</a></li>
-                <li><a href="#formacao">Formação Acadêmica</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#formacao">Formação</a></li>
                 <li><a href="#certificacoes">Certificações</a></li>
-                <li><a href="#contato">Contatos</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
+            <div class="lang-switcher">
+                <a href="index.html" class="active">PT</a>
+                <a href="en.html">EN</a>
+            </div>
         </div>
     </nav>
 
@@ -2181,18 +2292,35 @@
         </div>
         <ul class="mobile-menu-links">
             <li><a href="#sobre" onclick="closeMobileMenu()"><i class="fas fa-user"></i> Sobre Mim</a></li>
-            <li><a href="#depoimentos" onclick="closeMobileMenu()"><i class="fas fa-comments"></i> Depoimentos</a></li>
+            <li><a href="#projetos" onclick="closeMobileMenu()"><i class="fas fa-rocket"></i> Projetos</a></li>
             <li><a href="#experiencia" onclick="closeMobileMenu()"><i class="fas fa-briefcase"></i> Experiência</a></li>
             <li><a href="#habilidades" onclick="closeMobileMenu()"><i class="fas fa-laptop-code"></i> Habilidades</a></li>
-            <li><a href="#projetos" onclick="closeMobileMenu()"><i class="fas fa-rocket"></i> Projetos em Destaque</a></li>
-            <li><a href="#formacao" onclick="closeMobileMenu()"><i class="fas fa-graduation-cap"></i> Formação Acadêmica</a></li>
+            <li><a href="#depoimentos" onclick="closeMobileMenu()"><i class="fas fa-comments"></i> Depoimentos</a></li>
+            <li><a href="#formacao" onclick="closeMobileMenu()"><i class="fas fa-graduation-cap"></i> Formação</a></li>
             <li><a href="#certificacoes" onclick="closeMobileMenu()"><i class="fas fa-certificate"></i> Certificações</a></li>
-            <li><a href="#contato" onclick="closeMobileMenu()"><i class="fas fa-envelope"></i> Contatos</a></li>
+            <li><a href="#contato" onclick="closeMobileMenu()"><i class="fas fa-envelope"></i> Contato</a></li>
         </ul>
+        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1)); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 16px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                <i class="fas fa-globe" style="color: var(--accent-primary); font-size: 1.1rem;"></i>
+                <span style="color: var(--text-primary); font-weight: 600; font-size: 0.95rem;">Idioma / Language</span>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+                <a href="index.html" style="flex: 1; text-align: center; padding: 1rem; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); border-radius: 12px; color: white; text-decoration: none; font-weight: 700; font-size: 1rem; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">🇧🇷 PT</a>
+                <a href="en.html" style="flex: 1; text-align: center; padding: 1rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 1rem;">🇺🇸 EN</a>
+            </div>
+        </div>
     </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Mobile Language Button -->
+        <div class="mobile-lang-btn">
+            <a href="en.html" title="English">
+                <i class="fas fa-language"></i>
+            </a>
+        </div>
+        
         <div class="hero-content">
             <div class="hero-text">
                 <h1>
@@ -2283,77 +2411,267 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="depoimentos">
+    <!-- Projects Section -->
+    <section id="projetos">
         <div class="section-container">
             <div class="section-header fade-up">
-                <div class="section-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
-                    <i class="fas fa-comments"></i>
+                <div class="section-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
+                    <i class="fas fa-rocket"></i>
                 </div>
-                <h2 class="section-title">Depoimentos</h2>
+                <h2 class="section-title">Projetos em Destaque</h2>
             </div>
 
-            <div class="testimonials-grid">
-                <!-- Depoimento 1 - Geisa Paula -->
-                <div class="testimonial-card fade-up">
-                    <span class="testimonial-quote">"</span>
-                    <p class="testimonial-content">
-                        "Davi demonstra alto nível de comprometimento, competência e proatividade, 
-                        entregando todas as demandas com qualidade e excelência."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="fotos/sobremimterceiros/Geisa Paula.jpg" alt="Geisa Paula" />
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Geisa Paula</h4>
-                            <p class="testimonial-role">Coordenadora de Relacionamento - Algar Telecom</p>
-                            <a href="https://www.linkedin.com/in/geisa-paula-1a66a0175/" target="_blank" class="testimonial-link">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
+            <!-- Projects Timeline Container -->
+            <div class="projects-timeline" style="position: relative; padding-left: 60px;">
+                <!-- Linha vertical principal -->
+                <div class="timeline-line" style="position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #a855f7, #6366f1, #06b6d4, #10b981); border-radius: 2px;"></div>
+
+                <!-- Sites & Desenvolvimento Web -->
+                <div class="project-category fade-up" style="margin-bottom: 3rem; position: relative;">
+                    <!-- Círculo conectado à linha -->
+                    <div style="position: absolute; left: -60px; top: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #06b6d4, #0891b2); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(6, 182, 212, 0.4); border: 3px solid var(--bg-primary);">
+                        <i class="fas fa-globe" style="font-size: 1.2rem; color: white;"></i>
+                    </div>
+                    <div class="category-header" style="margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 500; margin: 0; color: var(--text-secondary);">Sites & Desenvolvimento Web</h3>
+                        <p style="color: var(--text-secondary); margin: 0; font-size: 0.85rem; opacity: 0.8;">Projetos web responsivos e modernos</p>
+                    </div>
+
+                    <div class="projects-grid">
+                        <a href="https://davicjc.com" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">PORTFÓLIO</span>
+                                </div>
+                                <h3 class="project-title">Meu Portfólio</h3>
+                                <p class="project-description">
+                                    Site interativo com efeitos visuais avançados, responsivo 
+                                    e hospedado via GitHub Pages.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>HTML5</span>
+                                        <span>CSS3</span>
+                                        <span>JS</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fas fa-external-link-alt"></i> davicjc.com
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://audicomtelecom.com.br/" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">CLIENTE</span>
+                                </div>
+                                <h3 class="project-title">Audicom Telecom</h3>
+                                <p class="project-description">
+                                    Site responsivo para empresa de telecomunicações 
+                                    com design moderno e profissional.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JS</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fas fa-external-link-alt"></i> Ver Site
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://webpravoce.shop/" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">NEGÓCIO PRÓPRIO</span>
+                                </div>
+                                <h3 class="project-title">Web pra Você</h3>
+                                <p class="project-description">
+                                    Plataforma para criação de sites personalizados 
+                                    para empresas de pequeno e médio porte.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JS</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fas fa-external-link-alt"></i> webpravoce.shop
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://ddwilber.site/" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(249, 115, 22, 0.2); color: #f97316;">CLIENTE VIP</span>
+                                </div>
+                                <h3 class="project-title">Portfólio Xiaomi Brasil</h3>
+                                <p class="project-description">
+                                    Portfólio profissional para Supervisor da Xiaomi 
+                                    Oficial Brasil com design personalizado.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JS</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fas fa-external-link-alt"></i> ddwilber.site
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://audicomsitereuniao.davicjc.com/" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(100, 116, 139, 0.2); color: #64748b;">CORPORATIVO</span>
+                                </div>
+                                <h3 class="project-title">Audicom – Painel Sala de Reunião</h3>
+                                <p class="project-description">
+                                    Site desenvolvido para exibição em TV na sala de 
+                                    reuniões com informações corporativas.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JS</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fas fa-external-link-alt"></i> Ver Site
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://davicjc.github.io/QRCodeAudicomSite/" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">QR CODE</span>
+                                    <span class="project-badge" style="background: rgba(100, 116, 139, 0.2); color: #64748b;">CORPORATIVO</span>
+                                </div>
+                                <h3 class="project-title">Audicom – Site QR Code</h3>
+                                <p class="project-description">
+                                    Site oficial da Audicom utilizado nos QR codes da empresa 
+                                    para acesso rápido às informações corporativas.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JS</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fas fa-external-link-alt"></i> Ver Site
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Depoimento 2 - Dennis Wilber -->
-                <div class="testimonial-card fade-up">
-                    <span class="testimonial-quote">"</span>
-                    <p class="testimonial-content">
-                        "Muito obrigado pelo site que você fez sobre minhas experiências profissionais. 
-                        Aquilo fez muita diferença para mim. Graças a esse trabalho, consegui crescer, 
-                        ser reconhecido e hoje sou supervisor."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="fotos/sobremimterceiros/Dennis Wilber.jpg" alt="Dennis Wilber" />
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Dennis Wilber</h4>
-                            <p class="testimonial-role">Supervisor de Loja - Xiaomi Brasil</p>
-                            <a href="https://www.linkedin.com/in/dennis-wilber-10aa33259/" target="_blank" class="testimonial-link">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
+                <!-- Projetos GitHub & Sistemas -->
+                <div class="project-category fade-up" style="margin-bottom: 3rem; position: relative;">
+                    <!-- Círculo conectado à linha -->
+                    <div style="position: absolute; left: -60px; top: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); border: 3px solid var(--bg-primary);">
+                        <i class="fab fa-github" style="font-size: 1.2rem; color: white;"></i>
+                    </div>
+                    <div class="category-header" style="margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 500; margin: 0; color: var(--text-secondary);">Projetos GitHub & Sistemas</h3>
+                        <p style="color: var(--text-secondary); margin: 0; font-size: 0.85rem; opacity: 0.8;">Aplicações e softwares desenvolvidos</p>
+                    </div>
+
+                    <div class="projects-grid">
+                        <a href="https://github.com/Davicjc/Face-Safety" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">🏆 1º LUGAR</span>
+                                </div>
+                                <h3 class="project-title">Face Safety</h3>
+                                <p class="project-description">
+                                    Sistema de controle de acesso com reconhecimento facial premiado 
+                                    em 1º lugar entre 60 projetos acadêmicos.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>Python</span>
+                                        <span>OpenCV</span>
+                                        <span>Tkinter</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fab fa-github"></i> GitHub
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/Davicjc/SimuladorFinanceiro" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">PRIMEIRO PROJETO</span>
+                                </div>
+                                <h3 class="project-title">Simulador Financeiro</h3>
+                                <p class="project-description">
+                                    Primeiro projeto de programação – simulador para 
+                                    planejamento de finanças pessoais.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>Python</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fab fa-github"></i> GitHub
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Depoimento 3 - Fábio Marques Barbosa -->
-                <div class="testimonial-card fade-up">
-                    <span class="testimonial-quote">"</span>
-                    <p class="testimonial-content">
-                        "Ver o trabalho do Davi na prática foi uma experiência excelente. Ele une conhecimentos sólidos em programação e hardware com um atendimento profissional, ágil e bem organizado. Diagnostica problemas com precisão, entrega soluções consistentes e mantém uma comunicação clara do início ao fim. Um profissional confiável e acima da média."
-                    </p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="fotos/sobremimterceiros/Fabio Marques.jpg" alt="Fábio Marques Barbosa" />
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Fábio Marques Barbosa</h4>
-                            <p class="testimonial-role">Analista de Processos - Lyon Engenharia</p>
-                            <a href="https://www.linkedin.com/in/fabiomarquesbarbosa/" target="_blank" class="testimonial-link">
-                                <i class="fab fa-linkedin"></i> LinkedIn
-                            </a>
-                        </div>
+                <!-- Sistemas Corporativos -->
+                <div class="project-category fade-up" style="position: relative;">
+                    <!-- Círculo conectado à linha -->
+                    <div style="position: absolute; left: -60px; top: 0; width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); border: 3px solid var(--bg-primary);">
+                        <i class="fas fa-building" style="font-size: 1.2rem; color: white;"></i>
+                    </div>
+                    <div class="category-header" style="margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 500; margin: 0; color: var(--text-secondary);">Sistemas Corporativos</h3>
+                        <p style="color: var(--text-secondary); margin: 0; font-size: 0.85rem; opacity: 0.8;">Soluções empresariais e segurança</p>
+                    </div>
+
+                    <div class="projects-grid">
+                        <a href="https://github.com/Davicjc/AcessoAudicom" target="_blank" class="project-card fade-up">
+                            <div class="project-content">
+                                <div class="project-badges">
+                                    <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">ATUAL</span>
+                                    <span class="project-badge" style="background: rgba(99, 102, 241, 0.2); color: #6366f1;">CORPORATIVO</span>
+                                </div>
+                                <h3 class="project-title">Sistemas de Segurança Corporativa</h3>
+                                <p class="project-description">
+                                    Catracas eletrônicas, reconhecimento facial e controle de acesso biométrico. 
+                                    +20 sites corporativos desenvolvidos.
+                                </p>
+                                <div class="project-footer">
+                                    <div class="project-tech">
+                                        <span>Python</span>
+                                        <span>C#</span>
+                                        <span>OpenCV</span>
+                                    </div>
+                                    <span class="project-link">
+                                        <i class="fab fa-github"></i> GitHub
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2372,7 +2690,9 @@
 
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); box-shadow: 0 0 20px var(--glow-color);">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <div>
@@ -2395,7 +2715,9 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);">
+                        <i class="fas fa-headset"></i>
+                    </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <div>
@@ -2418,7 +2740,9 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);">
+                        <i class="fas fa-rocket"></i>
+                    </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <div>
@@ -2435,7 +2759,9 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <div>
@@ -2452,7 +2778,9 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2); box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <div>
@@ -2583,202 +2911,101 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projetos">
+    <!-- Testimonials Section -->
+    <section id="depoimentos">
         <div class="section-container">
             <div class="section-header fade-up">
-                <div class="section-icon" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">
-                    <i class="fas fa-rocket"></i>
+                <div class="section-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                    <i class="fas fa-comments"></i>
                 </div>
-                <h2 class="section-title">Projetos em Destaque</h2>
+                <h2 class="section-title">Depoimentos</h2>
             </div>
 
-            <div class="projects-grid">
-                <div class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">ATUAL</span>
-                            <span class="project-badge" style="background: rgba(99, 102, 241, 0.2); color: #6366f1;">CORPORATIVO</span>
+            <div class="testimonials-grid">
+                <!-- Depoimento 1 - Geisa Paula -->
+                <div class="testimonial-card fade-up">
+                    <span class="testimonial-quote">"</span>
+                    <p class="testimonial-content">
+                        "Davi demonstra alto nível de comprometimento, competência e proatividade, 
+                        entregando todas as demandas com qualidade e excelência."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="fotos/sobremimterceiros/Geisa Paula.jpg" alt="Geisa Paula" />
                         </div>
-                        <h3 class="project-title">Sistemas de Segurança Corporativa</h3>
-                        <p class="project-description">
-                            Catracas eletrônicas, reconhecimento facial e controle de acesso biométrico. 
-                            +20 sites corporativos desenvolvidos.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>C#</span>
-                                <span>OpenCV</span>
-                            </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Geisa Paula</h4>
+                            <p class="testimonial-role">Coordenadora de Relacionamento - Algar Telecom</p>
+                            <a href="https://www.linkedin.com/in/geisa-paula-1a66a0175/" target="_blank" class="testimonial-link">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <a href="https://github.com/Davicjc/Face-Safety" target="_blank" class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">🏆 1º LUGAR</span>
+                <!-- Depoimento 2 - Dennis Wilber -->
+                <div class="testimonial-card fade-up">
+                    <span class="testimonial-quote">"</span>
+                    <p class="testimonial-content">
+                        "Muito obrigado pelo site que você fez sobre minhas experiências profissionais. 
+                        Aquilo fez muita diferença para mim. Graças a esse trabalho, consegui crescer, 
+                        ser reconhecido e hoje sou supervisor."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="fotos/sobremimterceiros/Dennis Wilber.jpg" alt="Dennis Wilber" />
                         </div>
-                        <h3 class="project-title">Face Safety</h3>
-                        <p class="project-description">
-                            Sistema de controle de acesso com reconhecimento facial premiado 
-                            em 1º lugar entre 60 projetos acadêmicos.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>OpenCV</span>
-                                <span>Tkinter</span>
-                            </div>
-                            <span class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </span>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Dennis Wilber</h4>
+                            <p class="testimonial-role">Supervisor de Loja - Xiaomi Brasil</p>
+                            <a href="https://www.linkedin.com/in/dennis-wilber-10aa33259/" target="_blank" class="testimonial-link">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
 
-                <a href="https://davicjc.com" target="_blank" class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">PORTFÓLIO</span>
+                <!-- Depoimento 3 - Fábio Marques Barbosa -->
+                <div class="testimonial-card fade-up">
+                    <span class="testimonial-quote">"</span>
+                    <p class="testimonial-content">
+                        "Ver o trabalho do Davi na prática foi uma experiência excelente. Ele une conhecimentos sólidos em programação e hardware com um atendimento profissional, ágil e bem organizado. Diagnostica problemas com precisão, entrega soluções consistentes e mantém uma comunicação clara do início ao fim. Um profissional confiável e acima da média."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="fotos/sobremimterceiros/Fabio Marques.jpg" alt="Fábio Marques Barbosa" />
                         </div>
-                        <h3 class="project-title">Meu Portfólio</h3>
-                        <p class="project-description">
-                            Site interativo com efeitos visuais avançados, responsivo 
-                            e hospedado via GitHub Pages.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>HTML5</span>
-                                <span>CSS3</span>
-                                <span>JS</span>
-                            </div>
-                            <span class="project-link">
-                                <i class="fas fa-external-link-alt"></i> davicjc.com
-                            </span>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Fábio Marques Barbosa</h4>
+                            <p class="testimonial-role">Analista de Processos - Lyon Engenharia</p>
+                            <a href="https://www.linkedin.com/in/fabiomarquesbarbosa/" target="_blank" class="testimonial-link">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
                         </div>
                     </div>
-                </a>
+                </div>
 
-                <a href="https://audicomtelecom.com.br/" target="_blank" class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">CLIENTE</span>
+                <!-- Depoimento 4 - Stéfano Schwenck -->
+                <div class="testimonial-card fade-up">
+                    <span class="testimonial-quote">"</span>
+                    <p class="testimonial-content">
+                        "Acompanho o desenvolvimento técnico do Davi em diversas etapas da graduação e sua evolução é constante. Nos projetos do curso e disciplinas, ele sempre demonstrou uma facilidade em transformar requisitos complexos em soluções funcionais e estruturadas. Como seu professor, vejo um profissional que não se contenta com o básico; ele busca as melhores práticas de desenvolvimento e tem um olhar atento à experiência do usuário. Ele certamente será um diferencial estratégico em qualquer equipe de desenvolvimento."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="fotos/sobremimterceiros/Stéfano Schwenck.jpeg" alt="Stéfano Schwenck" />
                         </div>
-                        <h3 class="project-title">Audicom Telecom</h3>
-                        <p class="project-description">
-                            Site responsivo para empresa de telecomunicações 
-                            com design moderno e profissional.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JS</span>
-                            </div>
-                            <span class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Ver Site
-                            </span>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Stéfano Schwenck</h4>
+                            <p class="testimonial-role">Coordenador de Tecnologia da Informação e Engenharias - Uniube</p>
                         </div>
                     </div>
-                </a>
-
-                <a href="https://webpravoce.shop/" target="_blank" class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">NEGÓCIO PRÓPRIO</span>
-                        </div>
-                        <h3 class="project-title">Web pra Você</h3>
-                        <p class="project-description">
-                            Plataforma para criação de sites personalizados 
-                            para empresas de pequeno e médio porte.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JS</span>
-                            </div>
-                            <span class="project-link">
-                                <i class="fas fa-external-link-alt"></i> webpravoce.shop
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://ddwilber.site/" target="_blank" class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(249, 115, 22, 0.2); color: #f97316;">CLIENTE VIP</span>
-                        </div>
-                        <h3 class="project-title">Portfólio Xiaomi Brasil</h3>
-                        <p class="project-description">
-                            Portfólio profissional para Supervisor da Xiaomi 
-                            Oficial Brasil com design personalizado.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JS</span>
-                            </div>
-                            <span class="project-link">
-                                <i class="fas fa-external-link-alt"></i> ddwilber.site
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/Davicjc/SimuladorFinanceiro" target="_blank" class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">PRIMEIRO PROJETO</span>
-                        </div>
-                        <h3 class="project-title">Simulador Financeiro</h3>
-                        <p class="project-description">
-                            Primeiro projeto de programação – simulador para 
-                            planejamento de finanças pessoais.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>Python</span>
-                            </div>
-                            <span class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://audicomsitereuniao.davicjc.com/" target="_blank" class="project-card fade-up">
-                    <div class="project-content">
-                        <div class="project-badges">
-                            <span class="project-badge" style="background: rgba(100, 116, 139, 0.2); color: #64748b;">CORPORATIVO</span>
-                        </div>
-                        <h3 class="project-title">Audicom – Painel Sala de Reunião</h3>
-                        <p class="project-description">
-                            Site desenvolvido para exibição em TV na sala de 
-                            reuniões com informações corporativas.
-                        </p>
-                        <div class="project-footer">
-                            <div class="project-tech">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JS</span>
-                            </div>
-                            <span class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Ver Site
-                            </span>
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <!-- Certifications Section -->
+    <!-- Education Section -->
     <section id="formacao">
         <div class="section-container">
             <div class="section-header fade-up">
