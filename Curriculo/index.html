@@ -1,578 +1,674 @@
-<html class="scroll-smooth" lang="pt-BR">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Currículum - Davi Castro Jorge da Costa
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-   body {
-      font-family: 'Poppins', sans-serif;
-    }
-    @media print {
-      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .page-break { page-break-before: always; }
-      .no-print { display: none !important; }
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-2px);
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -25px;
-      top: 8px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border: 3px solid white;
-      box-shadow: 0 0 0 3px #667eea33;
-    }
-    .timeline-line {
-      border-left: 3px solid #e5e7eb;
-      margin-left: -1px;
-    }
-  </style>
- </head>
- <body class="bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800 antialiased min-h-screen">
-  <!-- Header Principal -->
-  <header class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 text-white py-12 px-6 shadow-2xl">
-   <div class="max-w-4xl mx-auto">
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-     <div class="w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-xl ring-4 ring-white/30">
-      <span class="text-4xl font-bold gradient-text">DC</span>
-     </div>
-     <div class="text-center md:text-left flex-1">
-      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
-       Davi Castro Jorge da Costa
-      </h1>
-      <p class="text-xl md:text-2xl font-light text-indigo-100 mb-4">
-       Desenvolvedor Full-Stack & Especialista em Segurança Digital
-      </p>
-      <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
-       <span class="flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full backdrop-blur-sm">
-        <i class="fas fa-map-marker-alt"></i> Uberlândia, MG
-       </span>
-       <span class="flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full backdrop-blur-sm">
-        <i class="fas fa-graduation-cap"></i> Sistemas de Informação – Uniube
-       </span>
-       <span class="flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full backdrop-blur-sm">
-        <i class="fas fa-globe"></i> davicjc.com
-       </span>
-      </div>
-     </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>Currículo - Davi Castro Jorge da Costa</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3QS8BKCC6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-J3QS8BKCC6');
+    </script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #3182ce;
+            --text-dark: #1a202c;
+            --text-medium: #4a5568;
+            --text-light: #718096;
+            --border-color: #e2e8f0;
+            --bg-light: #f7fafc;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11pt;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background: #e2e8f0;
+            padding: 20px;
+        }
+
+        /* Página A4 simulada */
+        .cv-page {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto 20px;
+            padding: 15mm 18mm;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        /* Botões de ação */
+        .action-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-print {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-print:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+        }
+
+        .btn-back {
+            background: white;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-back:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        /* Cabeçalho */
+        .cv-header {
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .cv-name {
+            font-family: 'Roboto Slab', serif;
+            font-size: 26pt;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .cv-title {
+            font-size: 13pt;
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+        }
+
+        .cv-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 9.5pt;
+            color: var(--text-medium);
+        }
+
+        .cv-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cv-contact-item i {
+            color: var(--accent-color);
+            width: 14px;
+            text-align: center;
+        }
+
+        .cv-contact-item a {
+            color: var(--text-medium);
+            text-decoration: none;
+        }
+
+        .cv-contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Seções */
+        .cv-section {
+            margin-bottom: 14px;
+        }
+
+        .cv-section-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 12pt;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1.5px solid var(--border-color);
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* Perfil */
+        .cv-profile {
+            text-align: justify;
+            color: var(--text-medium);
+            font-size: 10.5pt;
+            line-height: 1.6;
+        }
+
+        /* Experiência */
+        .cv-experience-item {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .cv-exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3px;
+        }
+
+        .cv-exp-role {
+            font-weight: 700;
+            font-size: 11pt;
+            color: var(--text-dark);
+        }
+
+        .cv-exp-period {
+            font-size: 9.5pt;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .cv-exp-company {
+            font-weight: 500;
+            color: var(--secondary-color);
+            font-size: 10pt;
+            margin-bottom: 4px;
+        }
+
+        .cv-exp-progression {
+            font-size: 9pt;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .cv-exp-desc {
+            font-size: 10pt;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        .cv-exp-desc ul {
+            margin-left: 16px;
+            margin-top: 3px;
+        }
+
+        .cv-exp-desc li {
+            margin-bottom: 2px;
+        }
+
+        /* Formação */
+        .cv-education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .cv-edu-degree {
+            font-weight: 700;
+            font-size: 10.5pt;
+            color: var(--text-dark);
+        }
+
+        .cv-edu-institution {
+            font-size: 10pt;
+            color: var(--secondary-color);
+        }
+
+        .cv-edu-period {
+            font-size: 9.5pt;
+            color: var(--text-light);
+        }
+
+        /* Habilidades */
+        .cv-skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+        }
+
+        .cv-skill-category {
+            margin-bottom: 6px;
+        }
+
+        .cv-skill-label {
+            font-weight: 600;
+            font-size: 10pt;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .cv-skill-items {
+            font-size: 9.5pt;
+            color: var(--text-medium);
+            line-height: 1.4;
+        }
+
+        /* Idiomas */
+        .cv-languages {
+            display: flex;
+            gap: 30px;
+        }
+
+        .cv-lang-item {
+            font-size: 10pt;
+        }
+
+        .cv-lang-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .cv-lang-level {
+            color: var(--text-light);
+        }
+
+        /* Certificações */
+        .cv-certs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 20px;
+        }
+
+        .cv-cert-item {
+            font-size: 9.5pt;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cv-cert-name {
+            color: var(--text-dark);
+        }
+
+        .cv-cert-issuer {
+            color: var(--text-light);
+        }
+
+        /* Projetos */
+        .cv-projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+        }
+
+        .cv-project-item {
+            font-size: 9.5pt;
+        }
+
+        .cv-project-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .cv-project-desc {
+            color: var(--text-medium);
+        }
+
+        .cv-project-highlight {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 8pt;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        /* Rodapé */
+        .cv-footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 18mm;
+            right: 18mm;
+            text-align: center;
+            font-size: 8.5pt;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+        }
+
+        .cv-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .cv-page {
+                width: 100%;
+                min-height: auto;
+                margin: 0;
+                padding: 10mm 12mm;
+                box-shadow: none;
+            }
+
+            .action-buttons {
+                display: none !important;
+            }
+
+            .cv-footer {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                margin-top: 15px;
+            }
+
+            @page {
+                size: A4;
+                margin: 8mm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        /* Responsivo */
+        @media (max-width: 800px) {
+            body {
+                padding: 10px;
+            }
+
+            .cv-page {
+                width: 100%;
+                padding: 8mm 6mm;
+            }
+
+            .cv-name {
+                font-size: 20pt;
+            }
+
+            .cv-contact {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .cv-skills-grid,
+            .cv-certs-grid,
+            .cv-projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                position: static;
+                justify-content: center;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botões de ação -->
+    <div class="action-buttons">
+        <a href="../index.html" class="action-btn btn-back">
+            <i class="fas fa-arrow-left"></i> Voltar ao Site
+        </a>
+        <button onclick="window.print()" class="action-btn btn-print">
+            <i class="fas fa-file-pdf"></i> Salvar como PDF
+        </button>
     </div>
-   </div>
-  </header>
 
-  <main class="max-w-4xl mx-auto px-6 py-10">
-   <!-- Resumo Profissional -->
-   <section class="mb-12 bg-white rounded-2xl shadow-lg p-8 border-l-4 border-indigo-600">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-     <i class="fas fa-user-tie text-indigo-600"></i> Perfil Profissional
-    </h2>
-    <p class="text-gray-700 text-lg leading-relaxed">
-     Profissional de tecnologia com expertise em <strong>desenvolvimento full-stack</strong>, <strong>criação de sites e softwares</strong>, <strong>automação de processos</strong> e <strong>infraestrutura de redes</strong>. Mais de <strong>20 sites</strong> desenvolvidos para clientes corporativos e individuais. Experiência internacional com suporte bilíngue para empresas como <strong>Verizon, BT e China Telecom</strong>. Certificado em múltiplas tecnologias e focado em entregar soluções que combinam inovação, performance e excelência técnica.
-    </p>
-    <div class="mt-6 flex flex-wrap gap-3">
-     <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">🏆 1º Lugar – Projeto Acadêmico</span>
-     <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">🌍 Inglês Avançado</span>
-     <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">💻 +20 Sites Entregues</span>
-     <span class="px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">🔧 Automação & Redes</span>
+    <!-- Página do Currículo -->
+    <div class="cv-page">
+        <!-- Cabeçalho -->
+        <header class="cv-header">
+            <h1 class="cv-name">Davi Castro Jorge da Costa</h1>
+            <p class="cv-title">Desenvolvedor Full Stack | Especialista em Segurança Digital</p>
+            <div class="cv-contact">
+                <span class="cv-contact-item">
+                    <i class="fas fa-map-marker-alt"></i> Uberlândia, MG
+                </span>
+                <span class="cv-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:contato@davicjc.com">contato@davicjc.com</a>
+                </span>
+                <span class="cv-contact-item">
+                    <i class="fas fa-globe"></i>
+                    <a href="https://davicjc.com" target="_blank">davicjc.com</a>
+                </span>
+                <span class="cv-contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://linkedin.com/in/davicjc" target="_blank">linkedin.com/in/davicjc</a>
+                </span>
+                <span class="cv-contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/Davicjc" target="_blank">github.com/Davicjc</a>
+                </span>
+            </div>
+        </header>
+
+        <!-- Perfil Profissional -->
+        <section class="cv-section">
+            <h2 class="cv-section-title">Perfil Profissional</h2>
+            <p class="cv-profile">
+                Profissional de tecnologia com expertise em desenvolvimento full-stack, criação de sites e softwares, automação de processos e infraestrutura de redes. Mais de 20 sites desenvolvidos para clientes corporativos e individuais. Experiência internacional com suporte bilíngue para empresas como Verizon, BT e China Telecom. Vencedor do 1º lugar entre 60 projetos acadêmicos com sistema de reconhecimento facial. Focado em entregar soluções que combinam inovação, performance e excelência técnica.
+            </p>
+        </section>
+
+        <!-- Experiência Profissional -->
+        <section class="cv-section">
+            <h2 class="cv-section-title">Experiência Profissional</h2>
+
+            <div class="cv-experience-item">
+                <div class="cv-exp-header">
+                    <span class="cv-exp-role">Vice Supervisor & Desenvolvedor</span>
+                    <span class="cv-exp-period">Set 2025 – Presente</span>
+                </div>
+                <div class="cv-exp-company">Audicom Telecom & Audicom Tecnologia – Uberlândia, MG</div>
+                <div class="cv-exp-progression">Progressão: Atendente de Suporte → Programador → Vice Supervisor & Programador</div>
+                <div class="cv-exp-desc">
+                    <ul>
+                        <li>Desenvolvimento de sistemas integrados com catracas eletrônicas, reconhecimento facial e controle de acesso biométrico usando Python e C#</li>
+                        <li>Criação de +20 sites corporativos e ferramentas web para otimização de processos empresariais</li>
+                        <li>Programação full-stack em Python, Java, C#, JavaScript e Node.js para soluções integradas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-experience-item">
+                <div class="cv-exp-header">
+                    <span class="cv-exp-role">Gerente de Relacionamentos Empresariais Bilíngue</span>
+                    <span class="cv-exp-period">Dez 2023 – Jun 2025</span>
+                </div>
+                <div class="cv-exp-company">Algar Telecom</div>
+                <div class="cv-exp-progression">Progressão: Atendente → Time Premium → Time Atacado – Gerência Empresarial</div>
+                <div class="cv-exp-desc">
+                    <ul>
+                        <li>Gestão de relacionamentos com clientes internacionais: Verizon, BT e China Telecom</li>
+                        <li>Suporte técnico avançado em inglês com resolução de problemas críticos de infraestrutura</li>
+                        <li>Monitoramento e análise de infraestrutura com Grafana e Zabbix</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-experience-item">
+                <div class="cv-exp-header">
+                    <span class="cv-exp-role">Desenvolvedor Python – Projeto Acadêmico</span>
+                    <span class="cv-exp-period">Out – Dez 2023</span>
+                </div>
+                <div class="cv-exp-company">Universidade de Uberaba (Uniube)</div>
+                <div class="cv-exp-desc">
+                    <ul>
+                        <li>🏆 1º Lugar entre 60 projetos acadêmicos com sistema de reconhecimento facial (Face Safety)</li>
+                        <li>Desenvolvimento de software de controle de acesso com Python, OpenCV e Tkinter</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-experience-item">
+                <div class="cv-exp-header">
+                    <span class="cv-exp-role">Fundador & Desenvolvedor</span>
+                    <span class="cv-exp-period">2023 – Presente</span>
+                </div>
+                <div class="cv-exp-company">Web pra Você (Negócio Próprio)</div>
+                <div class="cv-exp-desc">
+                    <ul>
+                        <li>Desenvolvimento de sites personalizados para pequenas e médias empresas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formação Acadêmica -->
+        <section class="cv-section">
+            <h2 class="cv-section-title">Formação Acadêmica</h2>
+            <div class="cv-education-item">
+                <div>
+                    <div class="cv-edu-degree">Bacharelado em Sistemas de Informação</div>
+                    <div class="cv-edu-institution">Universidade de Uberaba (Uniube)</div>
+                </div>
+                <div class="cv-edu-period">Fev 2023 – Dez 2026</div>
+            </div>
+        </section>
+
+        <!-- Habilidades Técnicas -->
+        <section class="cv-section">
+            <h2 class="cv-section-title">Habilidades Técnicas</h2>
+            <div class="cv-skills-grid">
+                <div class="cv-skill-category">
+                    <div class="cv-skill-label">Linguagens de Programação</div>
+                    <div class="cv-skill-items">Python, C#, Java, JavaScript, Node.js, SQL, C++</div>
+                </div>
+                <div class="cv-skill-category">
+                    <div class="cv-skill-label">Frameworks & Bibliotecas</div>
+                    <div class="cv-skill-items">OpenCV, Tkinter, .NET, Express.js</div>
+                </div>
+                <div class="cv-skill-category">
+                    <div class="cv-skill-label">Bancos de Dados</div>
+                    <div class="cv-skill-items">MongoDB, SQL Server, MySQL</div>
+                </div>
+                <div class="cv-skill-category">
+                    <div class="cv-skill-label">DevOps & Ferramentas</div>
+                    <div class="cv-skill-items">Git/GitHub, Linux Server, Docker, VS Code</div>
+                </div>
+                <div class="cv-skill-category">
+                    <div class="cv-skill-label">Infraestrutura & Segurança</div>
+                    <div class="cv-skill-items">TCP/IP, Reconhecimento Facial, RFID/NFC, Biometria, Catracas</div>
+                </div>
+                <div class="cv-skill-category">
+                    <div class="cv-skill-label">Design & 3D</div>
+                    <div class="cv-skill-items">Blender, Unity, Unreal Engine, Cinema 4D</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Idiomas -->
+        <section class="cv-section">
+            <h2 class="cv-section-title">Idiomas</h2>
+            <div class="cv-languages">
+                <div class="cv-lang-item">
+                    <span class="cv-lang-name">Português</span> – <span class="cv-lang-level">Nativo</span>
+                </div>
+                <div class="cv-lang-item">
+                    <span class="cv-lang-name">Inglês</span> – <span class="cv-lang-level">Avançado (Certificado)</span>
+                </div>
+                <div class="cv-lang-item">
+                    <span class="cv-lang-name">Espanhol</span> – <span class="cv-lang-level">Básico</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificações -->
+        <section class="cv-section">
+            <h2 class="cv-section-title">Certificações</h2>
+            <div class="cv-certs-grid">
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">Python</span>
+                    <span class="cv-cert-issuer">Alura – 2021</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">Inglês Avançado</span>
+                    <span class="cv-cert-issuer">Wizard – 2019</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">Segurança da Informação</span>
+                    <span class="cv-cert-issuer">Hacker Rangers – 2024</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">LGPD</span>
+                    <span class="cv-cert-issuer">Algar Telecom – 2024</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">CMD/PowerShell</span>
+                    <span class="cv-cert-issuer">Alura – 2022</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">Inglês</span>
+                    <span class="cv-cert-issuer">Alura – 2021-2022</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos em Destaque -->
+        <section class="cv-section">
+            <h2 class="cv-section-title">Projetos em Destaque</h2>
+            <div class="cv-projects-grid">
+                <div class="cv-project-item">
+                    <span class="cv-project-name">Face Safety</span>
+                    <span class="cv-project-highlight">1º Lugar</span>
+                    <div class="cv-project-desc">Sistema de reconhecimento facial para controle de acesso (Python, OpenCV)</div>
+                </div>
+                <div class="cv-project-item">
+                    <span class="cv-project-name">Sistemas de Segurança Corporativa</span>
+                    <div class="cv-project-desc">Catracas eletrônicas e controle biométrico (Python, C#)</div>
+                </div>
+                <div class="cv-project-item">
+                    <span class="cv-project-name">+20 Sites Corporativos</span>
+                    <div class="cv-project-desc">Portfólios, sites institucionais e painéis (HTML, CSS, JS)</div>
+                </div>
+                <div class="cv-project-item">
+                    <span class="cv-project-name">Web pra Você</span>
+                    <div class="cv-project-desc">Plataforma de criação de sites para PMEs</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="cv-footer">
+            Currículo atualizado em Fevereiro de 2026 • Versão completa e portfólio disponíveis em <a href="https://davicjc.com">davicjc.com</a>
+        </footer>
     </div>
-   </section>
-
-   <!-- Experiência Profissional -->
-   <section class="mb-12">
-    <h2 class="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-     <i class="fas fa-briefcase text-indigo-600"></i> Experiência Profissional
-    </h2>
-    <div class="timeline-line pl-8 space-y-8">
-     <article class="relative timeline-item bg-white rounded-xl shadow-md p-6 card-hover">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
-       <h3 class="text-xl font-bold text-gray-900">Vice Supervisor & Desenvolvedor</h3>
-       <span class="text-sm font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full mt-2 sm:mt-0">
-        Set 2025 – Presente
-       </span>
-      </div>
-      <p class="text-indigo-700 font-medium mb-4">
-       <i class="fas fa-building mr-2"></i>Audicom Telecom & Audicom Tecnologia • Uberlândia, MG
-      </p>
-      <div class="flex flex-wrap gap-2 mb-4">
-       <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Atendente de Suporte</span>
-       <i class="fas fa-arrow-right text-gray-400 text-xs self-center"></i>
-       <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Programador</span>
-       <i class="fas fa-arrow-right text-gray-400 text-xs self-center"></i>
-       <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">Vice Supervisor & Programador</span>
-      </div>
-      <ul class="space-y-3 text-gray-700">
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span><strong>Segurança Corporativa:</strong> Desenvolvimento de sistemas integrados com catracas eletrônicas, reconhecimento facial e controle de acesso biométrico usando Python e C#.</span>
-       </li>
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span><strong>Desenvolvimento Web:</strong> Criação de +20 sites corporativos e ferramentas web para otimização de processos empresariais.</span>
-       </li>
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span><strong>Full-Stack:</strong> Programação em Python, Java, C#, JavaScript e Node.js para soluções integradas de software.</span>
-       </li>
-      </ul>
-     </article>
-
-     <article class="relative timeline-item bg-white rounded-xl shadow-md p-6 card-hover">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
-       <h3 class="text-xl font-bold text-gray-900">Gerente de Relacionamentos Empresariais Bilíngue</h3>
-       <span class="text-sm font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full mt-2 sm:mt-0">
-        Dez 2023 – Jun 2025
-       </span>
-      </div>
-      <p class="text-indigo-700 font-medium mb-4">
-       <i class="fas fa-building mr-2"></i>Algar Telecom
-      </p>
-      <div class="flex flex-wrap gap-2 mb-4">
-       <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Atendente</span>
-       <i class="fas fa-arrow-right text-gray-400 text-xs self-center"></i>
-       <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Time Premium</span>
-       <i class="fas fa-arrow-right text-gray-400 text-xs self-center"></i>
-       <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-semibold">Time Atacado – Gerência Empresarial</span>
-      </div>
-      <ul class="space-y-3 text-gray-700">
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span>Gestão de relacionamentos com clientes internacionais de grande porte: <strong>Verizon, BT e China Telecom</strong>.</span>
-       </li>
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span>Suporte técnico avançado em inglês com resolução de problemas críticos de infraestrutura.</span>
-       </li>
-      </ul>
-     </article>
-
-     <article class="relative timeline-item bg-white rounded-xl shadow-md p-6 card-hover">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
-       <h3 class="text-xl font-bold text-gray-900">Desenvolvedor Python</h3>
-       <span class="text-sm font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full mt-2 sm:mt-0">
-        Out – Dez 2023
-       </span>
-      </div>
-      <p class="text-indigo-700 font-medium mb-4">
-       <i class="fas fa-university mr-2"></i>Universidade de Uberaba
-      </p>
-      <ul class="space-y-3 text-gray-700">
-       <li class="flex items-start gap-3">
-        <i class="fas fa-trophy text-yellow-500 mt-1"></i>
-        <span><strong>🏆 1º Lugar</strong> entre 60 projetos acadêmicos com sistema de reconhecimento facial.</span>
-       </li>
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span>Desenvolvimento de software de controle de acesso com Python, OpenCV e Tkinter.</span>
-       </li>
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span>Implementação de algoritmos de segurança e integração com banco de dados.</span>
-       </li>
-      </ul>
-     </article>
-
-     <article class="relative timeline-item bg-white rounded-xl shadow-md p-6 card-hover">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
-       <h3 class="text-xl font-bold text-gray-900">Agente de Atendimento – Bradesco</h3>
-       <span class="text-sm font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full mt-2 sm:mt-0">
-        Out – Dez 2023
-       </span>
-      </div>
-      <p class="text-indigo-700 font-medium mb-4">
-       <i class="fas fa-building mr-2"></i>Callink
-      </p>
-      <ul class="space-y-3 text-gray-700">
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span>Atendimento ao cliente com foco em soluções efetivas e satisfação.</span>
-       </li>
-       <li class="flex items-start gap-3">
-        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-        <span>Técnicas avançadas de sondagem para resolução de demandas complexas.</span>
-       </li>
-      </ul>
-     </article>
-    </div>
-   </section>
-
-   <!-- Formação Acadêmica -->
-   <section class="mb-12 bg-white rounded-2xl shadow-lg p-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-     <i class="fas fa-graduation-cap text-indigo-600"></i> Formação Acadêmica
-    </h2>
-    <div class="flex items-center gap-6">
-     <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-      <i class="fas fa-university text-white text-2xl"></i>
-     </div>
-     <div>
-      <h3 class="text-xl font-bold text-gray-900">Bacharelado em Sistemas de Informação</h3>
-      <p class="text-indigo-600 font-medium">Universidade de Uberaba (Uniube)</p>
-      <p class="text-gray-600">Fev 2023 – Dez 2026</p>
-     </div>
-    </div>
-   </section>
-
-   <!-- Habilidades Técnicas -->
-   <section class="mb-12">
-    <h2 class="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-     <i class="fas fa-code text-indigo-600"></i> Habilidades Técnicas
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-     <div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-4 border-indigo-500">
-      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-       <i class="fas fa-laptop-code text-indigo-600 text-xl"></i>
-      </div>
-      <h3 class="font-bold text-gray-900 mb-2">Linguagens</h3>
-      <p class="text-xs text-gray-500 mb-3 flex items-center gap-1">
-       <i class="fas fa-bolt text-yellow-500"></i> Aprendo novas tecnologias rapidamente
-      </p>
-      <div class="flex flex-wrap gap-2">
-       <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Python</span>
-       <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">C#</span>
-       <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Java</span>
-       <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">JavaScript</span>
-       <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Node.js</span>
-       <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm font-medium">SQL</span>
-       <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">C++</span>
-      </div>
-     </div>
-     <div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-4 border-purple-500">
-      <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-       <i class="fas fa-tools text-purple-600 text-xl"></i>
-      </div>
-      <h3 class="font-bold text-gray-900 mb-4">Ferramentas & Tech</h3>
-      <div class="flex flex-wrap gap-2">
-       <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">Git/GitHub</span>
-       <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Visual Studio</span>
-       <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">OpenCV</span>
-       <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Linux Server</span>
-       <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Raspberry Pi</span>
-       <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm font-medium">TCP/IP</span>
-       <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium">MongoDB</span>
-       <span class="px-3 py-1 bg-slate-100 text-slate-800 rounded-full text-sm font-medium">Unity</span>
-       <span class="px-3 py-1 bg-gray-800 text-white rounded-full text-sm font-medium">Unreal</span>
-       <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">Blender</span>
-       <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Cinema 4D</span>
-      </div>
-     </div>
-     <div class="bg-white rounded-xl shadow-lg p-6 card-hover border-t-4 border-green-500">
-      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-       <i class="fas fa-globe-americas text-green-600 text-xl"></i>
-      </div>
-      <h3 class="font-bold text-gray-900 mb-4">Idiomas</h3>
-      <div class="space-y-3">
-       <div>
-        <div class="flex justify-between mb-1">
-         <span class="text-gray-700 font-medium">Português</span>
-         <span class="text-gray-500 text-sm">Nativo</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div></div>
-       </div>
-       <div>
-        <div class="flex justify-between mb-1">
-         <span class="text-gray-700 font-medium">Inglês</span>
-         <span class="text-gray-500 text-sm">Avançado</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div></div>
-       </div>
-       <div>
-        <div class="flex justify-between mb-1">
-         <span class="text-gray-700 font-medium">Espanhol</span>
-         <span class="text-gray-500 text-sm">Básico</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full" style="width: 30%"></div></div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
-
-   <!-- Certificações -->
-   <section class="mb-12">
-    <h2 class="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-     <i class="fas fa-certificate text-indigo-600"></i> Certificações
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-     <a href="https://davicjc.com/certificados/python-alura.pdf" target="_blank" class="bg-white rounded-xl shadow-md p-5 card-hover border-l-4 border-indigo-500 flex items-center gap-4">
-      <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fab fa-python text-indigo-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">Python</h3>
-       <p class="text-gray-500 text-xs">Alura • 2021</p>
-      </div>
-     </a>
-     <a href="https://davicjc.com/certificados/ingles-wizard.pdf" target="_blank" class="bg-white rounded-xl shadow-md p-5 card-hover border-l-4 border-green-500 flex items-center gap-4">
-      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fas fa-language text-green-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">Inglês Avançado</h3>
-       <p class="text-gray-500 text-xs">Wizard • 2019</p>
-      </div>
-     </a>
-     <a href="https://davicjc.com/certificados/ingles-alura.pdf" target="_blank" class="bg-white rounded-xl shadow-md p-5 card-hover border-l-4 border-green-500 flex items-center gap-4">
-      <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fas fa-language text-green-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">Inglês</h3>
-       <p class="text-gray-500 text-xs">Alura • 2021-2022</p>
-      </div>
-     </a>
-     <a href="https://davicjc.com/certificados/prompt-windows-alura.pdf" target="_blank" class="bg-white rounded-xl shadow-md p-5 card-hover border-l-4 border-blue-500 flex items-center gap-4">
-      <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fas fa-terminal text-blue-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">CMD/PowerShell</h3>
-       <p class="text-gray-500 text-xs">Alura • 2022</p>
-      </div>
-     </a>
-     <a href="https://davicjc.com/certificados/seguranca-hacker-rangers.pdf" target="_blank" class="bg-white rounded-xl shadow-md p-5 card-hover border-l-4 border-red-500 flex items-center gap-4">
-      <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fas fa-shield-alt text-red-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">Segurança da Informação</h3>
-       <p class="text-gray-500 text-xs">Hacker Rangers • 2024</p>
-      </div>
-     </a>
-     <a href="https://davicjc.com/certificados/lgpd-algar.pdf" target="_blank" class="bg-white rounded-xl shadow-md p-5 card-hover border-l-4 border-purple-500 flex items-center gap-4">
-      <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fas fa-user-shield text-purple-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">LGPD</h3>
-       <p class="text-gray-500 text-xs">Algar Telecom • 2024</p>
-      </div>
-     </a>
-     <a href="https://davicjc.com/certificados/codigo-conduta-algar.pdf" target="_blank" class="bg-white rounded-xl shadow-md p-5 card-hover border-l-4 border-teal-500 flex items-center gap-4">
-      <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fas fa-handshake text-teal-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">Código de Conduta</h3>
-       <p class="text-gray-500 text-xs">Algar Telecom • 2024</p>
-      </div>
-     </a>
-     <div class="bg-white rounded-xl shadow-md p-5 border-l-4 border-gray-300 flex items-center gap-4 opacity-60">
-      <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fab fa-aws text-orange-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">AWS Cloud</h3>
-       <p class="text-gray-500 text-xs"><i class="fas fa-spinner fa-spin mr-1"></i>Em progresso</p>
-      </div>
-     </div>
-     <div class="bg-white rounded-xl shadow-md p-5 border-l-4 border-gray-300 flex items-center gap-4 opacity-60">
-      <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-       <i class="fab fa-java text-red-600 text-2xl"></i>
-      </div>
-      <div>
-       <h3 class="font-bold text-gray-900 text-sm">Java</h3>
-       <p class="text-gray-500 text-xs"><i class="fas fa-spinner fa-spin mr-1"></i>Em progresso</p>
-      </div>
-     </div>
-    </div>
-   </section>
-
-   <!-- Projetos em Destaque -->
-   <section class="mb-12">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-     <i class="fas fa-rocket text-indigo-600"></i> Projetos em Destaque
-    </h2>
-    <p class="text-gray-600 text-sm mb-8 flex items-center gap-2 bg-indigo-50 px-4 py-3 rounded-lg border-l-4 border-indigo-500">
-     <i class="fas fa-stamp text-indigo-600"></i>
-     <span>Todos os meus sites possuem o selo de autenticidade <strong class="text-indigo-700">DAVICJC</strong> clicável no rodapé.</span>
-    </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-     <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-      <div class="h-2 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold">ATUAL</span>
-        <span class="px-2 py-1 bg-indigo-100 text-indigo-700 rounded text-xs font-semibold">CORPORATIVO</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Sistemas de Segurança Corporativa</h3>
-       <p class="text-gray-600 text-sm mb-4">Catracas eletrônicas, reconhecimento facial e controle de acesso biométrico. +20 sites corporativos desenvolvidos.</p>
-       <div class="flex items-center gap-2 text-xs text-gray-500">
-        <span class="px-2 py-1 bg-gray-100 rounded">Python</span>
-        <span class="px-2 py-1 bg-gray-100 rounded">C#</span>
-        <span class="px-2 py-1 bg-gray-100 rounded">OpenCV</span>
-       </div>
-      </div>
-     </div>
-
-     <a href="https://davicjc.com" target="_blank" class="bg-white rounded-xl shadow-lg overflow-hidden card-hover block">
-      <div class="h-2 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-semibold">PORTFÓLIO</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Liquid Glass – Portfólio Pessoal</h3>
-       <p class="text-gray-600 text-sm mb-4">Site interativo com efeitos visuais avançados, responsivo e hospedado via GitHub Pages.</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs text-gray-500">
-         <span class="px-2 py-1 bg-gray-100 rounded">HTML5</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">CSS3</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">JS</span>
-        </div>
-        <span class="text-indigo-600 text-sm font-medium"><i class="fas fa-external-link-alt mr-1"></i>davicjc.com</span>
-       </div>
-      </div>
-     </a>
-
-     <a href="https://github.com/Davicjc/Face-Safety" target="_blank" class="bg-white rounded-xl shadow-lg overflow-hidden card-hover block">
-      <div class="h-2 bg-gradient-to-r from-yellow-500 to-orange-500"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-semibold">🏆 1º LUGAR</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Face Safety – Reconhecimento Facial</h3>
-       <p class="text-gray-600 text-sm mb-4">Sistema de controle de acesso premiado em 1º lugar entre 60 projetos acadêmicos.</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs text-gray-500">
-         <span class="px-2 py-1 bg-gray-100 rounded">Python</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">OpenCV</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">Tkinter</span>
-        </div>
-        <span class="text-indigo-600 text-sm font-medium"><i class="fab fa-github mr-1"></i>GitHub</span>
-       </div>
-      </div>
-     </a>
-
-     <a href="https://audicomtelecom.com.br/" target="_blank" class="bg-white rounded-xl shadow-lg overflow-hidden card-hover block">
-      <div class="h-2 bg-gradient-to-r from-green-500 to-teal-500"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold">CLIENTE</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Audicom Telecom – Site Institucional</h3>
-       <p class="text-gray-600 text-sm mb-4">Site responsivo para empresa de telecomunicações com design moderno e profissional.</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs text-gray-500">
-         <span class="px-2 py-1 bg-gray-100 rounded">HTML</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">CSS</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">JS</span>
-        </div>
-        <span class="text-indigo-600 text-sm font-medium"><i class="fas fa-external-link-alt mr-1"></i>audicomtelecom.com.br</span>
-       </div>
-      </div>
-     </a>
-
-     <a href="https://ddwilber.site/" target="_blank" class="bg-white rounded-xl shadow-lg overflow-hidden card-hover block">
-      <div class="h-2 bg-gradient-to-r from-orange-500 to-red-500"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-semibold">CLIENTE VIP</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Portfólio – Supervisor Xiaomi Brasil</h3>
-       <p class="text-gray-600 text-sm mb-4">Portfólio profissional para Supervisor da Xiaomi Oficial Brasil com design personalizado.</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs text-gray-500">
-         <span class="px-2 py-1 bg-gray-100 rounded">HTML</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">CSS</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">JS</span>
-        </div>
-        <span class="text-indigo-600 text-sm font-medium"><i class="fas fa-external-link-alt mr-1"></i>ddwilber.site</span>
-       </div>
-      </div>
-     </a>
-
-     <a href="https://github.com/Davicjc/SimuladorFinanceiro" target="_blank" class="bg-white rounded-xl shadow-lg overflow-hidden card-hover block">
-      <div class="h-2 bg-gradient-to-r from-emerald-500 to-green-500"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">PRIMEIRO PROJETO</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Simulador Financeiro</h3>
-       <p class="text-gray-600 text-sm mb-4">Primeiro projeto de programação – simulador para planejamento de finanças pessoais.</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs text-gray-500">
-         <span class="px-2 py-1 bg-gray-100 rounded">Python</span>
-        </div>
-        <span class="text-indigo-600 text-sm font-medium"><i class="fab fa-github mr-1"></i>GitHub</span>
-       </div>
-      </div>
-     </a>
-
-     <a href="https://webpravoce.shop/" target="_blank" class="bg-white rounded-xl shadow-lg overflow-hidden card-hover block">
-      <div class="h-2 bg-gradient-to-r from-pink-500 to-rose-500"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-pink-100 text-pink-700 rounded text-xs font-semibold">NEGÓCIO PRÓPRIO</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Web pra Você (W.P.V.)</h3>
-       <p class="text-gray-600 text-sm mb-4">Plataforma para criação de sites personalizados para empresas de pequeno e médio porte.</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs text-gray-500">
-         <span class="px-2 py-1 bg-gray-100 rounded">HTML</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">CSS</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">JS</span>
-        </div>
-        <span class="text-indigo-600 text-sm font-medium"><i class="fas fa-external-link-alt mr-1"></i>webpravoce.shop</span>
-       </div>
-      </div>
-     </a>
-
-     <a href="https://audicomsitereuniao.davicjc.com/" target="_blank" class="bg-white rounded-xl shadow-lg overflow-hidden card-hover block">
-      <div class="h-2 bg-gradient-to-r from-slate-500 to-gray-700"></div>
-      <div class="p-6">
-       <div class="flex items-center gap-2 mb-3">
-        <span class="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-semibold">CORPORATIVO</span>
-       </div>
-       <h3 class="text-lg font-bold text-gray-900 mb-2">Audicom – Painel Sala de Reunião</h3>
-       <p class="text-gray-600 text-sm mb-4">Site desenvolvido para exibição em TV na sala de reuniões com informações corporativas.</p>
-       <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs text-gray-500">
-         <span class="px-2 py-1 bg-gray-100 rounded">HTML</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">CSS</span>
-         <span class="px-2 py-1 bg-gray-100 rounded">JS</span>
-        </div>
-        <span class="text-indigo-600 text-sm font-medium"><i class="fas fa-external-link-alt mr-1"></i>Ver Site</span>
-       </div>
-      </div>
-     </a>
-    </div>
-   </section>
-
-   <!-- Footer com assinatura -->
-   <footer class="text-center py-8 border-t border-gray-200">
-    <div class="flex justify-center items-center gap-6 mb-4">
-     <a href="https://davicjc.com" target="_blank" class="text-gray-500 hover:text-indigo-600 transition-colors">
-      <i class="fas fa-globe text-xl"></i>
-     </a>
-     <a href="https://github.com/Davicjc" target="_blank" class="text-gray-500 hover:text-indigo-600 transition-colors">
-      <i class="fab fa-github text-xl"></i>
-     </a>
-     <a href="https://linkedin.com/in/davicjc" target="_blank" class="text-gray-500 hover:text-indigo-600 transition-colors">
-      <i class="fab fa-linkedin text-xl"></i>
-     </a>
-    </div>
-    <p class="text-gray-500 text-sm">
-     <i class="fas fa-code mr-1"></i> Desenvolvido por <strong class="text-indigo-600">davicjc</strong> • 2026
-    </p>
-   </footer>
-  </main>
- </body>
+</body>
 </html>
