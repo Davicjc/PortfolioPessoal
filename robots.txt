@@ -1,0 +1,40 @@
+# Robots.txt para davicjc.com
+# Portfólio de Davi Castro Jorge da Costa
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://davicjc.com/sitemap.xml
+
+# Crawl-delay (opcional - recomendado para não sobrecarregar)
+Crawl-delay: 1
+
+# Permitir todos os crawlers de busca
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Bloquear bots maliciosos conhecidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
