@@ -108,12 +108,19 @@
             margin-bottom: 15px;
         }
 
+        .cv-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 4px;
+        }
+
         .cv-name {
             font-family: 'Roboto Slab', serif;
             font-size: 26pt;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
 
@@ -151,6 +158,31 @@
 
         .cv-contact-item a:hover {
             color: var(--accent-color);
+        }
+
+        .cv-contact-highlight {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white !important;
+            padding: 10px 28px;
+            border-radius: 25px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-size: 13pt;
+            box-shadow: 0 3px 12px rgba(49, 130, 206, 0.35);
+            white-space: nowrap;
+        }
+
+        .cv-contact-highlight i {
+            color: white !important;
+            font-size: 12pt;
+        }
+
+        .cv-contact-highlight:hover {
+            box-shadow: 0 4px 16px rgba(49, 130, 206, 0.5);
         }
 
         /* Seções */
@@ -259,7 +291,7 @@
         .cv-skills-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px 20px;
+            gap: 6px 20px;
         }
 
         .cv-skill-category {
@@ -319,6 +351,24 @@
             color: var(--text-light);
         }
 
+        .cv-cert-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 8pt;
+            margin-left: 6px;
+            transition: color 0.2s;
+        }
+
+        .cv-cert-link:hover {
+            color: var(--primary-color);
+        }
+
+        @media print {
+            .cv-cert-link {
+                display: none;
+            }
+        }
+
         /* Projetos */
         .cv-projects-grid {
             display: grid;
@@ -347,6 +397,24 @@
             font-size: 8pt;
             font-weight: 600;
             margin-left: 5px;
+        }
+
+        .cv-project-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 8pt;
+            margin-left: 6px;
+            transition: color 0.2s;
+        }
+
+        .cv-project-link:hover {
+            color: var(--primary-color);
+        }
+
+        @media print {
+            .cv-project-link {
+                display: none;
+            }
         }
 
         /* Rodapé */
@@ -454,8 +522,14 @@
     <div class="cv-page">
         <!-- Cabeçalho -->
         <header class="cv-header">
-            <h1 class="cv-name">Davi Castro Jorge da Costa</h1>
-            <p class="cv-title">Desenvolvedor Full Stack | Especialista em Segurança Digital</p>
+            <div class="cv-name-row">
+                <h1 class="cv-name">Davi Castro Jorge da Costa</h1>
+                <a href="https://davicjc.com" target="_blank" class="cv-contact-highlight">
+                    <i class="fas fa-globe"></i> davicjc.com
+                </a>
+            </div>
+            <p style="font-size: 7pt; color: var(--text-light); font-style: italic; text-align: right; margin: 1px 0 0 0;">Acesse meu portfólio para melhor experiência</p>
+            <p class="cv-title">Vice Supervisor & Desenvolvedor Full Stack</p>
             <div class="cv-contact">
                 <span class="cv-contact-item">
                     <i class="fas fa-map-marker-alt"></i> Uberlândia, MG
@@ -463,10 +537,6 @@
                 <span class="cv-contact-item">
                     <i class="fas fa-envelope"></i>
                     <a href="mailto:contato@davicjc.com">contato@davicjc.com</a>
-                </span>
-                <span class="cv-contact-item">
-                    <i class="fas fa-globe"></i>
-                    <a href="https://davicjc.com" target="_blank">davicjc.com</a>
                 </span>
                 <span class="cv-contact-item">
                     <i class="fab fa-linkedin"></i>
@@ -483,7 +553,7 @@
         <section class="cv-section">
             <h2 class="cv-section-title">Perfil Profissional</h2>
             <p class="cv-profile">
-                Profissional de tecnologia com expertise em desenvolvimento full-stack, criação de sites e softwares, automação de processos e infraestrutura de redes. Mais de 20 sites desenvolvidos para clientes corporativos e individuais. Experiência internacional com suporte bilíngue para empresas como Verizon, BT e China Telecom. Vencedor do 1º lugar entre 60 projetos acadêmicos com sistema de reconhecimento facial. Focado em entregar soluções que combinam inovação, performance e excelência técnica.
+                Profissional de tecnologia com expertise em desenvolvimento full-stack, criação de sites e softwares, automação de processos e infraestrutura de redes. Mais de 20 sites desenvolvidos para clientes corporativos e individuais. Experiência internacional com suporte bilíngüe para empresas como Verizon, BT e China Telecom. Vencedor do 1º lugar entre 60 projetos acadêmicos com sistema de reconhecimento facial. Atualmente Vice Supervisor & Desenvolvedor na Audicom Telecom.
             </p>
         </section>
 
@@ -502,7 +572,20 @@
                     <ul>
                         <li>Desenvolvimento de sistemas integrados com catracas eletrônicas, reconhecimento facial e controle de acesso biométrico usando Python e C#</li>
                         <li>Criação de +20 sites corporativos e ferramentas web para otimização de processos empresariais</li>
-                        <li>Programação full-stack em Python, Java, C#, JavaScript e Node.js para soluções integradas</li>
+                        <li>Programação full-stack em Python, Java, C#, JavaScript e Node.js para soluções integradas</li>                        <li>Gestão de equipe e supervisão de Operações técnicas como Vice Supervisor</li>                    </ul>
+                </div>
+            </div>
+
+            <div class="cv-experience-item">
+                <div class="cv-exp-header">
+                    <span class="cv-exp-role">Fundador & Desenvolvedor</span>
+                    <span class="cv-exp-period">2024 – Presente</span>
+                </div>
+                <div class="cv-exp-company">Web pra Você (Negócio Próprio)</div>
+                <div class="cv-exp-desc">
+                    <ul>
+                        <li>Negócio próprio focado em desenvolvimento de sites personalizados para pequenas e médias empresas</li>
+                        <li>Soluções web completas e acessíveis com design responsivo e moderno</li>
                     </ul>
                 </div>
             </div>
@@ -539,13 +622,14 @@
 
             <div class="cv-experience-item">
                 <div class="cv-exp-header">
-                    <span class="cv-exp-role">Fundador & Desenvolvedor</span>
-                    <span class="cv-exp-period">2023 – Presente</span>
+                    <span class="cv-exp-role">Agente de Atendimento</span>
+                    <span class="cv-exp-period">Out – Dez 2023</span>
                 </div>
-                <div class="cv-exp-company">Web pra Você (Negócio Próprio)</div>
+                <div class="cv-exp-company">Callink (Bradesco)</div>
                 <div class="cv-exp-desc">
                     <ul>
-                        <li>Desenvolvimento de sites personalizados para pequenas e médias empresas</li>
+                        <li>Atendimento ao cliente com foco em soluções efetivas e satisfação</li>
+                        <li>Técnicas avançadas de sondagem para resolução de demandas complexas</li>
                     </ul>
                 </div>
             </div>
@@ -560,6 +644,13 @@
                     <div class="cv-edu-institution">Universidade de Uberaba (Uniube)</div>
                 </div>
                 <div class="cv-edu-period">Fev 2023 – Dez 2026</div>
+            </div>
+            <div class="cv-education-item" style="margin-top: 8px;">
+                <div>
+                    <div class="cv-edu-degree">Inglês Avançado</div>
+                    <div class="cv-edu-institution">Wizard</div>
+                </div>
+                <div class="cv-edu-period">Concluído em 2019</div>
             </div>
         </section>
 
@@ -591,6 +682,10 @@
                     <div class="cv-skill-label">Design & 3D</div>
                     <div class="cv-skill-items">Blender, Unity, Unreal Engine, Cinema 4D</div>
                 </div>
+                <div class="cv-skill-category">
+                    <div class="cv-skill-label">Inteligência Artificial</div>
+                    <div class="cv-skill-items">Criação de IA, Prompt Engineering, Automação com IA, Machine Learning, Integração de APIs</div>
+                </div>
             </div>
         </section>
 
@@ -615,28 +710,40 @@
             <h2 class="cv-section-title">Certificações</h2>
             <div class="cv-certs-grid">
                 <div class="cv-cert-item">
-                    <span class="cv-cert-name">Python</span>
+                    <span class="cv-cert-name">Python <a href="https://davicjc.com/certificados/python-alura.pdf" target="_blank" class="cv-cert-link" title="Ver certificado"><i class="fas fa-file-pdf"></i></a></span>
                     <span class="cv-cert-issuer">Alura – 2021</span>
                 </div>
                 <div class="cv-cert-item">
-                    <span class="cv-cert-name">Inglês Avançado</span>
+                    <span class="cv-cert-name">Inglês Avançado <a href="https://davicjc.com/certificados/ingles-wizard.pdf" target="_blank" class="cv-cert-link" title="Ver certificado"><i class="fas fa-file-pdf"></i></a></span>
                     <span class="cv-cert-issuer">Wizard – 2019</span>
                 </div>
                 <div class="cv-cert-item">
-                    <span class="cv-cert-name">Segurança da Informação</span>
+                    <span class="cv-cert-name">Segurança da Informação <a href="https://davicjc.com/certificados/seguranca-hacker-rangers.pdf" target="_blank" class="cv-cert-link" title="Ver certificado"><i class="fas fa-file-pdf"></i></a></span>
                     <span class="cv-cert-issuer">Hacker Rangers – 2024</span>
                 </div>
                 <div class="cv-cert-item">
-                    <span class="cv-cert-name">LGPD</span>
+                    <span class="cv-cert-name">LGPD <a href="https://davicjc.com/certificados/lgpd-algar.pdf" target="_blank" class="cv-cert-link" title="Ver certificado"><i class="fas fa-file-pdf"></i></a></span>
                     <span class="cv-cert-issuer">Algar Telecom – 2024</span>
                 </div>
                 <div class="cv-cert-item">
-                    <span class="cv-cert-name">CMD/PowerShell</span>
+                    <span class="cv-cert-name">CMD/PowerShell <a href="https://davicjc.com/certificados/prompt-windows-alura.pdf" target="_blank" class="cv-cert-link" title="Ver certificado"><i class="fas fa-file-pdf"></i></a></span>
                     <span class="cv-cert-issuer">Alura – 2022</span>
                 </div>
                 <div class="cv-cert-item">
-                    <span class="cv-cert-name">Inglês</span>
+                    <span class="cv-cert-name">Inglês <a href="https://davicjc.com/certificados/ingles-alura.pdf" target="_blank" class="cv-cert-link" title="Ver certificado"><i class="fas fa-file-pdf"></i></a></span>
                     <span class="cv-cert-issuer">Alura – 2021-2022</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">Código de Conduta <a href="https://davicjc.com/certificados/codigo-conduta-algar.pdf" target="_blank" class="cv-cert-link" title="Ver certificado"><i class="fas fa-file-pdf"></i></a></span>
+                    <span class="cv-cert-issuer">Algar Telecom – 2024</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">AWS Cloud</span>
+                    <span class="cv-cert-issuer">Em progresso</span>
+                </div>
+                <div class="cv-cert-item">
+                    <span class="cv-cert-name">Java</span>
+                    <span class="cv-cert-issuer">Em progresso</span>
                 </div>
             </div>
         </section>
@@ -646,21 +753,37 @@
             <h2 class="cv-section-title">Projetos em Destaque</h2>
             <div class="cv-projects-grid">
                 <div class="cv-project-item">
-                    <span class="cv-project-name">Face Safety</span>
+                    <span class="cv-project-name">Face Safety <a href="https://github.com/Davicjc/Face-Safety" target="_blank" class="cv-project-link" title="Ver projeto"><i class="fab fa-github"></i></a></span>
                     <span class="cv-project-highlight">1º Lugar</span>
                     <div class="cv-project-desc">Sistema de reconhecimento facial para controle de acesso (Python, OpenCV)</div>
                 </div>
                 <div class="cv-project-item">
-                    <span class="cv-project-name">Sistemas de Segurança Corporativa</span>
+                    <span class="cv-project-name">Sistemas de Segurança Corporativa <a href="https://github.com/Davicjc/AcessoAudicom" target="_blank" class="cv-project-link" title="Ver projeto"><i class="fab fa-github"></i></a></span>
                     <div class="cv-project-desc">Catracas eletrônicas e controle biométrico (Python, C#)</div>
                 </div>
                 <div class="cv-project-item">
-                    <span class="cv-project-name">+20 Sites Corporativos</span>
+                    <span class="cv-project-name">+20 Sites Corporativos <a href="https://davicjc.com/#projetos" target="_blank" class="cv-project-link" title="Ver projetos"><i class="fas fa-external-link-alt"></i></a></span>
                     <div class="cv-project-desc">Portfólios, sites institucionais e painéis (HTML, CSS, JS)</div>
                 </div>
                 <div class="cv-project-item">
-                    <span class="cv-project-name">Web pra Você</span>
+                    <span class="cv-project-name">Web pra Você <a href="https://webpravoce.shop/" target="_blank" class="cv-project-link" title="Ver site"><i class="fas fa-external-link-alt"></i></a></span>
                     <div class="cv-project-desc">Plataforma de criação de sites para PMEs</div>
+                </div>
+                <div class="cv-project-item">
+                    <span class="cv-project-name">Audicom Telecom <a href="https://audicomtelecom.com.br/" target="_blank" class="cv-project-link" title="Ver site"><i class="fas fa-external-link-alt"></i></a></span>
+                    <div class="cv-project-desc">Site responsivo para empresa de telecomunicações (HTML, CSS, JS)</div>
+                </div>
+                <div class="cv-project-item">
+                    <span class="cv-project-name">Portfólio Xiaomi Brasil <a href="https://ddwilber.site/" target="_blank" class="cv-project-link" title="Ver site"><i class="fas fa-external-link-alt"></i></a></span>
+                    <div class="cv-project-desc">Portfólio profissional para Supervisor da Xiaomi Oficial Brasil</div>
+                </div>
+                <div class="cv-project-item">
+                    <span class="cv-project-name">Simulador Financeiro <a href="https://github.com/Davicjc/SimuladorFinanceiro" target="_blank" class="cv-project-link" title="Ver projeto"><i class="fab fa-github"></i></a></span>
+                    <div class="cv-project-desc">Primeiro projeto de programação – planejamento de finanças pessoais (Python)</div>
+                </div>
+                <div class="cv-project-item">
+                    <span class="cv-project-name">Footer Universal <a href="https://footer.davicjc.com/" target="_blank" class="cv-project-link" title="Ver site"><i class="fas fa-external-link-alt"></i></a></span>
+                    <div class="cv-project-desc">Ferramenta open source para footer profissional em qualquer site</div>
                 </div>
             </div>
         </section>
