@@ -1350,6 +1350,77 @@
             font-size: 0.85rem;
         }
 
+        /* Certificate Category Styles */
+        .cert-category-divider {
+            margin: 3rem 0 1.5rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .cert-category-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .cert-category-label i {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #0078d4, #00a4ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cert-verify-badge {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.15), rgba(0, 164, 239, 0.15));
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 50px;
+            color: #00a4ef;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cert-verify-badge:hover {
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.25), rgba(0, 164, 239, 0.25));
+            border-color: rgba(0, 164, 239, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 120, 212, 0.2);
+        }
+
+        .cert-verify-badge i {
+            font-size: 0.9rem;
+            -webkit-text-fill-color: #00a4ef;
+            background: none;
+        }
+
+        .cert-subcategory {
+            margin: 1rem 0 1rem;
+        }
+
+        .cert-subcategory-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 8rem 2rem;
@@ -3367,7 +3438,154 @@
                         <p>Algar Telecom • 2024</p>
                     </div>
                 </a>
+            </div>
 
+            <!-- Microsoft Learn Certificates -->
+            <div class="cert-category-divider fade-up">
+                <div class="cert-category-label">
+                    <i class="fab fa-microsoft"></i>
+                    <span>Microsoft Learn</span>
+                    <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" class="cert-verify-badge">
+                        <i class="fas fa-check-circle"></i> Verificar Certificados
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copilot & IA -->
+            <div class="cert-subcategory fade-up">
+                <span class="cert-subcategory-tag" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(99, 102, 241, 0.2)); color: #a855f7;">
+                    <i class="fas fa-robot"></i> Copilot & IA
+                </span>
+            </div>
+            <div class="certs-grid" style="margin-bottom: 2rem;">
+                <a href="certificados/Microsoft/Conquistas/Modulos/Introdução ao Azure Copilot.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #0078d4, #00a4ef);"><i class="fas fa-brain"></i></div>
+                    <div class="cert-info">
+                        <h4>Azure Copilot</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Modulos/Introdução ao GitHub Copilot.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #0078d4, #00a4ef);"><i class="fab fa-github"></i></div>
+                    <div class="cert-info">
+                        <h4>GitHub Copilot</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Modulos/Introdução aos agentes do Azure Copilot.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #0078d4, #00a4ef);"><i class="fas fa-cogs"></i></div>
+                    <div class="cert-info">
+                        <h4>Agentes do Azure Copilot</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Modulos/Introdução à modernização do aplicativo GitHub Copilot.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #0078d4, #00a4ef);"><i class="fas fa-sync-alt"></i></div>
+                    <div class="cert-info">
+                        <h4>Modernização com GitHub Copilot</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Modulos/Preparar-se para desenvolver soluções de IA no Azure.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #a855f7, #6366f1);"><i class="fas fa-lightbulb"></i></div>
+                    <div class="cert-info">
+                        <h4>Soluções de IA no Azure</h4>
+                        <p>Microsoft Learn • 2023</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Roteiro de aprendizagem/Preparar para engenharia de IA.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #a855f7, #6366f1);"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="cert-info">
+                        <h4>Engenharia de IA</h4>
+                        <p>Microsoft Learn • Roteiro • 2023</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Cloud & Migração -->
+            <div class="cert-subcategory fade-up">
+                <span class="cert-subcategory-tag" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2)); color: #06b6d4;">
+                    <i class="fas fa-cloud"></i> Cloud & Migração
+                </span>
+            </div>
+            <div class="certs-grid" style="margin-bottom: 2rem;">
+                <a href="certificados/Microsoft/Conquistas/Modulos/Introdução ao Linux no Azure.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #0078d4, #00a4ef);"><i class="fab fa-linux"></i></div>
+                    <div class="cert-info">
+                        <h4>Linux no Azure</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Modulos/Introdução ao Java no Azure.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #0078d4, #00a4ef);"><i class="fab fa-java"></i></div>
+                    <div class="cert-info">
+                        <h4>Java no Azure</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Modulos/Migrar de cargas de trabalho locais para o Azure.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #06b6d4, #0284c7);"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="cert-info">
+                        <h4>Migração para o Azure</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Desafios/Migrate & Modernize Challenge Challenge.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);"><i class="fas fa-trophy"></i></div>
+                    <div class="cert-info">
+                        <h4>Migrate & Modernize Challenge</h4>
+                        <p>Microsoft Learn • Desafio • 2026</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Banco de Dados -->
+            <div class="cert-subcategory fade-up">
+                <span class="cert-subcategory-tag" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.2)); color: #10b981;">
+                    <i class="fas fa-database"></i> Banco de Dados
+                </span>
+            </div>
+            <div class="certs-grid" style="margin-bottom: 2rem;">
+                <a href="certificados/Microsoft/Conquistas/Modulos/Migrar cargas de trabalho do SQL Server para o Banco de Dados SQL do Azure.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-exchange-alt"></i></div>
+                    <div class="cert-info">
+                        <h4>SQL Server para Azure SQL</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Modulos/Preparar para manter bancos de dados baseados no SQL Server no Azure.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-server"></i></div>
+                    <div class="cert-info">
+                        <h4>SQL Server no Azure</h4>
+                        <p>Microsoft Learn • 2026</p>
+                    </div>
+                </a>
+
+                <a href="certificados/Microsoft/Conquistas/Roteiro de aprendizagem/Introdução à administração do banco de dados do Azure.pdf" target="_blank" class="cert-card fade-up" style="text-decoration: none;">
+                    <div class="cert-icon" style="background: linear-gradient(135deg, #10b981, #059669);"><i class="fas fa-database"></i></div>
+                    <div class="cert-info">
+                        <h4>Administração de BD Azure</h4>
+                        <p>Microsoft Learn • Roteiro • 2026</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Em Progresso -->
+            <div class="cert-subcategory fade-up">
+                <span class="cert-subcategory-tag" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(239, 68, 68, 0.2)); color: #f97316;">
+                    <i class="fas fa-spinner fa-spin"></i> Em Progresso
+                </span>
+            </div>
+            <div class="certs-grid">
                 <div class="cert-card fade-up" style="opacity: 0.6;">
                     <div class="cert-icon" style="background: linear-gradient(135deg, #f97316, #ea580c);"><i class="fab fa-aws"></i></div>
                     <div class="cert-info">
