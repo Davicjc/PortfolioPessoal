@@ -396,48 +396,58 @@
   #skills { background: transparent; }
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
   }
   .skill-card {
-    background: var(--card);
-    padding: 1.5rem;
+    background: linear-gradient(180deg, rgba(19, 22, 30, 0.94), rgba(17, 20, 28, 0.9));
+    padding: 1.15rem 1.1rem 1.2rem;
     transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
-    border-bottom: 1px solid var(--border);
-    border-right: 1px solid var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
     position: relative;
     overflow: hidden;
     --mx: 50%;
     --my: 50%;
   }
-  .skill-card:hover { background: var(--bg3); }
-  .skill-card:last-child { border-right: none; }
+  .skill-card:hover { background: linear-gradient(180deg, rgba(22, 25, 32, 0.95), rgba(19, 22, 30, 0.92)); }
   .skill-icon {
     width: 36px; height: 36px;
     background: rgba(74,222,128,0.08);
     border: 1px solid rgba(74,222,128,0.15);
     border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.7rem;
     font-size: 1rem;
   }
   .skill-card h4 {
-    font-size: 0.85rem; font-weight: 600;
-    margin-bottom: 0.6rem; color: var(--text);
+    font-size: 0.9rem; font-weight: 650;
+    margin-bottom: 0.22rem; color: var(--text);
+    letter-spacing: 0.01em;
   }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-note {
+    font-size: 0.74rem;
+    color: var(--muted);
+    margin-bottom: 0.78rem;
+    line-height: 1.48;
+    min-height: 2.2em;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem; color: var(--muted2);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    padding: 2px 8px; border-radius: 4px;
-    transition: all 0.15s;
+    font-size: 0.7rem; color: var(--muted2);
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    padding: 4px 8px;
+    border-radius: 999px;
+    transition: all 0.18s;
+    line-height: 1.2;
   }
-  .tag:hover { color: var(--accent); border-color: rgba(74,222,128,0.3); }
+  .tag:hover {
+    color: var(--accent);
+    border-color: rgba(74,222,128,0.34);
+    background: rgba(74,222,128,0.08);
+  }
 
   /* EXPERIENCE */
   .timeline { position: relative; padding-left: 2rem; }
@@ -446,7 +456,15 @@
     width: 1px; background: var(--border);
   }
   .tl-item {
-    position: relative; margin-bottom: 2.5rem;
+    position: relative;
+    margin-bottom: 1rem;
+    background: rgba(19, 22, 30, 0.82);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1rem 1rem 1.1rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
     opacity: 0; transform: translateY(16px);
     transition: all 0.5s;
   }
@@ -898,6 +916,7 @@
   @media (max-width: 768px) {
     .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .contact-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hero-code { display: none; }
     #hero { margin-top: 60px; }
@@ -934,6 +953,10 @@
       color: var(--muted2);
       letter-spacing: 0.01em;
     }
+  }
+
+  @media (max-width: 1100px) {
+    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
 
@@ -1048,7 +1071,10 @@
     <div class="skills-grid fade-up">
       <div class="skill-card">
         <div class="skill-icon">⚙️</div>
-        <h4>Linguagens</h4>
+        <h4 data-lang="pt">Linguagens</h4>
+        <h4 data-lang="en" style="display:none;">Languages</h4>
+        <p class="skill-note" data-lang="pt">Base para backend, automação e web.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Core stack for backend, automation and web.</p>
         <div class="skill-tags">
           <span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">C#</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">C++</span><span class="tag">Bash</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
         </div>
@@ -1056,6 +1082,8 @@
       <div class="skill-card">
         <div class="skill-icon">🧩</div>
         <h4>Frameworks & Libs</h4>
+        <p class="skill-note" data-lang="pt">Produtividade com foco em entrega.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Delivery-focused frameworks and libraries.</p>
         <div class="skill-tags">
           <span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">.NET</span><span class="tag">OpenCV</span><span class="tag">Tkinter</span>
         </div>
@@ -1064,6 +1092,8 @@
         <div class="skill-icon">🗄️</div>
         <h4 data-lang="pt">Banco de Dados</h4>
         <h4 data-lang="en" style="display:none;">Databases</h4>
+        <p class="skill-note" data-lang="pt">Modelagem, consulta e performance.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Modeling, querying and performance.</p>
         <div class="skill-tags">
           <span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">SQL Server</span>
         </div>
@@ -1072,6 +1102,8 @@
         <div class="skill-icon">🌐</div>
         <h4 data-lang="pt">Redes & Infra</h4>
         <h4 data-lang="en" style="display:none;">Networks & Infra</h4>
+        <p class="skill-note" data-lang="pt">Infra corporativa com alta disponibilidade.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Corporate infrastructure and reliability.</p>
         <div class="skill-tags">
           <span class="tag">MikroTik</span><span class="tag">Cisco</span><span class="tag">Ubiquiti</span><span class="tag">TP-Link</span><span class="tag">V-SOL</span><span class="tag">Datacom</span><span class="tag">TCP/IP</span><span class="tag">RPKI</span>
         </div>
@@ -1080,6 +1112,8 @@
         <div class="skill-icon">🔒</div>
         <h4 data-lang="pt">Segurança & Hardware</h4>
         <h4 data-lang="en" style="display:none;">Security & Hardware</h4>
+        <p class="skill-note" data-lang="pt">Soluções físicas e lógicas integradas.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Integrated physical and logical security.</p>
         <div class="skill-tags">
           <span class="tag">Face Recognition</span><span class="tag">Biometria</span><span class="tag">RFID/NFC</span><span class="tag">Catracas</span><span class="tag">LGPD</span>
         </div>
@@ -1088,6 +1122,8 @@
         <div class="skill-icon">🤖</div>
         <h4 data-lang="pt">IA & DevOps</h4>
         <h4 data-lang="en" style="display:none;">AI & DevOps</h4>
+        <p class="skill-note" data-lang="pt">Automação inteligente e operação contínua.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Automation, ML and operational workflow.</p>
         <div class="skill-tags">
           <span class="tag">Machine Learning</span><span class="tag">Prompt Eng.</span><span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Linux Server</span><span class="tag">Grafana</span><span class="tag">Zabbix</span>
         </div>
@@ -1096,6 +1132,8 @@
         <div class="skill-icon">☁️</div>
         <h4 data-lang="pt">Cloud & Monitoramento</h4>
         <h4 data-lang="en" style="display:none;">Cloud & Monitoring</h4>
+        <p class="skill-note" data-lang="pt">Escalabilidade e observabilidade de ponta.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Scalability with practical observability.</p>
         <div class="skill-tags">
           <span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">GitHub Copilot</span><span class="tag">GH Pages</span>
         </div>
@@ -1104,8 +1142,20 @@
         <div class="skill-icon">🎨</div>
         <h4 data-lang="pt">Design & 3D</h4>
         <h4 data-lang="en" style="display:none;">Design & 3D</h4>
+        <p class="skill-note" data-lang="pt">Prototipação visual e ativos interativos.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Visual prototyping and interactive assets.</p>
         <div class="skill-tags">
           <span class="tag">Blender</span><span class="tag">Unity</span><span class="tag">Unreal Engine</span><span class="tag">Cinema 4D</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <h4 data-lang="pt">Arquitetura & APIs</h4>
+        <h4 data-lang="en" style="display:none;">Architecture & APIs</h4>
+        <p class="skill-note" data-lang="pt">Integrações robustas e sistemas escaláveis.</p>
+        <p class="skill-note" data-lang="en" style="display:none;">Robust integrations and scalable systems.</p>
+        <div class="skill-tags">
+          <span class="tag">REST API</span><span class="tag">JWT</span><span class="tag">Webhooks</span><span class="tag">Microservices</span><span class="tag">System Design</span>
         </div>
       </div>
     </div>
