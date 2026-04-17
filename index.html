@@ -737,120 +737,590 @@
       line-height: 1.75;
     }
 
-    /* PROJECTS */
-    #projects {
-      background: transparent;
-    }
+    /* PROJECTS IDE */
+    #projects { background: transparent; }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
+    .ide-container {
       border-radius: 10px;
-      padding: 1.4rem;
-      transition: all 0.2s;
-      cursor: default;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s, transform 0.4s, border-color 0.25s, background 0.25s, box-shadow 0.25s;
-      position: relative;
+      border: 1px solid var(--border);
       overflow: hidden;
-      --mx: 50%;
-      --my: 50%;
+      background: #080a0f;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .project-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .ide-container.visible { opacity: 1; transform: translateY(0); }
 
-    .project-card:hover {
-      border-color: rgba(74, 222, 128, 0.25);
-      background: var(--bg3);
-    }
-
-    .proj-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .proj-name {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-
-    .proj-desc {
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 0.9rem;
-    }
-
-    .proj-link {
-      font-size: 0.75rem;
-      color: var(--accent2);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .proj-link:hover {
-      color: var(--accent);
-    }
-
-    .proj-tech {
+    .ide-titlebar {
       display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
+      align-items: center;
+      padding: 0 1rem;
+      height: 38px;
+      background: #111318;
+      border-bottom: 1px solid var(--border);
+      gap: 0.75rem;
+      flex-shrink: 0;
     }
 
-    .proj-tech span {
+    .ide-tab {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.71rem;
+      color: var(--muted2);
+      border-right: 1px solid var(--border);
+      border-bottom: 2px solid var(--accent);
+      background: #080a0f;
+      gap: 0.45rem;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 260px;
+      text-overflow: ellipsis;
+    }
+
+    .ide-body {
+      display: flex;
+      height: 490px;
+    }
+
+    @media (max-width: 768px) {
+      .ide-body { flex-direction: column; height: auto; }
+    }
+
+    .ide-sidebar {
+      width: 195px;
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .ide-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+    .ide-sidebar-hdr {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.62rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .ide-folder {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted2);
+      flex-shrink: 0;
+    }
+
+    .ide-files {
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .ide-sidebar-hdr { display: none; }
+      .ide-folder { display: none; }
+      .ide-files { display: flex; overflow-x: auto; overflow-y: hidden; flex: none; }
+    }
+
+    .ide-files::-webkit-scrollbar { width: 4px; }
+    .ide-files::-webkit-scrollbar-track { background: transparent; }
+    .ide-files::-webkit-scrollbar-thumb { background: rgba(74,222,128,0.15); border-radius: 2px; }
+
+    .ide-file {
+      display: flex;
+      align-items: center;
+      gap: 0.42rem;
+      padding: 0.3rem 0.75rem 0.3rem 1.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.69rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      user-select: none;
+      border-left: 2px solid transparent;
+    }
+
+    @media (max-width: 768px) {
+      .ide-file { padding: 0.5rem 0.8rem; border-left: none; border-bottom: 2px solid transparent; flex-shrink: 0; }
+    }
+
+    .ide-file:hover { background: rgba(74,222,128,0.06); color: var(--text); }
+
+    .ide-file.active {
+      background: rgba(74,222,128,0.09);
+      color: var(--accent2);
+      border-left-color: var(--accent);
+      padding-left: calc(1.35rem - 2px);
+    }
+
+    @media (max-width: 768px) {
+      .ide-file.active { border-left-color: transparent; border-bottom-color: var(--accent); padding-left: 0.8rem; }
+    }
+
+    .ide-file-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    .ide-main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 1.8rem;
+    }
+
+    @media (max-width: 640px) { .ide-main { padding: 1.1rem 1.1rem; } }
+
+    .ide-main::-webkit-scrollbar { width: 5px; }
+    .ide-main::-webkit-scrollbar-track { background: transparent; }
+    .ide-main::-webkit-scrollbar-thumb { background: rgba(74,222,128,0.15); border-radius: 3px; }
+
+    .ide-proj {
+      opacity: 0;
+      transform: translateY(7px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .ide-proj.visible { opacity: 1; transform: translateY(0); }
+
+    .ide-proj-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .ide-proj-name { font-size: 1.08rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+
+    .ide-proj-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(74,222,128,0.07);
+      border: 1px solid rgba(74,222,128,0.2);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ide-proj-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
+
+    .ide-proj-desc { font-size: 0.82rem; color: var(--muted2); line-height: 1.75; margin-bottom: 1.1rem; }
+
+    .ide-code-block {
+      background: rgba(0,0,0,0.32);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.73rem;
+      line-height: 1.75;
+      margin-bottom: 1.1rem;
+      overflow-x: auto;
+    }
+
+    .ide-code-lang { font-size: 0.6rem; color: var(--muted); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
+
+    .s-kw  { color: #c792ea; }
+    .s-fn  { color: #82aaff; }
+    .s-str { color: #c3e88d; }
+    .s-cm  { color: #546e7a; font-style: italic; }
+    .s-cls { color: #ffcb6b; }
+    .s-num { color: #f78c6c; }
+
+    .ide-proj-tech { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 1.1rem; }
+
+    .ide-tech-tag {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.65rem;
       padding: 2px 7px;
       border-radius: 3px;
-      background: rgba(74, 222, 128, 0.07);
+      background: rgba(74,222,128,0.07);
       color: var(--accent);
-      border: 1px solid rgba(74, 222, 128, 0.15);
+      border: 1px solid rgba(74,222,128,0.15);
     }
 
-    /* TESTIMONIALS */
-    .testimonials-grid {
+    .ide-proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--accent2);
+      text-decoration: none;
+      padding: 0.38rem 0.85rem;
+      border: 1px solid rgba(34,211,238,0.25);
+      border-radius: 5px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .ide-proj-link:hover {
+      background: rgba(34,211,238,0.08);
+      border-color: rgba(34,211,238,0.5);
+    }
+
+    .ide-timer {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .ide-timer-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      min-width: 1ch;
+      text-align: right;
+      transition: color 0.3s;
+    }
+
+    .ide-timer-num.urgent { color: var(--accent2); }
+
+    .ide-timer-bg {
+      fill: none;
+      stroke: rgba(74,222,128,0.12);
+      stroke-width: 2.2;
+    }
+
+    .ide-timer-ring {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-dasharray: 56.55;
+      stroke-dashoffset: 0;
+      transform-origin: 12px 12px;
+      transform: rotate(-90deg);
+      transition: stroke-dashoffset 0.95s linear, stroke 0.3s;
+    }
+
+    .ide-timer-ring.urgent { stroke: var(--accent2); }
+
+    .ide-paused-icon {
+      font-size: 0.6rem;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .ide-container:hover .ide-paused-icon { opacity: 1; }
+    .ide-container:hover .ide-timer-ring { stroke: var(--muted); }
+    .ide-container:hover .ide-timer-num { color: var(--muted); }
+
+    /* CERTIFICATIONS BOARD */
+    .cert-stats {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--muted2);
+      margin-bottom: 1.3rem;
+    }
+
+    .cert-stats strong { color: var(--accent); font-weight: 600; }
+    .cert-stats-dot { color: var(--border); }
+
+    .cert-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .cert-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.28rem 0.72rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted2);
+      cursor: pointer;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+    }
+
+    .cert-filter-btn:hover {
+      border-color: rgba(74,222,128,0.35);
+      color: var(--text);
+      background: rgba(74,222,128,0.05);
+    }
+
+    .cert-filter-btn.active {
+      background: rgba(74,222,128,0.11);
+      border-color: rgba(74,222,128,0.45);
+      color: var(--accent);
+    }
+
+    .cert-filter-count {
+      font-size: 0.58rem;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 5px;
+      border-radius: 8px;
+      color: var(--muted);
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .cert-filter-btn.active .cert-filter-count {
+      background: rgba(74,222,128,0.18);
+      color: var(--accent);
+    }
+
+    .cert-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 0.8rem;
     }
 
-    .testi-card {
+    .cert-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.4s, transform 0.4s, border-color 0.25s, background 0.25s, box-shadow 0.25s;
-      position: relative;
+      border-radius: 8px;
       overflow: hidden;
-      --mx: 50%;
-      --my: 50%;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.2s, box-shadow 0.2s;
     }
 
-    .testi-card.visible {
+    .cert-card.cert-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .skill-card::after,
-    .project-card::after,
-    .testi-card::after {
+    .cert-card.cert-hidden {
+      opacity: 0.1;
+      transform: scale(0.95);
+      pointer-events: none;
+    }
+
+    .cert-card:not(.cert-hidden):hover {
+      border-color: rgba(74,222,128,0.28);
+      box-shadow: 0 4px 22px rgba(0,0,0,0.28), 0 0 10px rgba(74,222,128,0.07);
+    }
+
+    .cert-accent { height: 3px; width: 100%; }
+
+    .cert-card-body { padding: 0.9rem 1rem; }
+
+    .cert-header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.55rem;
+    }
+
+    .cert-issuer-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      border: 1px solid;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      letter-spacing: 0.02em;
+    }
+
+    .cert-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.45;
+      margin: 0 0 0.3rem 0;
+    }
+
+    .cert-sub {
+      font-size: 0.67rem;
+      color: var(--muted);
+      margin: 0 0 0.85rem 0;
+    }
+
+    .cert-actions {
+      display: flex;
+      gap: 0.38rem;
+      flex-wrap: wrap;
+    }
+
+    .cert-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(74,222,128,0.06);
+      color: var(--accent);
+      border: 1px solid rgba(74,222,128,0.14);
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .cert-btn:hover {
+      background: rgba(74,222,128,0.14);
+      border-color: rgba(74,222,128,0.38);
+    }
+
+    /* TERMINAL TESTIMONIALS */
+    .hack-terminal {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #080a0f;
+      font-family: 'Courier New', Consolas, monospace;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .hack-terminal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .terminal-titlebar {
+      display: flex;
+      align-items: center;
+      padding: 0.55rem 1rem;
+      background: #111318;
+      border-bottom: 1px solid var(--border);
+      gap: 0.5rem;
+    }
+
+    .terminal-dots { display: flex; gap: 5px; }
+
+    .terminal-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .terminal-dots span:nth-child(1) { background: #ff5f57; }
+    .terminal-dots span:nth-child(2) { background: #febc2e; }
+    .terminal-dots span:nth-child(3) { background: #28c840; }
+
+    .terminal-fname {
+      font-size: 0.73rem;
+      color: var(--muted);
+      margin: 0 auto;
+      letter-spacing: 0.04em;
+    }
+
+    .terminal-body {
+      padding: 1.2rem 1.4rem;
+      max-height: 540px;
+      min-height: 180px;
+      overflow-y: auto;
+      font-size: 0.79rem;
+      line-height: 1.85;
+      color: var(--muted2);
+    }
+
+    @media (max-width: 640px) {
+      .terminal-body { max-height: 420px; padding: 0.9rem 1rem; font-size: 0.75rem; }
+    }
+
+    .terminal-body::-webkit-scrollbar { width: 5px; }
+    .terminal-body::-webkit-scrollbar-track { background: transparent; }
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: rgba(74, 222, 128, 0.22);
+      border-radius: 3px;
+    }
+
+    .t-boot-line {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.76rem;
+    }
+
+    .t-entry {
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid rgba(30, 33, 48, 0.7);
+    }
+
+    .t-entry:last-child { border-bottom: none; margin-bottom: 0.2rem; padding-bottom: 0; }
+
+    .t-cmd-line {
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      min-height: 1.4em;
+    }
+
+    .t-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.65rem;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .t-profile.visible { opacity: 1; transform: translateX(0); }
+
+    .t-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(74, 222, 128, 0.45);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .t-info { display: flex; flex-direction: column; gap: 1px; }
+    .t-name { color: var(--accent2); font-weight: 700; font-size: 0.82rem; }
+    .t-role { color: var(--accent3); font-size: 0.72rem; }
+
+    .t-comment-block {
+      padding: 0.45rem 0.85rem;
+      border-left: 2px solid rgba(74, 222, 128, 0.18);
+      margin: 0.5rem 0 0.65rem 0;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      line-height: 1.7;
+    }
+
+    .t-comment-block.visible { opacity: 1; transform: translateY(0); }
+    .t-muted { color: var(--muted); }
+
+    .t-footer { opacity: 0; transition: opacity 0.35s ease; }
+    .t-footer.visible { opacity: 1; }
+
+    .t-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.74rem;
+      letter-spacing: 0.02em;
+    }
+
+    .t-link:hover { color: var(--accent2); text-decoration: underline; }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 0.85em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      animation: cursorBlink 1s step-end infinite;
+      margin-left: 1px;
+    }
+
+    .skill-card::after {
       content: '';
       position: absolute;
       inset: -1px;
@@ -860,67 +1330,118 @@
       transition: opacity 0.25s ease;
     }
 
-    .skill-card.is-hover,
-    .project-card.is-hover,
-    .testi-card.is-hover {
+    .skill-card.is-hover {
       border-color: rgba(74, 222, 128, 0.45);
       box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.25), 0 14px 30px rgba(0, 0, 0, 0.35), 0 0 26px rgba(74, 222, 128, 0.16);
     }
 
-    .skill-card.is-hover::after,
-    .project-card.is-hover::after,
-    .testi-card.is-hover::after {
+    .skill-card.is-hover::after {
       opacity: 1;
     }
 
-    .testi-text {
-      font-size: 0.82rem;
-      color: var(--muted2);
-      line-height: 1.75;
-      margin-bottom: 1rem;
-      font-style: italic;
+    /* TESTI GRID — mini terminals */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1rem;
     }
 
-    .testi-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      padding: 2px;
+    .mini-term {
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #080a0f;
+      font-family: 'Courier New', Consolas, monospace;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s;
     }
 
-    .testi-avatar img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
+    .mini-term.mt-visible { opacity: 1; transform: translateY(0); }
+
+    .mini-term:hover { border-color: rgba(74, 222, 128, 0.28); }
+
+    .mini-term-bar {
+      display: flex;
+      align-items: center;
+      padding: 0.46rem 0.8rem;
+      background: #111318;
+      border-bottom: 1px solid var(--border);
+      gap: 0.5rem;
     }
 
-    .testi-author {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .testi-role {
-      font-size: 0.72rem;
+    .mini-term-name {
+      font-size: 0.66rem;
       color: var(--muted);
-      margin-top: 2px;
+      margin: 0 auto;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .testi-link {
-      font-size: 0.7rem;
+    .mini-term-body {
+      padding: 0.85rem 1rem;
+      font-size: 0.74rem;
+      line-height: 1.8;
+      color: var(--muted2);
+    }
+
+    .mt-cmd {
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+      min-height: 1.3em;
+    }
+
+    .mt-prompt { color: var(--accent); }
+
+    .mt-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.55rem;
+      opacity: 0;
+      transform: translateX(-5px);
+      transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+
+    .mt-profile.mt-show { opacity: 1; transform: translateX(0); }
+
+    .mt-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(74, 222, 128, 0.4);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .mt-name { color: var(--accent2); font-weight: 700; font-size: 0.77rem; }
+    .mt-role { color: var(--accent3); font-size: 0.67rem; margin-top: 1px; }
+
+    .mt-comment {
+      border-left: 2px solid rgba(74, 222, 128, 0.16);
+      padding: 0.32rem 0.65rem;
+      margin: 0.45rem 0 0.55rem;
+      font-style: italic;
+      font-size: 0.72rem;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+    }
+
+    .mt-comment.mt-show { opacity: 1; transform: translateY(0); }
+
+    .mt-footer { opacity: 0; transition: opacity 0.28s ease; }
+    .mt-footer.mt-show { opacity: 1; }
+
+    .mt-link {
       color: var(--accent);
       text-decoration: none;
-      margin-top: 0.5rem;
-      display: inline-block;
-      transition: color 0.2s;
+      font-size: 0.69rem;
     }
 
-    .testi-link:hover {
-      color: var(--accent2);
-    }
+    .mt-link:hover { color: var(--accent2); text-decoration: underline; }
 
     /* CONTACT */
     .contact-grid {
@@ -1657,185 +2178,30 @@
         e pessoais.</p>
       <p class="section-sub fade-up" data-lang="en" style="display:none;">A selection of the most relevant projects —
         corporate, academic and personal.</p>
-      <div class="projects-grid">
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">01 · destaque</div>
-          <div class="proj-num" data-lang="en" style="display:none;">01 · highlight</div>
-          <div class="proj-name">🏆 Face Safety</div>
-          <div class="proj-desc" data-lang="pt">Sistema de controle de acesso por reconhecimento facial. 1º lugar entre
-            60 projetos acadêmicos na Universidade de Uberaba.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Facial recognition access control system. 1st
-            place among 60 academic projects at University of Uberaba.</div>
-          <div class="proj-tech"><span>Python</span><span>OpenCV</span><span>Tkinter</span></div>
-          <a href="https://github.com/Davicjc/Face-Safety" target="_blank" class="proj-link">github ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">02 · corporativo</div>
-          <div class="proj-num" data-lang="en" style="display:none;">02 · corporate</div>
-          <div class="proj-name" data-lang="pt">Sistemas de Segurança Corporativa</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Corporate Security Systems</div>
-          <div class="proj-desc" data-lang="pt">Integração de catracas eletrônicas, reconhecimento facial e controle
-            biométrico para empresas. +20 sites corporativos desenvolvidos.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Integration of electronic turnstiles, facial
-            recognition and biometric access control for enterprises. +20 corporate websites developed.</div>
-          <div class="proj-tech"><span>Python</span><span>C#</span><span>OpenCV</span></div>
-          <a href="https://github.com/Davicjc/AcessoAudicom" target="_blank" class="proj-link">github ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num">03 · open source</div>
-          <div class="proj-name">ROAS Monitor Status</div>
-          <div class="proj-desc" data-lang="pt">Daemon Bash interativo que verifica validade RPKI de prefixos e envia
-            alertas em tempo real no Telegram.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Interactive Bash daemon that verifies RPKI
-            validity of prefixes and sends real-time alerts on Telegram.</div>
-          <div class="proj-tech"><span>Bash</span><span>RPKI</span><span>Telegram API</span></div>
-          <a href="https://roas-monitor-status.davicjc.com/" target="_blank" class="proj-link">demo ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">04 · portfólio</div>
-          <div class="proj-num" data-lang="en" style="display:none;">04 · portfolio</div>
-          <div class="proj-name">Davicjc.com</div>
-          <div class="proj-desc" data-lang="pt">Portfólio bilíngue super interativo com efeitos avançados de front-end.
-            Hospedado via GitHub Pages com design responsivo.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Bilingual portfolio with advanced front-end
-            effects. Hosted via GitHub Pages with responsive design.</div>
-          <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <a href="https://davicjc.com" target="_blank" class="proj-link"><span data-lang="pt">ver</span><span
-              data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">05 · personalidade</div>
-          <div class="proj-num" data-lang="en" style="display:none;">05 · VIP</div>
-          <div class="proj-name" data-lang="pt">Portfólio Xiaomi Brasil</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Xiaomi Brazil Portfolio</div>
-          <div class="proj-desc" data-lang="pt">Site profissional desenvolvido para Supervisor Oficial da Xiaomi Brasil.
-            Projeto que impulsionou a promoção do cliente.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Professional website developed for Official Xiaomi
-            Brazil Supervisor. Project that boosted the client's promotion.</div>
-          <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <a href="https://ddwilber.site/" target="_blank" class="proj-link"><span data-lang="pt">ver</span><span
-              data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">06 · corporativo</div>
-          <div class="proj-num" data-lang="en" style="display:none;">06 · corporate</div>
-          <div class="proj-name" data-lang="pt">Site Audicom Telecom</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Audicom Telecom Website</div>
-          <div class="proj-desc" data-lang="pt">Site institucional da Audicom Telecom. Desenvolvido para apresentar as
-            soluções corporativas e de telecomunicações da empresa através de um design moderno e responsivo.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Institutional website for Audicom Telecom.
-            Developed to present corporate and telecommunications solutions through a modern and responsive design.
+      <div class="ide-container" id="projectsIDE">
+        <div class="ide-titlebar">
+          <div class="terminal-dots"><span></span><span></span><span></span></div>
+          <div class="ide-tab">
+            <span style="color:var(--accent);font-size:0.65rem;">●</span>
+            <span id="ideTabName">face-safety/README.md</span>
           </div>
-          <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <a href="https://audicomtelecom.com.br/" target="_blank" class="proj-link"><span
-              data-lang="pt">ver</span><span data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num">07 · open source</div>
-          <div class="proj-name" data-lang="pt">Footer Universal</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Universal Footer</div>
-          <div class="proj-desc" data-lang="pt">Uma linha de JS para embutir um footer de assinatura arrastável em
-            qualquer site de terceiros. Ferramenta open source.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">A single line of JS to embed a draggable signature
-            footer on any third-party website. Open source tool.</div>
-          <div class="proj-tech"><span>JavaScript</span><span>CSS3</span></div>
-          <a href="https://footer.davicjc.com/" target="_blank" class="proj-link">demo ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">08 · pessoal</div>
-          <div class="proj-num" data-lang="en" style="display:none;">08 · personal</div>
-          <div class="proj-name" data-lang="pt">Cronologia Pokémon</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Pokémon Chronology</div>
-          <div class="proj-desc" data-lang="pt">Guia interativo com a ordem cronológica correta para assistir todos os
-            animes, filmes, especiais e OVAs da franquia.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Interactive guide with the correct chronological
-            order to watch all anime, movies, specials and OVAs of the franchise.</div>
-          <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <a href="https://cronologia-pokemon.davicjc.com/" target="_blank" class="proj-link"><span
-              data-lang="pt">ver</span><span data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">09 · negócio próprio</div>
-          <div class="proj-num" data-lang="en" style="display:none;">09 · own business</div>
-          <div class="proj-name">Web pra Você</div>
-          <div class="proj-desc" data-lang="pt">Plataforma para criação de sites personalizados para empresas de pequeno
-            e médio porte. Soluções web acessíveis e profissionais.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Platform for creating personalized websites for
-            small and medium-sized companies. Accessible and professional web solutions.</div>
-          <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <a href="https://webpravoce.shop/" target="_blank" class="proj-link"><span data-lang="pt">ver</span><span
-              data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">10 · corporativo</div>
-          <div class="proj-num" data-lang="en" style="display:none;">10 · corporate</div>
-          <div class="proj-name" data-lang="pt">Audicom Speed Test</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Audicom Speed Test</div>
-          <div class="proj-desc" data-lang="pt">Testador de velocidade de internet desenvolvido para a Audicom Telecom,
-            baseado no LibreSpeed, com design e servidores dedicados para testes precisos.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Custom internet speed tester developed for Audicom
-            Telecom, based on LibreSpeed, with dedicated servers and design for accurate tests.</div>
-          <div class="proj-tech"><span>LibreSpeed</span><span>JavaScript</span><span>HTML5</span></div>
-          <a href="https://velocidade.audicomtelecom.com.br/" target="_blank" class="proj-link"><span
-              data-lang="pt">ver</span><span data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">11 · em desenvolvimento</div>
-          <div class="proj-num" data-lang="en" style="display:none;">11 · in development</div>
-          <div class="proj-name" data-lang="pt">Audicom Tecnologia</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Audicom Tecnologia</div>
-          <div class="proj-desc" data-lang="pt">Página institucional desenvolvida para focar em soluções de tecnologia,
-            demonstrando expertise em desenvolvimento, sistemas e segurança. (Em andamento)</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Institutional page focused on technology
-            solutions, showcasing expertise in development, systems, and security. (Work in progress)</div>
-          <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <a href="https://audicomtecnologia.davicjc.com/" target="_blank" class="proj-link"><span
-              data-lang="pt">ver</span><span data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">12 · portfólio</div>
-          <div class="proj-num" data-lang="en" style="display:none;">12 · portfolio</div>
-          <div class="proj-name" data-lang="pt">Bruno F. Creation</div>
-          <div class="proj-name" data-lang="en" style="display:none;">Bruno F. Creation</div>
-          <div class="proj-desc" data-lang="pt">Site estilo portfólio desenvolvido para destacar os trabalhos criativos
-            da marca, fornecendo uma excelente vitrine digital para suas artes e serviços.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Custom portfolio website developed to highlight
-            the brand's creative works, providing an excellent digital showcase for arts and services.</div>
-          <div class="proj-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
-          <a href="https://brunofcreation.cjc.pics/" target="_blank" class="proj-link"><span
-              data-lang="pt">ver</span><span data-lang="en" style="display:none;">view</span> ↗</a>
-        </div>
-
-        <div class="project-card">
-          <div class="proj-num" data-lang="pt">13 · infraestrutura</div>
-          <div class="proj-num" data-lang="en" style="display:none;">13 · infrastructure</div>
-          <div class="proj-name" data-lang="pt">Servidor Minecraft CJC</div>
-          <div class="proj-name" data-lang="en" style="display:none;">CJC Minecraft Server</div>
-          <div class="proj-desc" data-lang="pt">Servidor implementado do zero em uma Máquina Virtual (VM) Debian.
-            Deploy, configuração e gerenciamento inteiramente via terminal (SSH), focando em expor habilidades em
-            infraestrutura e administração Linux.</div>
-          <div class="proj-desc" data-lang="en" style="display:none;">Server deployed from scratch on a Debian Virtual
-            Machine (VM). Full configuration and management done via SSH, demonstrating hands-on skills in
-            infrastructure and Linux administration.</div>
-          <div class="proj-tech">
-            <span>Debian</span><span>Linux</span><span>SSH</span><span>WinSCP</span><span>Tabby</span>
+          <div class="ide-timer" id="ideTimerEl">
+            <span class="ide-paused-icon">⏸</span>
+            <span class="ide-timer-num" id="ideTimerNum">5</span>
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <circle class="ide-timer-bg" cx="12" cy="12" r="9"/>
+              <circle class="ide-timer-ring" id="ideTimerRing" cx="12" cy="12" r="9"/>
+            </svg>
           </div>
-          <a href="https://cjc-minecraft.davicjc.com/" target="_blank" class="proj-link"><span
-              data-lang="pt">ver</span><span data-lang="en" style="display:none;">view</span> ↗</a>
         </div>
-
+        <div class="ide-body">
+          <div class="ide-sidebar">
+            <div class="ide-sidebar-hdr">EXPLORER</div>
+            <div class="ide-folder">▾ projects/</div>
+            <div class="ide-files" id="ideFileList"></div>
+          </div>
+          <div class="ide-main" id="ideMain"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1850,240 +2216,353 @@
       <p class="section-sub fade-up" data-lang="pt">Certificados em cards individuais, com links de validação onde disponíveis.</p>
       <p class="section-sub fade-up" data-lang="en" style="display:none;">Certificates in individual cards, with verification links where available.</p>
 
-      <div class="skills-grid fade-up">
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Fundamentos de Azure Copilot</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Azure%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+      <!-- stats -->
+      <div class="cert-stats fade-up">
+        <strong>24</strong>
+        <span data-lang="pt">certificados</span><span data-lang="en" style="display:none">certificates</span>
+        <span class="cert-stats-dot">·</span>
+        <strong>7</strong>
+        <span data-lang="pt">emissores</span><span data-lang="en" style="display:none">issuers</span>
+      </div>
+
+      <!-- filters -->
+      <div class="cert-filters fade-up">
+        <button class="cert-filter-btn active" data-filter="all">
+          <span data-lang="pt">Todos</span><span data-lang="en" style="display:none">All</span>
+          <span class="cert-filter-count">24</span>
+        </button>
+        <button class="cert-filter-btn" data-filter="microsoft">
+          <i class="fab fa-microsoft"></i> Microsoft <span class="cert-filter-count">13</span>
+        </button>
+        <button class="cert-filter-btn" data-filter="sicoob">
+          <i class="fas fa-landmark"></i> Sicoob <span class="cert-filter-count">3</span>
+        </button>
+        <button class="cert-filter-btn" data-filter="algar">
+          <i class="fas fa-broadcast-tower"></i> Algar <span class="cert-filter-count">2</span>
+        </button>
+        <button class="cert-filter-btn" data-filter="alura">
+          <i class="fas fa-graduation-cap"></i> Alura <span class="cert-filter-count">3</span>
+        </button>
+        <button class="cert-filter-btn" data-filter="hacker-rangers">
+          <i class="fas fa-shield-alt"></i> Hacker Rangers <span class="cert-filter-count">1</span>
+        </button>
+        <button class="cert-filter-btn" data-filter="tp-link">
+          <i class="fas fa-wifi"></i> TP-Link <span class="cert-filter-count">1</span>
+        </button>
+        <button class="cert-filter-btn" data-filter="wizard">
+          <i class="fas fa-language"></i> Wizard <span class="cert-filter-count">1</span>
+        </button>
+      </div>
+
+      <!-- grid -->
+      <div class="cert-grid" id="certGrid">
+
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Fundamentos de Azure Copilot</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Azure%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Fundamentos de GitHub Copilot</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20GitHub%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Fundamentos de GitHub Copilot</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20GitHub%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Java para Soluções em Azure</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Java%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Java para Soluções em Azure</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Java%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Linux para Ambientes Azure</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Linux%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Linux para Ambientes Azure</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Linux%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Agentes Inteligentes com Azure Copilot</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20aos%20agentes%20do%20Azure%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Agentes Inteligentes com Azure Copilot</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20aos%20agentes%20do%20Azure%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Modernização de Aplicações com GitHub Copilot</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20%C3%A0%20moderniza%C3%A7%C3%A3o%20do%20aplicativo%20GitHub%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Modernização de Aplicações com GitHub Copilot</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20%C3%A0%20moderniza%C3%A7%C3%A3o%20do%20aplicativo%20GitHub%20Copilot.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Migrar cargas do SQL Server para Azure SQL</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Migrar%20cargas%20de%20trabalho%20do%20SQL%20Server%20para%20o%20Banco%20de%20Dados%20SQL%20do%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Migrar cargas do SQL Server para Azure SQL</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Migrar%20cargas%20de%20trabalho%20do%20SQL%20Server%20para%20o%20Banco%20de%20Dados%20SQL%20do%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Migrar cargas locais para Azure</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Migrar%20de%20cargas%20de%20trabalho%20locais%20para%20o%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Migrar cargas locais para Azure</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Migrar%20de%20cargas%20de%20trabalho%20locais%20para%20o%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Manter bancos SQL Server no Azure</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Preparar%20para%20manter%20bancos%20de%20dados%20baseados%20no%20SQL%20Server%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Manter bancos SQL Server no Azure</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Preparar%20para%20manter%20bancos%20de%20dados%20baseados%20no%20SQL%20Server%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Desenvolver soluções de IA no Azure</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Conquistas</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Conquistas/Preparar-se%20para%20desenvolver%20solu%C3%A7%C3%B5es%20de%20IA%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Desenvolver soluções de IA no Azure</h4>
+            <p class="skill-note cert-sub">Microsoft · Conquistas</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Conquistas/Preparar-se%20para%20desenvolver%20solu%C3%A7%C3%B5es%20de%20IA%20no%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Migrate &amp; Modernize Challenge</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Desafios</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Desafios/Migrate%20%26%20Modernize%20Challenge.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Migrate &amp; Modernize Challenge</h4>
+            <p class="skill-note cert-sub">Microsoft · Desafios</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Desafios/Migrate%20%26%20Modernize%20Challenge.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Administração de Banco de Dados no Azure</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Roteiro de aprendizagem</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Roteiro%20de%20aprendizagem/Introdu%C3%A7%C3%A3o%20%C3%A0%20administra%C3%A7%C3%A3o%20do%20banco%20de%20dados%20do%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Administração de Banco de Dados no Azure</h4>
+            <p class="skill-note cert-sub">Microsoft · Roteiro de aprendizagem</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Roteiro%20de%20aprendizagem/Introdu%C3%A7%C3%A3o%20%C3%A0%20administra%C3%A7%C3%A3o%20do%20banco%20de%20dados%20do%20Azure.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-certificate" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Trilha de Engenharia de IA</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Microsoft · Roteiro de aprendizagem</p>
-          <div class="skill-tags">
-            <a href="certificados/Microsoft/Roteiro%20de%20aprendizagem/Preparar%20para%20engenharia%20de%20IA.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="microsoft">
+          <div class="cert-accent" style="background:#00adef"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00adef;border-color:#00adef44"><i class="fab fa-microsoft"></i> Microsoft</span></div>
+            <h4 class="cert-title">Trilha de Engenharia de IA</h4>
+            <p class="skill-note cert-sub">Microsoft · Roteiro de aprendizagem</p>
+            <div class="cert-actions">
+              <a href="certificados/Microsoft/Roteiro%20de%20aprendizagem/Preparar%20para%20engenharia%20de%20IA.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-chart-line" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Finanças Pessoais</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Sicoob</p>
-          <div class="skill-tags">
-            <a href="certificados/Sicoob/Finan%C3%A7as%20Pessoais.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://se-liga-financas-online.memberkit.com.br/certificates/G6DyWX" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="sicoob">
+          <div class="cert-accent" style="background:#00a859"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00a859;border-color:#00a85944"><i class="fas fa-landmark"></i> Sicoob</span></div>
+            <h4 class="cert-title">Finanças Pessoais</h4>
+            <p class="skill-note cert-sub">Sicoob</p>
+            <div class="cert-actions">
+              <a href="certificados/Sicoob/Finan%C3%A7as%20Pessoais.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://se-liga-financas-online.memberkit.com.br/certificates/G6DyWX" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-chart-line" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Finanças para MEI</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Sicoob</p>
-          <div class="skill-tags">
-            <a href="certificados/Sicoob/Finan%C3%A7as%20para%20MEI.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://se-liga-financas-online.memberkit.com.br/certificates/QA02el" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="sicoob">
+          <div class="cert-accent" style="background:#00a859"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00a859;border-color:#00a85944"><i class="fas fa-landmark"></i> Sicoob</span></div>
+            <h4 class="cert-title">Finanças para MEI</h4>
+            <p class="skill-note cert-sub">Sicoob</p>
+            <div class="cert-actions">
+              <a href="certificados/Sicoob/Finan%C3%A7as%20para%20MEI.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://se-liga-financas-online.memberkit.com.br/certificates/QA02el" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-chart-line" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Finanças para Investidores</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Sicoob</p>
-          <div class="skill-tags">
-            <a href="certificados/Sicoob/Finan%C3%A7as%20para%20Investidores.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://se-liga-financas-online.memberkit.com.br/certificates/bdJkV3" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="sicoob">
+          <div class="cert-accent" style="background:#00a859"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#00a859;border-color:#00a85944"><i class="fas fa-landmark"></i> Sicoob</span></div>
+            <h4 class="cert-title">Finanças para Investidores</h4>
+            <p class="skill-note cert-sub">Sicoob</p>
+            <div class="cert-actions">
+              <a href="certificados/Sicoob/Finan%C3%A7as%20para%20Investidores.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://se-liga-financas-online.memberkit.com.br/certificates/bdJkV3" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-shield-alt" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Lei Geral de Proteção de Dados</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Algar</p>
-          <div class="skill-tags">
-            <a href="certificados/Algar/Lei%20Geral%20de%20Prote%C3%A7%C3%A3o%20de%20Dados.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
+        <div class="cert-card" data-issuer="algar">
+          <div class="cert-accent" style="background:#e63946"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#e63946;border-color:#e6394644"><i class="fas fa-broadcast-tower"></i> Algar</span></div>
+            <h4 class="cert-title">Lei Geral de Proteção de Dados</h4>
+            <p class="skill-note cert-sub">Algar</p>
+            <div class="cert-actions">
+              <a href="certificados/Algar/Lei%20Geral%20de%20Prote%C3%A7%C3%A3o%20de%20Dados.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-shield-alt" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Código de Conduta</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Algar</p>
-          <div class="skill-tags">
-            <a href="certificados/Algar/C%C3%B3digo%20de%20Conduta.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
+        <div class="cert-card" data-issuer="algar">
+          <div class="cert-accent" style="background:#e63946"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#e63946;border-color:#e6394644"><i class="fas fa-broadcast-tower"></i> Algar</span></div>
+            <h4 class="cert-title">Código de Conduta</h4>
+            <p class="skill-note cert-sub">Algar</p>
+            <div class="cert-actions">
+              <a href="certificados/Algar/C%C3%B3digo%20de%20Conduta.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-laptop-code" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Python para Desenvolvimento e Automação</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Alura</p>
-          <div class="skill-tags">
-            <a href="certificados/Alura/Python.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
+        <div class="cert-card" data-issuer="alura">
+          <div class="cert-accent" style="background:#096cff"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#096cff;border-color:#096cff44"><i class="fas fa-graduation-cap"></i> Alura</span></div>
+            <h4 class="cert-title">Python para Desenvolvimento e Automação</h4>
+            <p class="skill-note cert-sub">Alura</p>
+            <div class="cert-actions">
+              <a href="certificados/Alura/Python.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-laptop-code" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Linha de Comando no Windows</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Alura</p>
-          <div class="skill-tags">
-            <a href="certificados/Alura/Prompt%20do%20Windows.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="https://cursos.alura.com.br/formalCertificate/928718ae-78bf-470c-8a9f-3f0eb90de3e2" target="_blank" rel="noopener noreferrer" class="tag">Validar</a>
+        <div class="cert-card" data-issuer="alura">
+          <div class="cert-accent" style="background:#096cff"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#096cff;border-color:#096cff44"><i class="fas fa-graduation-cap"></i> Alura</span></div>
+            <h4 class="cert-title">Linha de Comando no Windows</h4>
+            <p class="skill-note cert-sub">Alura</p>
+            <div class="cert-actions">
+              <a href="certificados/Alura/Prompt%20do%20Windows.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="https://cursos.alura.com.br/formalCertificate/928718ae-78bf-470c-8a9f-3f0eb90de3e2" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validar</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-laptop-code" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Inglês para Tecnologia e Carreira</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Alura</p>
-          <div class="skill-tags">
-            <a href="certificados/Alura/Ingl%C3%AAs.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
+        <div class="cert-card" data-issuer="alura">
+          <div class="cert-accent" style="background:#096cff"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#096cff;border-color:#096cff44"><i class="fas fa-graduation-cap"></i> Alura</span></div>
+            <h4 class="cert-title">Inglês para Tecnologia e Carreira</h4>
+            <p class="skill-note cert-sub">Alura</p>
+            <div class="cert-actions">
+              <a href="certificados/Alura/Ingl%C3%AAs.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-user-shield" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Segurança da Informação</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Hacker Rangers</p>
-          <div class="skill-tags">
-            <a href="certificados/Hacker%20Rangers/Seguran%C3%A7a%20da%20Informa%C3%A7%C3%A3o.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
+        <div class="cert-card" data-issuer="hacker-rangers">
+          <div class="cert-accent" style="background:#ff6b35"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#ff6b35;border-color:#ff6b3544"><i class="fas fa-shield-alt"></i> Hacker Rangers</span></div>
+            <h4 class="cert-title">Segurança da Informação</h4>
+            <p class="skill-note cert-sub">Hacker Rangers</p>
+            <div class="cert-actions">
+              <a href="certificados/Hacker%20Rangers/Seguran%C3%A7a%20da%20Informa%C3%A7%C3%A3o.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-network-wired" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Certificado de Participação em Webinar</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">TP-Link</p>
-          <div class="skill-tags">
-            <a href="certificados/TPLink/Certificado%20de%20Participa%C3%A7%C3%A3o%20em%20Webinar.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
-            <a href="certificados/TPLink/Comprovante%20de%20Valida%C3%A7%C3%A3o%20do%20Certificado.pdf" target="_blank" rel="noopener noreferrer" class="tag">Validação</a>
+        <div class="cert-card" data-issuer="tp-link">
+          <div class="cert-accent" style="background:#e51937"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#e51937;border-color:#e5193744"><i class="fas fa-wifi"></i> TP-Link</span></div>
+            <h4 class="cert-title">Certificado de Participação em Webinar</h4>
+            <p class="skill-note cert-sub">TP-Link</p>
+            <div class="cert-actions">
+              <a href="certificados/TPLink/Certificado%20de%20Participa%C3%A7%C3%A3o%20em%20Webinar.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+              <a href="certificados/TPLink/Comprovante%20de%20Valida%C3%A7%C3%A3o%20do%20Certificado.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">Validação</a>
+            </div>
           </div>
         </div>
 
-        <div class="skill-card">
-          <div class="skill-icon" style="display:flex; justify-content:center; align-items:center;"><i class="fas fa-language" style="color: var(--accent-primary);"></i></div>
-          <h4 style="margin-top: 1rem; font-size: 1.02rem; color: var(--text);">Inglês Avançado para Comunicação Profissional</h4>
-          <p class="skill-note" style="margin-bottom: 0.8rem;">Wizard</p>
-          <div class="skill-tags">
-            <a href="certificados/Wizard/Ingl%C3%AAs.pdf" target="_blank" rel="noopener noreferrer" class="tag">PDF</a>
+        <div class="cert-card" data-issuer="wizard">
+          <div class="cert-accent" style="background:#f7a800"></div>
+          <div class="cert-card-body">
+            <div class="cert-header"><span class="cert-issuer-badge" style="color:#f7a800;border-color:#f7a80044"><i class="fas fa-language"></i> Wizard</span></div>
+            <h4 class="cert-title">Inglês Avançado para Comunicação Profissional</h4>
+            <p class="skill-note cert-sub">Wizard</p>
+            <div class="cert-actions">
+              <a href="certificados/Wizard/Ingl%C3%AAs.pdf" target="_blank" rel="noopener noreferrer" class="tag cert-btn">PDF</a>
+            </div>
           </div>
         </div>
+
       </div>
 
       <div style="text-align: center; margin-top: 3rem;">
@@ -2110,77 +2589,7 @@
       <p class="section-sub fade-up" data-lang="pt">Feedbacks de colegas, líderes e clientes ao longo da carreira.</p>
       <p class="section-sub fade-up" data-lang="en" style="display:none;">Feedback from colleagues, leaders and clients
         throughout my career.</p>
-      <div class="testimonials-grid">
-        <div class="testi-card">
-          <div class="testi-avatar">
-            <img src="fotos/sobremimterceiros/Geisa Paula.jpg" alt="Geisa Paula" />
-          </div>
-          <p class="testi-text" data-lang="pt">Davi demonstra alto nível de comprometimento, competência e proatividade,
-            entregando todas as demandas com qualidade e excelência.</p>
-          <p class="testi-text" data-lang="en" style="display:none;">Davi demonstrates a high level of commitment,
-            competence and proactivity, delivering all demands with quality and excellence.</p>
-          <div class="testi-author">Geisa Paula</div>
-          <div class="testi-role" data-lang="pt">Coordenadora de Relacionamento · Algar Telecom</div>
-          <div class="testi-role" data-lang="en" style="display:none;">Account Manager · Algar Telecom</div>
-          <a href="https://www.linkedin.com/in/geisa-paula-1a66a0175/" target="_blank" class="testi-link">linkedin ↗</a>
-        </div>
-        <div class="testi-card">
-          <div class="testi-avatar">
-            <img src="fotos/sobremimterceiros/Dennis Wilber.jpg" alt="Dennis Wilber" />
-          </div>
-          <p class="testi-text" data-lang="pt">Graças ao site que você fez sobre minhas experiências profissionais,
-            consegui crescer, ser reconhecido e hoje sou supervisor.</p>
-          <p class="testi-text" data-lang="en" style="display:none;">Thanks to the website you made about my
-            professional experiences, I managed to grow, be recognized and today I am a supervisor.</p>
-          <div class="testi-author">Dennis Wilber</div>
-          <div class="testi-role" data-lang="pt">Supervisor de Loja · Xiaomi Brasil</div>
-          <div class="testi-role" data-lang="en" style="display:none;">Store Supervisor · Xiaomi Brazil</div>
-          <a href="https://www.linkedin.com/in/dennis-wilber-10aa33259/" target="_blank" class="testi-link">linkedin
-            ↗</a>
-        </div>
-        <div class="testi-card">
-          <div class="testi-avatar">
-            <img src="fotos/sobremimterceiros/Fabio Marques.jpg" alt="Fábio Marques Barbosa" />
-          </div>
-          <p class="testi-text" data-lang="pt">Ele une conhecimentos sólidos em programação e hardware com atendimento
-            profissional. Diagnostica problemas com precisão e entrega soluções consistentes.</p>
-          <p class="testi-text" data-lang="en" style="display:none;">He combines solid knowledge in programming and
-            hardware with professional, agile and well-organized service. Diagnoses problems with precision and delivers
-            consistent solutions.</p>
-          <div class="testi-author">Fábio Marques Barbosa</div>
-          <div class="testi-role" data-lang="pt">Analista de Processos · Lyon Engenharia</div>
-          <div class="testi-role" data-lang="en" style="display:none;">Process Analyst · Lyon Engineering</div>
-          <a href="https://www.linkedin.com/in/fabiomarquesbarbosa/" target="_blank" class="testi-link">linkedin ↗</a>
-        </div>
-        <div class="testi-card">
-          <div class="testi-avatar">
-            <img src="fotos/sobremimterceiros/Stéfano Schwenck.jpeg" alt="Stéfano Schwenck" />
-          </div>
-          <p class="testi-text" data-lang="pt">Sempre demonstrou facilidade em transformar requisitos complexos em
-            soluções funcionais estruturadas. Um profissional que não se contenta com o básico.</p>
-          <p class="testi-text" data-lang="en" style="display:none;">Always demonstrated ease in transforming complex
-            requirements into functional and structured solutions. A professional who is not content with the basics.
-          </p>
-          <div class="testi-author">Stéfano Schwenck</div>
-          <div class="testi-role" data-lang="pt">Coordenador de TI · Uniube</div>
-          <div class="testi-role" data-lang="en" style="display:none;">IT Coordinator · Uniube</div>
-          <a href="https://www.linkedin.com/in/stefanosbvvita/" target="_blank" class="testi-link">linkedin ↗</a>
-        </div>
-        <div class="testi-card">
-          <div class="testi-avatar">
-            <img src="fotos/sobremimterceiros/Reginaldo Junior.jpg" alt="Reginaldo Junior" />
-          </div>
-          <p class="testi-text" data-lang="pt">Enfrenta desafios com coragem e rapidez de aprendizado. Busca soluções
-            eficientes e seguras. Sua seriedade e disponibilidade o tornam um recurso valioso.</p>
-          <p class="testi-text" data-lang="en" style="display:none;">Faces challenges with courage and quick learning.
-            Always seeks efficient and secure solutions. His dedication makes him a valuable resource.</p>
-          <div class="testi-author">Reginaldo Junior</div>
-          <div class="testi-role" data-lang="pt">Gerente de Redes de TI · Audicom Telecom</div>
-          <div class="testi-role" data-lang="en" style="display:none;">IT Network Manager · Audicom Telecom</div>
-          <a href="https://www.linkedin.com/in/reginaldo-junior-800078121/" target="_blank" class="testi-link">linkedin
-            ↗</a>
-        </div>
-      </div>
+      <div class="testi-grid" id="testiGrid"></div>
     </div>
   </section>
 
@@ -2313,7 +2722,7 @@
       const certSection = document.querySelector('#certifications');
       if (!certSection) return;
 
-      const items = certSection.querySelectorAll('.skill-card h4, .skill-card .skill-note, .skill-card .tag');
+      const items = certSection.querySelectorAll('.cert-card h4, .cert-card .skill-note, .cert-card .tag');
       items.forEach((el) => {
         const ptText = (el.textContent || '').trim();
         if (!ptText) return;
@@ -2330,7 +2739,7 @@
       const certSection = document.querySelector('#certifications');
       if (!certSection) return;
 
-      const items = certSection.querySelectorAll('.skill-card h4, .skill-card .skill-note, .skill-card .tag');
+      const items = certSection.querySelectorAll('.cert-card h4, .cert-card .skill-note, .cert-card .tag');
       items.forEach((el) => {
         const next = lang === 'en' ? (el.dataset.en || el.textContent) : (el.dataset.pt || el.textContent);
         el.textContent = next;
@@ -2379,6 +2788,12 @@
 
       // Apply PT/EN labels for certification cards
       applyCertificationLanguage(normalizedLang);
+
+      // Update terminal testimonials language
+      updateTerminalLanguage(normalizedLang);
+
+      // Update IDE projects language
+      updateIDELanguage(normalizedLang);
     }
 
     // Year
@@ -2443,13 +2858,13 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.tl-item, .project-card, .testi-card, .fade-up').forEach((el, i) => {
+    document.querySelectorAll('.tl-item, .fade-up').forEach((el, i) => {
       el.style.transitionDelay = `${(i % 4) * 0.07}s`;
       observer.observe(el);
     });
 
     // Mouse-relative neon interaction on cards
-    const interactiveCards = document.querySelectorAll('.skill-card, .project-card, .testi-card');
+    const interactiveCards = document.querySelectorAll('.skill-card');
 
     interactiveCards.forEach((card) => {
       card.addEventListener('mouseenter', () => {
@@ -2471,6 +2886,485 @@
         card.style.setProperty('--my', '50%');
       });
     });
+
+    // ── CERT BOARD ────────────────────────────────────────────────
+    (function initCertBoard() {
+      const grid = document.getElementById('certGrid');
+      if (!grid) return;
+
+      // Staggered entrance via IntersectionObserver
+      const certCards = grid.querySelectorAll('.cert-card');
+      const certObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const cards = grid.querySelectorAll('.cert-card:not(.cert-hidden)');
+            cards.forEach((card, i) => {
+              setTimeout(() => card.classList.add('cert-visible'), i * 45);
+            });
+            certObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      certObs.observe(grid);
+
+      // Filter logic
+      document.querySelectorAll('.cert-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.cert-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filter = btn.dataset.filter;
+          let delay = 0;
+          certCards.forEach(card => {
+            const match = filter === 'all' || card.dataset.issuer === filter;
+            if (match) {
+              card.classList.remove('cert-hidden');
+              card.classList.remove('cert-visible');
+              setTimeout(() => card.classList.add('cert-visible'), delay);
+              delay += 35;
+            } else {
+              card.classList.add('cert-hidden');
+              card.classList.remove('cert-visible');
+            }
+          });
+        });
+      });
+    })();
+
+    // ── TERMINAL TESTIMONIALS ──────────────────────────────────────
+    const TESTIMONIALS = [
+      {
+        id: '01',
+        name: 'Geisa Paula',
+        role_pt: 'Coordenadora de Relacionamento · Algar Telecom',
+        role_en: 'Account Manager · Algar Telecom',
+        text_pt: 'Davi demonstra alto nível de comprometimento, competência e proatividade, entregando todas as demandas com qualidade e excelência.',
+        text_en: 'Davi demonstrates a high level of commitment, competence and proactivity, delivering all demands with quality and excellence.',
+        photo: 'fotos/sobremimterceiros/Geisa Paula.jpg',
+        linkedin: 'https://www.linkedin.com/in/geisa-paula-1a66a0175/'
+      },
+      {
+        id: '02',
+        name: 'Dennis Wilber',
+        role_pt: 'Supervisor de Loja · Xiaomi Brasil',
+        role_en: 'Store Supervisor · Xiaomi Brazil',
+        text_pt: 'Graças ao site que você fez sobre minhas experiências profissionais, consegui crescer, ser reconhecido e hoje sou supervisor.',
+        text_en: 'Thanks to the website you made about my professional experiences, I managed to grow, be recognized and today I am a supervisor.',
+        photo: 'fotos/sobremimterceiros/Dennis Wilber.jpg',
+        linkedin: 'https://www.linkedin.com/in/dennis-wilber-10aa33259/'
+      },
+      {
+        id: '03',
+        name: 'Fábio Marques Barbosa',
+        role_pt: 'Analista de Processos · Lyon Engenharia',
+        role_en: 'Process Analyst · Lyon Engineering',
+        text_pt: 'Ele une conhecimentos sólidos em programação e hardware com atendimento profissional. Diagnostica problemas com precisão e entrega soluções consistentes.',
+        text_en: 'He combines solid knowledge in programming and hardware with professional service. Diagnoses problems with precision and delivers consistent solutions.',
+        photo: 'fotos/sobremimterceiros/Fabio Marques.jpg',
+        linkedin: 'https://www.linkedin.com/in/fabiomarquesbarbosa/'
+      },
+      {
+        id: '04',
+        name: 'Stéfano Schwenck',
+        role_pt: 'Coordenador de TI · Uniube',
+        role_en: 'IT Coordinator · Uniube',
+        text_pt: 'Sempre demonstrou facilidade em transformar requisitos complexos em soluções funcionais estruturadas. Um profissional que não se contenta com o básico.',
+        text_en: 'Always demonstrated ease in transforming complex requirements into structured solutions. A professional who is not content with the basics.',
+        photo: 'fotos/sobremimterceiros/Stéfano Schwenck.jpeg',
+        linkedin: 'https://www.linkedin.com/in/stefanosbvvita/'
+      },
+      {
+        id: '05',
+        name: 'Reginaldo Junior',
+        role_pt: 'Gerente de Redes de TI · Audicom Telecom',
+        role_en: 'IT Network Manager · Audicom Telecom',
+        text_pt: 'Enfrenta desafios com coragem e rapidez de aprendizado. Busca soluções eficientes e seguras. Sua seriedade e disponibilidade o tornam um recurso valioso.',
+        text_en: 'Faces challenges with courage and quick learning. Always seeks efficient and secure solutions. His dedication makes him a valuable resource.',
+        photo: 'fotos/sobremimterceiros/Reginaldo Junior.jpg',
+        linkedin: 'https://www.linkedin.com/in/reginaldo-junior-800078121/'
+      }
+    ];
+
+    var testiGridBuilt = false;
+
+    function typeInto(el, text, speed) {
+      return new Promise(resolve => {
+        let i = 0;
+        el.textContent = '';
+        const iv = setInterval(() => {
+          el.textContent += text[i++];
+          if (i >= text.length) { clearInterval(iv); resolve(); }
+        }, speed);
+      });
+    }
+
+    function buildTestiGrid() {
+      if (testiGridBuilt) return;
+      testiGridBuilt = true;
+
+      const grid = document.getElementById('testiGrid');
+      if (!grid) return;
+
+      TESTIMONIALS.forEach(t => {
+        const filename = t.name.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/\s+/g, '-') + '.log';
+
+        const lang = currentLang;
+        const roleText = lang === 'en' ? t.role_en : t.role_pt;
+        const quoteText = lang === 'en' ? t.text_en : t.text_pt;
+
+        const term = document.createElement('div');
+        term.className = 'mini-term';
+        term.dataset.tid = t.id;
+
+        term.innerHTML = `
+          <div class="mini-term-bar">
+            <div class="terminal-dots"><span></span><span></span><span></span></div>
+            <div class="mini-term-name">${filename}</div>
+          </div>
+          <div class="mini-term-body">
+            <div class="mt-cmd"><span class="mt-prompt">$</span><span class="mt-cmd-text"></span></div>
+            <div class="mt-profile">
+              <img src="${t.photo}" alt="${t.name}" class="mt-avatar" />
+              <div>
+                <div class="mt-name">${t.name}</div>
+                <div class="mt-role" data-role>${roleText}</div>
+              </div>
+            </div>
+            <div class="mt-comment"><span class="t-muted">/**</span><br><span class="t-muted"> * </span><span data-quote>"${quoteText}"</span><br><span class="t-muted"> */</span></div>
+            <div class="mt-footer"><a href="${t.linkedin}" target="_blank" class="mt-link">↗ linkedin</a></div>
+          </div>`;
+
+        grid.appendChild(term);
+      });
+
+      setTimeout(() => {
+        grid.querySelectorAll('.mini-term').forEach((term, i) => {
+          setTimeout(() => {
+            term.classList.add('mt-visible');
+            animateMiniTerm(term);
+          }, i * 170);
+        });
+      }, 60);
+    }
+
+    async function animateMiniTerm(term) {
+      const tid = term.dataset.tid;
+      const t = TESTIMONIALS.find(x => x.id === tid);
+      if (!t) return;
+
+      const cmdEl = term.querySelector('.mt-cmd-text');
+      const profile = term.querySelector('.mt-profile');
+      const comment = term.querySelector('.mt-comment');
+      const footer = term.querySelector('.mt-footer');
+
+      await typeInto(cmdEl, ` scan --id ${t.id} --profile "${t.name}"`, 22);
+      await new Promise(r => setTimeout(r, 90));
+      profile?.classList.add('mt-show');
+      await new Promise(r => setTimeout(r, 200));
+      comment?.classList.add('mt-show');
+      await new Promise(r => setTimeout(r, 150));
+      footer?.classList.add('mt-show');
+    }
+
+    function updateTerminalLanguage(lang) {
+      const grid = document.getElementById('testiGrid');
+      if (!grid || !testiGridBuilt) return;
+      TESTIMONIALS.forEach(t => {
+        const term = grid.querySelector(`.mini-term[data-tid="${t.id}"]`);
+        if (!term) return;
+        const role = term.querySelector('[data-role]');
+        if (role) role.textContent = lang === 'en' ? t.role_en : t.role_pt;
+        const quote = term.querySelector('[data-quote]');
+        if (quote) quote.textContent = `"${lang === 'en' ? t.text_en : t.text_pt}"`;
+      });
+    }
+
+    const testiGridEl = document.getElementById('testiGrid');
+    if (testiGridEl) {
+      const testiObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            buildTestiGrid();
+            testiObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      testiObs.observe(testiGridEl);
+    }
+
+    // ── IDE PROJECTS ──────────────────────────────────────────────
+    const PROJECTS = [
+      {
+        id: 0, file: 'face-safety',
+        cat_pt: '★ destaque', cat_en: '★ highlight',
+        name_pt: 'Face Safety', name_en: 'Face Safety',
+        desc_pt: 'Sistema de controle de acesso por reconhecimento facial. 1º lugar entre 60 projetos acadêmicos na Universidade de Uberaba.',
+        desc_en: 'Facial recognition access control system. 1st place among 60 academic projects at the University of Uberaba.',
+        snippet: `<span class="s-kw">import</span> cv2, tkinter\nframe = cv2.<span class="s-fn">VideoCapture</span>(<span class="s-num">0</span>)\nfaces = detector.<span class="s-fn">detectMultiScale</span>(frame)\n<span class="s-kw">if</span> faces: <span class="s-fn">grant_access</span>(user_id)`,
+        lang: 'python', tech: ['Python', 'OpenCV', 'Tkinter'],
+        link: 'https://github.com/Davicjc/Face-Safety', lbl_pt: 'github', lbl_en: 'github', dot: '#facc15'
+      },
+      {
+        id: 1, file: 'corp-security',
+        cat_pt: '◆ corporativo', cat_en: '◆ corporate',
+        name_pt: 'Sistemas de Segurança Corporativa', name_en: 'Corporate Security Systems',
+        desc_pt: 'Integração de catracas eletrônicas, reconhecimento facial e controle biométrico para empresas. +20 sites corporativos.',
+        desc_en: 'Electronic turnstiles, facial recognition and biometric control for enterprises. +20 corporate websites built.',
+        snippet: `<span class="s-kw">class</span> <span class="s-cls">AcessoAudicom</span>:\n  bio = <span class="s-cls">ControleBiometrico</span>(porta=<span class="s-str">"COM3"</span>)\n  <span class="s-kw">if</span> bio.<span class="s-fn">validar</span>():\n    catraca.<span class="s-fn">liberar</span>()`,
+        lang: 'python', tech: ['Python', 'C#', 'OpenCV'],
+        link: 'https://github.com/Davicjc/AcessoAudicom', lbl_pt: 'github', lbl_en: 'github', dot: '#22d3ee'
+      },
+      {
+        id: 2, file: 'roas-monitor',
+        cat_pt: '○ open source', cat_en: '○ open source',
+        name_pt: 'ROAS Monitor Status', name_en: 'ROAS Monitor Status',
+        desc_pt: 'Daemon Bash interativo que verifica validade RPKI de prefixos BGP e envia alertas em tempo real no Telegram.',
+        desc_en: 'Interactive Bash daemon that verifies RPKI validity of BGP prefixes and sends real-time alerts on Telegram.',
+        snippet: `<span class="s-cm">#!/bin/bash</span>\n<span class="s-kw">while</span> <span class="s-fn">check_rpki</span> <span class="s-str">"$prefix"</span>; <span class="s-kw">do</span>\n  <span class="s-fn">telegram_alert</span> <span class="s-str">"ROAS: $status"</span>\n<span class="s-kw">done</span>`,
+        lang: 'bash', tech: ['Bash', 'RPKI', 'Telegram API'],
+        link: 'https://roas-monitor-status.davicjc.com/', lbl_pt: 'demo', lbl_en: 'demo', dot: '#4ade80'
+      },
+      {
+        id: 3, file: 'davicjc.com',
+        cat_pt: '◉ portfólio', cat_en: '◉ portfolio',
+        name_pt: 'davicjc.com', name_en: 'davicjc.com',
+        desc_pt: 'Portfólio bilíngue interativo com matrix rain, animações de código, terminal de depoimentos e IDE de projetos.',
+        desc_en: 'Bilingual interactive portfolio with matrix rain, code animations, testimonial terminal and projects IDE.',
+        snippet: `<span class="s-kw">const</span> portfolio = <span class="s-kw">new</span> <span class="s-cls">Portfolio</span>({\n  lang: <span class="s-str">'pt'</span>, matrix: <span class="s-kw">true</span>,\n  effects: [<span class="s-str">'typewriter'</span>, <span class="s-str">'terminal'</span>, <span class="s-str">'ide'</span>]\n})`,
+        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://davicjc.com', lbl_pt: 'ver', lbl_en: 'view', dot: '#a78bfa'
+      },
+      {
+        id: 4, file: 'ddwilber.site',
+        cat_pt: '● personalidade', cat_en: '● VIP',
+        name_pt: 'Portfólio Xiaomi Brasil', name_en: 'Xiaomi Brazil Portfolio',
+        desc_pt: 'Site profissional desenvolvido para Supervisor Oficial da Xiaomi Brasil. Projeto que impulsionou diretamente a promoção do cliente.',
+        desc_en: 'Professional website for Official Xiaomi Brazil Supervisor. Project that directly boosted the client\'s career promotion.',
+        snippet: `<span class="s-kw">const</span> site = <span class="s-fn">createPortfolio</span>({\n  client: <span class="s-str">'Dennis Wilber'</span>,\n  brand: <span class="s-str">'Xiaomi Brasil'</span>,\n})\nsite.<span class="s-fn">deploy</span>()  <span class="s-cm">// → promoção 🎉</span>`,
+        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://ddwilber.site/', lbl_pt: 'ver', lbl_en: 'view', dot: '#f97316'
+      },
+      {
+        id: 5, file: 'audicomtelecom.com.br',
+        cat_pt: '◆ corporativo', cat_en: '◆ corporate',
+        name_pt: 'Site Audicom Telecom', name_en: 'Audicom Telecom Website',
+        desc_pt: 'Site institucional moderno e responsivo apresentando as soluções corporativas e de telecomunicações da empresa.',
+        desc_en: 'Modern responsive institutional website showcasing corporate and telecommunications solutions.',
+        snippet: `<span class="s-cm">&lt;!-- audicomtelecom.com.br --&gt;</span>\n<span class="s-kw">&lt;section</span> id=<span class="s-str">"solucoes"</span><span class="s-kw">&gt;</span>\n  <span class="s-kw">&lt;h1&gt;</span>Conectando o Futuro<span class="s-kw">&lt;/h1&gt;</span>\n<span class="s-kw">&lt;/section&gt;</span>`,
+        lang: 'html', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://audicomtelecom.com.br/', lbl_pt: 'ver', lbl_en: 'view', dot: '#22d3ee'
+      },
+      {
+        id: 6, file: 'footer-universal',
+        cat_pt: '○ open source', cat_en: '○ open source',
+        name_pt: 'Footer Universal', name_en: 'Universal Footer',
+        desc_pt: 'Uma linha de JS para embutir um footer de assinatura arrastável em qualquer site de terceiros.',
+        desc_en: 'A single JS line to embed a draggable signature footer on any third-party website.',
+        snippet: `<span class="s-cm">// uma linha. qualquer site.</span>\n<span class="s-fn">fetch</span>(<span class="s-str">'https://footer.davicjc.com/f.js'</span>)\n  .<span class="s-fn">then</span>(r => r.<span class="s-fn">text</span>())\n  .<span class="s-fn">then</span>(eval)`,
+        lang: 'javascript', tech: ['JavaScript', 'CSS3'],
+        link: 'https://footer.davicjc.com/', lbl_pt: 'demo', lbl_en: 'demo', dot: '#4ade80'
+      },
+      {
+        id: 7, file: 'cronologia-pokemon',
+        cat_pt: '● pessoal', cat_en: '● personal',
+        name_pt: 'Cronologia Pokémon', name_en: 'Pokémon Chronology',
+        desc_pt: 'Guia interativo com a ordem cronológica correta para assistir todos os animes, filmes, especiais e OVAs da franquia.',
+        desc_en: 'Interactive guide with the correct chronological order to watch all anime, movies, specials and OVAs.',
+        snippet: `<span class="s-kw">const</span> timeline = <span class="s-kw">await</span> <span class="s-fn">fetchAnime</span>(<span class="s-str">'pokemon'</span>)\ntimeline\n  .<span class="s-fn">filter</span>(ep => ep.canon)\n  .<span class="s-fn">sortBy</span>(<span class="s-str">'chronological'</span>)`,
+        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://cronologia-pokemon.davicjc.com/', lbl_pt: 'ver', lbl_en: 'view', dot: '#fb7185'
+      },
+      {
+        id: 8, file: 'webpravoce.shop',
+        cat_pt: '◉ negócio próprio', cat_en: '◉ own business',
+        name_pt: 'Web pra Você', name_en: 'Web pra Você',
+        desc_pt: 'Plataforma para criação de sites personalizados para empresas de pequeno e médio porte.',
+        desc_en: 'Platform for creating personalized websites for small and medium-sized businesses.',
+        snippet: `<span class="s-kw">const</span> site = <span class="s-kw">new</span> <span class="s-cls">WebpraVoce</span>({\n  plano: <span class="s-str">'starter'</span>,\n  ssl: <span class="s-kw">true</span>, seo: <span class="s-kw">true</span>\n})\nsite.<span class="s-fn">deploy</span>()`,
+        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://webpravoce.shop/', lbl_pt: 'ver', lbl_en: 'view', dot: '#a78bfa'
+      },
+      {
+        id: 9, file: 'audicom-speedtest',
+        cat_pt: '◆ corporativo', cat_en: '◆ corporate',
+        name_pt: 'Audicom Speed Test', name_en: 'Audicom Speed Test',
+        desc_pt: 'Testador de velocidade baseado no LibreSpeed, com servidores e design dedicados para a Audicom Telecom.',
+        desc_en: 'Speed tester based on LibreSpeed with dedicated servers and branding for Audicom Telecom.',
+        snippet: `<span class="s-kw">const</span> test = <span class="s-kw">new</span> <span class="s-cls">LibreSpeed</span>({ server: <span class="s-str">'audicom'</span> })\ntest.<span class="s-fn">run</span>().<span class="s-fn">then</span>(r => {\n  console.<span class="s-fn">log</span>(r.mbps + <span class="s-str">' Mbps'</span>)\n})`,
+        lang: 'javascript', tech: ['LibreSpeed', 'JavaScript', 'HTML5'],
+        link: 'https://velocidadeteste.audicomtelecom.com.br/', lbl_pt: 'ver', lbl_en: 'view', dot: '#22d3ee'
+      },
+      {
+        id: 10, file: 'audicom-tech',
+        cat_pt: '◌ em desenvolvimento', cat_en: '◌ in development',
+        name_pt: 'Audicom Tecnologia', name_en: 'Audicom Tecnologia',
+        desc_pt: 'Página institucional focada em soluções de tecnologia: dev, sistemas e segurança. (Em andamento)',
+        desc_en: 'Institutional page focused on technology solutions: dev, systems and security. (Work in progress)',
+        snippet: `<span class="s-cm">// 🚧 building...</span>\n<span class="s-kw">const</span> status = <span class="s-str">'in_progress'</span>\n<span class="s-cm">// eta: Q2 2025</span>\n<span class="s-fn">watch</span>(<span class="s-str">'audicomtecnologia.davicjc.com'</span>)`,
+        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://audicomtecnologia.davicjc.com/', lbl_pt: 'ver', lbl_en: 'view', dot: '#fbbf24'
+      },
+      {
+        id: 11, file: 'brunof-creation',
+        cat_pt: '◉ portfólio', cat_en: '◉ portfolio',
+        name_pt: 'Bruno F. Creation', name_en: 'Bruno F. Creation',
+        desc_pt: 'Site portfólio para destacar os trabalhos criativos da marca — vitrine digital para artes e serviços.',
+        desc_en: 'Portfolio website to highlight the brand\'s creative works — a digital showcase for arts and services.',
+        snippet: `<span class="s-kw">const</span> gallery = <span class="s-kw">new</span> <span class="s-cls">Portfolio</span>({\n  artist: <span class="s-str">'Bruno F.'</span>,\n  mode: <span class="s-str">'creative'</span>,\n  showcase: [<span class="s-str">'arts'</span>, <span class="s-str">'design'</span>]\n})`,
+        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://brunofcreation.cjc.pics/', lbl_pt: 'ver', lbl_en: 'view', dot: '#a78bfa'
+      },
+      {
+        id: 12, file: 'cjc-minecraft',
+        cat_pt: '▲ infraestrutura', cat_en: '▲ infrastructure',
+        name_pt: 'Servidor Minecraft CJC', name_en: 'CJC Minecraft Server',
+        desc_pt: 'Servidor implementado do zero em VM Debian. Deploy, configuração e gerenciamento inteiramente via SSH.',
+        desc_en: 'Server deployed from scratch on a Debian VM. Full deploy, config and management done entirely via SSH.',
+        snippet: `<span class="s-cm"># ssh into the beast</span>\nssh root@cjc-mc.davicjc.com\nsystemctl <span class="s-fn">start</span> minecraft@survival\njournalctl -u minecraft <span class="s-kw">-f</span>`,
+        lang: 'bash', tech: ['Debian', 'Linux', 'SSH'],
+        link: 'https://cjc-minecraft.davicjc.com/', lbl_pt: 'ver', lbl_en: 'view', dot: '#f97316'
+      }
+    ];
+
+    var ideCurrentIndex = 0;
+    var ideTimerInterval = null;
+    var ideCountRemaining = 5;
+    var idePaused = false;
+    var IDE_TOTAL = 5;
+    var IDE_CIRCUM = 56.55;
+
+    function ideUpdateRing(remaining) {
+      const ring = document.getElementById('ideTimerRing');
+      const num = document.getElementById('ideTimerNum');
+      if (!ring || !num) return;
+      const offset = ((IDE_TOTAL - remaining) / IDE_TOTAL) * IDE_CIRCUM;
+      ring.style.strokeDashoffset = offset;
+      num.textContent = remaining;
+      const urgent = remaining <= 1;
+      ring.classList.toggle('urgent', urgent);
+      num.classList.toggle('urgent', urgent);
+    }
+
+    function ideStartAutoPlay() {
+      clearInterval(ideTimerInterval);
+      ideTimerInterval = setInterval(() => {
+        if (idePaused) return;
+        ideCountRemaining--;
+        if (ideCountRemaining < 0) ideCountRemaining = 0;
+        ideUpdateRing(ideCountRemaining);
+        if (ideCountRemaining === 0) {
+          ideCountRemaining = IDE_TOTAL;
+          ideRender((ideCurrentIndex + 1) % PROJECTS.length, true);
+        }
+      }, 1000);
+    }
+
+    function ideResetCountdown() {
+      ideCountRemaining = IDE_TOTAL;
+      ideUpdateRing(IDE_TOTAL);
+    }
+
+    function ideRender(index, animate) {
+      const p = PROJECTS[index];
+      const lang = currentLang;
+      ideCurrentIndex = index;
+
+      const tabEl = document.getElementById('ideTabName');
+      if (tabEl) tabEl.textContent = p.file + '/README.md';
+
+      document.querySelectorAll('.ide-file').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+      });
+
+      const main = document.getElementById('ideMain');
+      if (!main) return;
+
+      const catText = lang === 'en' ? p.cat_en : p.cat_pt;
+      const nameText = lang === 'en' ? p.name_en : p.name_pt;
+      const descText = lang === 'en' ? p.desc_en : p.desc_pt;
+      const linkLabel = lang === 'en' ? p.lbl_en : p.lbl_pt;
+
+      const html = `<div class="ide-proj" id="ideProj">
+        <div class="ide-proj-header">
+          <div class="ide-proj-name">${nameText}</div>
+          <div class="ide-proj-cat" style="border-color:${p.dot}55;color:${p.dot}">${catText}</div>
+        </div>
+        <div class="ide-proj-divider"></div>
+        <div class="ide-proj-desc">${descText}</div>
+        <div class="ide-code-block">
+          <div class="ide-code-lang">${p.lang}</div>${p.snippet}
+        </div>
+        <div class="ide-proj-tech">${p.tech.map(t => `<span class="ide-tech-tag">${t}</span>`).join('')}</div>
+        <a href="${p.link}" target="_blank" class="ide-proj-link">${linkLabel} ↗</a>
+      </div>`;
+
+      if (animate) {
+        const existing = main.querySelector('.ide-proj');
+        if (existing) {
+          existing.style.opacity = '0';
+          existing.style.transform = 'translateY(7px)';
+          setTimeout(() => {
+            main.innerHTML = html;
+            requestAnimationFrame(() => requestAnimationFrame(() =>
+              document.getElementById('ideProj')?.classList.add('visible')
+            ));
+          }, 200);
+        } else {
+          main.innerHTML = html;
+          setTimeout(() => document.getElementById('ideProj')?.classList.add('visible'), 40);
+        }
+      } else {
+        main.innerHTML = html;
+        setTimeout(() => document.getElementById('ideProj')?.classList.add('visible'), 40);
+      }
+    }
+
+    function ideInit() {
+      const fileList = document.getElementById('ideFileList');
+      if (!fileList) return;
+      fileList.innerHTML = '';
+      PROJECTS.forEach((p, i) => {
+        const el = document.createElement('div');
+        el.className = 'ide-file' + (i === 0 ? ' active' : '');
+        el.innerHTML = `<span class="ide-file-dot" style="background:${p.dot}"></span>${p.file}`;
+        el.addEventListener('click', () => {
+          ideRender(i, true);
+          ideResetCountdown();
+        });
+        fileList.appendChild(el);
+      });
+      ideRender(0, false);
+      ideUpdateRing(IDE_TOTAL);
+      ideStartAutoPlay();
+
+      const ideEl = document.getElementById('projectsIDE');
+      if (ideEl) {
+        ideEl.addEventListener('mouseenter', () => { idePaused = true; });
+        ideEl.addEventListener('mouseleave', () => { idePaused = false; });
+      }
+    }
+
+    function updateIDELanguage(lang) {
+      const ide = document.getElementById('projectsIDE');
+      if (!ide || !ide.classList.contains('visible')) return;
+      ideRender(ideCurrentIndex, false);
+    }
+
+    const projectsIDE = document.getElementById('projectsIDE');
+    if (projectsIDE) {
+      const ideObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            projectsIDE.classList.add('visible');
+            ideInit();
+            ideObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      ideObs.observe(projectsIDE);
+    }
 
     // Digital rain background
     (function startMatrixRain() {
