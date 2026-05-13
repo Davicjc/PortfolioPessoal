@@ -899,6 +899,12 @@
       margin-bottom: 0.45rem;
     }
 
+    .ide-proj-badges {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
     .ide-proj-name { font-size: 1.08rem; font-weight: 700; color: var(--text); line-height: 1.3; }
 
     .ide-proj-cat {
@@ -910,6 +916,19 @@
       border: 1px solid rgba(74,222,128,0.2);
       white-space: nowrap;
       flex-shrink: 0;
+    }
+
+    .ide-proj-highlight {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.63rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(236,72,153,0.12);
+      border: 1px solid rgba(236,72,153,0.4);
+      color: #ec4899;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 600;
     }
 
     .ide-proj-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
@@ -2172,8 +2191,8 @@
     <div class="section-inner">
       <div class="section-label" data-lang="pt">// projetos</div>
       <div class="section-label" data-lang="en" style="display:none;">// projects</div>
-      <h2 class="section-title fade-up" data-lang="pt">O que já construí</h2>
-      <h2 class="section-title fade-up" data-lang="en" style="display:none;">What I've Built</h2>
+      <h2 class="section-title fade-up" data-lang="pt">Alguns projetos meus</h2>
+      <h2 class="section-title fade-up" data-lang="en" style="display:none;">Some of My Projects</h2>
       <p class="section-sub fade-up" data-lang="pt">Uma seleção dos projetos mais relevantes — corporativos, acadêmicos
         e pessoais.</p>
       <p class="section-sub fade-up" data-lang="en" style="display:none;">A selection of the most relevant projects —
@@ -3157,36 +3176,6 @@
         link: 'https://audicomtelecom.com.br/', lbl_pt: 'ver', lbl_en: 'view', dot: '#22d3ee'
       },
       {
-        id: 6, file: 'footer-universal',
-        cat_pt: '○ open source', cat_en: '○ open source',
-        name_pt: 'Footer Universal', name_en: 'Universal Footer',
-        desc_pt: 'Uma linha de JS para embutir um footer de assinatura arrastável em qualquer site de terceiros.',
-        desc_en: 'A single JS line to embed a draggable signature footer on any third-party website.',
-        snippet: `<span class="s-cm">// uma linha. qualquer site.</span>\n<span class="s-fn">fetch</span>(<span class="s-str">'https://footer.davicjc.com/f.js'</span>)\n  .<span class="s-fn">then</span>(r => r.<span class="s-fn">text</span>())\n  .<span class="s-fn">then</span>(eval)`,
-        lang: 'javascript', tech: ['JavaScript', 'CSS3'],
-        link: 'https://footer.davicjc.com/', lbl_pt: 'demo', lbl_en: 'demo', dot: '#4ade80'
-      },
-      {
-        id: 7, file: 'cronologia-pokemon',
-        cat_pt: '● pessoal', cat_en: '● personal',
-        name_pt: 'Cronologia Pokémon', name_en: 'Pokémon Chronology',
-        desc_pt: 'Guia interativo com a ordem cronológica correta para assistir todos os animes, filmes, especiais e OVAs da franquia.',
-        desc_en: 'Interactive guide with the correct chronological order to watch all anime, movies, specials and OVAs.',
-        snippet: `<span class="s-kw">const</span> timeline = <span class="s-kw">await</span> <span class="s-fn">fetchAnime</span>(<span class="s-str">'pokemon'</span>)\ntimeline\n  .<span class="s-fn">filter</span>(ep => ep.canon)\n  .<span class="s-fn">sortBy</span>(<span class="s-str">'chronological'</span>)`,
-        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
-        link: 'https://cronologia-pokemon.davicjc.com/', lbl_pt: 'ver', lbl_en: 'view', dot: '#fb7185'
-      },
-      {
-        id: 8, file: 'webpravoce.shop',
-        cat_pt: '◉ negócio próprio', cat_en: '◉ own business',
-        name_pt: 'Web pra Você', name_en: 'Web pra Você',
-        desc_pt: 'Plataforma para criação de sites personalizados para empresas de pequeno e médio porte.',
-        desc_en: 'Platform for creating personalized websites for small and medium-sized businesses.',
-        snippet: `<span class="s-kw">const</span> site = <span class="s-kw">new</span> <span class="s-cls">WebpraVoce</span>({\n  plano: <span class="s-str">'starter'</span>,\n  ssl: <span class="s-kw">true</span>, seo: <span class="s-kw">true</span>\n})\nsite.<span class="s-fn">deploy</span>()`,
-        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
-        link: 'https://webpravoce.shop/', lbl_pt: 'ver', lbl_en: 'view', dot: '#a78bfa'
-      },
-      {
         id: 9, file: 'audicom-speedtest',
         cat_pt: '◆ corporativo', cat_en: '◆ corporate',
         name_pt: 'Audicom Speed Test', name_en: 'Audicom Speed Test',
@@ -3195,16 +3184,6 @@
         snippet: `<span class="s-kw">const</span> test = <span class="s-kw">new</span> <span class="s-cls">LibreSpeed</span>({ server: <span class="s-str">'audicom'</span> })\ntest.<span class="s-fn">run</span>().<span class="s-fn">then</span>(r => {\n  console.<span class="s-fn">log</span>(r.mbps + <span class="s-str">' Mbps'</span>)\n})`,
         lang: 'javascript', tech: ['LibreSpeed', 'JavaScript', 'HTML5'],
         link: 'https://velocidadeteste.audicomtelecom.com.br/', lbl_pt: 'ver', lbl_en: 'view', dot: '#22d3ee'
-      },
-      {
-        id: 10, file: 'audicom-tech',
-        cat_pt: '◌ em desenvolvimento', cat_en: '◌ in development',
-        name_pt: 'Audicom Tecnologia', name_en: 'Audicom Tecnologia',
-        desc_pt: 'Página institucional focada em soluções de tecnologia: dev, sistemas e segurança. (Em andamento)',
-        desc_en: 'Institutional page focused on technology solutions: dev, systems and security. (Work in progress)',
-        snippet: `<span class="s-cm">// 🚧 building...</span>\n<span class="s-kw">const</span> status = <span class="s-str">'in_progress'</span>\n<span class="s-cm">// eta: Q2 2025</span>\n<span class="s-fn">watch</span>(<span class="s-str">'audicomtecnologia.davicjc.com'</span>)`,
-        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
-        link: 'https://audicomtecnologia.davicjc.com/', lbl_pt: 'ver', lbl_en: 'view', dot: '#fbbf24'
       },
       {
         id: 11, file: 'brunof-creation',
@@ -3217,14 +3196,19 @@
         link: 'https://brunofcreation.cjc.pics/', lbl_pt: 'ver', lbl_en: 'view', dot: '#a78bfa'
       },
       {
-        id: 12, file: 'cjc-minecraft',
-        cat_pt: '▲ infraestrutura', cat_en: '▲ infrastructure',
-        name_pt: 'Servidor Minecraft CJC', name_en: 'CJC Minecraft Server',
-        desc_pt: 'Servidor implementado do zero em VM Debian. Deploy, configuração e gerenciamento inteiramente via SSH.',
-        desc_en: 'Server deployed from scratch on a Debian VM. Full deploy, config and management done entirely via SSH.',
-        snippet: `<span class="s-cm"># ssh into the beast</span>\nssh root@cjc-mc.davicjc.com\nsystemctl <span class="s-fn">start</span> minecraft@survival\njournalctl -u minecraft <span class="s-kw">-f</span>`,
-        lang: 'bash', tech: ['Debian', 'Linux', 'SSH'],
-        link: 'https://cjc-minecraft.davicjc.com/', lbl_pt: 'ver', lbl_en: 'view', dot: '#f97316'
+        id: 13, file: 'patricislash',
+        cat_pt: '◉ portfólio', cat_en: '◉ portfolio',
+        name_pt: 'Patricia Slash', name_en: 'Patricia Slash',
+        highlight_pt: 'DESTAQUE', highlight_en: 'FEATURED',
+        desc_pt: 'Site profissional com sistema de agendamento online para o estúdio de extensão de cílios da Patricia Moura.',
+        desc_en: 'Professional website with online scheduling system for Patricia Moura\'s eyelash extension studio.',
+        snippet: `<span class="s-kw">const</span> studio = <span class="s-kw">new</span> <span class="s-cls">BeautyScheduler</span>({
+  service: <span class="s-str">'eyelash_extension'</span>,
+  booking: <span class="s-kw">true</span>
+})
+studio.<span class="s-fn">deploy</span>()`,
+        lang: 'javascript', tech: ['HTML5', 'CSS3', 'JavaScript'],
+        link: 'https://patricislash.cjc.pics/', lbl_pt: 'ver', lbl_en: 'view', dot: '#ec4899'
       }
     ];
 
@@ -3285,11 +3269,15 @@
       const nameText = lang === 'en' ? p.name_en : p.name_pt;
       const descText = lang === 'en' ? p.desc_en : p.desc_pt;
       const linkLabel = lang === 'en' ? p.lbl_en : p.lbl_pt;
+      const highlightText = p.highlight_pt && p.highlight_en ? (lang === 'en' ? p.highlight_en : p.highlight_pt) : null;
 
       const html = `<div class="ide-proj" id="ideProj">
         <div class="ide-proj-header">
           <div class="ide-proj-name">${nameText}</div>
-          <div class="ide-proj-cat" style="border-color:${p.dot}55;color:${p.dot}">${catText}</div>
+          <div class="ide-proj-badges">
+            <div class="ide-proj-cat" style="border-color:${p.dot}55;color:${p.dot}">${catText}</div>
+            ${highlightText ? `<div class="ide-proj-highlight">${highlightText}</div>` : ''}
+          </div>
         </div>
         <div class="ide-proj-divider"></div>
         <div class="ide-proj-desc">${descText}</div>
