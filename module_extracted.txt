@@ -1,0 +1,39 @@
+<script type="module">
+/* Firestore é a fonte de verdade. Se algo aqui falhar, a página
+   permanece de pé com os dados embutidos acima. */
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import { getFirestore, collection, getDocs, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+const config = {
+  apiKey: "AIzaSyD9juzHnTpUhzUYy84Wa31b6sNT2uSxDVc",
+  authDomain: "portfoliopessoal-9aa5b.firebaseapp.com",
+  projectId: "portfoliopessoal-9aa5b",
+  storageBucket: "portfoliopessoal-9aa5b.firebasestorage.app",
+  messagingSenderId: "1011139931499",
+  appId: "1:1011139931499:web:961f85dda2a4d9d2a7302e"
+};
+
+const bd = getFirestore(initializeApp(config));
+try {
+  const colecoes = ['capacidades','experiencias','projetos','depoimentos','certificados','clientes','contatos'];
+  /* leitura única com limite de tempo: a página não fica presa a um banco lento */
+  const [siteSnap, ...snaps] = await Promise.race([
+    Promise.all([
+      getDoc(doc(bd, 'config', 'site')),
+      ...colecoes.map(nome => getDocs(collection(bd, nome)))
+    ]),
+    new Promise((_, rejeita) => setTimeout(() => rejeita({ code: 'tempo-esgotado' }), 10000))
+  ]);
+  /* Com config/site no banco, ele já foi populado: coleção vazia é vazia de verdade.
+     Sem ela, o banco ainda não recebeu a carga e a semente embutida continua valendo. */
+  const semeado = siteSnap.exists();
+  const remoto = {};
+  if (semeado) remoto.site = siteSnap.data();
+  snaps.forEach((snap, i) => {
+    if (semeado || !snap.empty) remoto[colecoes[i]] = snap.docs.map(d => Object.assign({ id: d.id }, d.data()));
+  });
+  window.__hidratar(remoto);
+} catch (erro) {
+  console.info('[davicjc] Firestore indisponível; exibindo dados embutidos.', erro && erro.code);
+}
+</script>

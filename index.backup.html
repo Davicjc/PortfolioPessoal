@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-tema="claro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+  /* adm.davicjc.com aponta para o mesmo site: leva direto ao painel */
+  if (/^adm\./i.test(location.hostname)) location.replace('/adm/' + location.hash);
+</script>
+<title>Davi Castro — Desenvolvedor Full Stack & Infraestrutura de Redes</title>
+<meta name="description" content="Davi Castro (davicjc) — desenvolvedor full stack e técnico de redes em Uberlândia, MG. Sistemas de biometria e reconhecimento facial, infraestrutura de provedor, monitoramento e mais de 20 sites entregues.">
+<meta name="author" content="Davi Castro Jorge da Costa">
+<link rel="canonical" href="https://davicjc.com/">
+<meta name="theme-color" content="#0A1628" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F6F7F9" media="(prefers-color-scheme: light)">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://davicjc.com/">
+<meta property="og:title" content="Davi Castro — Desenvolvedor Full Stack & Infraestrutura de Redes">
+<meta property="og:description" content="Do cabo à interface: sistemas de biometria, infraestrutura de provedor e mais de 20 sites em produção.">
+<meta property="og:image" content="https://davicjc.com/fotos/me/me.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="fotos/logo/download.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Davi Castro Jorge da Costa",
+  "alternateName": "davicjc",
+  "url": "https://davicjc.com",
+  "image": "https://davicjc.com/fotos/me/me.jpg",
+  "jobTitle": "Vice Supervisor, Desenvolvedor Full Stack e Técnico de Redes",
+  "email": "mailto:davicjc@gmail.com",
+  "telephone": "+55-34-99333-6186",
+  "worksFor": { "@type": "Organization", "name": "Audicom Telecom" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidade de Uberaba (Uniube)" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Uberlândia", "addressRegion": "MG", "addressCountry": "BR" },
+  "sameAs": ["https://github.com/Davicjc", "https://linkedin.com/in/davicjc", "https://www.instagram.com/davicjc/"],
+  "knowsLanguage": ["pt-BR", "en"],
+  "knowsAbout": ["Python", "C#", "JavaScript", "TypeScript", "Node.js", "Firebase", "OpenCV", "Visão Computacional", "Biometria", "Controle de Acesso", "MikroTik", "RouterOS", "BGP", "RPKI", "OSPF", "Redes de Computadores", "VMware ESXi", "WireGuard", "Docker", "Linux", "Grafana", "Zabbix", "SSO SAML OIDC", "Desenvolvimento Web"]
+}
+</script>
+
+<style>
+/* ═══════════════ TOKENS ═══════════════
+   Paleta derivada do mundo do assunto: infraestrutura de rede.
+   Tinta azul-marinho de diagrama técnico sobre papel frio,
+   com o verde de "link up" como único sinal.                    */
+:root{
+  --tinta:#0A1628;
+  --tinta-2:#33415C;
+  --tinta-3:#697A94;
+  --papel:#F6F7F9;
+  --superficie:#FFFFFF;
+  --superficie-2:#EFF2F6;
+  --linha:#E2E6EC;
+  --linha-forte:#C9D2DE;
+  --sinal:#08875D;
+  --sinal-suave:#E6F4EE;
+  --sinal-forte:#046C4A;
+  --alerta:#B45309;
+  --sombra:0 1px 2px rgba(10,22,40,.05), 0 8px 24px -12px rgba(10,22,40,.14);
+  --sombra-alta:0 2px 4px rgba(10,22,40,.06), 0 24px 60px -20px rgba(10,22,40,.28);
+
+  --fonte-display:'Archivo', system-ui, -apple-system, sans-serif;
+  --fonte-corpo:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --fonte-dados:'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --largura:1180px;
+  --gutter:clamp(1.25rem, 5vw, 3rem);
+  --ritmo:clamp(4.5rem, 9vw, 7.5rem);
+  --raio:10px;
+  --raio-g:16px;
+}
+:root[data-tema="escuro"]{
+  --tinta:#EAF0F7;
+  --tinta-2:#A9B7CA;
+  --tinta-3:#7386A0;
+  --papel:#080F1A;
+  --superficie:#0E1725;
+  --superficie-2:#152034;
+  --linha:#1E2B40;
+  --linha-forte:#2C3B54;
+  --sinal:#2ED191;
+  --sinal-suave:#0F2A22;
+  --sinal-forte:#5CE3AE;
+  --sombra:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  --sombra-alta:0 2px 4px rgba(0,0,0,.5), 0 24px 60px -20px rgba(0,0,0,.8);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important}
+}
+body{
+  margin:0; background:var(--papel); color:var(--tinta);
+  font-family:var(--fonte-corpo); font-size:1rem; line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+button{font:inherit; color:inherit; background:none; border:none; cursor:pointer}
+:focus-visible{outline:2px solid var(--sinal); outline-offset:3px; border-radius:3px}
+
+/* ═══════════════ TIPOGRAFIA ═══════════════ */
+.display{
+  font-family:var(--fonte-display); font-weight:800;
+  letter-spacing:-.035em; line-height:.95;
+  font-stretch:92%;
+}
+h1,h2,h3,h4{font-family:var(--fonte-display); font-weight:700; letter-spacing:-.025em; line-height:1.1; margin:0}
+h2{font-size:clamp(1.75rem,3.6vw,2.6rem)}
+h3{font-size:clamp(1.15rem,2vw,1.4rem)}
+p{margin:0}
+
+/* rótulo monoespaçado — a voz "instrumento" do site */
+.rotulo{
+  font-family:var(--fonte-dados); font-size:.7rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--tinta-3);
+}
+.dados{font-family:var(--fonte-dados); font-variant-numeric:tabular-nums}
+
+.container{width:100%; max-width:var(--largura); margin-inline:auto; padding-inline:var(--gutter)}
+
+/* ═══════════════ NAVEGAÇÃO ═══════════════ */
+.topo{
+  position:sticky; top:0; z-index:60;
+  background:color-mix(in srgb, var(--papel) 88%, transparent);
+  backdrop-filter:saturate(1.6) blur(14px);
+  -webkit-backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid transparent; transition:border-color .3s;
+}
+.topo.rolou{border-bottom-color:var(--linha)}
+.topo-inner{display:flex; align-items:center; gap:1rem; height:64px}
+.marca{
+  font-family:var(--fonte-display); font-weight:800; font-size:1.05rem;
+  letter-spacing:-.03em; display:flex; align-items:center; gap:.55rem;
+  margin-right:auto; white-space:nowrap;
+}
+.marca-ponto{
+  width:8px; height:8px; border-radius:50%; background:var(--sinal);
+  box-shadow:0 0 0 0 color-mix(in srgb, var(--sinal) 55%, transparent);
+  animation:pulso 2.6s ease-out infinite; flex:none;
+}
+@keyframes pulso{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--sinal) 55%, transparent)}
+  70%{box-shadow:0 0 0 7px transparent} 100%{box-shadow:0 0 0 0 transparent}
+}
+.menu{display:flex; gap:.25rem; align-items:center}
+.menu a{
+  font-family:var(--fonte-dados); font-size:.78rem; letter-spacing:.04em;
+  color:var(--tinta-2); padding:.5rem .7rem; border-radius:7px;
+  transition:color .18s, background .18s; position:relative;
+}
+.menu a:hover{color:var(--tinta); background:var(--superficie-2)}
+.menu a.ativo{color:var(--sinal)}
+.menu a.ativo::after{
+  content:''; position:absolute; left:.7rem; right:.7rem; bottom:.24rem;
+  height:1.5px; background:var(--sinal); border-radius:2px;
+}
+.topo-acoes{display:flex; gap:.4rem; align-items:center}
+.pill{
+  display:flex; border:1px solid var(--linha); border-radius:8px;
+  overflow:hidden; background:var(--superficie);
+}
+.pill button{
+  font-family:var(--fonte-dados); font-size:.68rem; font-weight:600;
+  letter-spacing:.08em; padding:.42rem .6rem; color:var(--tinta-3);
+  transition:color .18s, background .18s;
+}
+.pill button[aria-pressed="true"]{background:var(--tinta); color:var(--papel)}
+.icone-btn{
+  width:34px; height:34px; display:grid; place-items:center;
+  border:1px solid var(--linha); border-radius:8px; background:var(--superficie);
+  color:var(--tinta-2); transition:color .18s, border-color .18s;
+}
+.icone-btn:hover{color:var(--sinal); border-color:var(--sinal)}
+.icone-btn svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+:root[data-tema="escuro"] .sol{display:none}
+:root:not([data-tema="escuro"]) .lua{display:none}
+.abrir-menu{display:none}
+
+@media (max-width:860px){
+  .menu{
+    position:fixed; inset:64px 0 auto 0; flex-direction:column; align-items:stretch;
+    background:var(--papel); border-bottom:1px solid var(--linha);
+    padding:.5rem var(--gutter) 1.1rem; gap:0;
+    transform:translateY(-8px); opacity:0; pointer-events:none; transition:.22s;
+  }
+  .menu.aberto{transform:none; opacity:1; pointer-events:auto}
+  .menu a{padding:.8rem .2rem; font-size:.95rem; border-bottom:1px solid var(--linha)}
+  .menu a.ativo::after{display:none}
+  .abrir-menu{display:grid}
+}
+
+/* ═══════════════ HERO ═══════════════ */
+.hero{padding-block:clamp(3rem,7vw,5.5rem) var(--ritmo); position:relative}
+.hero-grid{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:clamp(2rem,5vw,4.5rem); align-items:center}
+@media (max-width:940px){.hero-grid{grid-template-columns:1fr; gap:2.75rem}}
+
+.status-linha{display:inline-flex; align-items:center; gap:.5rem; margin-bottom:1.5rem}
+.status-ponto{width:7px; height:7px; border-radius:50%; background:var(--sinal); flex:none}
+.status-linha span{font-family:var(--fonte-dados); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sinal-forte)}
+:root[data-tema="escuro"] .status-linha span{color:var(--sinal)}
+
+.hero-nome{font-size:clamp(3rem,9.5vw,6rem); margin-bottom:1.1rem}
+.hero-nome .sobrenome{color:var(--tinta-3)}
+.hero-papel{
+  font-family:var(--fonte-dados); font-size:clamp(.85rem,1.6vw,1rem);
+  letter-spacing:.02em; color:var(--tinta-2); margin-bottom:1.4rem;
+}
+.hero-papel b{color:var(--tinta); font-weight:600}
+.hero-texto{font-size:clamp(1rem,1.5vw,1.12rem); color:var(--tinta-2); max-width:46ch; margin-bottom:2rem}
+.hero-acoes{display:flex; flex-wrap:wrap; gap:.7rem; margin-bottom:2.4rem}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; padding:.72rem 1.15rem;
+  border-radius:9px; font-family:var(--fonte-dados); font-size:.8rem; font-weight:500;
+  letter-spacing:.02em; border:1px solid var(--linha); background:var(--superficie);
+  color:var(--tinta); transition:transform .16s, border-color .16s, background .16s, color .16s;
+}
+.btn:hover{transform:translateY(-1px); border-color:var(--linha-forte)}
+.btn-forte{background:var(--tinta); color:var(--papel); border-color:var(--tinta)}
+.btn-forte:hover{background:var(--sinal); border-color:var(--sinal); color:#fff}
+:root[data-tema="escuro"] .btn-forte:hover{color:#04140E}
+.btn svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+
+.hero-numeros{display:grid; grid-template-columns:repeat(4,minmax(0,auto)); justify-content:start; gap:1.5rem clamp(1.25rem,3vw,2.5rem); padding-top:1.6rem; border-top:1px solid var(--linha)}
+@media (max-width:520px){.hero-numeros{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.num-valor{font-family:var(--fonte-display); font-weight:700; font-size:1.75rem; letter-spacing:-.03em; line-height:1}
+.num-rotulo{font-family:var(--fonte-dados); font-size:.68rem; letter-spacing:.11em; text-transform:uppercase; color:var(--tinta-3); margin-top:.35rem}
+
+/* ── ASSINATURA: diagrama de camadas ──
+   Mostra literalmente a pilha em que ele trabalha, do cabo à interface. */
+.pilha{position:relative; padding-left:2.1rem}
+.pilha-trilha{
+  position:absolute; left:.42rem; top:.9rem; bottom:.9rem; width:1.5px;
+  background:linear-gradient(180deg, var(--linha-forte), var(--linha));
+}
+.pilha-sinal{
+  position:absolute; left:-3px; width:8px; height:8px; border-radius:50%;
+  background:var(--sinal); box-shadow:0 0 12px var(--sinal);
+  animation:descer 5.5s cubic-bezier(.6,0,.4,1) infinite;
+}
+@keyframes descer{0%{top:0; opacity:0} 12%{opacity:1} 88%{opacity:1} 100%{top:100%; opacity:0}}
+.pilha-topo{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.85rem; gap:1rem}
+.camada{
+  position:relative; background:var(--superficie); border:1px solid var(--linha);
+  border-radius:var(--raio); padding:.85rem 1rem; margin-bottom:.5rem;
+  transition:transform .2s, border-color .2s, box-shadow .2s;
+}
+.camada::before{
+  content:''; position:absolute; left:-1.68rem; top:50%; width:1.35rem; height:1.5px;
+  background:var(--linha-forte); transition:background .2s;
+}
+.camada::after{
+  content:''; position:absolute; left:-1.9rem; top:50%; margin-top:-3.5px;
+  width:7px; height:7px; border-radius:50%; background:var(--papel);
+  border:1.5px solid var(--linha-forte); transition:.2s;
+}
+.camada:hover{transform:translateX(4px); border-color:var(--sinal); box-shadow:var(--sombra)}
+.camada:hover::before{background:var(--sinal)}
+.camada:hover::after{background:var(--sinal); border-color:var(--sinal)}
+.camada-nome{font-family:var(--fonte-dados); font-size:.68rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--tinta-3); margin-bottom:.3rem}
+.camada:hover .camada-nome{color:var(--sinal)}
+.camada-itens{font-family:var(--fonte-dados); font-size:.78rem; color:var(--tinta-2); line-height:1.5}
+
+/* ═══════════════ SEÇÕES ═══════════════ */
+section[id]{scroll-margin-top:80px}
+.faixa{padding-block:var(--ritmo); border-top:1px solid var(--linha)}
+.faixa-cabeca{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:clamp(1.5rem,4vw,3.5rem); align-items:end; margin-bottom:clamp(2.25rem,4vw,3.25rem)}
+@media (max-width:800px){.faixa-cabeca{grid-template-columns:1fr; gap:1rem; align-items:start}}
+.faixa-cabeca .rotulo{display:block; margin-bottom:.7rem}
+.faixa-sub{color:var(--tinta-2); max-width:58ch}
+
+/* capacidades */
+.capacidades{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--linha); border:1px solid var(--linha); border-radius:var(--raio-g); overflow:hidden}
+.cap{background:var(--superficie); padding:clamp(1.4rem,2.6vw,2rem); transition:background .2s}
+.cap:hover{background:var(--superficie-2)}
+.cap-num{font-family:var(--fonte-dados); font-size:.7rem; letter-spacing:.14em; color:var(--sinal); margin-bottom:1rem; display:block}
+.cap h3{margin-bottom:.6rem}
+.cap p{color:var(--tinta-2); font-size:.94rem; margin-bottom:1rem}
+.cap-tec{font-family:var(--fonte-dados); font-size:.74rem; color:var(--tinta-3); line-height:1.7}
+
+/* trajetória */
+.trilha{position:relative; padding-left:1.85rem}
+.trilha::before{content:''; position:absolute; left:5px; top:.6rem; bottom:.6rem; width:1.5px; background:var(--linha)}
+.parada{position:relative; padding-bottom:2.5rem}
+.parada:last-child{padding-bottom:0}
+.parada::before{
+  content:''; position:absolute; left:-1.85rem; top:.42rem; width:11px; height:11px;
+  border-radius:50%; background:var(--papel); border:2px solid var(--linha-forte); transition:.25s;
+}
+.parada.atual::before{border-color:var(--sinal); background:var(--sinal); box-shadow:0 0 0 4px var(--sinal-suave)}
+.parada-periodo{font-family:var(--fonte-dados); font-size:.72rem; letter-spacing:.08em; color:var(--tinta-3); margin-bottom:.35rem}
+.parada-cargo{font-family:var(--fonte-display); font-weight:700; font-size:1.08rem; letter-spacing:-.02em; margin-bottom:.15rem}
+.parada-empresa{font-size:.9rem; color:var(--sinal-forte); font-weight:500; margin-bottom:.55rem}
+:root[data-tema="escuro"] .parada-empresa{color:var(--sinal)}
+.parada-desc{color:var(--tinta-2); font-size:.94rem; max-width:66ch}
+.parada-progressao{
+  display:inline-block; margin-top:.6rem; font-family:var(--fonte-dados); font-size:.72rem;
+  color:var(--tinta-3); background:var(--superficie-2); padding:.3rem .6rem; border-radius:6px;
+}
+
+/* clientes */
+.clientes{display:flex; flex-wrap:wrap; gap:.5rem}
+.cliente{
+  font-family:var(--fonte-dados); font-size:.78rem; color:var(--tinta-2);
+  border:1px solid var(--linha); background:var(--superficie);
+  padding:.45rem .8rem; border-radius:99px; transition:.18s;
+}
+.cliente:hover{border-color:var(--sinal); color:var(--sinal)}
+
+/* destaques na home */
+.destaques{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem}
+.dcard{
+  background:var(--superficie); border:1px solid var(--linha); border-radius:var(--raio-g);
+  overflow:hidden; display:flex; flex-direction:column; transition:transform .22s, box-shadow .22s, border-color .22s;
+}
+.dcard:hover{transform:translateY(-3px); box-shadow:var(--sombra); border-color:var(--linha-forte)}
+.dcard-img{aspect-ratio:16/10; background:var(--superficie-2); position:relative; overflow:hidden}
+.dcard-img img{width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform .5s}
+.dcard:hover .dcard-img img{transform:scale(1.03)}
+.dcard-corpo{padding:1.15rem 1.25rem 1.35rem; display:flex; flex-direction:column; gap:.5rem; flex:1}
+.dcard h3{font-size:1.05rem}
+.dcard p{font-size:.88rem; color:var(--tinta-2); flex:1}
+
+/* depoimentos */
+.depoimentos{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr)); gap:1.25rem}
+.dep{
+  margin:0; background:var(--superficie); border:1px solid var(--linha); border-radius:var(--raio-g);
+  padding:1.5rem; display:flex; flex-direction:column; gap:1.1rem;
+}
+.dep-texto{margin:0; color:var(--tinta-2); font-size:.94rem; flex:1}
+/* o depoimento longo do gestor atual ocupa a linha inteira */
+.dep.dep-largo{grid-column:1 / -1}
+.dep.dep-largo .dep-texto{font-size:clamp(1rem,1.6vw,1.15rem); color:var(--tinta); max-width:78ch}
+.nw{white-space:nowrap}
+.dep-texto::before{content:'“'; font-family:var(--fonte-display); font-size:2rem; line-height:0; color:var(--sinal); vertical-align:-.35rem; margin-right:.2rem}
+.dep-pessoa{display:flex; align-items:center; gap:.75rem; padding-top:1rem; border-top:1px solid var(--linha)}
+.dep-foto{width:40px; height:40px; border-radius:50%; object-fit:cover; flex:none; background:var(--superficie-2)}
+.dep-nome{font-weight:600; font-size:.9rem; line-height:1.3}
+.dep-cargo{font-family:var(--fonte-dados); font-size:.72rem; color:var(--tinta-3); line-height:1.4}
+.dep-link{margin-left:auto; color:var(--tinta-3); transition:color .18s}
+.dep-link:hover{color:var(--sinal)}
+.dep-link svg{width:16px; height:16px}
+
+/* certificados — compactos, agrupados por emissor */
+.cert-barra{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.5rem}
+.cert-filtro{
+  font-family:var(--fonte-dados); font-size:.74rem; padding:.42rem .8rem;
+  border:1px solid var(--linha); border-radius:99px; background:var(--superficie);
+  color:var(--tinta-2); transition:.18s;
+}
+.cert-filtro:hover{border-color:var(--linha-forte)}
+.cert-filtro[aria-pressed="true"]{background:var(--tinta); color:var(--papel); border-color:var(--tinta)}
+.cert-filtro em{font-style:normal; opacity:.55; margin-left:.35rem}
+.cert-lista{border:1px solid var(--linha); border-radius:var(--raio-g); overflow:hidden; background:var(--superficie)}
+.cert-item{display:flex; align-items:center; gap:1rem; padding:.85rem 1.15rem; border-bottom:1px solid var(--linha); transition:background .16s}
+.cert-item:last-child{border-bottom:none}
+.cert-item:hover{background:var(--superficie-2)}
+.cert-emissor{font-family:var(--fonte-dados); font-size:.68rem; letter-spacing:.09em; text-transform:uppercase; color:var(--tinta-3); width:110px; flex:none}
+.cert-nome{font-size:.9rem; flex:1; min-width:0}
+.cert-acoes{display:flex; gap:.4rem; flex:none}
+.cert-acoes a{
+  font-family:var(--fonte-dados); font-size:.68rem; padding:.28rem .55rem;
+  border:1px solid var(--linha); border-radius:6px; color:var(--tinta-3); transition:.16s;
+}
+.cert-acoes a:hover{border-color:var(--sinal); color:var(--sinal)}
+@media (max-width:640px){
+  .cert-item{flex-wrap:wrap; gap:.5rem}
+  .cert-emissor{width:auto}
+  .cert-nome{flex-basis:100%; order:3}
+  .cert-acoes{margin-left:auto}
+}
+.ver-mais{
+  display:block; width:100%; text-align:center; padding:.85rem;
+  font-family:var(--fonte-dados); font-size:.76rem; color:var(--tinta-3);
+  border-top:1px solid var(--linha); transition:color .18s, background .18s;
+}
+.ver-mais:hover{color:var(--sinal); background:var(--superficie-2)}
+
+/* contato */
+.contato-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px; background:var(--linha); border:1px solid var(--linha); border-radius:var(--raio-g); overflow:hidden}
+.contato-item{background:var(--superficie); padding:1.4rem 1.5rem; display:flex; flex-direction:column; gap:.3rem; transition:background .2s}
+.contato-item:hover{background:var(--superficie-2)}
+.contato-item:hover .contato-valor{color:var(--sinal)}
+.contato-valor{font-family:var(--fonte-dados); font-size:.92rem; word-break:break-word; transition:color .18s}
+
+/* rodapé */
+.rodape{border-top:1px solid var(--linha); padding-block:2.5rem; margin-top:var(--ritmo)}
+.rodape-inner{display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:center}
+.rodape p{font-family:var(--fonte-dados); font-size:.74rem; color:var(--tinta-3)}
+.rodape a{color:var(--tinta-2)} .rodape a:hover{color:var(--sinal)}
+
+/* ═══════════════ ROTA: PROJETOS ═══════════════ */
+.proj-topo{padding-block:clamp(2.75rem,6vw,4.5rem) clamp(2rem,4vw,3rem)}
+.proj-titulo{font-size:clamp(2.25rem,6.5vw,4rem); margin-bottom:1rem}
+.proj-intro{color:var(--tinta-2); max-width:56ch; font-size:1.05rem}
+.proj-filtros{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; padding-top:1.75rem; border-top:1px solid var(--linha)}
+
+.linhas{display:flex; flex-direction:column; gap:clamp(3.5rem,8vw,7rem); padding-bottom:var(--ritmo)}
+.linha{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:clamp(1.75rem,4.5vw,4rem); align-items:center}
+.linha:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.linha:nth-child(even) .linha-visual{order:2}
+@media (max-width:900px){
+  .linha, .linha:nth-child(even){grid-template-columns:1fr; gap:1.5rem}
+  .linha:nth-child(even) .linha-visual{order:0}
+}
+
+/* moldura de navegador — o visual do trabalho dele é a web */
+.moldura{
+  border:1px solid var(--linha); border-radius:12px; overflow:hidden;
+  background:var(--superficie); box-shadow:var(--sombra);
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+}
+.linha:hover .moldura{transform:translateY(-4px); box-shadow:var(--sombra-alta); border-color:var(--linha-forte)}
+.moldura-barra{display:flex; align-items:center; gap:.4rem; padding:.55rem .75rem; background:var(--superficie-2); border-bottom:1px solid var(--linha)}
+.moldura-luzes{display:flex; gap:5px}
+.moldura-luzes i{width:9px; height:9px; border-radius:50%; background:var(--linha-forte); display:block}
+.moldura-url{
+  flex:1; text-align:center; font-family:var(--fonte-dados); font-size:.66rem;
+  color:var(--tinta-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  background:var(--papel); border-radius:5px; padding:.18rem .6rem; max-width:78%; margin-inline:auto;
+}
+.moldura-tela{aspect-ratio:16/10; background:var(--superficie-2); position:relative; overflow:hidden; cursor:pointer}
+.moldura-tela img{width:100%; height:100%; object-fit:cover; object-position:top center}
+/* Projeto sem imagem pública: prancha técnica em vez de placeholder vazio.
+   Sigilo de cliente é um dado a comunicar, não uma falha a esconder. */
+.sem-imagem{
+  width:100%; height:100%; position:relative; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding:clamp(1rem,3vw,1.75rem);
+  background-color:var(--superficie-2);
+  background-image:
+    linear-gradient(var(--linha) 1px, transparent 1px),
+    linear-gradient(90deg, var(--linha) 1px, transparent 1px);
+  background-size:28px 28px;
+  background-position:-1px -1px;
+}
+.sem-imagem::after{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 70% 30%, transparent 30%, var(--superficie-2) 85%);
+  pointer-events:none;
+}
+.sem-imagem > *{position:relative; z-index:1}
+.si-topo{display:flex; justify-content:space-between; align-items:center; gap:1rem}
+.si-cadeado{display:inline-flex; align-items:center; gap:.4rem; font-family:var(--fonte-dados); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--tinta-3)}
+.si-cadeado svg{width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.8}
+.si-nome{font-family:var(--fonte-display); font-weight:800; font-size:clamp(1.6rem,4vw,2.4rem); letter-spacing:-.035em; line-height:1; color:var(--tinta)}
+.si-stack{font-family:var(--fonte-dados); font-size:.7rem; color:var(--tinta-3); margin-top:.6rem}
+.dcard-img .sem-imagem{padding:1.1rem}
+.dcard-img .si-nome{font-size:1.5rem}
+
+/* papel e resultado: dois fatos curtos, fáceis de escanear */
+.linha-fatos{display:grid; grid-template-columns:auto 1fr; gap:.45rem 1rem; margin:0 0 1.35rem; padding:.9rem 0; border-block:1px solid var(--linha); max-width:56ch}
+.linha-fatos dt{font-family:var(--fonte-dados); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--tinta-3); padding-top:.22rem}
+.linha-fatos dd{margin:0; font-size:.88rem; color:var(--tinta-2)}
+.linha-fatos dd.resultado{color:var(--tinta)}
+@media (max-width:480px){.linha-fatos{grid-template-columns:1fr; gap:.15rem} .linha-fatos dd{margin-bottom:.55rem}}
+.lupa{
+  position:absolute; inset:0; display:grid; place-items:center; gap:.5rem;
+  background:color-mix(in srgb, var(--tinta) 55%, transparent);
+  color:#fff; opacity:0; transition:opacity .25s; backdrop-filter:blur(2px);
+}
+.moldura-tela:hover .lupa, .moldura-tela:focus-visible .lupa{opacity:1}
+.lupa span{font-family:var(--fonte-dados); font-size:.76rem; letter-spacing:.06em}
+
+.linha-texto{min-width:0}
+.linha-meta{display:flex; align-items:center; gap:.75rem; margin-bottom:.9rem; flex-wrap:wrap}
+.linha-indice{font-family:var(--fonte-dados); font-size:.72rem; color:var(--tinta-3); letter-spacing:.1em}
+.selo{
+  font-family:var(--fonte-dados); font-size:.65rem; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; padding:.24rem .55rem; border-radius:5px;
+  border:1px solid var(--linha); color:var(--tinta-3);
+}
+.selo-sinal{background:var(--sinal-suave); color:var(--sinal-forte); border-color:transparent}
+:root[data-tema="escuro"] .selo-sinal{color:var(--sinal)}
+.selo-privado{background:var(--superficie-2)}
+.linha-nome{font-size:clamp(1.5rem,3vw,2rem); margin-bottom:.5rem}
+.linha-tagline{font-family:var(--fonte-dados); font-size:.85rem; color:var(--sinal-forte); margin-bottom:1rem}
+:root[data-tema="escuro"] .linha-tagline{color:var(--sinal)}
+.linha-desc{color:var(--tinta-2); margin-bottom:1.1rem; max-width:56ch}
+.stack{display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1.5rem}
+.stack span{
+  font-family:var(--fonte-dados); font-size:.72rem; color:var(--tinta-2);
+  background:var(--superficie); border:1px solid var(--linha); padding:.28rem .6rem; border-radius:6px;
+}
+.linha-acoes{display:flex; flex-wrap:wrap; gap:.6rem}
+
+/* ═══════════════ VISOR EMBUTIDO ═══════════════ */
+.visor{
+  position:fixed; inset:0; z-index:100; display:none;
+  background:color-mix(in srgb, var(--papel) 92%, transparent);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+.visor.aberto{display:flex; flex-direction:column}
+.visor-barra{
+  display:flex; align-items:center; gap:.6rem; padding:.6rem var(--gutter);
+  border-bottom:1px solid var(--linha); background:var(--superficie); flex:none;
+}
+.visor-nome{font-family:var(--fonte-display); font-weight:700; font-size:.95rem; letter-spacing:-.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.visor-url{font-family:var(--fonte-dados); font-size:.7rem; color:var(--tinta-3); margin-right:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:34ch}
+@media (max-width:700px){.visor-url{display:none} .visor-nome{margin-right:auto}}
+.visor-palco{flex:1; display:grid; place-items:center; padding:clamp(.5rem,2vw,1.5rem); overflow:auto; min-height:0}
+.visor-quadro{
+  width:100%; height:100%; max-width:100%; background:#fff;
+  border:1px solid var(--linha); border-radius:12px; overflow:hidden;
+  box-shadow:var(--sombra-alta); transition:max-width .35s cubic-bezier(.3,0,.2,1);
+  position:relative;
+}
+.visor-quadro.telefone{max-width:400px; height:min(100%,840px)}
+.visor-quadro iframe{width:100%; height:100%; border:0; display:block; background:#fff}
+.visor-dica{
+  position:absolute; inset:auto 1rem 1rem 1rem; padding:.7rem .9rem;
+  background:var(--superficie); border:1px solid var(--linha); border-radius:9px;
+  font-family:var(--fonte-dados); font-size:.72rem; color:var(--tinta-2);
+  box-shadow:var(--sombra); opacity:0; transform:translateY(6px); transition:.3s; pointer-events:none;
+}
+.visor-dica.visivel{opacity:1; transform:none}
+.visor-carregando{
+  position:absolute; inset:0; display:grid; place-items:center; background:var(--superficie);
+  font-family:var(--fonte-dados); font-size:.76rem; color:var(--tinta-3); z-index:2;
+}
+.visor-carregando.oculto{display:none}
+
+/* ═══════════════ REVELAÇÃO ═══════════════ */
+.reveal{opacity:0; transform:translateY(14px)}
+.reveal.visivel{opacity:1; transform:none; transition:opacity .55s ease, transform .55s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1; transform:none}}
+
+.oculto{display:none!important}
+.so-leitor{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0}
+</style>
+</head>
+<body>
+
+<a href="#conteudo" class="so-leitor">Pular para o conteúdo</a>
+
+<header class="topo" id="topo">
+  <div class="container topo-inner">
+    <a href="#/" class="marca"><span class="marca-ponto"></span>davi castro</a>
+    <nav class="menu" id="menu">
+      <a href="#/" data-rota="/" data-t="nav.inicio">início</a>
+      <a href="#/projetos" data-rota="/projetos" data-t="nav.projetos">projetos</a>
+      <a href="#trajetoria" data-t="nav.trajetoria">trajetória</a>
+      <a href="#certificados" data-t="nav.certificados">certificados</a>
+      <a href="#contato" data-t="nav.contato">contato</a>
+    </nav>
+    <div class="topo-acoes">
+      <div class="pill" role="group" aria-label="Idioma">
+        <button id="lang-pt" aria-pressed="true">PT</button>
+        <button id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <button class="icone-btn" id="tema" aria-label="Alternar tema">
+        <svg class="sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="lua" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <button class="icone-btn abrir-menu" id="abrir-menu" aria-label="Abrir menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo"></main>
+
+<footer class="rodape">
+  <div class="container rodape-inner">
+    <p id="rodape-texto"></p>
+    <p><a href="https://github.com/Davicjc" target="_blank" rel="noopener">github</a> · <a href="https://linkedin.com/in/davicjc" target="_blank" rel="noopener">linkedin</a> · <a href="mailto:davicjc@gmail.com">e-mail</a></p>
+  </div>
+</footer>
+
+<!-- Visor embutido: o iframe só é montado quando abre -->
+<div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Visualizador de projeto">
+  <div class="visor-barra">
+    <button class="icone-btn" id="visor-fechar" aria-label="Fechar visualizador">
+      <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div style="min-width:0">
+      <div class="visor-nome" id="visor-nome"></div>
+    </div>
+    <div class="visor-url dados" id="visor-url"></div>
+    <div class="pill" role="group" aria-label="Largura de visualização">
+      <button id="visor-desktop" aria-pressed="true">DESKTOP</button>
+      <button id="visor-telefone" aria-pressed="false">CELULAR</button>
+    </div>
+    <a class="btn" id="visor-abrir" target="_blank" rel="noopener">
+      <span data-t="visor.abrir">abrir em nova aba</span>
+      <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </a>
+  </div>
+  <div class="visor-palco">
+    <div class="visor-quadro" id="visor-quadro">
+      <div class="visor-carregando" id="visor-carregando" data-t="visor.carregando">carregando o site…</div>
+      <div class="visor-dica" id="visor-dica" data-t="visor.dica">Alguns sites bloqueiam a exibição embutida. Se a tela ficar em branco, use “abrir em nova aba”.</div>
+    </div>
+  </div>
+</div>
+
+<noscript>
+  <div class="container" style="padding-block:3rem">
+    <h1>Davi Castro — Desenvolvedor Full Stack &amp; Infraestrutura de Redes</h1>
+    <p>Uberlândia, MG. Sistemas de biometria e reconhecimento facial, infraestrutura de provedor de internet, monitoramento e mais de 20 sites entregues.</p>
+    <p>Contato: <a href="mailto:davicjc@gmail.com">davicjc@gmail.com</a> · <a href="https://linkedin.com/in/davicjc">LinkedIn</a> · <a href="https://github.com/Davicjc">GitHub</a></p>
+  </div>
+</noscript>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   DADOS SEMENTE
+   O Firestore é a fonte de verdade. Esta cópia embutida existe para
+   três coisas: a página pintar instantaneamente, os buscadores lerem
+   o conteúdo, e o site continuar de pé se o Firebase falhar.
+   O painel em /adm grava somente no Firestore e tem um botão
+   "Exportar semente" para atualizar este bloco quando quiser.
+   ══════════════════════════════════════════════════════════════════ */
+window.SEMENTE = /* SEMENTE:INICIO */ {"site":{"nome":"Davi Castro","nome_completo":"Davi Castro Jorge da Costa","local_pt":"Uberlândia, MG · Brasil","local_en":"Uberlândia, Brazil","disponivel":true,"disponibilidade_pt":"Aberto a novos projetos","disponibilidade_en":"Open to new projects","cargo_pt":"Desenvolvedor Full Stack & Infraestrutura de Redes","cargo_en":"Full Stack Developer & Network Infrastructure","resumo_pt":"Escrevo o software e cuido da rede em que ele roda. Na Audicom Telecom, desenvolvo sistemas internos, integro biometria e reconhecimento facial a catracas e mantenho a infraestrutura de um provedor — de roteadores MikroTik a servidores VMware. Fora dela, entrego sites e sistemas para clientes de beleza, gastronomia, saúde e consultoria.","resumo_en":"I write the software and look after the network it runs on. At Audicom Telecom I build internal systems, wire biometrics and facial recognition into access turnstiles and keep an ISP's infrastructure running — from MikroTik routers to VMware servers. Outside of it, I ship websites and systems for clients in beauty, hospitality, healthcare and consulting.","numeros":[{"ordem":1,"valor":"35+","rotulo_pt":"projetos","rotulo_en":"projects"},{"ordem":2,"valor":"20+","rotulo_pt":"sites entregues","rotulo_en":"websites shipped"},{"ordem":3,"valor":"15+","rotulo_pt":"clientes e marcas","rotulo_en":"clients & brands"},{"ordem":4,"valor":"3+","rotulo_pt":"anos de experiência","rotulo_en":"years of experience"}],"camadas":[{"ordem":1,"nome_pt":"interface","nome_en":"interface","itens":["HTML","CSS","JavaScript","TypeScript","React"]},{"ordem":2,"nome_pt":"aplicação","nome_en":"application","itens":["Python","C#","Node.js","Firebase","REST"]},{"ordem":3,"nome_pt":"servidores","nome_en":"servers","itens":["Linux","Docker","VMware ESXi","WireGuard"]},{"ordem":4,"nome_pt":"rede","nome_en":"network","itens":["MikroTik","Cisco","Ubiquiti","BGP","RPKI","OSPF"]},{"ordem":5,"nome_pt":"dispositivos","nome_en":"devices","itens":["catracas","biometria","câmeras","Raspberry Pi"]}],"capacidades_titulo_pt":"Da tela ao roteador","capacidades_titulo_en":"From the screen to the router","capacidades_sub_pt":"Boa parte do que entrego cruza mais de uma destas áreas: um sistema web que conversa com uma catraca, um painel que lê o estado dos roteadores.","capacidades_sub_en":"Much of what I ship crosses more than one of these areas: a web system that talks to a turnstile, a dashboard that reads router state.","trajetoria_titulo_pt":"Do atendimento à supervisão técnica","trajetoria_titulo_en":"From the support desk to technical supervision","trajetoria_sub_pt":"Comecei no atendimento e cresci por dentro das empresas, somando responsabilidade técnica a cada etapa.","trajetoria_sub_en":"I started in customer support and grew from within, taking on more technical responsibility at every step.","clientes_titulo_pt":"Empresas e marcas atendidas","clientes_titulo_en":"Companies and brands I've worked with","clientes_sub_pt":"Empregadores, clientes de projeto e parceiros — de provedores de internet a estúdios de beleza.","clientes_sub_en":"Employers, project clients and partners — from internet providers to beauty studios.","destaques_titulo_pt":"Trabalhos selecionados","destaques_titulo_en":"Selected work","destaques_sub_pt":"Três projetos que resumem o que eu faço. A lista completa, com demonstração ao vivo, está na aba de projetos.","destaques_sub_en":"Three projects that sum up what I do. The full list, with live demos, is on the projects page.","depoimentos_titulo_pt":"O que dizem colegas e clientes","depoimentos_titulo_en":"What colleagues and clients say","depoimentos_sub_pt":"Recomendações de gestores, colegas de equipe e clientes, com o perfil de cada um no LinkedIn.","depoimentos_sub_en":"Recommendations from managers, teammates and clients, each linked to their LinkedIn profile.","certificados_titulo_pt":"Formação contínua","certificados_titulo_en":"Continuous learning","contato_titulo_pt":"Vamos conversar","contato_titulo_en":"Let's talk","contato_sub_pt":"Para projetos, vagas ou uma conversa técnica, escolha o canal que preferir.","contato_sub_en":"For projects, roles or a technical conversation, pick whichever channel suits you.","projetos_titulo_pt":"Projetos","projetos_titulo_en":"Projects","projetos_sub_pt":"Sistemas internos, ferramentas de rede de código aberto e sites de clientes. Onde houver demonstração pública, você abre o projeto aqui mesmo, em tamanho de computador ou de celular.","projetos_sub_en":"Internal systems, open-source networking tools and client websites. Wherever a public demo exists, you can open it right here, at desktop or phone width."},"capacidades":[{"id":"cap-software","ordem":1,"titulo_pt":"Sistemas web e aplicações","titulo_en":"Web systems & applications","texto_pt":"Sistemas internos, painéis administrativos e sites institucionais. Uso Firebase quando o projeto precisa de tempo real e autenticação sem servidor para manter.","texto_en":"Internal systems, admin panels and company websites. I reach for Firebase when a project needs real-time data and authentication without a server to maintain.","tecnologias":["JavaScript","TypeScript","React","Python","Node.js","Firebase","REST APIs"]},{"id":"cap-infra","ordem":2,"titulo_pt":"Infraestrutura de provedor","titulo_en":"ISP infrastructure","texto_pt":"Configuração e monitoramento de roteadores e enlaces, servidores virtualizados e VPNs, com alertas automáticos para o que não pode passar despercebido.","texto_en":"Configuring and monitoring routers and links, virtualised servers and VPNs, with automatic alerts for anything that cannot go unnoticed.","tecnologias":["MikroTik","Cisco","Ubiquiti","BGP","RPKI","OSPF","VMware ESXi","WireGuard","Grafana","Zabbix"]},{"id":"cap-acesso","ordem":3,"titulo_pt":"Controle de acesso e visão computacional","titulo_en":"Access control & computer vision","texto_pt":"Integração de catracas, biometria e reconhecimento facial com o software que decide quem entra — do cadastro do rosto à liberação da porta.","texto_en":"Wiring turnstiles, biometrics and facial recognition into the software that decides who gets in — from enrolling a face to releasing the door.","tecnologias":["Python","C#","OpenCV","face_recognition","MediaPipe","Raspberry Pi"]},{"id":"cap-operacao","ordem":4,"titulo_pt":"Operação e liderança técnica","titulo_en":"Operations & technical leadership","texto_pt":"Supervisão das equipes de NOC, HelpDesk e CGR, organização das demandas técnicas e atendimento em inglês a operadoras internacionais.","texto_en":"Supervising NOC, HelpDesk and network operations teams, organising technical workload and supporting international carriers in English.","tecnologias":["NOC","HelpDesk","CGR","SSO · SAML · OIDC","Trello","Inglês avançado"]}],"experiencias":[{"id":"exp-audicom","ordem":1,"atual":true,"empresa":"Audicom Telecom & Audicom Tecnologia","cargo_pt":"Vice Supervisor · Desenvolvedor Full Stack · Técnico de Redes","cargo_en":"Deputy Supervisor · Full Stack Developer · Network Technician","periodo_pt":"set 2025 — atual","periodo_en":"Sep 2025 — present","descricao_pt":"Desenvolvo os sistemas internos da operação — ordens de serviço de campo, portal de suporte e pedidos de clientes — e integro biometria e reconhecimento facial ao controle de acesso por catracas. Na infraestrutura, administro servidores VMware ESXi, túneis WireGuard e equipamentos MikroTik, Cisco, Ubiquiti e Datacom, com monitoramento em Grafana e Zabbix. Implantei um LMS com login único via SSO (SAML/OIDC) e superviso as equipes de NOC, HelpDesk e CGR.","descricao_en":"I build the operation's internal systems — field service orders, the support portal and customer orders — and integrate biometrics and facial recognition with turnstile access control. On the infrastructure side I run VMware ESXi servers, WireGuard tunnels and MikroTik, Cisco, Ubiquiti and Datacom gear, monitored with Grafana and Zabbix. I rolled out an LMS with single sign-on over SSO (SAML/OIDC) and supervise the NOC, HelpDesk and network operations teams.","progressao_pt":"Atendente de suporte → Programador → Vice Supervisor","progressao_en":"Support agent → Developer → Deputy Supervisor"},{"id":"exp-algar","ordem":2,"atual":false,"empresa":"Algar Telecom","cargo_pt":"Gerente de Relacionamento Empresarial Bilíngue","cargo_en":"Bilingual Enterprise Account Manager","periodo_pt":"dez 2023 — jun 2025","periodo_en":"Dec 2023 — Jun 2025","descricao_pt":"Atendi em inglês o segmento de atacado da operadora, com clientes internacionais como Verizon, BT e China Telecom. Conduzi incidentes críticos de conectividade até a resolução e acompanhei a infraestrutura desses clientes em Grafana e Zabbix.","descricao_en":"I handled the carrier's wholesale segment in English, serving international customers such as Verizon, BT and China Telecom. I drove critical connectivity incidents through to resolution and tracked those customers' infrastructure in Grafana and Zabbix.","progressao_pt":"Atendente → Time Premium → Atacado · Gerência Empresarial","progressao_en":"Agent → Premium team → Wholesale · Enterprise accounts"},{"id":"exp-wpv","ordem":3,"atual":false,"empresa":"Web pra Você · negócio próprio","cargo_pt":"Fundador e desenvolvedor","cargo_en":"Founder and developer","periodo_pt":"2023 — encerrado","periodo_en":"2023 — closed","descricao_pt":"Criação de sites para pequenas e médias empresas, cuidando de proposta, design, desenvolvimento e publicação. O negócio foi encerrado.","descricao_en":"Websites for small and mid-sized businesses, covering proposal, design, development and launch. The business has since closed.","progressao_pt":"","progressao_en":""},{"id":"exp-uniube","ordem":4,"atual":false,"empresa":"Universidade de Uberaba (Uniube)","cargo_pt":"Desenvolvedor Python · Projeto Face Safety","cargo_en":"Python Developer · Face Safety project","periodo_pt":"out — dez 2023","periodo_en":"Oct — Dec 2023","descricao_pt":"Desenvolvi um sistema de controle de acesso por reconhecimento facial em Python e OpenCV, com cadastro pela câmera e liberação de fechadura para usuários autorizados. O projeto ficou em 1º lugar entre 60 trabalhos acadêmicos.","descricao_en":"I built a facial recognition access control system in Python and OpenCV, with camera-based enrolment and lock release for authorised users. The project took 1st place among 60 academic projects.","progressao_pt":"","progressao_en":""},{"id":"exp-callink","ordem":5,"atual":false,"empresa":"Callink · operação Bradesco","cargo_pt":"Agente de atendimento","cargo_en":"Customer service agent","periodo_pt":"out — dez 2023","periodo_en":"Oct — Dec 2023","descricao_pt":"Atendimento a clientes da operação Bradesco, usando técnicas de sondagem para entender e resolver demandas complexas.","descricao_en":"Customer service for the Bradesco operation, using structured questioning to understand and resolve complex requests.","progressao_pt":"","progressao_en":""}],"projetos":[{"id":"audicomhub","ordem":1,"publicado":true,"destaque":true,"vitrine":true,"categoria":"corporativo","titulo_pt":"Audicom Hub","titulo_en":"Audicom Hub","tagline_pt":"Portal interno multiprojeto com controle de acesso por função","tagline_en":"Internal multi-project portal with role-based access control","descricao_pt":"Reúne em um só portal os fluxos internos da operação: chamados, solicitações de manutenção, base de conhecimento de roteadores e registro de rondas técnicas. A autorização em três níveis (user, admin, superadmin) é aplicada nas regras do Firestore, não apenas na interface, e o formulário de ronda salva rascunho automaticamente para o técnico retomar após queda de conexão.","descricao_en":"Brings the operation's internal workflows into a single portal: support tickets, maintenance requests, a router troubleshooting knowledge base and technical patrol logs. Three-level authorization (user, admin, superadmin) is enforced in Firestore security rules rather than only in the UI, and the patrol form autosaves drafts so a technician can resume after losing connection.","papel_pt":"Desenvolvedor full stack, responsável pela arquitetura, modelagem de dados e regras de segurança","papel_en":"Full stack developer, responsible for architecture, data modeling and security rules","impacto_pt":"Registro de rondas em campo sobrevive a queda de conexão, e o acesso por função e por cliente fica delimitado no próprio banco.","impacto_en":"Field patrol logging survives connection drops, and per-role and per-client access is enforced at the database layer.","stack":["JavaScript","Firebase Auth","Firestore","PWA / Service Worker","HTML5","CSS3"],"demo":"https://davicjc.github.io/AudicomHub/","repo":"https://github.com/Davicjc/AudicomHub","imagem":"fotos/projetos/audicomhub.webp","tipo_botao":"demo"},{"id":"telemetry","ordem":2,"publicado":true,"destaque":true,"vitrine":false,"categoria":"open-source","titulo_pt":"Telemetry Portal","titulo_en":"Telemetry Portal","tagline_pt":"Monitoramento de OSPF e BFD em MikroTik, auto-hospedado","tagline_en":"Self-hosted OSPF and BFD monitoring for MikroTik routers","descricao_pt":"No MikroTik, um vizinho OSPF que cai simplesmente some da tabela: não existe estado down para consultar. O portal mantém um registro dos vizinhos já vistos e infere a queda pela ausência, com proteção contra falso-positivo quando o PE inteiro fica inacessível. Detecta sozinho se o RouterOS é v6 ou v7, já que o BFD fica em caminhos diferentes da API.","descricao_en":"On MikroTik, an OSPF neighbor that drops simply disappears from the table: there is no down state to poll for. The portal keeps a registry of every neighbor it has seen and infers the drop from the absence, guarding against the false positive where an entire PE goes unreachable. It also detects whether RouterOS is v6 or v7, since BFD sits at different API paths.","papel_pt":"Autor solo: backend Flask, front-end Jinja/Chart.js, empacotamento systemd e deploy em produção","papel_en":"Sole author: Flask backend, Jinja/Chart.js front end, systemd packaging and production deployment","impacto_pt":"A queda e o retorno de cada vizinho chegam ao Telegram uma única vez por transição, a partir de um coletor em segundo plano, sem depender de alguém olhando o painel.","impacto_en":"Drops and recoveries reach Telegram once per transition, from a background collector, so nobody has to be watching a panel.","stack":["Python","Flask","SQLite","RouterOS API","Grafana","Prometheus"],"demo":"","repo":"https://github.com/Davicjc/telemetry-portal","imagem":"","tipo_botao":"demo"},{"id":"nexusatlas","ordem":3,"publicado":true,"destaque":true,"vitrine":false,"categoria":"corporativo","titulo_pt":"NexusAtlas","titulo_en":"NexusAtlas","tagline_pt":"Gestão de ordens de serviço de campo em tempo real, no navegador","tagline_en":"Field service orders, real time, straight from the browser","descricao_pt":"Centraliza as ordens de serviço de campo da Audicom em um sistema web que roda inteiramente no navegador, sem instalação e sem servidor próprio para manter. O Firebase concentra a camada de dados e propaga cada alteração em tempo real, de modo que escritório e técnico em campo leem e escrevem o mesmo registro de qualquer dispositivo.","descricao_en":"Centralizes Audicom's field service orders in a web system that runs entirely in the browser, with no install and no server of its own to maintain. Firebase holds the data layer and propagates every change in real time, so the office and the technician in the field read and write the same record from any device.","papel_pt":"Desenvolvimento full stack e definição da arquitetura, do modelo de dados ao front-end","papel_en":"Full stack development and architecture, from the data model to the front-end","impacto_pt":"Campo e escritório operam sobre o mesmo registro atualizado, sem cliente instalado e sem infraestrutura de servidor para manter.","impacto_en":"Field and office work from the same up-to-date record, with no client to install and no server infrastructure to maintain.","stack":["JavaScript","Firebase","HTML5","CSS3"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"facesafety","ordem":4,"publicado":true,"destaque":true,"vitrine":true,"categoria":"academico","titulo_pt":"Face Safety","titulo_en":"Face Safety","tagline_pt":"Controle de acesso por reconhecimento facial em Python","tagline_en":"Python-based facial recognition access control","descricao_pt":"Controle de acesso por reconhecimento facial rodando localmente. O operador cadastra a pessoa pela câmera, o sistema guarda o encoding do rosto e o modo scanner compara os quadros ao vivo com a base para identificar quem está na frente do equipamento. Usuários marcados como administradores disparam uma função Key personalizável, usada para acionar fechaduras eletrônicas.","descricao_en":"Facial recognition access control that runs entirely on the local machine. An operator enrolls a person through the camera, the system stores the face encoding, and scanner mode matches live frames against that database to identify who is in front of the device. Users flagged as administrators trigger a customizable Key function that can release an electronic lock.","papel_pt":"Desenvolvedor Python responsável pelo projeto, do pipeline de cadastro e reconhecimento à distribuição das versões para Windows e Linux","papel_en":"Python developer and project owner, from the enrollment and recognition pipeline to the Windows and Linux builds","impacto_pt":"1º lugar entre 60 projetos acadêmicos na Uniube e 16 estrelas no GitHub, com o código aberto e reaproveitável em catracas e fechaduras eletrônicas.","impacto_en":"1st place among 60 academic projects at Uniube and 16 GitHub stars, with the code open and reusable for turnstiles and electronic locks.","stack":["Python","OpenCV","face_recognition","dlib","NumPy","Tkinter"],"demo":"","repo":"https://github.com/Davicjc/FaceSafety","imagem":"fotos/projetos/facesafety.webp","tipo_botao":"demo"},{"id":"roasmonitor","ordem":5,"publicado":true,"destaque":true,"vitrine":false,"categoria":"open-source","titulo_pt":"ROAs Monitor Status","titulo_en":"ROAs Monitor Status","tagline_pt":"Alerta no Telegram quando os ROAs do seu ASN ficam inválidos","tagline_en":"Telegram alerts when your ASN's ROAs go invalid or expire","descricao_pt":"Quando um ROA expira ou o serviço de publicação RPKI (como o Krill) falha, os prefixos do ASN passam a ser vistos como Invalid e operadores que validam RPKI param de aceitar as rotas — sem aviso. O daemon consulta a validade de cada prefixo em intervalo configurável, via RIPEstat ou Routinator local, e alerta no Telegram assim que o status sai de Valid.","descricao_en":"When a ROA expires or the RPKI publication service (Krill, for instance) fails, the ASN's prefixes start being seen as Invalid and operators running RPKI validation silently stop accepting the routes. The daemon polls each prefix at a configurable interval — against public RIPEstat or a local Routinator — and fires a Telegram alert the moment a status leaves Valid.","papel_pt":"Autor e único desenvolvedor, do desenho da lógica de validação ao empacotamento como serviço systemd","papel_en":"Sole author and developer, from the validation logic to packaging it as a systemd service","impacto_pt":"Substitui a descoberta acidental de um ROA inválido, geralmente via reclamação de cliente, por um alerta automático no Telegram no ciclo de verificação seguinte.","impacto_en":"Replaces finding out about an invalid ROA through a customer complaint with an automatic Telegram alert on the next check cycle.","stack":["Bash","RPKI","Telegram Bot API","Routinator","RIPEstat API","systemd"],"demo":"https://davicjc.github.io/ROAs-Monitor-Status/","repo":"https://github.com/Davicjc/ROAs-Monitor-Status","imagem":"fotos/projetos/roasmonitor.webp","tipo_botao":"demo"},{"id":"patricia","ordem":6,"publicado":true,"destaque":false,"vitrine":true,"categoria":"cliente","titulo_pt":"Patricia Moura Lash Design","titulo_en":"Patricia Moura Lash Design","tagline_pt":"Agendamento online em tempo real para um estúdio de cílios","tagline_en":"Real-time online booking for a lash extension studio","descricao_pt":"Permite que a cliente reserve o próprio horário sem troca de mensagens: fluxo de quatro etapas com serviço, calendário, horários livres e formulário que valida CPF e WhatsApp. O Firestore sincroniza a agenda em tempo real, então um horário reservado já aparece indisponível para os demais visitantes. Um painel com Firebase Auth confirma, edita e bloqueia datas.","descricao_en":"Lets clients book their own slot without a back-and-forth chat: a four-step flow covering service, calendar, open times and a form that validates WhatsApp numbers and Brazilian tax-ID check digits. Firestore keeps the calendar in sync in real time, so a taken slot immediately shows as unavailable to everyone else. A Firebase Auth panel confirms, edits and blocks dates.","papel_pt":"Desenvolvedor full stack e único responsável pelo projeto — interface, modelagem no Firestore, autenticação e painel administrativo","papel_en":"Sole full stack developer — interface, Firestore data model, authentication and admin dashboard","impacto_pt":"Agenda autogerenciável com reservas travadas em tempo real e sem servidor próprio: roda inteiramente no plano gratuito do Firebase.","impacto_en":"A self-managed calendar with slots locked in real time and no server of its own: it runs entirely on Firebase's free tier.","stack":["JavaScript","Firebase Firestore","Firebase Auth","HTML5","CSS3","GitHub Pages"],"demo":"https://davicjc.github.io/PatriciaMouraLashDesign/","repo":"https://github.com/Davicjc/PatriciaMouraLashDesign","imagem":"fotos/projetos/patricia.webp","tipo_botao":"pagina"},{"id":"hubcjc","ordem":7,"publicado":true,"destaque":true,"vitrine":false,"categoria":"produto","titulo_pt":"Hub CJC","titulo_en":"Hub CJC","tagline_pt":"Central de projetos, tarefas e contratos com assinatura eletrônica","tagline_en":"Personal hub for projects, tasks and e-signed contracts","descricao_pt":"Painel único para projetos, tarefas, clientes e contratos, substituindo planilhas e anotações dispersas. Contratos são modelados como dados: escopo e pagamento estruturados geram o texto, então cláusula e tabela de parcelas nunca divergem. Cada versão guarda autor, motivo e hash SHA-256, e o cliente assina por link público.","descricao_en":"A single dashboard for projects, tasks, clients and contracts, replacing scattered spreadsheets and notes. Contracts are modeled as data: structured scope and payment generate the text, so the clause and the installment table can never disagree. Every version stores author, reason and a SHA-256 hash, and clients sign via a public link.","papel_pt":"Autor único — arquitetura, modelagem de dados e desenvolvimento full stack","papel_en":"Sole author — architecture, data modeling and full stack development","impacto_pt":"Elimina a divergência entre o texto do contrato e os valores acordados, e permite conferir qualquer via impressa sem acesso ao sistema.","impacto_en":"Removes any gap between contract wording and agreed figures, and lets any printed copy be checked without access to the system.","stack":["TypeScript","React","Firebase","Vite","Tailwind CSS","React Query"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"audicomtelecom","ordem":8,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Site Audicom Telecom","titulo_en":"Audicom Telecom Website","tagline_pt":"Site institucional em produção da provedora Audicom Telecom","tagline_en":"Production institutional site for telecom provider Audicom","descricao_pt":"Site institucional principal da Audicom Telecom, provedora de telecomunicações. Concentra em um domínio próprio a apresentação dos planos, das soluções corporativas e dos canais de atendimento da operadora. Front-end em HTML, CSS e JavaScript, com layout responsivo e seções dedicadas a soluções e contato.","descricao_en":"Main institutional website for Audicom Telecom, a telecommunications provider. It presents the company's plans, corporate solutions and support channels on its own domain. Built as a responsive front end in HTML, CSS and JavaScript, with dedicated sections for solutions and contact.","papel_pt":"Desenvolvedor responsável pelo front-end e pela estrutura de conteúdo","papel_en":"Developer responsible for the front end and content structure","impacto_pt":"Site no ar em audicomtelecom.com.br, usado como canal oficial de apresentação da operadora a clientes e prospects.","impacto_en":"Live at audicomtelecom.com.br as the operator's official channel for presenting itself to customers and prospects.","stack":["HTML5","CSS3","JavaScript"],"demo":"https://audicomtelecom.com.br/","repo":"","imagem":"fotos/projetos/audicomtelecom.webp","tipo_botao":"pagina"},{"id":"capile","ordem":9,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Capilé Drinks","titulo_en":"Capilé Drinks","tagline_pt":"Cardápio interativo e painel de gestão para bar de drinks autorais","tagline_en":"Interactive menu and management panel for a craft cocktail bar","descricao_pt":"O bar anotava pedidos e controlava o cardápio manualmente, sem registro de vendas. O sistema entrega um cardápio mobile em que o cliente monta o pedido pelo celular, com carrinho e checkout, e um painel administrativo com CRUD do cardápio, aprovação de pedidos e gráficos de faturamento. Persistência em LocalStorage, sem backend para operar.","descricao_en":"The bar took orders and managed its menu by hand, with no record of sales. This delivers a mobile-first menu where the customer builds the order on their phone, with cart and checkout, plus an admin panel for menu CRUD, order approval and revenue charts. State lives in LocalStorage, so there is no backend to run.","papel_pt":"Desenvolvedor único: interface, modelo de dados em LocalStorage e painel administrativo","papel_en":"Sole developer: interface, LocalStorage data model and admin panel","impacto_pt":"Substitui a anotação manual de pedidos por autoatendimento e dá ao dono visibilidade de vendas sem exigir servidor.","impacto_en":"Replaces manual order-taking with self-service and gives the owner sales visibility without running a server.","stack":["HTML5","CSS3","JavaScript","LocalStorage","Chart.js"],"demo":"https://davicjc.github.io/CapileSite/","repo":"https://github.com/Davicjc/CapileSite","imagem":"fotos/projetos/capile.webp","tipo_botao":"demo"},{"id":"speedtest","ordem":10,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Audicom Speed Test","titulo_en":"Audicom Speed Test","tagline_pt":"Teste de velocidade próprio, medindo na rota real do cliente","tagline_en":"Self-hosted speed test measured on the customer's real route","descricao_pt":"Clientes que relatam lentidão costumam ser medidos por testes públicos, cujo resultado depende do caminho até um servidor de terceiros. O projeto é uma instância própria do LibreSpeed, hospedada em servidores da Audicom e com a identidade visual da empresa, que mede a velocidade dentro da rota real do cliente.","descricao_en":"Customers reporting slow connections are usually measured by public speed tests, whose results depend on the network path to a third-party server. This is a self-hosted LibreSpeed instance running on Audicom's own servers, carrying the company's branding, that measures throughput along the customer's real route.","papel_pt":"Desenvolvedor responsável pela customização, identidade visual e publicação nos servidores da empresa","papel_en":"Developer responsible for customization, branding and deployment on the company's servers","impacto_pt":"Dá ao suporte e ao cliente uma medição de referência feita na infraestrutura da própria Audicom, hoje usada por clientes reais.","impacto_en":"Gives support and customers a reference measurement taken on Audicom's own infrastructure, today used by real customers.","stack":["LibreSpeed","JavaScript","HTML5","CSS3"],"demo":"https://velocidadeteste.audicomtelecom.com.br/","repo":"","imagem":"fotos/projetos/speedtest.webp","tipo_botao":"demo"},{"id":"ddwilber","ordem":11,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Portfólio Dennis Wilber","titulo_en":"Dennis Wilber Portfolio","tagline_pt":"Portfólio one-page para um líder de vendas da Xiaomi Brasil","tagline_en":"One-page career portfolio for a Xiaomi Brazil sales lead","descricao_pt":"Dennis precisava de uma presença própria na web que apresentasse sua trajetória comercial de forma consolidada a quem decide promoções. Construí um site de página única em HTML, CSS e JavaScript puro, com seções de carreira, competências e contato. Sem backend: o formulário serializa os campos em um deep link do WhatsApp, mantendo hospedagem estática e resposta imediata.","descricao_en":"Dennis needed a web presence of his own that presented his sales career in one consolidated place for the people who decide promotions. I built a single-page site in plain HTML, CSS and JavaScript, covering his career path, skills and contact. There is no backend: the form serializes its fields into a WhatsApp deep link, keeping hosting static and replies immediate.","papel_pt":"Desenvolvedor único, do levantamento de conteúdo com o cliente ao deploy","papel_en":"Sole developer, from client content gathering through deployment","impacto_pt":"O próprio cliente declarou publicamente que o site foi decisivo para sua promoção a supervisor de loja na Xiaomi Brasil.","impacto_en":"The client publicly stated that the site was decisive in his promotion to store supervisor at Xiaomi Brazil.","stack":["HTML5","CSS3","JavaScript","GitHub Pages","Google Analytics"],"demo":"https://davicjc.github.io/PortifolioDDWilber/","repo":"https://github.com/Davicjc/PortifolioDDWilber","imagem":"fotos/projetos/ddwilber.webp","tipo_botao":"pagina"},{"id":"acessoaudicom","ordem":12,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Acesso Audicom (QR Code)","titulo_en":"Audicom Access (QR Code)","tagline_pt":"Liberação de catracas por QR Code gerado no cadastro do visitante","tagline_en":"Turnstile release via QR code generated at visitor sign-in","descricao_pt":"Controle de acesso de visitantes em catracas sem crachá físico nem registro em papel na portaria. O cadastro web valida o CPF por cálculo de dígito, bloqueia duplicidade e gera o QR Code de liberação; um receptor em Java lê o código pela porta serial e aciona o programa de desbloqueio da catraca.","descricao_en":"Visitor access control at turnstiles without physical badges or a paper logbook at the front desk. The web form validates CPF check digits, blocks duplicate entries and generates the release QR code; a Java receiver reads it over the serial port and triggers the turnstile unlock program.","papel_pt":"Desenvolvedor único, responsável pelo front-end de cadastro, pela geração dos QR Codes e pela integração serial com o hardware da catraca","papel_en":"Sole developer, responsible for the sign-in front end, QR code generation and the serial integration with the turnstile hardware","impacto_pt":"Digitaliza o registro de visitantes na portaria e mantém o histórico exportável em CSV, rodando inteiramente no navegador, sem servidor. Descontinuado, mas funcional como demonstração.","impacto_en":"Digitizes front-desk visitor records and keeps an exportable CSV history, running entirely in the browser with no server. Discontinued, but still functional as a demo.","stack":["HTML5","CSS3","JavaScript ES6+","Java","Raspberry Pi Pico"],"demo":"https://davicjc.github.io/AcessoAudicom/","repo":"https://github.com/Davicjc/AcessoAudicom","imagem":"fotos/projetos/acessoaudicom.webp","tipo_botao":"demo"},{"id":"fitia","ordem":13,"publicado":true,"destaque":false,"vitrine":false,"categoria":"open-source","titulo_pt":"FitIA","titulo_en":"FitIA","tagline_pt":"Contagem de repetições e análise de forma por webcam, no navegador","tagline_en":"Rep counting and form analysis from a webcam, fully in the browser","descricao_pt":"Quem treina sozinho conta repetição na mão e não recebe retorno sobre a execução. O FitIA lê 33 pontos corporais por quadro com MediaPipe no próprio navegador, calcula ângulos articulares e conta repetições com uma máquina de estados protegida por buffer de estabilidade, pontuando a qualidade de cada movimento.","descricao_en":"Training alone means counting reps by hand with no feedback on execution. FitIA reads 33 body landmarks per frame using MediaPipe in the browser, derives joint angles, and counts reps through a state machine guarded by a stability buffer, scoring the quality of each movement.","papel_pt":"Desenvolvedor solo, responsável pela visão computacional, pelos algoritmos de contagem e pelo front-end","papel_en":"Solo developer, responsible for the computer vision, the rep-counting algorithms and the front end","impacto_pt":"Todo o processamento roda no cliente: o vídeo não sai do dispositivo e o uso dispensa instalação, servidor de inferência ou hardware dedicado.","impacto_en":"All processing runs client-side: video never leaves the device, and using it requires no install, no inference server and no dedicated hardware.","stack":["JavaScript","MediaPipe","Canvas API","Three.js","Firebase Firestore","HTML5"],"demo":"https://davicjc.github.io/FitIA/","repo":"https://github.com/Davicjc/FitIA","imagem":"fotos/projetos/fitia.webp","tipo_botao":"demo"},{"id":"pedidosaudicom","ordem":14,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Pedidos Audicom","titulo_en":"Audicom Orders","tagline_pt":"Solicitação de internet pelo cliente e gestão em painel interno","tagline_en":"Customer internet orders, tracked through an internal admin panel","descricao_pt":"Sistema web que centraliza a solicitação e o acompanhamento de pedidos de internet da Audicom Telecom. O cliente abre e consulta o pedido pelo celular ou pelo computador, em interface responsiva, enquanto a equipe interna trata e atualiza cada solicitação por um painel administrativo, com o mesmo status visível para os dois lados.","descricao_en":"A web system that centralizes how Audicom Telecom receives and tracks internet service orders. Customers submit and follow their requests from a phone or a desktop through a responsive interface, while the internal team handles and updates each one in an admin panel, with the same status visible on both sides.","papel_pt":"Desenvolvedor full stack, responsável pelo sistema de ponta a ponta, da interface do cliente ao painel administrativo interno","papel_en":"Full stack developer, responsible for the system end to end, from the customer interface to the internal admin panel","impacto_pt":"Concentra os pedidos de internet em um fluxo único, com o mesmo status acompanhado pelo cliente e pela equipe interna.","impacto_en":"Consolidates internet orders into a single flow, with one status followed by both the customer and the internal team.","stack":["HTML5","CSS3","JavaScript"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"popmanager","ordem":15,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"PopManager","titulo_en":"PopManager","tagline_pt":"Gestão centralizada de POPs de rede para provedor de internet","tagline_en":"Centralized management of network POPs for an ISP","descricao_pt":"Um provedor de internet mantém vários POPs distribuídos, cada um com seus próprios equipamentos, enlaces e configurações. O PopManager reúne esse controle em um sistema server/web escrito em Python: cada ponto de presença fica cadastrado em um só lugar, e a equipe técnica consulta e atualiza os dados pelo navegador.","descricao_en":"An ISP runs several distributed POPs, each with its own equipment, links and configuration. PopManager consolidates that into a single server/web application written in Python: every point of presence is recorded in one place, and the technical team reviews and updates site data straight from the browser.","papel_pt":"Desenvolvedor full stack e responsável pela arquitetura do sistema","papel_en":"Full stack developer, responsible for the system architecture","impacto_pt":"Dá à equipe técnica um registro único e consultável dos POPs, sem depender de acesso local a cada site.","impacto_en":"Gives the technical team a single, queryable record of every POP, without needing local access to each site.","stack":["Python","JavaScript","HTML5","CSS3","Linux Server"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"alpa","ordem":16,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"CRM Alpa Solutions","titulo_en":"Alpa Solutions CRM","tagline_pt":"Base única de clientes e histórico comercial para a Valoria","tagline_en":"One system for Valoria's client records and relationship history","descricao_pt":"CRM sob medida para a Alpa Solutions, que atua sob a marca Valoria. O sistema centraliza o cadastro de clientes e o histórico de relacionamento comercial em uma única interface web, acessível pela equipe sem instalação local. Foi desenvolvido em JavaScript e modelado sobre o processo comercial do cliente, em vez de adaptar um CRM genérico de mercado.","descricao_en":"A custom CRM built for Alpa Solutions, which operates under the Valoria brand. It brings client records and the history of each commercial relationship into a single web interface the team can reach from any browser, with no local install. Written in JavaScript and shaped around the client's own sales process instead of bending a generic off-the-shelf CRM to fit.","papel_pt":"Desenvolvedor único do projeto, responsável pela interface, pela lógica da aplicação e pela entrega ao cliente","papel_en":"Sole developer, responsible for the interface, the application logic and delivery to the client","impacto_pt":"Centralizou a base de clientes da Valoria em um sistema próprio, com histórico consultável por toda a equipe.","impacto_en":"Gave Valoria a single owned system for its client base, with history any team member can look up.","stack":["JavaScript","HTML5","CSS3","Git"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"elora","ordem":17,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Instituto Elora","titulo_en":"Instituto Elora","tagline_pt":"Site institucional para clínica de estética e saúde integrativa","tagline_en":"Institutional site for an aesthetics and integrative health clinic","descricao_pt":"Site institucional do Instituto Elora, clínica de estética avançada e saúde integrativa. Desenvolvi a página em HTML, CSS e JavaScript, com layout responsivo para celular e desktop, marcação semântica e carregamento leve, apresentando os serviços da clínica de forma clara para quem pesquisa antes de escolher onde se tratar.","descricao_en":"Institutional website for Instituto Elora, a clinic working with advanced aesthetics and integrative health. I built the page in HTML, CSS and JavaScript, with a responsive layout for phone and desktop, semantic markup and a light payload, presenting the clinic's services clearly to people researching before choosing where to go.","papel_pt":"Desenvolvedor responsável pelo projeto, do layout à publicação","papel_en":"Sole developer, from layout to publishing","impacto_pt":"Deu ao instituto um canal próprio na web para apresentar seus serviços a novos pacientes.","impacto_en":"Gave the clinic a web presence of its own to present its services to new patients.","stack":["JavaScript","HTML5","CSS3","Git"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"gestorapi","ordem":18,"publicado":true,"destaque":false,"vitrine":false,"categoria":"produto","titulo_pt":"Gestor de API","titulo_en":"API Manager","tagline_pt":"Painel Master para credenciais Firebase de múltiplos clientes","tagline_en":"Master panel for multi-client Firebase credentials","descricao_pt":"Cada cliente atendido roda sobre um projeto Firebase próprio, e manter essas credenciais espalhadas por arquivos e repositórios torna qualquer troca ou revogação lenta e arriscada. O painel concentra o cadastro e a consulta dessas chaves em uma única interface Master, escrita em HTML, CSS e JavaScript puro, sem framework nem etapa de build.","descricao_en":"Each client runs on its own Firebase project, so credentials end up scattered across files and repositories, which makes any key swap or revocation slow and risky. The panel concentrates registering and looking up those keys in a single Master interface, written in plain HTML, CSS and JavaScript, with no framework and no build step.","papel_pt":"Desenvolvedor único: arquitetura, interface e integração com o Firebase","papel_en":"Sole developer: architecture, interface and Firebase integration","impacto_pt":"As credenciais de todos os clientes passaram a ser consultadas e atualizadas em um só lugar, sem depender de arquivos espalhados por repositórios.","impacto_en":"Credentials for every client are now looked up and updated in one place, instead of living in files spread across repositories.","stack":["JavaScript","HTML5","CSS3","Firebase"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"desenhobase64","ordem":19,"publicado":true,"destaque":false,"vitrine":false,"categoria":"open-source","titulo_pt":"DesenhoBase64","titulo_en":"DesenhoBase64","tagline_pt":"Canvas HTML5 vira quadro de desenho e assinatura, sem dependências","tagline_en":"HTML5 canvas as a drawing board and signature pad, zero dependencies","descricao_pt":"Formulários que capturam assinatura ou desenho à mão costumam salvar um PNG pesado e não editável. Esta biblioteca JavaScript sem dependências transforma uma tag canvas do HTML5 em quadro de desenho ou painel de assinatura e serializa os traços — coordenadas, espessura e cor — em uma string Base64 curta, recarregável no canvas para edição.","descricao_en":"Web forms that capture a handwritten signature or sketch usually save a heavy PNG that cannot be edited afterwards. This dependency-free JavaScript library turns an HTML5 canvas into a drawing board or signature pad and serializes the strokes — coordinates, thickness and color — into a short Base64 string that can be loaded back into the canvas for editing.","papel_pt":"Autor e mantenedor da biblioteca — desenho da API, motor de captura de traços e página de demonstração","papel_en":"Library author and maintainer — API design, stroke capture engine and demo page","impacto_pt":"Assinaturas e desenhos trafegam como texto leve em vez de imagem, e o traço original volta ao canvas para edição.","impacto_en":"Signatures and drawings travel as lightweight text instead of images, and the original strokes can be reloaded into the canvas for editing.","stack":["JavaScript","HTML5 Canvas","HTML5","CSS3"],"demo":"https://davicjc.github.io/DesenhoBase64/","repo":"https://github.com/Davicjc/DesenhoBase64","imagem":"fotos/projetos/desenhobase64.webp","tipo_botao":"demo"},{"id":"barbearia","ordem":20,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Barbearia Soares","titulo_en":"Barbearia Soares","tagline_pt":"Site de vitrine para barbearia local, em HTML e CSS puros","tagline_en":"Storefront site for a local barbershop, in plain HTML and CSS","descricao_pt":"Site de apresentação para uma barbearia local, entregue como demo para um cliente real. A página é escrita apenas em HTML e CSS, sem framework nem etapa de build: carrega rápido no celular, roda em qualquer hospedagem estática e cada ajuste de conteúdo é uma edição direta na marcação.","descricao_en":"Presentation site for a local barbershop, delivered as a demo for a real client. The page is written in plain HTML and CSS, with no framework and no build step: it loads fast on mobile, runs on any static hosting, and every content change is a direct edit to the markup.","papel_pt":"Desenvolvedor front-end responsável por layout, marcação e entrega ao cliente","papel_en":"Front-end developer responsible for layout, markup and client delivery","impacto_pt":"Dá ao negócio uma vitrine própria na web, com custo de hospedagem e manutenção próximo de zero.","impacto_en":"Gives the business its own storefront on the web, with hosting and maintenance cost close to zero.","stack":["HTML5","CSS3","Git","GitHub"],"demo":"https://davicjc.github.io/BarbeariaSoares/","repo":"https://github.com/Davicjc/BarbeariaSoares","imagem":"fotos/projetos/barbearia.webp","tipo_botao":"pagina"},{"id":"audicomreuniao","ordem":21,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Painel da Sala de Reunião","titulo_en":"Meeting Room Display","tagline_pt":"Tela de recepção da sala de reunião da Audicom Telecom","tagline_en":"Welcome screen for Audicom Telecom's meeting room","descricao_pt":"Página que fica aberta na tela da sala de reunião da Audicom Telecom. Mostra se a sala está disponível, data, hora e temperatura, oferece o QR Code do Wi-Fi de visitantes e passa em carrossel as marcas de clientes da empresa.","descricao_en":"A page that stays open on the screen in Audicom Telecom's meeting room. It shows whether the room is available, the date, time and temperature, offers a QR code for the guest Wi-Fi and cycles through the company's client logos.","papel_pt":"Design e desenvolvimento front-end","papel_en":"Design and front-end development","impacto_pt":"Visitantes chegam à sala com o Wi-Fi e as informações do dia já na tela, sem precisar pedir.","impacto_en":"Visitors walk into the room with the Wi-Fi details and the day's information already on screen.","stack":["HTML5","CSS3","JavaScript"],"demo":"https://davicjc.github.io/AudicomSiteReuniao/","repo":"https://github.com/Davicjc/AudicomSiteReuniao","imagem":"fotos/projetos/audicomreuniao.webp","tipo_botao":"pagina"},{"id":"qrcodeaudicom","ordem":22,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Página dos QR Codes Audicom","titulo_en":"Audicom QR Code Landing Page","tagline_pt":"Destino dos QR Codes aplicados nos carros e materiais da Audicom","tagline_en":"Landing page behind the QR codes on Audicom's vehicles and materials","descricao_pt":"Os QR Codes da frota e dos materiais impressos da Audicom apontam para esta página. Ela reúne em uma tela leve, pensada para o celular, os caminhos que o cliente mais procura: WhatsApp de vendas, central do cliente, suporte técnico, site e teste de velocidade.","descricao_en":"The QR codes on Audicom's fleet and printed materials point to this page. It gathers, on a lightweight phone-first screen, the paths customers look for most: sales on WhatsApp, the customer portal, technical support, the website and the speed test.","papel_pt":"Design e desenvolvimento front-end","papel_en":"Design and front-end development","impacto_pt":"Um único QR Code impresso serve a todos os canais, e os destinos podem mudar sem reimprimir nada.","impacto_en":"A single printed QR code serves every channel, and destinations can change without reprinting anything.","stack":["HTML5","CSS3","JavaScript"],"demo":"https://davicjc.github.io/QRCodeAudicomSite/","repo":"https://github.com/Davicjc/QRCodeAudicomSite","imagem":"fotos/projetos/qrcodeaudicom.webp","tipo_botao":"pagina"},{"id":"pokemon","ordem":23,"publicado":false,"destaque":false,"vitrine":false,"categoria":"pessoal","titulo_pt":"Cronologia Pokémon","titulo_en":"Pokémon Timeline","tagline_pt":"Linha do tempo interativa da franquia Pokémon","tagline_en":"Interactive timeline of the Pokémon franchise","descricao_pt":"Projeto pessoal: uma linha do tempo navegável da franquia Pokémon, feita para praticar layout, animação e organização de conteúdo extenso em JavaScript.","descricao_en":"Personal project: a browsable timeline of the Pokémon franchise, built to practise layout, animation and organising long-form content in JavaScript.","papel_pt":"Autor","papel_en":"Author","impacto_pt":"","impacto_en":"","stack":["JavaScript","HTML5","CSS3"],"demo":"https://davicjc.github.io/CronologiaPokemon/","repo":"https://github.com/Davicjc/CronologiaPokemon","imagem":"fotos/projetos/pokemon.webp","tipo_botao":"pagina"},{"id":"brunofilho","ordem":24,"publicado":false,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Portfólio Bruno F. Creation","titulo_en":"Bruno F. Creation Portfolio","tagline_pt":"Vitrine digital para os trabalhos criativos da marca","tagline_en":"A digital showcase for the brand's creative work","descricao_pt":"Site portfólio para destacar os trabalhos criativos de Bruno Filho, reunindo artes e serviços em uma vitrine digital.","descricao_en":"Portfolio website highlighting Bruno Filho's creative work, bringing his art and services together in one digital showcase.","papel_pt":"Design e desenvolvimento","papel_en":"Design and development","impacto_pt":"","impacto_en":"","stack":["HTML5","CSS3","JavaScript"],"demo":"","repo":"","imagem":"","tipo_botao":"pagina"}],"depoimentos":[{"id":"dep-01","ordem":1,"nome":"Geisa Paula","cargo_pt":"Coordenadora de Relacionamento · Algar Telecom","cargo_en":"Account Manager · Algar Telecom","texto_pt":"Davi demonstra alto nível de comprometimento, competência e proatividade, entregando todas as demandas com qualidade e excelência.","texto_en":"Davi demonstrates a high level of commitment, competence and proactivity, delivering all demands with quality and excellence.","foto":"fotos/sobremimterceiros/Geisa Paula.jpg","linkedin":"https://www.linkedin.com/in/geisa-paula-1a66a0175/"},{"id":"dep-02","ordem":2,"nome":"Dennis Wilber","cargo_pt":"Supervisor de Loja · Xiaomi Brasil","cargo_en":"Store Supervisor · Xiaomi Brazil","texto_pt":"Graças ao site que você fez sobre minhas experiências profissionais, consegui crescer, ser reconhecido e hoje sou supervisor.","texto_en":"Thanks to the website you made about my professional experiences, I managed to grow, be recognized and today I am a supervisor.","foto":"fotos/sobremimterceiros/Dennis Wilber.jpg","linkedin":"https://www.linkedin.com/in/dennis-wilber-10aa33259/"},{"id":"dep-03","ordem":3,"nome":"Fábio Marques Barbosa","cargo_pt":"Analista de Processos · Lyon Engenharia","cargo_en":"Process Analyst · Lyon Engineering","texto_pt":"Ele une conhecimentos sólidos em programação e hardware com atendimento profissional. Diagnostica problemas com precisão e entrega soluções consistentes.","texto_en":"He combines solid knowledge in programming and hardware with professional service. Diagnoses problems with precision and delivers consistent solutions.","foto":"fotos/sobremimterceiros/Fabio Marques.jpg","linkedin":"https://www.linkedin.com/in/fabiomarquesbarbosa/"},{"id":"dep-04","ordem":4,"nome":"Stéfano Schwenck","cargo_pt":"Coordenador de TI · Uniube","cargo_en":"IT Coordinator · Uniube","texto_pt":"Sempre demonstrou facilidade em transformar requisitos complexos em soluções funcionais estruturadas. Um profissional que não se contenta com o básico.","texto_en":"Always demonstrated ease in transforming complex requirements into structured solutions. A professional who is not content with the basics.","foto":"fotos/sobremimterceiros/Stéfano Schwenck.jpeg","linkedin":"https://www.linkedin.com/in/stefanosbvvita/"},{"id":"dep-05","ordem":0,"nome":"Reginaldo Junior","cargo_pt":"Gerente de Redes de TI · Audicom Telecom","cargo_en":"IT Network Manager · Audicom Telecom","texto_pt":"Davi demonstra comprometimento, foco e postura profissional exemplar, enfrenta novos desafios com coragem e rapidez de aprendizado, sempre buscando soluções eficientes e seguras para NOC, HelpDesk e CGR. Sua seriedade e disponibilidade fazem dele um recurso valioso: participa de projetos críticos, apoia colegas em demandas emergenciais e contribui para a melhoria contínua dos processos. Acompanho com orgulho seu crescimento e confio plenamente em sua capacidade de assumir responsabilidades maiores.","texto_en":"Davi demonstrates commitment, focus and exemplary professionalism, facing new challenges with courage and quick learning, always seeking efficient and secure solutions for NOC, HelpDesk and CGR. His dedication makes him a valuable resource: he participates in critical projects, supports colleagues in emergencies and contributes to continuous process improvement. I follow his professional growth with pride and fully trust his ability to take on greater responsibilities.","foto":"fotos/sobremimterceiros/Reginaldo Junior.jpg","linkedin":"https://www.linkedin.com/in/reginaldo-junior-800078121/"}],"certificados":[{"id":"cert-01","ordem":1,"emissor":"Microsoft","titulo_pt":"Fundamentos de Azure Copilot","titulo_en":"Azure Copilot Fundamentals","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Azure%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-02","ordem":2,"emissor":"Microsoft","titulo_pt":"Fundamentos de GitHub Copilot","titulo_en":"GitHub Copilot Fundamentals","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20GitHub%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-03","ordem":3,"emissor":"Microsoft","titulo_pt":"Java para Soluções em Azure","titulo_en":"Java for Azure Solutions","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Java%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-04","ordem":4,"emissor":"Microsoft","titulo_pt":"Linux para Ambientes Azure","titulo_en":"Linux on Azure","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Linux%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-05","ordem":5,"emissor":"Microsoft","titulo_pt":"Agentes Inteligentes com Azure Copilot","titulo_en":"Intelligent Agents with Azure Copilot","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20aos%20agentes%20do%20Azure%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-06","ordem":6,"emissor":"Microsoft","titulo_pt":"Modernização de Aplicações com GitHub Copilot","titulo_en":"App Modernization with GitHub Copilot","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20%C3%A0%20moderniza%C3%A7%C3%A3o%20do%20aplicativo%20GitHub%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-07","ordem":7,"emissor":"Microsoft","titulo_pt":"Migrar cargas do SQL Server para Azure SQL","titulo_en":"Migrate SQL Server Workloads to Azure SQL","links":[{"url":"certificados/Microsoft/Conquistas/Migrar%20cargas%20de%20trabalho%20do%20SQL%20Server%20para%20o%20Banco%20de%20Dados%20SQL%20do%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-08","ordem":8,"emissor":"Microsoft","titulo_pt":"Migrar cargas locais para Azure","titulo_en":"Migrate On-Premises Workloads to Azure","links":[{"url":"certificados/Microsoft/Conquistas/Migrar%20de%20cargas%20de%20trabalho%20locais%20para%20o%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-09","ordem":9,"emissor":"Microsoft","titulo_pt":"Manter bancos SQL Server no Azure","titulo_en":"Maintain SQL Server Databases on Azure","links":[{"url":"certificados/Microsoft/Conquistas/Preparar%20para%20manter%20bancos%20de%20dados%20baseados%20no%20SQL%20Server%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-10","ordem":10,"emissor":"Microsoft","titulo_pt":"Desenvolver soluções de IA no Azure","titulo_en":"Develop AI Solutions on Azure","links":[{"url":"certificados/Microsoft/Conquistas/Preparar-se%20para%20desenvolver%20solu%C3%A7%C3%B5es%20de%20IA%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-11","ordem":11,"emissor":"Microsoft","titulo_pt":"Migrate & Modernize Challenge","titulo_en":"Migrate & Modernize Challenge","links":[{"url":"certificados/Microsoft/Desafios/Migrate%20%26%20Modernize%20Challenge.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-12","ordem":12,"emissor":"Microsoft","titulo_pt":"Administração de Banco de Dados no Azure","titulo_en":"Azure Database Administration","links":[{"url":"certificados/Microsoft/Roteiro%20de%20aprendizagem/Introdu%C3%A7%C3%A3o%20%C3%A0%20administra%C3%A7%C3%A3o%20do%20banco%20de%20dados%20do%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-13","ordem":13,"emissor":"Microsoft","titulo_pt":"Trilha de Engenharia de IA","titulo_en":"AI Engineering Learning Path","links":[{"url":"certificados/Microsoft/Roteiro%20de%20aprendizagem/Preparar%20para%20engenharia%20de%20IA.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-14","ordem":14,"emissor":"Sicoob","titulo_pt":"Finanças Pessoais","titulo_en":"Personal Finance","links":[{"url":"certificados/Sicoob/Finan%C3%A7as%20Pessoais.pdf","label":"pdf"},{"url":"https://se-liga-financas-online.memberkit.com.br/certificates/G6DyWX","label":"validar"}]},{"id":"cert-15","ordem":15,"emissor":"Sicoob","titulo_pt":"Finanças para MEI","titulo_en":"Finance for Micro-Entrepreneurs","links":[{"url":"certificados/Sicoob/Finan%C3%A7as%20para%20MEI.pdf","label":"pdf"},{"url":"https://se-liga-financas-online.memberkit.com.br/certificates/QA02el","label":"validar"}]},{"id":"cert-16","ordem":16,"emissor":"Sicoob","titulo_pt":"Finanças para Investidores","titulo_en":"Finance for Investors","links":[{"url":"certificados/Sicoob/Finan%C3%A7as%20para%20Investidores.pdf","label":"pdf"},{"url":"https://se-liga-financas-online.memberkit.com.br/certificates/bdJkV3","label":"validar"}]},{"id":"cert-17","ordem":17,"emissor":"Algar Telecom","titulo_pt":"Lei Geral de Proteção de Dados","titulo_en":"Brazilian Data Protection Law (LGPD)","links":[{"url":"certificados/Algar/Lei%20Geral%20de%20Prote%C3%A7%C3%A3o%20de%20Dados.pdf","label":"pdf"}]},{"id":"cert-18","ordem":18,"emissor":"Algar Telecom","titulo_pt":"Código de Conduta","titulo_en":"Code of Conduct","links":[{"url":"certificados/Algar/C%C3%B3digo%20de%20Conduta.pdf","label":"pdf"}]},{"id":"cert-19","ordem":19,"emissor":"Alura","titulo_pt":"Python para Desenvolvimento e Automação","titulo_en":"Python for Development and Automation","links":[{"url":"certificados/Alura/Python.pdf","label":"pdf"}]},{"id":"cert-20","ordem":20,"emissor":"Alura","titulo_pt":"Linha de Comando no Windows","titulo_en":"Windows Command Line","links":[{"url":"certificados/Alura/Prompt%20do%20Windows.pdf","label":"pdf"},{"url":"https://cursos.alura.com.br/formalCertificate/928718ae-78bf-470c-8a9f-3f0eb90de3e2","label":"validar"}]},{"id":"cert-21","ordem":21,"emissor":"Alura","titulo_pt":"Inglês para Tecnologia e Carreira","titulo_en":"English for Technology and Careers","links":[{"url":"certificados/Alura/Ingl%C3%AAs.pdf","label":"pdf"}]},{"id":"cert-22","ordem":22,"emissor":"Hacker Rangers","titulo_pt":"Segurança da Informação","titulo_en":"Information Security","links":[{"url":"certificados/Hacker%20Rangers/Seguran%C3%A7a%20da%20Informa%C3%A7%C3%A3o.pdf","label":"pdf"}]},{"id":"cert-23","ordem":23,"emissor":"TP-Link","titulo_pt":"Certificado de Participação em Webinar","titulo_en":"Webinar Participation Certificate","links":[{"url":"certificados/TPLink/Certificado%20de%20Participa%C3%A7%C3%A3o%20em%20Webinar.pdf","label":"pdf"},{"url":"certificados/TPLink/Comprovante%20de%20Valida%C3%A7%C3%A3o%20do%20Certificado.pdf","label":"validar"}]},{"id":"cert-24","ordem":24,"emissor":"Wizard","titulo_pt":"Inglês Avançado para Comunicação Profissional","titulo_en":"Advanced English for Professional Communication","links":[{"url":"certificados/Wizard/Ingl%C3%AAs.pdf","label":"pdf"}]}],"clientes":[{"id":"cli-01","ordem":1,"nome":"Audicom Telecom","site":"https://audicomtelecom.com.br/"},{"id":"cli-02","ordem":2,"nome":"Audicom Tecnologia","site":""},{"id":"cli-03","ordem":3,"nome":"Algar Telecom","site":""},{"id":"cli-04","ordem":4,"nome":"Callink","site":""},{"id":"cli-05","ordem":5,"nome":"Link Call","site":""},{"id":"cli-06","ordem":6,"nome":"Cooperbant","site":""},{"id":"cli-07","ordem":7,"nome":"Valoria · Alpa Solutions","site":""},{"id":"cli-08","ordem":8,"nome":"Instituto Elora","site":""},{"id":"cli-09","ordem":9,"nome":"Capilé Drinks","site":"https://davicjc.github.io/CapileSite/"},{"id":"cli-10","ordem":10,"nome":"Patricia Moura Lash Design","site":"https://davicjc.github.io/PatriciaMouraLashDesign/"},{"id":"cli-11","ordem":11,"nome":"Barbearia Soares","site":"https://davicjc.github.io/BarbeariaSoares/"},{"id":"cli-12","ordem":12,"nome":"Dennis Wilber","site":"https://davicjc.github.io/PortifolioDDWilber/"},{"id":"cli-13","ordem":13,"nome":"Bruno Filho","site":""},{"id":"cli-14","ordem":14,"nome":"Sanctorum","site":""}],"contatos":[{"id":"ct-email","ordem":1,"rotulo_pt":"e-mail","rotulo_en":"email","valor":"davicjc@gmail.com","url":"mailto:davicjc@gmail.com"},{"id":"ct-whatsapp","ordem":2,"rotulo_pt":"whatsapp","rotulo_en":"whatsapp","valor":"+55 34 99333-6186","url":"https://wa.me/5534993336186"},{"id":"ct-linkedin","ordem":3,"rotulo_pt":"linkedin","rotulo_en":"linkedin","valor":"in/davicjc","url":"https://linkedin.com/in/davicjc"},{"id":"ct-github","ordem":4,"rotulo_pt":"github","rotulo_en":"github","valor":"Davicjc","url":"https://github.com/Davicjc"}]} /* SEMENTE:FIM */;
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* ── i18n ─────────────────────────────────────────────────────── */
+var TEXTOS = {
+  pt:{
+    'nav.inicio':'início','nav.projetos':'projetos','nav.trajetoria':'trajetória',
+    'nav.certificados':'certificados','nav.contato':'contato',
+    'visor.abrir':'abrir em nova aba','visor.carregando':'carregando o site…',
+    'visor.dica':'Alguns sites bloqueiam a exibição embutida. Se a tela ficar em branco, use “abrir em nova aba”.'
+  },
+  en:{
+    'nav.inicio':'home','nav.projetos':'projects','nav.trajetoria':'career',
+    'nav.certificados':'certificates','nav.contato':'contact',
+    'visor.abrir':'open in new tab','visor.carregando':'loading site…',
+    'visor.dica':'Some sites block embedding. If the screen stays blank, use “open in new tab”.'
+  }
+};
+var idioma = (localStorage.getItem('davicjc.idioma') || (navigator.language||'pt').slice(0,2).toLowerCase());
+if (idioma !== 'en') idioma = 'pt';
+
+function t(chave){ return (TEXTOS[idioma] && TEXTOS[idioma][chave]) || TEXTOS.pt[chave] || chave; }
+/* escolhe campo_pt / campo_en de um registro */
+function c(obj, campo){
+  if (!obj) return '';
+  var v = obj[campo + '_' + idioma];
+  if (v === undefined || v === null || v === '') v = obj[campo + '_pt'];
+  if (v === undefined || v === null) v = obj[campo] || '';
+  return v;
+}
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function ordenar(lista){
+  return (lista||[]).slice().sort(function(a,b){ return (a.ordem||0) - (b.ordem||0); });
+}
+/* Todo conteúdo vem do banco. Links só passam se forem http(s), mailto,
+   tel ou caminhos relativos — nada de javascript: ou data:. */
+function urlSegura(u, soWeb){
+  u = String(u == null ? '' : u).trim();
+  if (!u) return '';
+  if (/^https?:\/\//i.test(u)) return u;
+  if (soWeb) return '';
+  if (/^(mailto:|tel:)/i.test(u)) return u;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(u)) return '';   /* qualquer outro esquema */
+  if (/^\/\//.test(u)) return '';                  /* protocolo implícito */
+  return u;                                         /* relativo */
+}
+/* imagens aceitam também data:image (painel sem Storage guarda a imagem no banco) */
+function urlImagem(u){
+  u = String(u == null ? '' : u).trim();
+  if (/^data:image\/(png|jpe?g|webp|gif|avif);base64,[a-z0-9+\/=\s]+$/i.test(u)) return u;
+  return urlSegura(u);
+}
+function publicados(lista){ return ordenar(lista).filter(function(x){ return x.publicado !== false; }); }
+
+var CATEGORIAS = {
+  corporativo:{pt:'corporativo', en:'corporate'},
+  cliente:{pt:'clientes', en:'clients'},
+  'open-source':{pt:'open source', en:'open source'},
+  produto:{pt:'produto', en:'product'},
+  academico:{pt:'acadêmico', en:'academic'},
+  pessoal:{pt:'pessoal', en:'personal'}
+};
+function nomeCategoria(k){ return (CATEGORIAS[k] && CATEGORIAS[k][idioma]) || k; }
+
+/* ── tema ─────────────────────────────────────────────────────── */
+var raiz = document.documentElement;
+function aplicarTema(tema){
+  raiz.setAttribute('data-tema', tema);
+  localStorage.setItem('davicjc.tema', tema);
+}
+(function(){
+  var salvo = localStorage.getItem('davicjc.tema');
+  if (salvo) { raiz.setAttribute('data-tema', salvo); }
+  else if (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches){ raiz.setAttribute('data-tema','escuro'); }
+})();
+document.getElementById('tema').addEventListener('click', function(){
+  aplicarTema(raiz.getAttribute('data-tema') === 'escuro' ? 'claro' : 'escuro');
+});
+
+/* ── estado ───────────────────────────────────────────────────── */
+/* Visitante recorrente parte da última leitura do Firestore; o primeiro
+   acesso parte da semente embutida. Os dois são substituídos pelo banco. */
+var CHAVE_CACHE = 'davicjc.dados.v1';
+var COLECOES = ['capacidades','experiencias','projetos','depoimentos','certificados','clientes','contatos'];
+/* O Firestore devolve os documentos por id; a semente vem na ordem de exibição.
+   Ordenar igual nos dois lados evita redesenhar a página por diferença só de ordem. */
+function normalizar(d){
+  var n = JSON.parse(JSON.stringify(d || {}));
+  COLECOES.forEach(function(k){
+    if (Array.isArray(n[k])) n[k].sort(function(a, b){
+      return ((a.ordem || 0) - (b.ordem || 0)) || String(a.id).localeCompare(String(b.id));
+    });
+  });
+  return n;
+}
+var DADOS = (function(){
+  try {
+    var salvo = JSON.parse(localStorage.getItem(CHAVE_CACHE) || 'null');
+    if (salvo && salvo.projetos && salvo.site) return normalizar(salvo);
+  } catch (e) {}
+  return normalizar(window.SEMENTE);
+})();
+
+/* serialização com chaves ordenadas, para comparar dados sem falso positivo */
+function canonico(v){
+  if (Array.isArray(v)) return '[' + v.map(canonico).join(',') + ']';
+  if (v && typeof v === 'object'){
+    return '{' + Object.keys(v).sort().map(function(k){ return JSON.stringify(k) + ':' + canonico(v[k]); }).join(',') + '}';
+  }
+  return JSON.stringify(v);
+}
+
+/* ══════════════ RENDERIZAÇÃO ══════════════ */
+var alvo = document.getElementById('conteudo');
+
+function iconeExterno(){ return '<svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg>'; }
+/* "a · b · c" que só quebra depois do ponto, nunca antes dele */
+function listaTec(itens){
+  return (itens||[]).map(function(x){ return '<span class="nw">' + esc(x) + '</span>'; }).join(' · ');
+}
+
+function urlDemo(p){ return urlSegura(p.demo || p.site, true); }
+function urlEmbed(p){ return urlSegura(p.embed || p.demo || p.site, true); }
+function urlRepo(p){ return urlSegura(p.repo, true); }
+
+function botoesProjeto(p){
+  var html = '';
+  var demo = urlDemo(p), repo = urlRepo(p);
+  if (demo){
+    var rotulo = idioma === 'en' ? 'open demo' : 'acessar demo';
+    if (p.tipo_botao === 'pagina') rotulo = idioma === 'en' ? 'open page' : 'acessar página';
+    html += '<button class="btn btn-forte" data-visor="' + esc(p.id) + '">' +
+            '<svg viewBox="0 0 24 24"><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>' +
+            esc(rotulo) + '</button>';
+  }
+  if (repo){
+    html += '<a class="btn" href="' + esc(repo) + '" target="_blank" rel="noopener">' +
+            (idioma === 'en' ? 'source code' : 'ver o código') + iconeExterno() + '</a>';
+  }
+  if (demo){
+    html += '<a class="btn" href="' + esc(demo) + '" target="_blank" rel="noopener">' +
+            (idioma === 'en' ? 'new tab' : 'nova aba') + iconeExterno() + '</a>';
+  }
+  if (!demo && !repo){
+    html += '<span class="btn" style="cursor:default; color:var(--tinta-3)">' +
+            (idioma === 'en' ? 'private client project' : 'projeto privado de cliente') + '</span>';
+  }
+  return html;
+}
+
+var SVG_CADEADO = '<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>';
+function painelSemImagem(p){
+  var privado = !urlDemo(p) && !urlRepo(p);
+  return '<div class="sem-imagem">' +
+    '<div class="si-topo"><span class="si-cadeado">' +
+      (privado ? SVG_CADEADO + (idioma === 'en' ? 'client confidential' : 'sigilo do cliente')
+               : (idioma === 'en' ? 'source code' : 'código-fonte')) +
+    '</span><span class="si-cadeado">' + esc(nomeCategoria(p.categoria)) + '</span></div>' +
+    '<div><div class="si-nome">' + esc(c(p,'titulo')) + '</div>' +
+    '<div class="si-stack">' + listaTec((p.stack||[]).slice(0,4)) + '</div></div>' +
+  '</div>';
+}
+function imagemProjeto(p){
+  var src = urlImagem(p.imagem);
+  return src
+    ? '<img src="' + esc(src) + '" alt="' + esc(c(p,'titulo')) + '" loading="lazy" decoding="async" width="1200" height="750">'
+    : painelSemImagem(p);
+}
+
+function molduraProjeto(p, clicavel){
+  var demo = urlDemo(p);
+  var host = demo ? demo.replace(/^https?:\/\//,'').replace(/\/$/,'')
+                  : (urlRepo(p) ? urlRepo(p).replace(/^https?:\/\//,'') : (idioma === 'en' ? 'private repository' : 'repositório privado'));
+  var img = imagemProjeto(p);
+  var lupa = (clicavel && demo)
+    ? '<div class="lupa"><span>' + (idioma === 'en' ? 'view inside the site ↗' : 'ver aqui dentro ↗') + '</span></div>'
+    : '';
+  var attrs = (clicavel && demo)
+    ? ' role="button" tabindex="0" data-visor="' + esc(p.id) + '" aria-label="' + esc(c(p,'titulo')) + '"'
+    : ' style="cursor:default"';
+  return '<div class="moldura">' +
+      '<div class="moldura-barra"><div class="moldura-luzes"><i></i><i></i><i></i></div>' +
+      '<div class="moldura-url">' + esc(host) + '</div></div>' +
+      '<div class="moldura-tela"' + attrs + '>' + img + lupa + '</div>' +
+    '</div>';
+}
+
+/* ── HOME ─────────────────────────────────────────────────────── */
+function renderHome(){
+  var s = DADOS.site || {};
+  var h = '';
+
+  /* hero */
+  h += '<section class="hero"><div class="container hero-grid">';
+  h += '<div>';
+  if (s.disponivel){
+    h += '<div class="status-linha reveal"><span class="status-ponto"></span><span>' +
+         esc(c(s,'disponibilidade')) + '</span></div>';
+  }
+  h += '<h1 class="display hero-nome reveal">Davi<br><span class="sobrenome">Castro</span></h1>';
+  h += '<p class="hero-papel reveal">' + esc(c(s,'cargo')) + '<br>' + esc(c(s,'local')) + '</p>';
+  h += '<p class="hero-texto reveal">' + esc(c(s,'resumo')) + '</p>';
+  h += '<div class="hero-acoes reveal">' +
+       '<a class="btn btn-forte" href="#/projetos">' + (idioma==='en'?'see the projects':'ver os projetos') +
+       '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>' +
+       '<a class="btn" href="' + (idioma==='en'?'Curriculo/en.html':'Curriculo/index.html') + '">' +
+       (idioma==='en'?'résumé':'currículo') + iconeExterno() + '</a>' +
+       '<a class="btn" href="https://github.com/Davicjc" target="_blank" rel="noopener">github' + iconeExterno() + '</a>' +
+       '</div>';
+
+  h += '<div class="hero-numeros reveal">';
+  ordenar(s.numeros).forEach(function(n){
+    h += '<div><div class="num-valor dados">' + esc(n.valor) + '</div><div class="num-rotulo">' + esc(c(n,'rotulo')) + '</div></div>';
+  });
+  h += '</div></div>';
+
+  /* assinatura: diagrama de camadas */
+  h += '<div class="pilha reveal">';
+  h += '<div class="pilha-trilha"><span class="pilha-sinal"></span></div>';
+  h += '<div class="pilha-topo"><span class="rotulo">' + (idioma==='en'?'where I work':'onde eu atuo') + '</span>' +
+       '<span class="rotulo" style="color:var(--sinal)">' + (idioma==='en'?'full stack':'pilha inteira') + '</span></div>';
+  ordenar(s.camadas).forEach(function(cm){
+    h += '<div class="camada"><div class="camada-nome">' + esc(c(cm,'nome')) + '</div>' +
+         '<div class="camada-itens">' + listaTec(cm.itens) + '</div></div>';
+  });
+  h += '</div>';
+  h += '</div></section>';
+
+  /* capacidades */
+  h += '<section class="faixa" id="capacidades"><div class="container">';
+  h += cabeca(idioma==='en'?'what I do':'o que eu faço', c(s,'capacidades_titulo'), c(s,'capacidades_sub'));
+  h += '<div class="capacidades reveal">';
+  publicados(DADOS.capacidades).forEach(function(cp, i){
+    h += '<article class="cap"><span class="cap-num dados">' + String(i+1).padStart(2,'0') + '</span>' +
+         '<h3>' + esc(c(cp,'titulo')) + '</h3><p>' + esc(c(cp,'texto')) + '</p>' +
+         '<div class="cap-tec">' + listaTec(cp.tecnologias) + '</div></article>';
+  });
+  h += '</div></div></section>';
+
+  /* trajetória */
+  h += '<section class="faixa" id="trajetoria"><div class="container">';
+  h += cabeca(idioma==='en'?'career':'trajetória', c(s,'trajetoria_titulo'), c(s,'trajetoria_sub'));
+  h += '<div class="trilha reveal">';
+  publicados(DADOS.experiencias).forEach(function(e){
+    h += '<div class="parada' + (e.atual ? ' atual' : '') + '">' +
+         '<div class="parada-periodo">' + esc(c(e,'periodo')) + '</div>' +
+         '<div class="parada-cargo">' + esc(c(e,'cargo')) + '</div>' +
+         '<div class="parada-empresa">' + esc(e.empresa) + '</div>' +
+         '<p class="parada-desc">' + esc(c(e,'descricao')) + '</p>' +
+         (c(e,'progressao') ? '<div class="parada-progressao">' + esc(c(e,'progressao')) + '</div>' : '') +
+         '</div>';
+  });
+  h += '</div></div></section>';
+
+  /* clientes */
+  if ((DADOS.clientes||[]).length){
+    h += '<section class="faixa" id="clientes"><div class="container">';
+    h += cabeca(idioma==='en'?'clients & brands':'clientes e marcas', c(s,'clientes_titulo'), c(s,'clientes_sub'));
+    h += '<div class="clientes reveal">';
+    publicados(DADOS.clientes).forEach(function(cl){
+      var site = urlSegura(cl.site, true);
+      h += site
+        ? '<a class="cliente" href="' + esc(site) + '" target="_blank" rel="noopener">' + esc(cl.nome) + '</a>'
+        : '<span class="cliente">' + esc(cl.nome) + '</span>';
+    });
+    h += '</div></div></section>';
+  }
+
+  /* destaques */
+  /* vitrine: escolhidos no painel; sem escolha, os três primeiros destaques */
+  var todosPub = publicados(DADOS.projetos);
+  var destaques = todosPub.filter(function(p){ return p.vitrine; });
+  if (!destaques.length) destaques = todosPub.filter(function(p){ return p.destaque; });
+  destaques = destaques.slice(0,3);
+  if (destaques.length){
+    h += '<section class="faixa" id="destaques"><div class="container">';
+    h += cabeca(idioma==='en'?'selected work':'projetos em destaque', c(s,'destaques_titulo'), c(s,'destaques_sub'));
+    h += '<div class="destaques reveal">';
+    destaques.forEach(function(p){
+      var alvoClique = urlDemo(p)
+        ? ' role="button" tabindex="0" data-visor="' + esc(p.id) + '" aria-label="' + esc(c(p,'titulo')) + '" style="cursor:pointer"'
+        : '';
+      h += '<article class="dcard">' +
+        '<div class="dcard-img"' + alvoClique + '>' + imagemProjeto(p) + '</div>' +
+        '<div class="dcard-corpo"><h3>' + esc(c(p,'titulo')) + '</h3>' +
+        '<p>' + esc(c(p,'tagline')) + '</p>' +
+        '<div class="stack">' + (p.stack||[]).slice(0,3).map(function(x){return '<span>'+esc(x)+'</span>';}).join('') + '</div>' +
+        '</div></article>';
+    });
+    h += '</div>';
+    h += '<div style="margin-top:2rem"><a class="btn" href="#/projetos">' +
+         (idioma==='en'?'see all projects':'ver todos os projetos') +
+         '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
+    h += '</div></section>';
+  }
+
+  /* depoimentos */
+  if ((DADOS.depoimentos||[]).length){
+    h += '<section class="faixa" id="depoimentos"><div class="container">';
+    h += cabeca(idioma==='en'?'references':'referências', c(s,'depoimentos_titulo'), c(s,'depoimentos_sub'));
+    h += '<div class="depoimentos reveal">';
+    publicados(DADOS.depoimentos).forEach(function(d){
+      var foto = urlImagem(d.foto), lk = urlSegura(d.linkedin, true);
+      var largo = c(d,'texto').length > 320;
+      h += '<figure class="dep' + (largo ? ' dep-largo' : '') + '"><blockquote class="dep-texto">' + esc(c(d,'texto')) + '</blockquote>' +
+        '<figcaption class="dep-pessoa">' +
+          (foto ? '<img class="dep-foto" src="' + esc(foto) + '" alt="" loading="lazy" decoding="async" width="40" height="40">' : '<span class="dep-foto"></span>') +
+          '<div><div class="dep-nome">' + esc(d.nome) + '</div><div class="dep-cargo">' + esc(c(d,'cargo')) + '</div></div>' +
+          (lk ? '<a class="dep-link" href="' + esc(lk) + '" target="_blank" rel="noopener" aria-label="LinkedIn — ' + esc(d.nome) + '">' +
+            '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 11-4 0 2 2 0 014 0zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"/></svg></a>' : '') +
+        '</figcaption></figure>';
+    });
+    h += '</div></div></section>';
+  }
+
+  /* certificados */
+  if ((DADOS.certificados||[]).length){
+    var certs = publicados(DADOS.certificados);
+    var emissores = {};
+    certs.forEach(function(x){ emissores[x.emissor] = (emissores[x.emissor]||0) + 1; });
+    if (certFiltro !== 'todos' && !emissores[certFiltro]) certFiltro = 'todos';
+    h += '<section class="faixa" id="certificados"><div class="container">';
+    h += cabeca(idioma==='en'?'certificates':'certificados',
+                c(s,'certificados_titulo'),
+                certs.length + (idioma==='en'?' certificates from ':' certificados de ') + Object.keys(emissores).length + (idioma==='en'?' issuers, each with a validation link where available.':' emissores, com link de validação onde disponível.'));
+    h += '<div class="cert-barra reveal">';
+    h += '<button class="cert-filtro" data-cert="todos" aria-pressed="' + (certFiltro === 'todos') + '">' + (idioma==='en'?'all':'todos') + '<em>' + certs.length + '</em></button>';
+    Object.keys(emissores).forEach(function(em){
+      h += '<button class="cert-filtro" data-cert="' + esc(em) + '" aria-pressed="' + (certFiltro === em) + '">' + esc(em) + '<em>' + emissores[em] + '</em></button>';
+    });
+    h += '</div>';
+    h += '<div class="cert-lista reveal" id="cert-lista"></div>';
+    h += '</div></section>';
+  }
+
+  /* contato */
+  h += '<section class="faixa" id="contato"><div class="container">';
+  h += cabeca(idioma==='en'?'contact':'contato', c(s,'contato_titulo'), c(s,'contato_sub'));
+  h += '<div class="contato-grid reveal">';
+  publicados(DADOS.contatos).forEach(function(ct){
+    var u = urlSegura(ct.url);
+    if (!u) return;
+    h += '<a class="contato-item" href="' + esc(u) + '"' + (/^https?:/i.test(u)?' target="_blank" rel="noopener"':'') + '>' +
+         '<span class="rotulo">' + esc(c(ct,'rotulo')) + '</span>' +
+         '<span class="contato-valor">' + esc(ct.valor) + '</span></a>';
+  });
+  h += '</div></div></section>';
+
+  alvo.innerHTML = h;
+  montarCertificados();
+}
+
+function cabeca(rotulo, titulo, sub){
+  return '<div class="faixa-cabeca reveal"><div><span class="rotulo">' + esc(rotulo) + '</span>' +
+         '<h2>' + esc(titulo) + '</h2></div>' +
+         '<p class="faixa-sub">' + esc(sub) + '</p></div>';
+}
+
+/* certificados: lista com filtro e "ver mais" */
+var certFiltro = 'todos', certExpandido = false;
+function montarCertificados(){
+  var caixa = document.getElementById('cert-lista');
+  if (!caixa) return;
+  var lista = publicados(DADOS.certificados).filter(function(x){
+    return certFiltro === 'todos' || x.emissor === certFiltro;
+  });
+  var limite = certExpandido ? lista.length : 6;
+  var ROTULOS_LINK = { pdf:{pt:'pdf', en:'pdf'}, validar:{pt:'validar', en:'verify'} };
+  var h = '';
+  lista.slice(0, limite).forEach(function(x){
+    h += '<div class="cert-item"><span class="cert-emissor">' + esc(x.emissor) + '</span>' +
+         '<span class="cert-nome">' + esc(c(x,'titulo')) + '</span><span class="cert-acoes">' +
+         (x.links||[]).map(function(l){
+           var u = urlSegura(l.url);
+           if (!u) return '';
+           var r = (ROTULOS_LINK[l.label] && ROTULOS_LINK[l.label][idioma]) || l.label;
+           return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(r) + '</a>';
+         }).join('') + '</span></div>';
+  });
+  if (lista.length > 6){
+    h += '<button class="ver-mais" id="cert-mais">' +
+         (certExpandido ? (idioma==='en'?'show less':'mostrar menos')
+                        : (idioma==='en'?'show all ':'ver todos os ') + lista.length) + '</button>';
+  }
+  caixa.innerHTML = h;
+  var b = document.getElementById('cert-mais');
+  if (b) b.addEventListener('click', function(){ certExpandido = !certExpandido; montarCertificados(); });
+}
+
+/* ── PROJETOS ─────────────────────────────────────────────────── */
+var filtroProjeto = 'todos';
+function renderProjetos(){
+  var s = DADOS.site || {};
+  var todos = publicados(DADOS.projetos);
+  var cats = {};
+  todos.forEach(function(p){ if (p.categoria) cats[p.categoria] = (cats[p.categoria]||0)+1; });
+  if (filtroProjeto !== 'todos' && !cats[filtroProjeto]) filtroProjeto = 'todos';
+
+  var h = '<section class="proj-topo"><div class="container">';
+  h += '<span class="rotulo reveal" style="display:block; margin-bottom:1rem">' +
+       (idioma==='en'?'portfolio · ':'portfólio · ') + todos.length + (idioma==='en'?' projects':' projetos') + '</span>';
+  h += '<h1 class="display proj-titulo reveal">' + esc(c(s,'projetos_titulo')) + '</h1>';
+  h += '<p class="proj-intro reveal">' + esc(c(s,'projetos_sub')) + '</p>';
+  h += '<div class="proj-filtros reveal">';
+  h += '<button class="cert-filtro" data-filtro="todos" aria-pressed="' + (filtroProjeto === 'todos') + '">' + (idioma==='en'?'all':'todos') + '<em>' + todos.length + '</em></button>';
+  Object.keys(cats).forEach(function(k){
+    h += '<button class="cert-filtro" data-filtro="' + esc(k) + '" aria-pressed="' + (filtroProjeto === k) + '">' + esc(nomeCategoria(k)) + '<em>' + cats[k] + '</em></button>';
+  });
+  h += '</div></div></section>';
+  h += '<div class="container"><div class="linhas" id="linhas"></div></div>';
+
+  alvo.innerHTML = h;
+  montarLinhas();
+}
+
+function montarLinhas(){
+  var caixa = document.getElementById('linhas');
+  if (!caixa) return;
+  var lista = publicados(DADOS.projetos).filter(function(p){
+    return filtroProjeto === 'todos' || p.categoria === filtroProjeto;
+  });
+  var h = '';
+  lista.forEach(function(p, i){
+    h += '<article class="linha reveal" id="projeto-' + esc(p.id) + '">';
+    h += '<div class="linha-visual">' + molduraProjeto(p, true) + '</div>';
+    h += '<div class="linha-texto">';
+    h += '<div class="linha-meta"><span class="linha-indice dados">' + String(i+1).padStart(2,'0') + ' / ' + String(lista.length).padStart(2,'0') + '</span>';
+    if (p.categoria) h += '<span class="selo">' + esc(nomeCategoria(p.categoria)) + '</span>';
+    if (p.destaque) h += '<span class="selo selo-sinal">' + (idioma==='en'?'featured':'destaque') + '</span>';
+    if (!urlDemo(p) && !urlRepo(p)) h += '<span class="selo selo-privado">' + (idioma==='en'?'private':'privado') + '</span>';
+    h += '</div>';
+    h += '<h2 class="linha-nome">' + esc(c(p,'titulo')) + '</h2>';
+    h += '<p class="linha-tagline">' + esc(c(p,'tagline')) + '</p>';
+    h += '<p class="linha-desc">' + esc(c(p,'descricao')) + '</p>';
+    if (c(p,'papel') || c(p,'impacto')){
+      h += '<dl class="linha-fatos">';
+      if (c(p,'papel')) h += '<dt>' + (idioma==='en'?'role':'papel') + '</dt><dd>' + esc(c(p,'papel')) + '</dd>';
+      if (c(p,'impacto')) h += '<dt>' + (idioma==='en'?'result':'resultado') + '</dt><dd class="resultado">' + esc(c(p,'impacto')) + '</dd>';
+      h += '</dl>';
+    }
+    h += '<div class="stack">' + (p.stack||[]).map(function(x){return '<span>'+esc(x)+'</span>';}).join('') + '</div>';
+    h += '<div class="linha-acoes">' + botoesProjeto(p) + '</div>';
+    h += '</div></article>';
+  });
+  caixa.innerHTML = h;
+  observar();
+}
+
+/* ── VISOR ────────────────────────────────────────────────────── */
+var visor = document.getElementById('visor');
+var visorQuadro = document.getElementById('visor-quadro');
+var visorCarregando = document.getElementById('visor-carregando');
+var visorDica = document.getElementById('visor-dica');
+var temporizadorDica = null;
+var focoAnterior = null;
+
+function abrirVisor(id){
+  var p = (DADOS.projetos||[]).filter(function(x){ return String(x.id) === String(id); })[0];
+  if (!p) return;
+  var url = urlEmbed(p);
+  if (!url) return;
+
+  focoAnterior = document.activeElement;
+  document.getElementById('visor-nome').textContent = c(p,'titulo');
+  document.getElementById('visor-url').textContent = url.replace(/^https?:\/\//,'');
+  var abrir = document.getElementById('visor-abrir');
+  abrir.href = url;
+
+  /* o iframe só nasce agora — nunca no carregamento da página */
+  var antigo = visorQuadro.querySelector('iframe');
+  if (antigo) antigo.remove();
+  visorCarregando.classList.remove('oculto');
+  visorDica.classList.remove('visivel');
+
+  var iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.loading = 'lazy';
+  iframe.referrerPolicy = 'no-referrer-when-downgrade';
+  iframe.setAttribute('sandbox','allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox');
+  iframe.setAttribute('allow','camera; fullscreen; clipboard-write');   /* FitIA usa a webcam */
+  iframe.setAttribute('title', c(p,'titulo'));
+  iframe.addEventListener('load', function(){ visorCarregando.classList.add('oculto'); });
+  visorQuadro.appendChild(iframe);
+
+  /* Não dá para detectar bloqueio de embed entre origens diferentes.
+     Então a saída "nova aba" fica sempre visível e a dica aparece
+     depois de um tempo, caso nada tenha pintado. */
+  clearTimeout(temporizadorDica);
+  temporizadorDica = setTimeout(function(){ visorDica.classList.add('visivel'); }, 3500);
+
+  visor.classList.add('aberto');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('visor-fechar').focus();
+}
+
+function fecharVisor(){
+  visor.classList.remove('aberto');
+  document.body.style.overflow = '';
+  clearTimeout(temporizadorDica);
+  var f = visorQuadro.querySelector('iframe');
+  if (f) f.remove();               /* descarrega o site embutido */
+  if (focoAnterior && focoAnterior.focus) focoAnterior.focus();
+}
+
+document.getElementById('visor-fechar').addEventListener('click', fecharVisor);
+visor.addEventListener('click', function(e){ if (e.target === visor) fecharVisor(); });
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape' && visor.classList.contains('aberto')) fecharVisor();
+});
+document.getElementById('visor-desktop').addEventListener('click', function(){
+  visorQuadro.classList.remove('telefone');
+  this.setAttribute('aria-pressed','true');
+  document.getElementById('visor-telefone').setAttribute('aria-pressed','false');
+});
+document.getElementById('visor-telefone').addEventListener('click', function(){
+  visorQuadro.classList.add('telefone');
+  this.setAttribute('aria-pressed','true');
+  document.getElementById('visor-desktop').setAttribute('aria-pressed','false');
+});
+
+/* ── delegação de eventos ─────────────────────────────────────── */
+document.addEventListener('click', function(e){
+  var v = e.target.closest('[data-visor]');
+  if (v){ e.preventDefault(); abrirVisor(v.getAttribute('data-visor')); return; }
+
+  var f = e.target.closest('[data-filtro]');
+  if (f){
+    filtroProjeto = f.getAttribute('data-filtro');
+    document.querySelectorAll('[data-filtro]').forEach(function(b){
+      b.setAttribute('aria-pressed', b === f ? 'true' : 'false');
+    });
+    montarLinhas();
+    return;
+  }
+
+  var ce = e.target.closest('[data-cert]');
+  if (ce){
+    certFiltro = ce.getAttribute('data-cert');
+    certExpandido = false;
+    document.querySelectorAll('[data-cert]').forEach(function(b){
+      b.setAttribute('aria-pressed', b === ce ? 'true' : 'false');
+    });
+    montarCertificados();
+    return;
+  }
+});
+document.addEventListener('keydown', function(e){
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.hasAttribute && e.target.hasAttribute('data-visor')){
+    e.preventDefault(); abrirVisor(e.target.getAttribute('data-visor'));
+  }
+});
+
+/* ── idioma ───────────────────────────────────────────────────── */
+function definirIdioma(novo){
+  idioma = novo;
+  localStorage.setItem('davicjc.idioma', novo);
+  document.documentElement.lang = novo === 'en' ? 'en' : 'pt-BR';
+  document.getElementById('lang-pt').setAttribute('aria-pressed', String(novo === 'pt'));
+  document.getElementById('lang-en').setAttribute('aria-pressed', String(novo === 'en'));
+  document.querySelectorAll('[data-t]').forEach(function(el){ el.textContent = t(el.getAttribute('data-t')); });
+  rotear({ manterRolagem: true, semAnimacao: true });
+}
+document.getElementById('lang-pt').addEventListener('click', function(){ definirIdioma('pt'); });
+document.getElementById('lang-en').addEventListener('click', function(){ definirIdioma('en'); });
+
+/* ── menu móvel ───────────────────────────────────────────────── */
+var menu = document.getElementById('menu');
+var botaoMenu = document.getElementById('abrir-menu');
+botaoMenu.addEventListener('click', function(){
+  var aberto = menu.classList.toggle('aberto');
+  botaoMenu.setAttribute('aria-expanded', String(aberto));
+});
+menu.addEventListener('click', function(e){
+  if (e.target.tagName === 'A'){ menu.classList.remove('aberto'); botaoMenu.setAttribute('aria-expanded','false'); }
+});
+
+/* ── revelação ao rolar ───────────────────────────────────────── */
+var observador = null;
+function observar(){
+  if (!('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visivel'); });
+    return;
+  }
+  if (!observador){
+    observador = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(en, i){
+        if (en.isIntersecting){
+          var atraso = Math.min(i * 55, 220);
+          setTimeout(function(){ en.target.classList.add('visivel'); }, atraso);
+          observador.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.04 });
+  }
+  document.querySelectorAll('.reveal:not(.visivel)').forEach(function(el){ observador.observe(el); });
+}
+
+/* ── rotas ────────────────────────────────────────────────────── */
+function rotaAtual(){
+  var h = location.hash || '#/';
+  if (h.indexOf('#/projetos') === 0) return '/projetos';
+  if (h.indexOf('#/') === 0) return '/';
+  return null; /* âncora dentro da home */
+}
+function buscarAncora(hash){
+  try { return hash && hash.length > 1 ? document.querySelector(hash) : null; } catch (e) { return null; }
+}
+/* opcoes.manterRolagem: troca de idioma e hidratação não mexem na posição.
+   opcoes.semAnimacao: conteúdo já visto não refaz o fade de entrada. */
+function rotear(opcoes){
+  opcoes = opcoes || {};
+  var y = window.scrollY;
+  var rota = rotaAtual();
+  if (rota === '/projetos'){ renderProjetos(); }
+  else if (rota === '/'){ renderHome(); }
+  else {
+    /* âncora: garante que a home está montada, depois rola */
+    renderHome();
+    var alvoAncora = buscarAncora(location.hash);
+    if (alvoAncora && !opcoes.manterRolagem){
+      setTimeout(function(){ alvoAncora.scrollIntoView({ behavior:'smooth', block:'start' }); }, 30);
+    }
+  }
+  document.querySelectorAll('.menu a[data-rota]').forEach(function(a){
+    a.classList.toggle('ativo', a.getAttribute('data-rota') === rota);
+  });
+  document.title = rota === '/projetos'
+    ? (idioma === 'en' ? 'Projects — Davi Castro' : 'Projetos — Davi Castro')
+    : 'Davi Castro — ' + (idioma === 'en' ? 'Full Stack Developer & Network Infrastructure' : 'Desenvolvedor Full Stack & Infraestrutura de Redes');
+  var rt = document.getElementById('rodape-texto');
+  if (rt){
+    rt.textContent = '© ' + new Date().getFullYear() + ' Davi Castro Jorge da Costa · ' +
+      (idioma === 'en' ? 'built and maintained by me' : 'feito e mantido por mim');
+  }
+  if (opcoes.semAnimacao){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visivel'); });
+  }
+  if (opcoes.manterRolagem) window.scrollTo(0, y);
+  else if (rota) window.scrollTo(0, 0);
+  observar();
+  /* efeitos visuais (3D, animações de rolagem) se reconectam ao novo conteúdo aqui */
+  document.dispatchEvent(new CustomEvent('davicjc:render', { detail: { rota: rota || '/', idioma: idioma } }));
+}
+window.addEventListener('hashchange', function(){ rotear(); });
+
+/* âncoras internas quando a home já está na tela: rola sem re-renderizar */
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  var href = a.getAttribute('href');
+  if (href.indexOf('#/') === 0 || href === '#') return;
+  var destino = buscarAncora(href);
+  if (destino && document.getElementById('trajetoria')){
+    e.preventDefault();
+    history.pushState(null, '', href);
+    destino.scrollIntoView({ behavior:'smooth', block:'start' });
+    document.querySelectorAll('.menu a[data-rota]').forEach(function(x){ x.classList.remove('ativo'); });
+  }
+});
+
+/* sombra do topo */
+addEventListener('scroll', function(){
+  document.getElementById('topo').classList.toggle('rolou', scrollY > 8);
+}, { passive:true });
+
+/* ── partida ──────────────────────────────────────────────────── */
+document.getElementById('lang-pt').setAttribute('aria-pressed', String(idioma === 'pt'));
+document.getElementById('lang-en').setAttribute('aria-pressed', String(idioma === 'en'));
+document.documentElement.lang = idioma === 'en' ? 'en' : 'pt-BR';
+rotear();
+
+/* ── hidratação pelo Firestore ────────────────────────────────── */
+window.__hidratar = function(remoto){
+  if (!remoto) return;
+  var novo = JSON.parse(JSON.stringify(DADOS));
+  var semeado = !!remoto.site;
+  ['site'].concat(COLECOES).forEach(function(k){
+    if (!remoto[k]) return;
+    if (Array.isArray(remoto[k]) && !remoto[k].length && !semeado) return;   /* banco sem carga: mantém a semente */
+    novo[k] = remoto[k];
+  });
+  novo = normalizar(novo);
+  try { localStorage.setItem(CHAVE_CACHE, JSON.stringify(novo)); } catch (e) {}
+  if (canonico(novo) === canonico(DADOS)) return;   /* nada mudou: não redesenha */
+  DADOS = novo;
+  if (visor.classList.contains('aberto')) return;    /* não mexe na tela com o visor aberto */
+  rotear({ manterRolagem: true, semAnimacao: true });
+};
+})();
+</script>
+
+<script type="module">
+/* Firestore é a fonte de verdade. Se algo aqui falhar, a página
+   permanece de pé com os dados embutidos acima. */
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import { getFirestore, collection, getDocs, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+const config = {
+  apiKey: "AIzaSyD9juzHnTpUhzUYy84Wa31b6sNT2uSxDVc",
+  authDomain: "portfoliopessoal-9aa5b.firebaseapp.com",
+  projectId: "portfoliopessoal-9aa5b",
+  storageBucket: "portfoliopessoal-9aa5b.firebasestorage.app",
+  messagingSenderId: "1011139931499",
+  appId: "1:1011139931499:web:961f85dda2a4d9d2a7302e"
+};
+
+const bd = getFirestore(initializeApp(config));
+try {
+  const colecoes = ['capacidades','experiencias','projetos','depoimentos','certificados','clientes','contatos'];
+  /* leitura única com limite de tempo: a página não fica presa a um banco lento */
+  const [siteSnap, ...snaps] = await Promise.race([
+    Promise.all([
+      getDoc(doc(bd, 'config', 'site')),
+      ...colecoes.map(nome => getDocs(collection(bd, nome)))
+    ]),
+    new Promise((_, rejeita) => setTimeout(() => rejeita({ code: 'tempo-esgotado' }), 10000))
+  ]);
+  /* Com config/site no banco, ele já foi populado: coleção vazia é vazia de verdade.
+     Sem ela, o banco ainda não recebeu a carga e a semente embutida continua valendo. */
+  const semeado = siteSnap.exists();
+  const remoto = {};
+  if (semeado) remoto.site = siteSnap.data();
+  snaps.forEach((snap, i) => {
+    if (semeado || !snap.empty) remoto[colecoes[i]] = snap.docs.map(d => Object.assign({ id: d.id }, d.data()));
+  });
+  window.__hidratar(remoto);
+} catch (erro) {
+  console.info('[davicjc] Firestore indisponível; exibindo dados embutidos.', erro && erro.code);
+}
+</script>
+
+</body>
+</html>

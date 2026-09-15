@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <!-- Página Principal (Português) -->
+
+  <!-- Portfólio: uma única página, com português e inglês alternados no próprio site -->
   <url>
     <loc>https://davicjc.com/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-br" href="https://davicjc.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/"/>
-    <lastmod>2026-02-05</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Página em Inglês -->
-  <url>
-    <loc>https://davicjc.com/en.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt-br" href="https://davicjc.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/"/>
-    <lastmod>2026-02-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Currículo -->
+
+  <!-- Currículo em português -->
   <url>
     <loc>https://davicjc.com/Curriculo/</loc>
-    <lastmod>2026-02-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://davicjc.com/Curriculo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/Curriculo/en.html"/>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Currículo em inglês -->
+  <url>
+    <loc>https://davicjc.com/Curriculo/en.html</loc>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://davicjc.com/Curriculo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/Curriculo/en.html"/>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>

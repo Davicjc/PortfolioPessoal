@@ -1,0 +1,4 @@
+} catch (erro) {
+  console.info('[davicjc] Firestore indisponível; exibindo dados embutidos.', erro && erro.code);
+}
+</script>
