@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="fotos/logo/download.png" alt="Logo Davi Castro" width="96">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brand/assinatura-davi-castro.svg">
+    <img src="brand/assinatura-davi-castro-claro.svg" alt="Davi Castro — full stack · infraestrutura de redes" width="420">
+  </picture>
 </p>
 
 <h1 align="center">Davi Castro — Portfólio</h1>
@@ -21,6 +24,19 @@ Portfólio pessoal com duas partes:
 - **Painel** (`adm/index.html`) — edita todo o conteúdo do site: projetos, trajetória, depoimentos, certificados, clientes, contatos e os textos da home, em português e inglês.
 
 O conteúdo mora no **Firestore**. O site é estático, sem etapa de build, e funciona em qualquer hospedagem de arquivos.
+
+## Marca
+
+A marca mora em `brand/` (prancha completa em `brand/index.html`): símbolo **cjc** (o j é o barramento, o pingo é o pacote), monograma **D**, wordmark **davicjc**, assinaturas, ícones e a imagem de compartilhamento `og.png`. Para regenerar os SVGs, use `brand/gerar-marca.js`.
+
+## SEO
+
+O site é uma SPA, mas entrega o conteúdo completo em HTML estático, além de JSON-LD, sitemap com imagens e `llms.txt`. Sempre que mudar o conteúdo pelo painel:
+
+1. No `/adm`, clique em **Exportar semente** e cole o resultado no `index.html`, entre `/* SEMENTE:INICIO */` e `/* SEMENTE:FIM */`.
+2. Rode `node tools/seo.js`.
+
+Links diretos por idioma: `?lang=en` e `?lang=es`.
 
 ## Estrutura
 

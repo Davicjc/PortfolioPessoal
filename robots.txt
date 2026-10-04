@@ -5,8 +5,8 @@
 # (Um grupo por robô substituiria este; por isso não há grupos de "Allow" por robô.)
 User-agent: *
 Disallow: /adm/
+Disallow: /tools/
 Allow: /
-Crawl-delay: 1
 
 # Bloquear bots de SEO agressivos
 User-agent: AhrefsBot
@@ -17,5 +17,8 @@ Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
+
+# Buscadores e assistentes de IA são bem-vindos: o conteúdo é público e feito para ser encontrado.
+# Resumo em texto para IA: https://davicjc.com/llms.txt
 
 Sitemap: https://davicjc.com/sitemap.xml

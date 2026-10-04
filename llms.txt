@@ -1,0 +1,81 @@
+# Davi Castro Jorge da Costa (Davi Castro · davicjc)
+
+> Desenvolvedor Full Stack & Infraestrutura de Redes em Uberlândia, MG · Brasil. Escrevo o software e cuido da rede em que ele roda. Na Audicom Telecom, desenvolvo sistemas internos, integro biometria e reconhecimento facial a catracas e mantenho a infraestrutura de um provedor — de roteadores MikroTik a servidores VMware. Fora dela, entrego sites e sistemas para clientes de beleza, gastronomia, saúde e consultoria.
+
+- Site: https://davicjc.com/
+- E-mail: davicjc@gmail.com
+- LinkedIn: https://linkedin.com/in/davicjc
+- GitHub: https://github.com/Davicjc
+- Currículo (PT): https://davicjc.com/Curriculo/
+- Résumé (EN): https://davicjc.com/Curriculo/en.html
+
+## Trajetória
+
+- Vice Supervisor · Desenvolvedor Full Stack · Técnico de Redes — Audicom Telecom & Audicom Tecnologia (set 2025 — atual). Desenvolvo os sistemas internos da operação — ordens de serviço de campo, portal de suporte e pedidos de clientes — e integro biometria e reconhecimento facial ao controle de acesso por catracas. Na infraestrutura, administro servidores VMware ESXi, túneis WireGuard e equipamentos MikroTik, Cisco, Ubiquiti e Datacom, com monitoramento em Grafana e Zabbix. Implantei um LMS com login único via SSO (SAML/OIDC) e superviso as equipes de NOC, HelpDesk e CGR.
+- Gerente de Relacionamento Empresarial Bilíngue — Algar Telecom (dez 2023 — jun 2025). Atendi em inglês o segmento de atacado da operadora, com clientes internacionais como Verizon, BT e China Telecom. Conduzi incidentes críticos de conectividade até a resolução e acompanhei a infraestrutura desses clientes em Grafana e Zabbix.
+- Fundador e desenvolvedor — Web pra Você · negócio próprio (2023 — encerrado). Criação de sites para pequenas e médias empresas, cuidando de proposta, design, desenvolvimento e publicação. O negócio foi encerrado.
+- Desenvolvedor Python · Projeto Face Safety — Universidade de Uberaba (Uniube) (out — dez 2023). Desenvolvi um sistema de controle de acesso por reconhecimento facial em Python e OpenCV, com cadastro pela câmera e liberação de fechadura para usuários autorizados. O projeto ficou em 1º lugar entre 60 trabalhos acadêmicos.
+- Agente de atendimento — Callink · operação Bradesco (out — dez 2023). Atendimento a clientes da operação Bradesco, usando técnicas de sondagem para entender e resolver demandas complexas.
+
+## O que faz
+
+- Sistemas web e aplicações: Sistemas internos, painéis administrativos e sites institucionais. Uso Firebase quando o projeto precisa de tempo real e autenticação sem servidor para manter. (JavaScript, TypeScript, React, Python, Node.js, Firebase, REST APIs)
+- Infraestrutura de provedor: Configuração e monitoramento de roteadores e enlaces, servidores virtualizados e VPNs, com alertas automáticos para o que não pode passar despercebido. (MikroTik, Cisco, Ubiquiti, BGP, RPKI, OSPF, VMware ESXi, WireGuard, Grafana, Zabbix)
+- Controle de acesso e visão computacional: Integração de catracas, biometria e reconhecimento facial com o software que decide quem entra — do cadastro do rosto à liberação da porta. (Python, C#, OpenCV, face_recognition, MediaPipe, Raspberry Pi)
+- Operação e liderança técnica: Supervisão das equipes de NOC, HelpDesk e CGR, organização das demandas técnicas e atendimento em inglês a operadoras internacionais. (NOC, HelpDesk, CGR, SSO · SAML · OIDC, Trello, Inglês avançado)
+
+## Projetos
+
+- [Audicom Hub](https://davicjc.github.io/AudicomHub/): Portal interno multiprojeto com controle de acesso por função — JavaScript, Firebase Auth, Firestore, PWA / Service Worker, HTML5, CSS3
+- [Telemetry Portal](https://github.com/Davicjc/telemetry-portal): Monitoramento de OSPF e BFD em MikroTik, auto-hospedado — Python, Flask, SQLite, RouterOS API, Grafana, Prometheus
+- [NexusAtlas](https://davicjc.com/#/projetos): Gestão de ordens de serviço de campo em tempo real, no navegador — JavaScript, Firebase, HTML5, CSS3
+- [Face Safety](https://github.com/Davicjc/FaceSafety): Controle de acesso por reconhecimento facial em Python — Python, OpenCV, face_recognition, dlib, NumPy, Tkinter
+- [ROAs Monitor Status](https://davicjc.github.io/ROAs-Monitor-Status/): Alerta no Telegram quando os ROAs do seu ASN ficam inválidos — Bash, RPKI, Telegram Bot API, Routinator, RIPEstat API, systemd
+- [Patricia Moura Lash Design](https://davicjc.github.io/PatriciaMouraLashDesign/): Agendamento online em tempo real para um estúdio de cílios — JavaScript, Firebase Firestore, Firebase Auth, HTML5, CSS3, GitHub Pages
+- [Hub CJC](https://davicjc.com/#/projetos): Central de projetos, tarefas e contratos com assinatura eletrônica — TypeScript, React, Firebase, Vite, Tailwind CSS, React Query
+- [Site Audicom Telecom](https://audicomtelecom.com.br/): Site institucional em produção da provedora Audicom Telecom — HTML5, CSS3, JavaScript
+- [Capilé Drinks](https://davicjc.github.io/CapileSite/): Cardápio interativo e painel de gestão para bar de drinks autorais — HTML5, CSS3, JavaScript, LocalStorage, Chart.js
+- [Audicom Speed Test](https://velocidadeteste.audicomtelecom.com.br/): Teste de velocidade próprio, medindo na rota real do cliente — LibreSpeed, JavaScript, HTML5, CSS3
+- [Portfólio Dennis Wilber](https://davicjc.github.io/PortifolioDDWilber/): Portfólio one-page para um líder de vendas da Xiaomi Brasil — HTML5, CSS3, JavaScript, GitHub Pages, Google Analytics
+- [Acesso Audicom (QR Code)](https://davicjc.github.io/AcessoAudicom/): Liberação de catracas por QR Code gerado no cadastro do visitante — HTML5, CSS3, JavaScript ES6+, Java, Raspberry Pi Pico
+- [FitIA](https://davicjc.github.io/FitIA/): Contagem de repetições e análise de forma por webcam, no navegador — JavaScript, MediaPipe, Canvas API, Three.js, Firebase Firestore, HTML5
+- [Pedidos Audicom](https://davicjc.com/#/projetos): Solicitação de internet pelo cliente e gestão em painel interno — HTML5, CSS3, JavaScript
+- [PopManager](https://davicjc.com/#/projetos): Gestão centralizada de POPs de rede para provedor de internet — Python, JavaScript, HTML5, CSS3, Linux Server
+- [CRM Alpa Solutions](https://davicjc.com/#/projetos): Base única de clientes e histórico comercial para a Valoria — JavaScript, HTML5, CSS3, Git
+- [Instituto Elora](https://davicjc.com/#/projetos): Site institucional para clínica de estética e saúde integrativa — JavaScript, HTML5, CSS3, Git
+- [Gestor de API](https://davicjc.com/#/projetos): Painel Master para credenciais Firebase de múltiplos clientes — JavaScript, HTML5, CSS3, Firebase
+- [DesenhoBase64](https://davicjc.github.io/DesenhoBase64/): Canvas HTML5 vira quadro de desenho e assinatura, sem dependências — JavaScript, HTML5 Canvas, HTML5, CSS3
+- [Barbearia Soares](https://davicjc.github.io/BarbeariaSoares/): Site de vitrine para barbearia local, em HTML e CSS puros — HTML5, CSS3, Git, GitHub
+- [Painel da Sala de Reunião](https://davicjc.github.io/AudicomSiteReuniao/): Tela de recepção da sala de reunião da Audicom Telecom — HTML5, CSS3, JavaScript
+- [Página dos QR Codes Audicom](https://davicjc.github.io/QRCodeAudicomSite/): Destino dos QR Codes aplicados nos carros e materiais da Audicom — HTML5, CSS3, JavaScript
+
+## Certificados
+
+- Fundamentos de Azure Copilot — Microsoft
+- Fundamentos de GitHub Copilot — Microsoft
+- Java para Soluções em Azure — Microsoft
+- Linux para Ambientes Azure — Microsoft
+- Agentes Inteligentes com Azure Copilot — Microsoft
+- Modernização de Aplicações com GitHub Copilot — Microsoft
+- Migrar cargas do SQL Server para Azure SQL — Microsoft
+- Migrar cargas locais para Azure — Microsoft
+- Manter bancos SQL Server no Azure — Microsoft
+- Desenvolver soluções de IA no Azure — Microsoft
+- Migrate & Modernize Challenge — Microsoft
+- Administração de Banco de Dados no Azure — Microsoft
+- Trilha de Engenharia de IA — Microsoft
+- Finanças Pessoais — Sicoob
+- Finanças para MEI — Sicoob
+- Finanças para Investidores — Sicoob
+- Lei Geral de Proteção de Dados — Algar Telecom
+- Código de Conduta — Algar Telecom
+- Python para Desenvolvimento e Automação — Alura
+- Linha de Comando no Windows — Alura
+- Inglês para Tecnologia e Carreira — Alura
+- Segurança da Informação — Hacker Rangers
+- Certificado de Participação em Webinar — TP-Link
+- Inglês Avançado para Comunicação Profissional — Wizard
+
+## Optional
+
+- English: Davi Castro is a Full Stack Developer & Network Infrastructure based in Uberlândia, Brazil. I write the software and look after the network it runs on. At Audicom Telecom I build internal systems, wire biometrics and facial recognition into access turnstiles and keep an ISP's infrastructure running — from MikroTik routers to VMware servers. Outside of it, I ship websites and systems for clients in beauty, hospitality, healthcare and consulting.

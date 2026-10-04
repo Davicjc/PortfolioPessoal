@@ -1,0 +1,13 @@
+<style>
+  body { margin: 0; background: #333; display: flex; align-items: center; justify-content: center; height: 100vh; }
+  .visor { width: 800px; height: 600px; background: #000; overflow: hidden; display: flex; flex-direction: column; }
+  .visor-top { height: 50px; background: #222; }
+  .visor-frame { height: 550px; background: #111; display: flex; justify-content: center; overflow: hidden; }
+  .visor iframe { width: 125%; height: 125%; border: 0; background: #fff; transform: scale(0.8); transform-origin: top center; flex-shrink: 0; }
+</style>
+<div class="visor">
+  <div class="visor-top"></div>
+  <div class="visor-frame">
+    <iframe src="https://example.com"></iframe>
+  </div>
+</div>

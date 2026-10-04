@@ -1,0 +1,13 @@
+/* TEAM */
+Desenvolvimento, design e conteúdo: Davi Castro Jorge da Costa (davicjc)
+Contato: contato@davicjc.com
+Site: https://davicjc.com
+GitHub: https://github.com/Davicjc
+LinkedIn: https://linkedin.com/in/davicjc
+Local: Uberlândia, MG, Brasil
+
+/* SITE */
+Idiomas: Português, English, Español
+Feito com: HTML, CSS, JavaScript, GSAP, Lenis, Firebase (Firestore)
+Fontes: Archivo, IBM Plex Sans, IBM Plex Mono
+Marca: brand/ (símbolo cjc e monograma D)

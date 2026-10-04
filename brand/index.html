@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="darkreader-lock">
+<meta name="robots" content="noindex">
+<title>Marca — Davi Castro</title>
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0d12; --ink-2:#0d1117; --panel:#11161e; --line:#1e2632; --line-2:#2b3543;
+  --text:#e8edf3; --dim:#a6b1c0; --faint:#808b9b; --signal:#4ade80; --paper:#f4f6f8;
+  --f-display:'Archivo', system-ui, sans-serif; --f-body:'IBM Plex Sans', system-ui, sans-serif; --f-data:'IBM Plex Mono', ui-monospace, monospace;
+}
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--ink); color:var(--text); font-family:var(--f-body); line-height:1.6; -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--signal); color:#06210f; }
+.wrap{ max-width:1200px; margin:0 auto; padding:0 clamp(1rem,4.5vw,2.75rem); }
+header{ padding:clamp(4rem,10vw,7rem) 0 3rem; }
+h1{ font-family:var(--f-display); font-weight:700; font-size:clamp(2.6rem,6vw,4.5rem); line-height:.98; letter-spacing:-.04em; margin:0; }
+h2{ font-family:var(--f-display); font-weight:600; font-size:clamp(1.6rem,3vw,2.2rem); letter-spacing:-.025em; margin:0 0 .5rem; }
+p{ margin:0; color:var(--dim); max-width:62ch; }
+.lead{ margin-top:1.25rem; font-size:1.1rem; }
+.mono{ font-family:var(--f-data); font-size:.76rem; color:var(--faint); }
+section{ padding:4.5rem 0; border-top:1px solid var(--line); }
+.grid{ display:grid; gap:1rem; margin-top:2rem; }
+.g2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+.g3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media (max-width:820px){ .g2,.g3{ grid-template-columns:1fr; } }
+.tile{ border:1px solid var(--line-2); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+.stage{ display:grid; place-items:center; min-height:260px; padding:2.5rem; background:var(--ink-2); position:relative; }
+.stage.light{ background:var(--paper); }
+.stage img{ max-width:100%; height:auto; }
+.cap{ display:flex; justify-content:space-between; gap:1rem; padding:.8rem 1rem; border-top:1px solid var(--line); background:var(--panel); }
+.cap b{ font-weight:500; font-size:.92rem; }
+.cap a{ color:var(--dim); font-family:var(--f-data); font-size:.72rem; text-decoration:none; border:1px solid var(--line-2); border-radius:6px; padding:.15rem .45rem; }
+.cap a:hover{ color:var(--signal); border-color:rgba(74,222,128,.4); }
+
+.hero-mark{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:2rem; align-items:stretch; margin-top:3rem; }
+@media (max-width:820px){ .hero-mark{ grid-template-columns:1fr; } }
+.big{ border:1px solid var(--line-2); border-radius:14px; background:var(--ink-2); display:grid; place-items:center; padding:3rem; min-height:380px; }
+.big img{ width:min(100%,360px); }
+.notes{ display:flex; flex-direction:column; gap:1.25rem; justify-content:center; }
+.note{ border-top:1px solid var(--line); padding-top:1rem; }
+.note h3{ margin:0 0 .3rem; font-size:1.05rem; font-weight:600; }
+
+/* construção */
+.build{ position:relative; width:min(100%,560px); aspect-ratio:112/100; margin:2rem auto 0; }
+.build svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.g line{ stroke:var(--line); stroke-width:.25; }
+.g .x{ stroke:rgba(74,222,128,.35); stroke-dasharray:1.5 1.5; stroke-width:.35; }
+.lbl{ font-family:var(--f-data); font-size:3px; fill:var(--faint); }
+.guide{ fill:none; stroke:rgba(74,222,128,.5); stroke-width:.35; stroke-dasharray:1 1; }
+
+/* tamanhos */
+.sizes{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:2.25rem; margin-top:2rem; padding:2rem; border:1px solid var(--line-2); border-radius:14px; background:var(--ink-2); }
+.sizes figure{ margin:0; display:flex; flex-direction:column; align-items:center; gap:.6rem; }
+.tab{ display:inline-flex; align-items:center; gap:.5rem; height:34px; padding:0 .8rem; background:#1b2029; border-radius:8px 8px 0 0; font-size:.8rem; color:var(--dim); }
+
+/* cores */
+.sw{ border:1px solid var(--line-2); border-radius:14px; overflow:hidden; }
+.sw div{ height:110px; }
+.sw p{ padding:.75rem 1rem; font-family:var(--f-data); font-size:.76rem; color:var(--dim); border-top:1px solid var(--line); background:var(--panel); max-width:none; }
+
+/* aplicações */
+.card{ width:min(100%,420px); aspect-ratio:1.75; border-radius:14px; background:var(--ink); border:1px solid var(--line-2); box-shadow:0 24px 48px -12px rgba(0,0,0,.6); padding:1.5rem; display:flex; flex-direction:column; justify-content:space-between; }
+.card .row{ display:flex; justify-content:space-between; align-items:flex-end; }
+.card .meta{ font-family:var(--f-data); font-size:.68rem; color:var(--faint); line-height:1.7; text-align:right; }
+.avatar{ width:132px; height:132px; border-radius:50%; overflow:hidden; border:1px solid var(--line-2); }
+.dont{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; margin-top:2rem; }
+@media (max-width:820px){ .dont{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+.dont figure{ margin:0; border:1px solid var(--line-2); border-radius:12px; overflow:hidden; }
+.dont .st{ height:130px; display:grid; place-items:center; background:var(--ink-2); position:relative; }
+.dont .st::after{ content:''; position:absolute; inset:14px; border:1px solid rgba(248,113,113,.0); }
+.dont figcaption{ padding:.6rem .8rem; font-size:.82rem; color:var(--dim); border-top:1px solid var(--line); background:var(--panel); }
+.dont figcaption b{ color:#f87171; font-weight:500; }
+footer{ padding:3rem 0 4rem; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img src="assinatura-davi-castro.svg" alt="Davi Castro — full stack · infraestrutura de redes" style="height:64px;width:auto">
+  <h1 style="margin-top:3rem">Uma marca que mostra<br>o caminho do dado.</h1>
+  <p class="lead">O site conta “da tela ao roteador”: um pacote que atravessa camadas. A marca usa a mesma gramática. A linha vertical é o barramento, o ponto verde é o pacote, e cada forma é desenhada com o mesmo traço, a mesma grade e as mesmas pontas redondas.</p>
+</header>
+
+<section>
+  <h2>Símbolo principal — cjc</h2>
+  <p>As iniciais de Castro Jorge da Costa. O <b>j</b> é o barramento do diagrama do site, e o pingo dele vira o pacote em verde de “link up”. As duas letras c abrem para o centro e enquadram o fluxo.</p>
+  <div class="hero-mark">
+    <div class="big"><img src="cjc-simbolo.svg" alt="Símbolo cjc"></div>
+    <div class="notes">
+      <div class="note"><h3>Barramento</h3><p>Haste vertical única, a mesma linha que liga as camadas no hero do site.</p></div>
+      <div class="note"><h3>Pacote</h3><p>O único elemento em cor. O diâmetro é maior que o traço, como o pacote é maior que a linha por onde passa.</p></div>
+      <div class="note"><h3>Rotas abertas</h3><p>As letras c abrem 84°, voltadas para o barramento: entrada e saída.</p></div>
+      <p class="mono">traço 7.5u · raio do c 18.5u · grade 4u · pontas redondas</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Construção</h2>
+  <p>Linha de x-height, eixo do barramento e respiro mínimo. O respiro em volta do símbolo é igual ao diâmetro do pacote.</p>
+  <div class="build">
+    <svg viewBox="0 0 112 100" aria-hidden="true">
+      <g class="g" id="grid"></g>
+      <g class="g">
+        <line class="x" x1="-6" y1="28.75" x2="118" y2="28.75"/><line class="x" x1="-6" y1="71.25" x2="118" y2="71.25"/>
+        <line class="x" x1="54" y1="4" x2="54" y2="98"/><line class="x" x1="-6" y1="50" x2="118" y2="50"/>
+      </g>
+      <circle class="guide" cx="24" cy="50" r="18.5"/><circle class="guide" cx="87.5" cy="50" r="18.5"/><circle class="guide" cx="41" cy="76" r="13"/>
+      <g fill="none" stroke="#e8edf3" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" opacity=".92">
+        <path d="M37.75 37.62 A18.5 18.5 0 1 0 37.75 62.38"/><path d="M54 32.5 V76 A13 13 0 0 1 41 89"/><path d="M101.25 37.62 A18.5 18.5 0 1 0 101.25 62.38"/>
+      </g>
+      <circle cx="54" cy="17" r="5.5" fill="#4ade80"/>
+      <text class="lbl" x="-6" y="27">x-height</text><text class="lbl" x="56" y="6">barramento</text><text class="lbl" x="61" y="18.5">pacote ⌀11</text>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <h2>Monograma D</h2>
+  <p>Para quando o espaço pede uma letra só: avatar, favicon, ícone de app. A haste do D é o barramento, interrompida pelo nó verde: o pacote no meio do caminho. O bojo é a rota de ida e volta (requisição → resposta).</p>
+  <div class="grid g3">
+    <div class="tile"><div class="stage"><img src="d-monograma.svg" alt="Monograma D" width="180"></div><div class="cap"><b>Monograma</b><a href="d-monograma.svg" download>svg</a></div></div>
+    <div class="tile"><div class="stage"><img src="app-icon.svg" alt="Ícone de app" width="180"></div><div class="cap"><b>Ícone de app</b><a href="app-icon.svg" download>svg</a></div></div>
+    <div class="tile"><div class="stage light"><img src="d-monograma-claro.svg" alt="Monograma D em fundo claro" width="180"></div><div class="cap"><b>Fundo claro</b><a href="d-monograma-claro.svg" download>svg</a></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Wordmark e assinaturas</h2>
+  <p>A assinatura usa Archivo SemiBold, convertida em contorno (não depende de fonte instalada). No wordmark <b>davicjc</b>, o pingo do j também é o pacote, ligando o nome ao símbolo.</p>
+  <div class="grid g2">
+    <div class="tile"><div class="stage"><img src="wordmark-davicjc.svg" alt="davicjc" width="360"></div><div class="cap"><b>Wordmark davicjc</b><a href="wordmark-davicjc.svg" download>svg</a></div></div>
+    <div class="tile"><div class="stage light"><img src="wordmark-davicjc-claro.svg" alt="davicjc em fundo claro" width="360"></div><div class="cap"><b>Wordmark · claro</b><a href="wordmark-davicjc-claro.svg" download>svg</a></div></div>
+    <div class="tile"><div class="stage"><img src="assinatura-davi-castro.svg" alt="Assinatura Davi Castro" width="440"></div><div class="cap"><b>Assinatura principal</b><a href="assinatura-davi-castro.svg" download>svg</a></div></div>
+    <div class="tile"><div class="stage light"><img src="assinatura-davi-castro-claro.svg" alt="Assinatura Davi Castro em fundo claro" width="440"></div><div class="cap"><b>Assinatura · claro</b><a href="assinatura-davi-castro-claro.svg" download>svg</a></div></div>
+    <div class="tile"><div class="stage"><img src="assinatura-cjc.svg" alt="Assinatura cjc Davi Castro" width="380"></div><div class="cap"><b>Assinatura com símbolo</b><a href="assinatura-cjc.svg" download>svg</a></div></div>
+    <div class="tile"><div class="stage light"><img src="assinatura-cjc-claro.svg" alt="Assinatura cjc em fundo claro" width="380"></div><div class="cap"><b>Com símbolo · claro</b><a href="assinatura-cjc-claro.svg" download>svg</a></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Tamanhos pequenos</h2>
+  <p>Teste de leitura de 16px a 96px. No favicon o traço engrossa para continuar nítido em 16px.</p>
+  <div class="sizes">
+    <figure><img src="favicon.svg" width="16" height="16" alt=""><span class="mono">16</span></figure>
+    <figure><img src="favicon.svg" width="24" height="24" alt=""><span class="mono">24</span></figure>
+    <figure><img src="favicon.svg" width="32" height="32" alt=""><span class="mono">32</span></figure>
+    <figure><img src="app-icon.svg" width="64" height="64" alt=""><span class="mono">64</span></figure>
+    <figure><img src="app-icon.svg" width="96" height="96" alt=""><span class="mono">96</span></figure>
+    <figure><img src="cjc-simbolo.svg" width="28" alt=""><span class="mono">cjc 28</span></figure>
+    <figure><img src="cjc-simbolo.svg" width="48" alt=""><span class="mono">cjc 48</span></figure>
+    <figure><span class="tab"><img src="favicon.svg" width="16" height="16" alt="">Davi Castro — Desenvolvedor</span><span class="mono">aba do navegador</span></figure>
+  </div>
+</section>
+
+<section>
+  <h2>Cores</h2>
+  <p>As mesmas do site. Só o pacote tem cor; o resto é tinta e papel.</p>
+  <div class="grid g3">
+    <div class="sw"><div style="background:#0a0d12"></div><p>tinta · #0a0d12</p></div>
+    <div class="sw"><div style="background:#e8edf3"></div><p>papel · #e8edf3 / claro #f4f6f8</p></div>
+    <div class="sw"><div style="background:#4ade80"></div><p>sinal · #4ade80 / no claro #16a34a</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Na prática</h2>
+  <div class="grid g2" style="margin-top:2rem">
+    <div class="tile"><div class="stage">
+      <div class="card">
+        <img src="cjc-simbolo.svg" alt="" width="64">
+        <div class="row"><img src="assinatura-davi-castro.svg" alt="Davi Castro" style="height:40px;width:auto"><div class="meta">davicjc.com<br>Uberlândia · MG</div></div>
+      </div>
+    </div><div class="cap"><b>Cartão de visita</b><span class="mono">85 × 49 mm</span></div></div>
+    <div class="tile"><div class="stage" style="gap:1.5rem;grid-auto-flow:column">
+      <div class="avatar"><img src="app-icon.svg" alt="" width="132" height="132" style="transform:scale(1.22)"></div>
+      <div style="display:flex;flex-direction:column;gap:.35rem"><b style="font-size:1.05rem">Davi Castro</b><span class="mono">@davicjc · GitHub / LinkedIn</span></div>
+    </div><div class="cap"><b>Avatar de perfil</b><span class="mono">recorte circular</span></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Não fazer</h2>
+  <div class="dont">
+    <figure><div class="st"><img src="cjc-simbolo.svg" width="96" alt="" style="transform:scaleX(1.5)"></div><figcaption><b>Não</b> distorcer as proporções</figcaption></figure>
+    <figure><div class="st"><img src="cjc-simbolo.svg" width="96" alt="" style="filter:hue-rotate(160deg)"></div><figcaption><b>Não</b> trocar a cor do pacote</figcaption></figure>
+    <figure><div class="st"><img src="cjc-simbolo.svg" width="96" alt="" style="filter:drop-shadow(0 0 12px #4ade80)"></div><figcaption><b>Não</b> aplicar brilho ou sombra</figcaption></figure>
+    <figure><div class="st" style="background:#4ade80"><img src="cjc-simbolo.svg" width="96" alt=""></div><figcaption><b>Não</b> usar sobre o verde</figcaption></figure>
+  </div>
+</section>
+
+</div>
+<footer><div class="wrap"><p class="mono">brand/ · SVGs com texto em contorno · gerado por grade · davicjc.com</p></div></footer>
+<script>
+  /* grade de 4u desenhada por script para manter o SVG de construção legível */
+  (function(){ var g = document.getElementById('grid'), h = '';
+    for (var x = 0; x <= 112; x += 4) h += '<line x1="'+x+'" y1="0" x2="'+x+'" y2="100"/>';
+    for (var y = 0; y <= 100; y += 4) h += '<line x1="0" y1="'+y+'" x2="112" y2="'+y+'"/>';
+    g.innerHTML = h; })();
+</script>
+</body>
+</html>

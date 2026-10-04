@@ -1,31 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Portfólio: uma única página, com português e inglês alternados no próprio site -->
+  <!-- Portfólio: página única (SPA). Gerado por tools/seo.js em 2026-10-04. -->
   <url>
     <loc>https://davicjc.com/</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image><image:loc>https://davicjc.com/brand/og.png</image:loc><image:title>Davi Castro — Desenvolvedor Full Stack &amp; Infraestrutura de Redes</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/me/me.jpg</image:loc><image:title>Davi Castro Jorge da Costa</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomhub.webp</image:loc><image:title>Audicom Hub — Portal interno multiprojeto com controle de acesso por função</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/facesafety.webp</image:loc><image:title>Face Safety — Controle de acesso por reconhecimento facial em Python</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/roasmonitor.webp</image:loc><image:title>ROAs Monitor Status — Alerta no Telegram quando os ROAs do seu ASN ficam inválidos</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/patricia.webp</image:loc><image:title>Patricia Moura Lash Design — Agendamento online em tempo real para um estúdio de cílios</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomtelecom.webp</image:loc><image:title>Site Audicom Telecom — Site institucional em produção da provedora Audicom Telecom</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/capile.webp</image:loc><image:title>Capilé Drinks — Cardápio interativo e painel de gestão para bar de drinks autorais</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/speedtest.webp</image:loc><image:title>Audicom Speed Test — Teste de velocidade próprio, medindo na rota real do cliente</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/ddwilber.webp</image:loc><image:title>Portfólio Dennis Wilber — Portfólio one-page para um líder de vendas da Xiaomi Brasil</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/acessoaudicom.webp</image:loc><image:title>Acesso Audicom (QR Code) — Liberação de catracas por QR Code gerado no cadastro do visitante</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/fitia.webp</image:loc><image:title>FitIA — Contagem de repetições e análise de forma por webcam, no navegador</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/desenhobase64.webp</image:loc><image:title>DesenhoBase64 — Canvas HTML5 vira quadro de desenho e assinatura, sem dependências</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/barbearia.webp</image:loc><image:title>Barbearia Soares — Site de vitrine para barbearia local, em HTML e CSS puros</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomreuniao.webp</image:loc><image:title>Painel da Sala de Reunião — Tela de recepção da sala de reunião da Audicom Telecom</image:title></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/qrcodeaudicom.webp</image:loc><image:title>Página dos QR Codes Audicom — Destino dos QR Codes aplicados nos carros e materiais da Audicom</image:title></image:image>
   </url>
 
-  <!-- Currículo em português -->
   <url>
     <loc>https://davicjc.com/Curriculo/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-br" href="https://davicjc.com/Curriculo/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/Curriculo/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/Curriculo/en.html"/>
-    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/Curriculo/"/>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Currículo em inglês -->
   <url>
     <loc>https://davicjc.com/Curriculo/en.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt-br" href="https://davicjc.com/Curriculo/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/Curriculo/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/Curriculo/en.html"/>
-    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/Curriculo/"/>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

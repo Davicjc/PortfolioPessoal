@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Painel · davicjc.com</title>
-<link rel="icon" href="../fotos/logo/download.png">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="../brand/favicon.svg">
+<link rel="apple-touch-icon" href="../brand/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0a0d12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -71,6 +75,7 @@ a{color:inherit}
 .login-caixa{width:100%; max-width:380px}
 .login-marca{display:flex; align-items:center; gap:.55rem; font-family:var(--fonte-display); font-weight:800; font-size:1.1rem; letter-spacing:-.03em; margin-bottom:2rem}
 .ponto{width:8px; height:8px; border-radius:50%; background:var(--sinal); flex:none}
+.marca-d{width:1.05em; height:auto; flex:none}
 .login h1{font-family:var(--fonte-display); font-weight:800; font-size:2rem; letter-spacing:-.035em; line-height:1.05; margin:0 0 .5rem}
 .login p{color:var(--tinta-2); margin:0 0 1.75rem}
 .login form{display:flex; flex-direction:column; gap:1rem}
@@ -90,8 +95,8 @@ input[type=text],input[type=email],input[type=password],input[type=url],input[ty
 textarea{resize:vertical; min-height:96px; line-height:1.5}
 input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal); box-shadow:0 0 0 3px var(--sinal-suave)}
 .erro-campo{border-color:var(--perigo)!important}
-.bi-grade{display:grid; grid-template-columns:1fr 1fr; gap:.6rem}
-@media (max-width:640px){.bi-grade{grid-template-columns:1fr}}
+.bi-grade{display:grid; grid-template-columns:1fr 1fr 1fr; gap:.6rem}
+@media (max-width:800px){.bi-grade{grid-template-columns:1fr}}
 .bi-grade label{display:flex; flex-direction:column; gap:.25rem; min-width:0}
 .lang{font-family:var(--fonte-dados); font-size:.6rem; font-weight:600; letter-spacing:.12em; color:var(--tinta-3)}
 .chave{display:flex; align-items:center; gap:.6rem; cursor:pointer; user-select:none; padding:.2rem 0}
@@ -224,7 +229,7 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 <!-- ═══ LOGIN ═══ -->
 <section class="login" id="tela-login" hidden>
   <div class="login-caixa">
-    <div class="login-marca"><span class="ponto"></span>davi castro</div>
+    <div class="login-marca"><svg class="marca-d" viewBox="20 12 66 76" aria-hidden="true"><path d="M30 39 V22 H48 A28 28 0 0 1 48 78 H30 V61" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="50" r="7" style="fill:var(--sinal)"/></svg>davi castro</div>
     <h1>Painel do portfólio</h1>
     <p>Entre para editar projetos, trajetória, depoimentos e o resto do site.</p>
     <form id="form-login" novalidate>
@@ -243,7 +248,7 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 <!-- ═══ APP ═══ -->
 <div class="app" id="app" hidden>
   <aside class="lateral">
-    <div class="login-marca"><span class="ponto"></span>painel</div>
+    <div class="login-marca"><svg class="marca-d" viewBox="20 12 66 76" aria-hidden="true"><path d="M30 39 V22 H48 A28 28 0 0 1 48 78 H30 V61" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="50" r="7" style="fill:var(--sinal)"/></svg>painel</div>
     <nav class="nav" id="nav" aria-label="Seções"></nav>
     <div class="lateral-rodape">
       <div class="usuario" id="usuario"></div>
@@ -384,6 +389,7 @@ const SECOES = [
     novo: { publicado:true },
     campos:[
       { k:'nome', tipo:'texto', rotulo:'Nome', obrigatorio:true },
+      { k:'projeto_vinculado', tipo:'texto', rotulo:'Projeto vinculado', ajuda:'Qual projeto este cliente está avaliando? (Ex: Audicom Hub)' },
       { k:'cargo', tipo:'bi', rotulo:'Cargo e empresa' },
       { k:'texto', tipo:'bi-longo', rotulo:'Depoimento' },
       { k:'linkedin', tipo:'url', rotulo:'LinkedIn' },
@@ -397,18 +403,23 @@ const SECOES = [
     novo: { publicado:true, links:[] },
     campos:[
       { k:'titulo', tipo:'bi', rotulo:'Nome do certificado', obrigatorio:true },
-      { k:'emissor', tipo:'texto', rotulo:'Emissor', ajuda:'Certificados com o mesmo emissor formam um filtro.' },
-      { k:'links', tipo:'grupo', rotulo:'Links', item:'link', novo:{ label:'pdf', url:'' },
-        campos:[ { k:'label', tipo:'select', rotulo:'Tipo', opcoes:[['pdf','PDF'],['validar','Validação']] }, { k:'url', tipo:'texto', rotulo:'Endereço', ajuda:'URL completa ou caminho no site (certificados/...).' } ] },
+      { k:'emissor', tipo:'texto', rotulo:'Emissor', ajuda:'Certificados com o mesmo emissor formam um filtro.', datalist: () => [...new Set((estado.dados.certificados||[]).map(c=>c.emissor).filter(Boolean))] },
+      { k:'ordem', tipo:'texto', rotulo:'Ordem (numérico)', ajuda:'Deixe em branco para ir para o fim da lista' },
+      { k:'links', tipo:'grupo', rotulo:'Links e PDFs', item:'Link',
+        campos:[
+          { k:'url', tipo:'url', rotulo:'URL', obrigatorio:true },
+          { k:'label', tipo:'select', rotulo:'Tipo', opcoes:[['pdf','PDF'],['validar','Validação']] }
+        ] },
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
     ] },
 
   { id:'clientes', nome:'Clientes e marcas', prefixo:'cli',
-    descricao:'Nomes exibidos na seção de clientes. Com site preenchido, o nome vira link.',
+    descricao:'Nomes e logos exibidos na seção de clientes. Com site preenchido, o nome vira link.',
     titulo: c => c.nome, sub: c => c.site || 'sem link',
     novo: { publicado:true },
     campos:[
       { k:'nome', tipo:'texto', rotulo:'Nome', obrigatorio:true },
+      { k:'logo', tipo:'imagem', rotulo:'Logo da empresa (Base64)', largura:400, base64:true },
       { k:'site', tipo:'url', rotulo:'Site (opcional)' },
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
     ] },
@@ -794,17 +805,51 @@ function renderFormulario(){
   corpo.scrollTop = rolagem;
 }
 
+window.traduzirCampo = async function(caminho) {
+  const ptEl = document.querySelector(`[data-caminho="${CSS.escape(caminho + '_pt')}"]`);
+  const enEl = document.querySelector(`[data-caminho="${CSS.escape(caminho + '_en')}"]`);
+  const esEl = document.querySelector(`[data-caminho="${CSS.escape(caminho + '_es')}"]`);
+  if (!ptEl || !ptEl.value) return avisar('Preencha o campo em PT primeiro.', 'aviso');
+  
+  const texto = ptEl.value;
+  avisar('Traduzindo...', 'ok');
+  
+  try {
+    const [resEn, resEs] = await Promise.all([
+      fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=en&dt=t&q=${encodeURIComponent(texto)}`),
+      fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=es&dt=t&q=${encodeURIComponent(texto)}`)
+    ]);
+    const jsonEn = await resEn.json();
+    const jsonEs = await resEs.json();
+    
+    enEl.value = jsonEn[0].map(x => x[0]).join('');
+    enEl.dispatchEvent(new Event('input', { bubbles: true }));
+    
+    esEl.value = jsonEs[0].map(x => x[0]).join('');
+    esEl.dispatchEvent(new Event('input', { bubbles: true }));
+
+    avisar('Tradução concluída.', 'ok');
+  } catch (err) {
+    avisar('Erro ao traduzir.', 'erro');
+  }
+};
+
 function renderCampo(c, obj, base){
   if (c.secao) return `<div class="secao-form">${esc(c.secao)}</div>`;
   const caminho = base + c.k;
-  const ajuda = c.ajuda ? `<span class="ajuda">${esc(c.ajuda)}</span>` : '';
-  const obrig = c.obrigatorio ? ' *' : '';
   const v = obj ? obj[c.k] : undefined;
+  const obrig = c.obrigatorio ? ' *' : '';
+  const ajuda = c.ajuda ? `<div class="ajuda">${esc(c.ajuda)}</div>` : '';
+
   switch (c.tipo){
     case 'texto':
-    case 'url':
+    case 'url': {
+      const temDatalist = c.datalist && obj && estado.dados;
+      const extraDl = temDatalist ? `<datalist id="dl_${c.k}">${c.datalist().map(op => `<option value="${esc(op)}">`).join('')}</datalist>` : '';
+      const attrList = temDatalist ? `list="dl_${c.k}"` : '';
       return `<label class="campo"><span>${esc(c.rotulo)}${obrig}</span>
-        <input type="${c.tipo === 'url' ? 'url' : 'text'}" ${c.tipo === 'url' ? 'inputmode="url" placeholder="https://"' : ''} data-caminho="${caminho}" value="${esc(v ?? '')}">${ajuda}</label>`;
+        <input type="${c.tipo === 'url' ? 'url' : 'text'}" ${c.tipo === 'url' ? 'inputmode="url" placeholder="https://"' : ''} data-caminho="${caminho}" value="${esc(v ?? '')}" ${attrList}>${ajuda}</label>${extraDl}`;
+    }
     case 'bi':
     case 'bi-longo': {
       const longo = c.tipo === 'bi-longo';
@@ -814,7 +859,8 @@ function renderCampo(c, obj, base){
           ? `<textarea data-caminho="${caminho}_${lang}" rows="4">${val}</textarea>`
           : `<input type="text" data-caminho="${caminho}_${lang}" value="${val}">`}</label>`;
       };
-      return `<fieldset class="campo"><legend>${esc(c.rotulo)}${obrig}</legend><div class="bi-grade">${par('pt')}${par('en')}</div>${ajuda}</fieldset>`;
+      const btnTraduzir = `<button type="button" class="btn btn-mini" style="margin-left:auto" onclick="traduzirCampo('${caminho}')" title="Traduzir PT para EN e ES">Traduzir</button>`;
+      return `<fieldset class="campo"><legend style="display:flex; width:100%; align-items:center;">${esc(c.rotulo)}${obrig}${btnTraduzir}</legend><div class="bi-grade">${par('pt')}${par('en')}${par('es')}</div>${ajuda}</fieldset>`;
     }
     case 'lista':
       return `<label class="campo"><span>${esc(c.rotulo)}</span>
@@ -831,12 +877,12 @@ function renderCampo(c, obj, base){
         ${prev ? `<img class="previa${c.redonda ? ' redonda' : ''}" src="${esc(prev)}" alt="">`
                : `<div class="previa previa-vazia${c.redonda ? ' redonda' : ''}">sem imagem</div>`}
         <div class="imagem-acoes">
-          <input type="text" data-caminho="${caminho}" value="${esc(v && !/^data:/.test(v) ? v : '')}" placeholder="${v && /^data:/.test(v) ? 'imagem guardada no banco' : 'https://... ou fotos/...'}">
+          <input type="text" data-caminho="${caminho}" value="${esc(v && !/^data:/.test(v) ? v : '')}" placeholder="${v && /^data:/.test(v) ? 'imagem guardada em base64' : 'https://... ou fotos/...'}">
           <div class="linha-acoes">
-            <label class="btn btn-mini" style="cursor:pointer">enviar imagem<input type="file" accept="image/*" data-enviar="${caminho}" data-largura="${c.largura || 1200}" hidden></label>
+            <label class="btn btn-mini" style="cursor:pointer">enviar imagem<input type="file" accept="image/*" data-enviar="${caminho}" data-largura="${c.largura || 1200}" ${c.base64 ? 'data-base64="true"' : ''} hidden></label>
             ${v ? `<button class="btn btn-mini btn-perigo" type="button" data-remover-imagem="${caminho}">remover</button>` : ''}
           </div>
-          <span class="ajuda">A imagem é comprimida no navegador antes do envio.</span>
+          <span class="ajuda">${c.base64 ? 'A imagem sobe apenas em Base64 (salva no documento).' : 'A imagem é comprimida no navegador antes do envio.'}</span>
           <span class="enviando" data-status="${caminho}"></span>
         </div></div></div>`;
     }
@@ -919,16 +965,17 @@ $('#editor-corpo').addEventListener('change', async ev => {
     const blob = await comprimir(arquivo, Number(inp.dataset.largura) || 1200);
     let url;
     try {
-      if (status) status.textContent = 'enviando…';
+      if (inp.dataset.base64 === 'true') throw new Error('force-base64');
+      if (status) status.textContent = 'enviando.';
       const nome = 'portfolio/' + estado.editando.secao + '/' + (slug(arquivo.name.replace(/\.[^.]+$/, '')) || 'imagem') + '-' + Date.now().toString(36) + (blob.type === 'image/webp' ? '.webp' : '.jpg');
       const r = ref(getStorage(app), nome);
       await comTempo(uploadBytes(r, blob, { contentType: blob.type, cacheControl: 'public,max-age=31536000' }), 20000, 'tempo esgotado');
       url = await getDownloadURL(r);
     } catch (erroStorage) {
-      /* Sem Storage ativo (plano gratuito): guarda a imagem comprimida no próprio documento. */
-      if (blob.size > 300 * 1024) throw new Error('A imagem ficou com ' + Math.round(blob.size / 1024) + 'KB mesmo comprimida. Ative o Storage ou use uma imagem menor.');
+      /* Sem Storage ativo (plano gratuito) ou flag base64 ativada: guarda a imagem comprimida no próprio documento. */
+      if (blob.size > 300 * 1024) throw new Error('A imagem ficou com ' + Math.round(blob.size / 1024) + 'KB mesmo comprimida. Use uma imagem menor.');
       url = await new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.onerror = rej; fr.readAsDataURL(blob); });
-      avisar('Storage indisponível: a imagem foi guardada direto no banco (' + Math.round(blob.size / 1024) + 'KB).');
+      if (erroStorage.message !== 'force-base64') avisar('Storage indisponível: a imagem foi guardada direto no banco (' + Math.round(blob.size / 1024) + 'KB).');
     }
     definir(estado.rascunho, caminho, url);
     marcarSujo(); renderFormulario();
