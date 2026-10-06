@@ -16,6 +16,17 @@
 
 ---
 
+
+<p align="center">
+  <img src=".github/readme/preview.png" alt="Prévia de PortfolioPessoal no computador e no celular" width="100%">
+</p>
+
+### 📸 Telas do sistema
+
+<p align="center">
+  <img src=".github/readme/telas.png" alt="Telas de PortfolioPessoal" width="100%">
+</p>
+
 ## O que é
 
 Portfólio pessoal com duas partes:
