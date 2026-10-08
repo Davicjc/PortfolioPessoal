@@ -305,9 +305,16 @@ const CONSOLE = 'https://console.firebase.google.com/project/' + PROJETO;
 /* ══════════════ ESQUEMAS ══════════════
    Cada seção descreve seus campos. O formulário, a lista e a validação
    saem daqui — para adicionar um campo novo, basta declará-lo. */
-const CATEGORIAS = [['corporativo','Corporativo'],['cliente','Cliente'],['open-source','Open source'],['produto','Produto'],['academico','Acadêmico'],['pessoal','Pessoal']];
-
 const SECOES = [
+  { id:'categorias', nome:'Categorias', prefixo:'cat',
+    descricao:'Categorias dos projetos. A cor será usada na bolinha do projeto.',
+    titulo: c => c.nome_pt, sub: c => c.cor || 'Sem cor',
+    novo: { cor: '#94a3b8' },
+    campos:[
+      { k:'nome', tipo:'bi', rotulo:'Nome', obrigatorio:true },
+      { k:'cor', tipo:'texto', rotulo:'Cor (HEX)', ajuda:'Ex: #60a5fa' },
+      { k:'ordem', tipo:'texto', rotulo:'Ordem (numérico)' }
+    ] },
   { id:'site', nome:'Página inicial', doc:true,
     descricao:'Apresentação, números do topo, diagrama de camadas e os títulos de cada seção da home.',
     campos:[
@@ -362,7 +369,7 @@ const SECOES = [
       { k:'repo', tipo:'url', rotulo:'Repositório no GitHub' },
       { k:'imagem', tipo:'imagem', rotulo:'Captura de tela', largura:1200 },
       { secao:'Exibição' },
-      { k:'categoria', tipo:'select', rotulo:'Categoria', opcoes:CATEGORIAS },
+      { k:'categoria', tipo:'select', rotulo:'Categoria', opcoes: () => { const cats = estado.dados.categorias||[]; return cats.length ? cats.map(c => [c.id, c.nome_pt || c.id]) : [['','Crie uma categoria primeiro']]; } },
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
       { k:'destaque', tipo:'bool', rotulo:'Marcar como destaque' },
       { k:'vitrine', tipo:'bool', rotulo:'Mostrar na página inicial (até 3)' },
@@ -455,7 +462,7 @@ const $ = sel => document.querySelector(sel);
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const clonar = o => JSON.parse(JSON.stringify(o ?? null));
 const ordenar = l => (l||[]).slice().sort((a,b) => (a.ordem||0) - (b.ordem||0));
-function rotuloCategoria(k){ const c = CATEGORIAS.find(x => x[0] === k); return c ? c[1] : k; }
+function rotuloCategoria(k){ const c = (estado.dados.categorias||[]).find(x => x.id === k); return c ? (c.nome_pt || k) : k; }
 function secao(id){ return SECOES.find(s => s.id === id); }
 
 function ler(obj, caminho){
@@ -869,7 +876,7 @@ function renderCampo(c, obj, base){
       return `<label class="chave"><input type="checkbox" data-caminho="${caminho}" ${v ? 'checked' : ''}><span>${esc(c.rotulo)}</span></label>`;
     case 'select':
       return `<label class="campo"><span>${esc(c.rotulo)}</span><select data-caminho="${caminho}">
-        ${c.opcoes.map(([val, rot]) => `<option value="${esc(val)}" ${v === val ? 'selected' : ''}>${esc(rot)}</option>`).join('')}
+        ${(typeof c.opcoes === 'function' ? c.opcoes() : c.opcoes).map(([val, rot]) => `<option value="${esc(val)}" ${v === val ? 'selected' : ''}>${esc(rot)}</option>`).join('')}
         </select>${ajuda}</label>`;
     case 'imagem': {
       const prev = urlPrevia(v);
