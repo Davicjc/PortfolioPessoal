@@ -1653,7 +1653,9 @@
       "inicio": "2023-10",
       "fim": "2023-12",
       "cargo_pt": "Agente de Atendimento · SAC Alô Bradesco",
-      "cargo_en": "Customer Service Agent · Bradesco support line"
+      "cargo_en": "Customer Service Agent · Bradesco support line",
+      "empresa_pt": "Callink · operação Bradesco",
+      "empresa_en": "Callink · Bradesco operation"
     },
     "exp-wpv": {
       "ordem": 6,
@@ -1661,7 +1663,9 @@
       "inicio": "2023",
       "fim": "2023",
       "cargo_pt": "Fundador e Desenvolvedor Web",
-      "cargo_en": "Founder and Web Developer"
+      "cargo_en": "Founder and Web Developer",
+      "empresa_pt": "Web pra Você · negócio próprio",
+      "empresa_en": "Web pra Você · own business"
     }
   },
   "contatos": {

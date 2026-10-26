@@ -1,5 +1,5 @@
 /* Manual da marca (/brand/). Na tela é uma página longa; na impressão cada .folha vira uma página A4 deitada
-   (tools/manual.mjs gera o PDF). As regras de várias colunas valem para telas largas e para o papel. */
+   (tools/pdf.mjs gera o PDF). As regras de várias colunas valem para telas largas e para o papel. */
 
 .folha { border-top: 1px solid var(--cabo); }
 .folha__dentro { width: min(100% - 2 * var(--margem), var(--maximo)); margin-inline: auto; padding-block: clamp(64px, 8vw, 120px); }

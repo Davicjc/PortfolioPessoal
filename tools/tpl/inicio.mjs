@@ -247,7 +247,7 @@ function trajetoria(ctx) {
           <p class="marco__periodo rotulo">${e.atual ? led('no_ar') : ''}${esc(c(e, 'periodo', lang))}</p>
           <div class="marco__corpo">
             ${e.tipo === 'formacao' ? `<p class="rotulo marco__tipo">${t.formacao}</p>` : ''}
-            <h3 class="marco__empresa">${esc(e.empresa)}</h3>
+            <h3 class="marco__empresa">${esc(c(e, 'empresa', lang))}</h3>
             <p class="marco__cargo">${esc(c(e, 'cargo', lang))}</p>
             ${c(e, 'area', lang) ? `<p class="marco__area">${esc(c(e, 'area', lang))}</p>` : ''}
             ${c(e, 'descricao', lang) ? `<p class="marco__texto">${esc(c(e, 'descricao', lang))}</p>` : ''}

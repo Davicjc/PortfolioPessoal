@@ -1,0 +1,91 @@
+/* Currículo: uma folha branca sobre o fundo da marca, na versão clara da identidade (tinta impressa, apoio
+   impresso e o pacote em verde escuro, 5,3:1 sobre branco). Na impressão o texto flui em páginas A4,
+   sem cortar item no meio, com nome e número da página no rodapé de cada uma. */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--tinta); color: var(--papel); font: 400 15px/1.5 var(--f-texto); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+.cv-barra { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px max(16px, calc((100% - 210mm) / 2)); background: var(--tinta); border-bottom: 1px solid var(--cabo); font: 500 13px/1 var(--f-dados); }
+.cv-barra a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 4px; color: var(--papel-2); text-decoration: none; }
+.cv-barra a:hover { color: var(--papel); }
+.cv-barra__acoes { display: flex; align-items: center; gap: 14px; }
+.cv-barra .cv-barra__pdf { padding: 0 16px; border-radius: var(--r-peca); background: var(--link); color: #03140B; font-family: var(--f-texto); font-weight: 600; }
+.cv-barra .cv-barra__pdf:hover { background: #64EBA3; color: #03140B; }
+
+.cv { display: grid; justify-items: center; gap: 24px; padding: 24px 12px 64px; }
+.cv__folha {
+  --link: var(--link-impresso);
+  display: flex; flex-direction: column; width: min(100%, 210mm); padding: clamp(22px, 6vw, 15mm) clamp(18px, 6vw, 16mm);
+  background: var(--branco); color: var(--tinta-impressa); border-radius: 4px; box-shadow: 0 30px 80px -40px rgba(0, 0, 0, .8);
+  font-size: 13.4px; line-height: 1.48;
+}
+.cv__folha a { color: var(--link-impresso); text-decoration: none; }
+.cv__folha a:hover { text-decoration: underline; }
+.cv__folha strong { font-weight: 600; }
+
+.cv__cabeca { padding-bottom: 14px; border-bottom: 1.5px solid var(--tinta-impressa); }
+.cv__marca { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; font: 600 14px/1 var(--f-display); font-stretch: 112%; letter-spacing: -.01em; }
+.cv__d { width: 20px; height: 20px; color: var(--tinta-impressa); }
+.cv__nome { font: 650 clamp(24px, 5vw, 34px)/1.02 var(--f-display); font-stretch: 112%; letter-spacing: -.03em; }
+.cv__cargo { margin-top: 6px; font: 600 17px/1.3 var(--f-texto); color: var(--link-impresso); }
+.cv__sub { margin-top: 2px; color: var(--apoio-impresso); }
+.cv__contatos { display: flex; flex-wrap: wrap; gap: 2px 0; margin-top: 12px; font: 400 11px/1.5 var(--f-dados); color: var(--apoio-impresso); }
+.cv__contatos li:not(:last-child)::after { content: "·"; margin: 0 8px; color: #A5AEB8; }
+.cv__contatos a { color: var(--tinta-impressa); }
+
+.cv__secao { margin-top: 16px; }
+.cv__titulo { margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #D9DEE4; font: 500 10.5px/1.2 var(--f-dados); letter-spacing: .1em; text-transform: uppercase; color: var(--link-impresso); }
+.cv__resumo { font-size: 13.8px; line-height: 1.5; }
+
+.cv__competencias { display: grid; gap: 5px; }
+.cv__competencias div { display: grid; gap: 0 14px; }
+.cv__competencias dt { font-weight: 600; }
+.cv__competencias dd { color: var(--apoio-impresso); }
+
+.cv__item + .cv__item { margin-top: 11px; }
+.cv__item-cabeca { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 14px; }
+.cv__item h3 { font: 600 14px/1.35 var(--f-texto); }
+.cv__periodo { font: 400 11px/1.35 var(--f-dados); color: var(--apoio-impresso); white-space: nowrap; }
+.cv__onde { margin-bottom: 2px; font-size: 12.6px; color: var(--apoio-impresso); }
+
+.cv__projetos { display: grid; gap: 9px; }
+.cv__projeto-cabeca { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 12px; }
+.cv__projeto-cabeca strong { font-size: 14px; }
+.cv__sit, .cv__stack { font: 400 10.5px/1.45 var(--f-dados); color: var(--apoio-impresso); }
+.cv__sit { text-transform: uppercase; letter-spacing: .06em; }
+
+.cv__duas { display: grid; gap: 0 28px; }
+.cv__lista { display: grid; gap: 5px; }
+.cv__lista li { color: var(--apoio-impresso); }
+.cv__lista strong { color: var(--tinta-impressa); }
+
+.cv__rodape { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin-top: 22px; padding-top: 14px; border-top: 1px solid #D9DEE4; font: 400 10.5px/1.5 var(--f-dados); color: var(--apoio-impresso); }
+
+@media (min-width: 640px), print {
+  .cv__competencias div { grid-template-columns: 200px 1fr; }
+  .cv__duas { grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); }
+}
+
+@page {
+  size: A4; margin: 13mm 15mm 14mm;
+  @bottom-left { content: "Davi Castro · davicjc.com"; font: 400 7.5pt "IBM Plex Mono", monospace; color: #4A5563; }
+  @bottom-right { content: counter(page) " / " counter(pages); font: 400 7.5pt "IBM Plex Mono", monospace; color: #4A5563; }
+}
+@media print {
+  html, body { background: var(--branco) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cv-barra { display: none; }
+  .cv { display: block; padding: 0; }
+  .cv__folha { width: auto; padding: 0; border-radius: 0; box-shadow: none; }
+  .cv__nome { font-size: 31px; }
+  .cv__folha { font-size: 12.8px; line-height: 1.45; }
+  .cv__resumo { font-size: 13.2px; }
+  .cv__secao { margin-top: 14px; }
+  .cv__item + .cv__item { margin-top: 9px; }
+  .cv__projetos { gap: 7px; }
+  .cv__item, .cv__projetos li, .cv__lista li, .cv__competencias div, .cv__cabeca { break-inside: avoid; }
+  .cv__titulo { break-after: avoid; }
+}

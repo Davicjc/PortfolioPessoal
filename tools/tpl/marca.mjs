@@ -1,5 +1,5 @@
 // Manual da marca (/brand/). A mesma página vira o PDF: cada .folha é uma página A4 deitada na impressão
-// (tools/manual.mjs). Cores, tipos, espaços e movimento vêm de brand/tokens.json, não são copiados à mão.
+// (tools/pdf.mjs). Cores, tipos, espaços e movimento vêm de brand/tokens.json, não são copiados à mão.
 import { esc, icone, monograma, documento, pessoaLD, publicados, DOMINIO } from './comum.mjs';
 
 export const PDF_MANUAL = '/brand/davi-castro-manual-da-marca.pdf';

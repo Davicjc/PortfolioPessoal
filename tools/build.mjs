@@ -14,6 +14,7 @@ import { paginaInicio } from './tpl/inicio.mjs';
 import { paginaProjeto } from './tpl/projeto.mjs';
 import { paginaProjetos, paginaErro } from './tpl/projetos.mjs';
 import { paginaMarca } from './tpl/marca.mjs';
+import { paginaCurriculo } from './tpl/curriculo.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ler = p => readFileSync(join(RAIZ, p), 'utf8');
@@ -206,11 +207,14 @@ async function principal() {
   // CSS final = tokens + fontes + estilos (um só arquivo, um só pedido).
   const css = [ler('assets/css/tokens.css'), ler('assets/css/fontes.css'), ler('assets/css/site.css')].join('\n');
   gravar('assets/css/estilo.css', css);
+  // Currículo: só tokens, fontes e a folha A4 (não carrega o CSS do site).
+  const cssCv = [ler('assets/css/tokens.css'), ler('assets/css/fontes.css'), ler('assets/css/cv.css')].join('\n');
+  gravar('assets/css/curriculo.css', cssCv);
   const js = ler('assets/js/site.js');
   const vox = ler('assets/js/vox.js');
   dados._imgs = catalogarImagens(dados);
   dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')) : [];
-  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')) } };
+  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv) } };
 
   // Páginas
   const gerados = [];
@@ -224,6 +228,8 @@ async function principal() {
   }
   pagina('404.html', paginaErro({ dados, lang: 'pt', t: T.pt }));
   pagina('brand/index.html', paginaMarca({ dados, lang: 'pt', t: T.pt }, lerJSON('brand/tokens.json')));
+  pagina('Curriculo/index.html', paginaCurriculo({ dados, lang: 'pt', t: T.pt }));
+  pagina('Curriculo/en.html', paginaCurriculo({ dados, lang: 'en', t: T.en }));
 
   // Remove páginas de projetos que saíram do ar desde o último build.
   const manifesto = join(RAIZ, 'data/gerados.json');
