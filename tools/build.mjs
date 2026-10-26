@@ -208,6 +208,7 @@ async function principal() {
   const js = ler('assets/js/site.js');
   const vox = ler('assets/js/vox.js');
   dados._imgs = catalogarImagens(dados);
+  dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')) : [];
   dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox) } };
 
   // Páginas

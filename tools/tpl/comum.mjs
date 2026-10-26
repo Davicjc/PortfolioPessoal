@@ -126,7 +126,9 @@ export function documento(ctx, { titulo, descricao, caminho, caminhoAlt, ogImage
   const urlAlt = absoluto(caminhoAlt);
   const pt = lang === 'pt' ? url : urlAlt;
   const en = lang === 'en' ? url : urlAlt;
-  const og = ogImagem ? absoluto(caminhoImg(ogImagem)) : absoluto('/brand/og.png');
+  // Card de compartilhamento: o gerado em assets/og/ quando existe; senão, a imagem da marca.
+  const temOg = ogImagem && (!ogImagem.startsWith('/assets/og/') || dados._og?.includes(ogImagem.split('/').pop()));
+  const og = temOg ? absoluto(caminhoImg(ogImagem)) : absoluto('/brand/og.png');
   const v = dados._build.versoes;
   return `<!doctype html>
 <html lang="${t.lang}" class="sem-js">

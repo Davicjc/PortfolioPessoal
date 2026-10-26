@@ -330,7 +330,7 @@ export function paginaInicio(ctx) {
   }];
   return documento({ ...ctx, pagina: 'inicio', alternativa: caminhoAlt }, {
     titulo: c(s, 'seo_titulo', lang), descricao: c(s, 'seo_descricao', lang),
-    caminho, caminhoAlt, ogImagem: lang === 'en' ? '/assets/og/inicio-en.png' : '/assets/og/inicio.png', ogTipo: 'profile',
+    caminho, caminhoAlt, ogImagem: lang === 'en' ? '/assets/og/inicio-en.jpg' : '/assets/og/inicio.jpg', ogTipo: 'profile',
     jsonld, corpo, classe: 'pagina-inicio'
   });
 }

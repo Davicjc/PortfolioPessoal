@@ -146,7 +146,7 @@ export function paginaProjeto(ctx, p) {
   return documento({ ...ctx, pagina: 'projeto', alternativa: caminhoAlt }, {
     titulo: `${titulo} — ${c(p, 'tagline', lang)} · Davi Castro`.slice(0, 120),
     descricao, caminho, caminhoAlt,
-    ogImagem: `/assets/og/${lang === 'en' ? 'en-' : ''}${p.id}.png`, ogTipo: 'article',
+    ogImagem: `/assets/og/${lang === 'en' ? 'en-' : ''}${p.id}.jpg`, ogTipo: 'article',
     jsonld, corpo, classe: 'pagina-projeto'
   });
 }

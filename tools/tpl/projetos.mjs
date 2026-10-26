@@ -43,7 +43,7 @@ export function paginaProjetos(ctx) {
   }];
   return documento({ ...ctx, pagina: 'projetos', alternativa: caminhoAlt }, {
     titulo: `${t.lista_titulo} — Davi Castro`, descricao: t.lista_sub(lista.length) + ' ' + c(dados.site, 'seo_descricao', lang),
-    caminho, caminhoAlt, ogImagem: lang === 'en' ? '/assets/og/inicio-en.png' : '/assets/og/inicio.png', jsonld, corpo, classe: 'pagina-lista'
+    caminho, caminhoAlt, ogImagem: lang === 'en' ? '/assets/og/inicio-en.jpg' : '/assets/og/inicio.jpg', jsonld, corpo, classe: 'pagina-lista'
   });
 }
 
