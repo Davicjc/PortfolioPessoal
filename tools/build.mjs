@@ -13,6 +13,7 @@ import { c, rotas, publicados, DOMINIO, caminhoImg } from './tpl/comum.mjs';
 import { paginaInicio } from './tpl/inicio.mjs';
 import { paginaProjeto } from './tpl/projeto.mjs';
 import { paginaProjetos, paginaErro } from './tpl/projetos.mjs';
+import { paginaMarca } from './tpl/marca.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ler = p => readFileSync(join(RAIZ, p), 'utf8');
@@ -209,7 +210,7 @@ async function principal() {
   const vox = ler('assets/js/vox.js');
   dados._imgs = catalogarImagens(dados);
   dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')) : [];
-  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox) } };
+  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')) } };
 
   // Páginas
   const gerados = [];
@@ -222,6 +223,7 @@ async function principal() {
     for (const p of publicados(dados.projetos)) pagina(rotas.projeto(lang, p.id).slice(1) + 'index.html', paginaProjeto(ctx, p));
   }
   pagina('404.html', paginaErro({ dados, lang: 'pt', t: T.pt }));
+  pagina('brand/index.html', paginaMarca({ dados, lang: 'pt', t: T.pt }, lerJSON('brand/tokens.json')));
 
   // Remove páginas de projetos que saíram do ar desde o último build.
   const manifesto = join(RAIZ, 'data/gerados.json');

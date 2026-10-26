@@ -43,9 +43,9 @@ export const ICONES = {
 export const icone = (nome, classe = 'ic') =>
   `<svg class="${classe}" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONES[nome] || ''}</svg>`;
 
-// Monograma D: a haste interrompida pelo nó verde (o pacote). Mesmo desenho de brand/d-monograma.svg.
+// Monograma D: a haste aberta no nó, ocupado pelo pacote verde. Mesmo desenho de brand/d-monograma.svg (brand/gerar-marca.py).
 export const monograma = (classe = 'marca__d') =>
-  `<svg class="${classe}" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 22H48A28 28 0 0 1 48 78H30Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="11" fill="var(--tinta)"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg>`;
+  `<svg class="${classe}" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 39V22H48A28 28 0 0 1 48 78H30V61" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg>`;
 
 export const led = situacao => `<span class="led" data-situacao="${esc(situacao || 'no_ar')}" aria-hidden="true"></span>`;
 
