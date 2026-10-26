@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR" class="sem-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PopManager — API em FastAPI e painel web para inventário e monitoramento dos pontos de presença · Davi Castro</title>
+<meta name="description" content="API em FastAPI e painel web para inventário e monitoramento dos pontos de presença. Cada ponto de presença com seus roteadores, OLTs, switches e APs — e os clientes ligados a cada um. Ping ICMP concorrente com latência, perda e histórico, mapa de topologia, API REST para tudo e backup…">
+<link rel="canonical" href="https://davicjc.com/projetos/popmanager/">
+<link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/popmanager/">
+<link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/popmanager/">
+<link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/popmanager/">
+<meta name="author" content="Davi Castro">
+<meta name="theme-color" content="#090C10">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Davi Castro">
+<meta property="og:title" content="PopManager — API em FastAPI e painel web para inventário e monitoramento dos pontos de presença · Davi Castro">
+<meta property="og:description" content="API em FastAPI e painel web para inventário e monitoramento dos pontos de presença. Cada ponto de presença com seus roteadores, OLTs, switches e APs — e os clientes ligados a cada um. Ping ICMP concorrente com latência, perda e histórico, mapa de topologia, API REST para tudo e backup…">
+<meta property="og:url" content="https://davicjc.com/projetos/popmanager/">
+<meta property="og:image" content="https://davicjc.com/assets/og/popmanager.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PopManager — API em FastAPI e painel web para inventário e monitoramento dos pontos de presença · Davi Castro">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="me" href="https://github.com/Davicjc">
+<link rel="me" href="https://www.linkedin.com/in/davicjc">
+<link rel="me" href="https://orcid.org/0009-0005-8485-455X">
+<link rel="preload" href="/assets/fonts/archivo-500_700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/estilo.css?v=4c5c63c0fb">
+<script>document.documentElement.classList.replace('sem-js','js')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://davicjc.com/projetos/popmanager/#projeto","name":"PopManager","description":"Cada ponto de presença com seus roteadores, OLTs, switches e APs — e os clientes ligados a cada um. Ping ICMP concorrente com latência, perda e histórico, mapa de topologia, API REST para tudo e backup pronto.","url":"https://davicjc.com/projetos/popmanager/","image":"https://davicjc.com/fotos/projetos/popmanager.webp","inLanguage":"pt-BR","author":{"@id":"https://davicjc.com/#davi"},"creator":{"@id":"https://davicjc.com/#davi"},"dateCreated":"2026","keywords":"Python, FastAPI, SQLAlchemy, asyncio, PostgreSQL, Nginx, Chart.js, vis-network","sameAs":[],"applicationCategory":"BusinessApplication","operatingSystem":"Web"},{"@type":"Person","@id":"https://davicjc.com/#davi","name":"Davi Castro","alternateName":["Davi Castro Jorge da Costa","davicjc"],"givenName":"Davi","familyName":"Castro Jorge da Costa","jobTitle":"Desenvolvedor full stack","description":"Sou Davi Castro, desenvolvedor full stack em Uberlândia. Construo produtos de ponta a ponta — interface, API, banco de dados, apps de Windows e Android e o deploy — e mantenho no ar os sistemas que a Audicom Telecom usa todos os dias.","url":"https://davicjc.com/","image":"https://davicjc.com/fotos/me/me.jpg","email":"mailto:contato@davicjc.com","address":{"@type":"PostalAddress","addressLocality":"Uberlândia","addressRegion":"MG","addressCountry":"BR"},"worksFor":{"@type":"Organization","name":"Audicom Telecom","url":"https://audicomtelecom.com.br/"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Universidade de Uberaba (Uniube)"},"award":"1º lugar entre 60 projetos acadêmicos — Face Safety, Uniube (2023)","knowsLanguage":["pt-BR","en"],"knowsAbout":["Full-stack development","JavaScript","TypeScript","Python","Node.js","Firebase","WebRTC","Network automation","NetDevOps","Network monitoring","MikroTik RouterOS","BGP","RPKI","OSPF","BFD","Zabbix","Grafana","Computer vision","Facial recognition","Access control"],"identifier":{"@type":"PropertyValue","propertyID":"ORCID","value":"0009-0005-8485-455X"},"sameAs":["https://github.com/Davicjc","https://www.linkedin.com/in/davicjc","https://orcid.org/0009-0005-8485-455X"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Davi Castro","item":"https://davicjc.com/"},{"@type":"ListItem","position":2,"name":"Todos os projetos","item":"https://davicjc.com/projetos/"},{"@type":"ListItem","position":3,"name":"PopManager","item":"https://davicjc.com/projetos/popmanager/"}]}]}</script>
+</head>
+<body class="pagina-projeto" data-lang="pt" data-build="2026-10-26T13:11:04.356Z">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo" data-topo>
+  <div class="envelope topo__barra">
+    <a class="marca" href="/" aria-label="Davi Castro — início"><svg class="marca__d" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 22H48A28 28 0 0 1 48 78H30Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="11" fill="var(--tinta)"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg><span class="marca__nome">davi castro</span></a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="/#trabalho">Trabalho</a>
+      <a href="/#trajetoria">Trajetória</a>
+      <a href="/#contato">Contato</a>
+      <a class="nav__cv" href="/Curriculo/">Currículo</a>
+    </nav>
+    <div class="idioma" role="group" aria-label="Idioma">
+      <a href="#" hreflang="pt-BR" lang="pt-BR" aria-current="true" data-idioma="pt">PT</a>
+      <a href="/en/projects/popmanager/" hreflang="en" lang="en" data-idioma="en">EN</a>
+    </div>
+    <button class="topo__menu" type="button" aria-expanded="false" aria-controls="nav" data-menu><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h16M4 16h16"/></svg><span class="sr">Menu</span></button>
+  </div>
+</header>
+<main id="conteudo">
+<article class="projeto" data-projeto="popmanager">
+  <header class="envelope projeto__cabeca">
+    <nav class="trilha rotulo" aria-label="Trilha"><a href="/#trabalho">Trabalho</a><span aria-hidden="true">/</span><span aria-current="page">PopManager</span></nav>
+    <p class="caso__meta"><span class="situacao" data-situacao="desenvolvimento"><span class="led" data-situacao="desenvolvimento" aria-hidden="true"></span><span>Em desenvolvimento</span><span class="situacao__ativo"> · mantido ativamente</span></span><span class="rotulo">estudo de caso</span></p>
+    <h1 class="projeto__titulo">PopManager</h1>
+    <p class="projeto__tagline">API em FastAPI e painel web para inventário e monitoramento dos pontos de presença</p>
+    <div class="projeto__acoes"><span class="selo"><svg class="ic ic--mini" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Código privado</span></div>
+    <dl class="projeto__meta">
+      <div><dt class="rotulo">Meu papel</dt><dd>Desenvolvedor full stack e responsável pela arquitetura do sistema.</dd></div><div><dt class="rotulo">Período</dt><dd>jun 2026 — hoje</dd></div><div><dt class="rotulo">Para</dt><dd>Audicom Telecom</dd></div>
+      <div class="projeto__stack"><dt class="rotulo">Tecnologias</dt><dd><ul class="pilha"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>asyncio</li><li>PostgreSQL</li><li>Nginx</li><li>Chart.js</li><li>vis-network</li></ul></dd></div>
+    </dl>
+  </header>
+  <div class="envelope projeto__visual"><div class="janela janela--carrossel" data-carrossel>
+    <div class="janela__barra"><span class="janela__url">davicjc.com</span><span class="janela__legenda rotulo" data-legenda-atual aria-live="polite">Visão geral: clientes, equipamentos e quem está fora agora</span></div>
+    <div class="janela__tela"><figure class="janela__quadro ativo" data-legenda="Visão geral: clientes, equipamentos e quem está fora agora"><img class="" src="/fotos/projetos/popmanager/visao-geral.webp" srcset="/fotos/projetos/popmanager/visao-geral-800.webp 800w, /fotos/projetos/popmanager/visao-geral.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="PopManager — Visão geral: clientes, equipamentos e quem está fora agora" loading="eager" decoding="async" fetchpriority="high"></figure><figure class="janela__quadro" data-legenda="Topologia interativa: core, POPs e equipamentos com latência"><img class="" src="/fotos/projetos/popmanager/topologia.webp" srcset="/fotos/projetos/popmanager/topologia-800.webp 800w, /fotos/projetos/popmanager/topologia.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="PopManager — Topologia interativa: core, POPs e equipamentos com latência" loading="lazy" decoding="async"></figure><figure class="janela__quadro" data-legenda="Monitoramento contínuo por ICMP com disponibilidade em 24 h"><img class="" src="/fotos/projetos/popmanager/monitoramento.webp" srcset="/fotos/projetos/popmanager/monitoramento-800.webp 800w, /fotos/projetos/popmanager/monitoramento.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="PopManager — Monitoramento contínuo por ICMP com disponibilidade em 24 h" loading="lazy" decoding="async"></figure><figure class="janela__quadro" data-legenda="POPs com seus equipamentos e clientes"><img class="" src="/fotos/projetos/popmanager/pops.webp" srcset="/fotos/projetos/popmanager/pops-800.webp 800w, /fotos/projetos/popmanager/pops.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="PopManager — POPs com seus equipamentos e clientes" loading="lazy" decoding="async"></figure></div>
+    
+  </div></div>
+  <div class="envelope"><dl class="metricas metricas--linha"><div><dt>web, sem programa de Windows</dt><dd>100%</dd></div><div><dt>API para tudo, inclusive exportação</dt><dd>REST</dd></div><div><dt>de backup automático</dt><dd>30 dias</dd></div></dl></div>
+  <div class="envelope projeto__corpo">
+    <p class="projeto__resumo">Cada ponto de presença com seus roteadores, OLTs, switches e APs — e os clientes ligados a cada um. Ping ICMP concorrente com latência, perda e histórico, mapa de topologia, API REST para tudo e backup pronto.</p>
+    <section class="bloco">
+    <h2 class="bloco__rotulo rotulo">O problema</h2>
+    <div class="bloco__conteudo"><p class="bloco__destaque">A rede era acompanhada no The Dude, da MikroTik: um programa de Windows, fechado e sem API. Saber quais clientes dependiam de um equipamento que caiu exigia cruzar telas e planilhas.</p></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Decisões</h2>
+    <div class="bloco__conteudo"><ol class="decisoes"><li class="decisao">
+      <span class="decisao__num dado">01</span>
+      <h3>Ping assíncrono</h3>
+      <p>Testes ICMP concorrentes com asyncio no backend FastAPI, guardando latência, perda e histórico por equipamento.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">02</span>
+      <h3>Do POP ao cliente</h3>
+      <p>O modelo de dados liga POP → equipamento → cliente, então uma queda já mostra quem foi afetado.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">03</span>
+      <h3>Pronto para operar</h3>
+      <p>SQLite no desenvolvimento e PostgreSQL em produção, serviço systemd atrás do Nginx e scripts de backup (pg_dump + JSON, 30 dias) e de saúde.</p>
+    </li></ol></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Arquitetura</h2>
+    <div class="bloco__conteudo"><div class="arq" data-arq>
+    <span class="arq__pacote" aria-hidden="true"></span>
+    <div class="arq__camada">
+      <p class="arq__nome rotulo">Interface</p>
+      <ul class="arq__itens"><li>HTML + JS + Tailwind</li><li>Chart.js</li><li>vis-network</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Backend</p>
+      <ul class="arq__itens"><li>Python · FastAPI</li><li>SQLAlchemy</li><li>asyncio (ICMP)</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Dados</p>
+      <ul class="arq__itens"><li>PostgreSQL (produção)</li><li>SQLite (dev)</li><li>Backups de 30 dias</li></ul>
+    </div>
+  </div></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Resultado</h2>
+    <div class="bloco__conteudo"><p class="bloco__destaque">Dá à equipe técnica um registro único e consultável dos POPs, sem depender de acesso local a cada site.</p></div>
+  </section>
+    <section class="galeria" aria-label="Telas">
+    <h2 class="rotulo galeria__titulo">Telas</h2>
+    <p class="galeria__nota">Telas com dados inventados, geradas rodando o sistema em modo de demonstração (nenhum dado de cliente real).</p>
+    <div class="galeria__grade">
+      <figure class="galeria__item"><a href="/fotos/projetos/popmanager/visao-geral.webp" data-ampliar><img class="" src="/fotos/projetos/popmanager/visao-geral.webp" srcset="/fotos/projetos/popmanager/visao-geral-800.webp 800w, /fotos/projetos/popmanager/visao-geral.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="Visão geral: clientes, equipamentos e quem está fora agora" loading="lazy" decoding="async"></a><figcaption>Visão geral: clientes, equipamentos e quem está fora agora</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/popmanager/topologia.webp" data-ampliar><img class="" src="/fotos/projetos/popmanager/topologia.webp" srcset="/fotos/projetos/popmanager/topologia-800.webp 800w, /fotos/projetos/popmanager/topologia.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="Topologia interativa: core, POPs e equipamentos com latência" loading="lazy" decoding="async"></a><figcaption>Topologia interativa: core, POPs e equipamentos com latência</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/popmanager/monitoramento.webp" data-ampliar><img class="" src="/fotos/projetos/popmanager/monitoramento.webp" srcset="/fotos/projetos/popmanager/monitoramento-800.webp 800w, /fotos/projetos/popmanager/monitoramento.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="Monitoramento contínuo por ICMP com disponibilidade em 24 h" loading="lazy" decoding="async"></a><figcaption>Monitoramento contínuo por ICMP com disponibilidade em 24 h</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/popmanager/pops.webp" data-ampliar><img class="" src="/fotos/projetos/popmanager/pops.webp" srcset="/fotos/projetos/popmanager/pops-800.webp 800w, /fotos/projetos/popmanager/pops.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="POPs com seus equipamentos e clientes" loading="lazy" decoding="async"></a><figcaption>POPs com seus equipamentos e clientes</figcaption></figure>
+    </div>
+  </section>
+  </div>
+  <nav class="envelope vizinhos" aria-label="Mais projetos">
+    <a class="vizinho" href="/projetos/facesafety/"><span class="rotulo">Projeto anterior</span><span class="vizinho__nome">Face Safety</span></a>
+    <a class="vizinho vizinho--todos" href="/projetos/"><span class="rotulo">Todos os projetos</span><span class="vizinho__nome">26</span></a>
+    <a class="vizinho vizinho--proximo" href="/projetos/telemetry/"><span class="rotulo">Próximo projeto</span><span class="vizinho__nome">Telemetry Portal</span></a>
+  </nav>
+</article>
+</main>
+<footer class="rodape">
+  <div class="envelope rodape__grade">
+    <div class="rodape__marca">
+      <a class="marca" href="/"><svg class="marca__d" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 22H48A28 28 0 0 1 48 78H30Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="11" fill="var(--tinta)"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg><span class="marca__nome">davi castro</span></a>
+      <p>Feito à mão, sem framework: páginas estáticas geradas a partir do Firestore, com o conteúdo editável no meu painel.</p>
+      <p class="rodape__nota">O ping do topo é medido no seu navegador e não é guardado em lugar nenhum.</p>
+    </div>
+    <nav class="rodape__links" aria-label="Rodapé">
+      <a href="/projetos/">Todos os projetos</a>
+      <a href="/Curriculo/">Currículo</a>
+      <a href="/brand/">Manual da marca</a>
+      <a href="/coffee/">Me pague um café</a>
+    </nav>
+    <div class="rodape__fim rotulo">
+      <span>© 2026 Davi Castro · davicjc</span>
+      <span>Atualizado em <time datetime="2026-10-26T13:11:04.356Z">26 out 2026</time></span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="/assets/js/site.js?v=5c1f5c47a6"></script>
+</body>
+</html>

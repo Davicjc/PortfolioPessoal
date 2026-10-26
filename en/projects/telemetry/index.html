@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" class="sem-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Telemetry Portal — A Python web dashboard that monitors MikroTik OSPF and BFD and alerts on Telegram · Davi Castro</title>
+<meta name="description" content="A Python web dashboard that monitors MikroTik OSPF and BFD and alerts on Telegram. On MikroTik, an OSPF neighbor that drops simply disappears from the table: there is no down state to poll for. The portal keeps a registry of every neighbor it has seen and infers the drop from the absence, guarding…">
+<link rel="canonical" href="https://davicjc.com/en/projects/telemetry/">
+<link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/telemetry/">
+<link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/telemetry/">
+<link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/telemetry/">
+<meta name="author" content="Davi Castro">
+<meta name="theme-color" content="#090C10">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Davi Castro">
+<meta property="og:title" content="Telemetry Portal — A Python web dashboard that monitors MikroTik OSPF and BFD and alerts on Telegram · Davi Castro">
+<meta property="og:description" content="A Python web dashboard that monitors MikroTik OSPF and BFD and alerts on Telegram. On MikroTik, an OSPF neighbor that drops simply disappears from the table: there is no down state to poll for. The portal keeps a registry of every neighbor it has seen and infers the drop from the absence, guarding…">
+<meta property="og:url" content="https://davicjc.com/en/projects/telemetry/">
+<meta property="og:image" content="https://davicjc.com/assets/og/en-telemetry.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Telemetry Portal — A Python web dashboard that monitors MikroTik OSPF and BFD and alerts on Telegram · Davi Castro">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="me" href="https://github.com/Davicjc">
+<link rel="me" href="https://www.linkedin.com/in/davicjc">
+<link rel="me" href="https://orcid.org/0009-0005-8485-455X">
+<link rel="preload" href="/assets/fonts/archivo-500_700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/estilo.css?v=4c5c63c0fb">
+<script>document.documentElement.classList.replace('sem-js','js')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://davicjc.com/projetos/telemetry/#projeto","name":"Telemetry Portal","description":"On MikroTik, an OSPF neighbor that drops simply disappears from the table: there is no down state to poll for. The portal keeps a registry of every neighbor it has seen and infers the drop from the absence, guarding against the false positive where an entire PE goes unreachable. It also detects whether RouterOS is v6 or v7, since BFD sits at different API paths.","url":"https://davicjc.com/en/projects/telemetry/","image":"https://davicjc.com/fotos/projetos/telemetry.webp","inLanguage":"en","author":{"@id":"https://davicjc.com/#davi"},"creator":{"@id":"https://davicjc.com/#davi"},"dateCreated":"2026","keywords":"Python, Flask, SQLite, RouterOS API, Telegram Bot API, Prometheus, Grafana","sameAs":["https://github.com/Davicjc/telemetry-portal"],"applicationCategory":"BusinessApplication","operatingSystem":"Web"},{"@type":"Person","@id":"https://davicjc.com/#davi","name":"Davi Castro","alternateName":["Davi Castro Jorge da Costa","davicjc"],"givenName":"Davi","familyName":"Castro Jorge da Costa","jobTitle":"Full-stack developer","description":"I'm Davi Castro, a full-stack developer in Brazil. I build products end to end — interface, API, database, Windows and Android apps, and the deploy — and keep the systems Audicom Telecom runs on every day up and running.","url":"https://davicjc.com/en/","image":"https://davicjc.com/fotos/me/me.jpg","email":"mailto:contato@davicjc.com","address":{"@type":"PostalAddress","addressLocality":"Uberlândia","addressRegion":"MG","addressCountry":"BR"},"worksFor":{"@type":"Organization","name":"Audicom Telecom","url":"https://audicomtelecom.com.br/"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Universidade de Uberaba (Uniube)"},"award":"1st place among 60 academic projects — Face Safety, Uniube (2023)","knowsLanguage":["pt-BR","en"],"knowsAbout":["Full-stack development","JavaScript","TypeScript","Python","Node.js","Firebase","WebRTC","Network automation","NetDevOps","Network monitoring","MikroTik RouterOS","BGP","RPKI","OSPF","BFD","Zabbix","Grafana","Computer vision","Facial recognition","Access control"],"identifier":{"@type":"PropertyValue","propertyID":"ORCID","value":"0009-0005-8485-455X"},"sameAs":["https://github.com/Davicjc","https://www.linkedin.com/in/davicjc","https://orcid.org/0009-0005-8485-455X"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Davi Castro","item":"https://davicjc.com/en/"},{"@type":"ListItem","position":2,"name":"All projects","item":"https://davicjc.com/en/projects/"},{"@type":"ListItem","position":3,"name":"Telemetry Portal","item":"https://davicjc.com/en/projects/telemetry/"}]}]}</script>
+</head>
+<body class="pagina-projeto" data-lang="en" data-build="2026-10-26T13:11:04.356Z">
+<a class="pular" href="#conteudo">Skip to content</a>
+<header class="topo" data-topo>
+  <div class="envelope topo__barra">
+    <a class="marca" href="/en/" aria-label="Davi Castro — home"><svg class="marca__d" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 22H48A28 28 0 0 1 48 78H30Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="11" fill="var(--tinta)"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg><span class="marca__nome">davi castro</span></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/en/#trabalho">Work</a>
+      <a href="/en/#trajetoria">Experience</a>
+      <a href="/en/#contato">Contact</a>
+      <a class="nav__cv" href="/Curriculo/en.html">Résumé</a>
+    </nav>
+    <div class="idioma" role="group" aria-label="Language">
+      <a href="/projetos/telemetry/" hreflang="pt-BR" lang="pt-BR" data-idioma="pt">PT</a>
+      <a href="#" hreflang="en" lang="en" aria-current="true" data-idioma="en">EN</a>
+    </div>
+    <button class="topo__menu" type="button" aria-expanded="false" aria-controls="nav" data-menu><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h16M4 16h16"/></svg><span class="sr">Menu</span></button>
+  </div>
+</header>
+<main id="conteudo">
+<article class="projeto" data-projeto="telemetry">
+  <header class="envelope projeto__cabeca">
+    <nav class="trilha rotulo" aria-label="Breadcrumb"><a href="/en/#trabalho">Work</a><span aria-hidden="true">/</span><span aria-current="page">Telemetry Portal</span></nav>
+    <p class="caso__meta"><span class="situacao" data-situacao="desenvolvimento"><span class="led" data-situacao="desenvolvimento" aria-hidden="true"></span><span>In development</span><span class="situacao__ativo"> · actively maintained</span></span><span class="rotulo">case study</span></p>
+    <h1 class="projeto__titulo">Telemetry Portal</h1>
+    <p class="projeto__tagline">A Python web dashboard that monitors MikroTik OSPF and BFD and alerts on Telegram</p>
+    <div class="projeto__acoes"><a class="botao botao--linha" href="https://github.com/Davicjc/telemetry-portal" rel="noopener"><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Code on GitHub</a></div>
+    <dl class="projeto__meta">
+      <div><dt class="rotulo">My role</dt><dd>Sole author: Flask backend, Jinja/Chart.js front end, systemd packaging and production deployment</dd></div><div><dt class="rotulo">Timeline</dt><dd>Aug 2026 — present</dd></div><div><dt class="rotulo">For</dt><dd>Audicom Telecom</dd></div>
+      <div class="projeto__stack"><dt class="rotulo">Stack</dt><dd><ul class="pilha"><li>Python</li><li>Flask</li><li>SQLite</li><li>RouterOS API</li><li>Telegram Bot API</li><li>Prometheus</li><li>Grafana</li></ul></dd></div>
+    </dl>
+  </header>
+  <div class="envelope projeto__visual"><div class="janela janela--carrossel" data-carrossel>
+    <div class="janela__barra"><span class="janela__url">github.com/Davicjc</span><span class="janela__legenda rotulo" data-legenda-atual aria-live="polite">Status dashboard: the neighbor that vanished shows up as OFFLINE</span></div>
+    <div class="janela__tela"><figure class="janela__quadro ativo" data-legenda="Status dashboard: the neighbor that vanished shows up as OFFLINE"><img class="" src="/fotos/projetos/telemetry/painel.webp" srcset="/fotos/projetos/telemetry/painel-800.webp 800w, /fotos/projetos/telemetry/painel.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="Telemetry Portal — Status dashboard: the neighbor that vanished shows up as OFFLINE" loading="eager" decoding="async" fetchpriority="high"></figure><figure class="janela__quadro" data-legenda="Probes: latency, loss and jitter seen from the customer side"><img class="" src="/fotos/projetos/telemetry/sonda.webp" srcset="/fotos/projetos/telemetry/sonda-800.webp 800w, /fotos/projetos/telemetry/sonda.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="Telemetry Portal — Probes: latency, loss and jitter seen from the customer side" loading="lazy" decoding="async"></figure><figure class="janela__quadro" data-legenda="Read-only audit log"><img class="" src="/fotos/projetos/telemetry/auditoria.webp" srcset="/fotos/projetos/telemetry/auditoria-800.webp 800w, /fotos/projetos/telemetry/auditoria.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="Telemetry Portal — Read-only audit log" loading="lazy" decoding="async"></figure><figure class="janela__quadro" data-legenda="Network health per router"><img class="" src="/fotos/projetos/telemetry/roteadores.webp" srcset="/fotos/projetos/telemetry/roteadores-800.webp 800w, /fotos/projetos/telemetry/roteadores.webp 1600w" sizes="(min-width: 1240px) 1240px, 100vw" width="1600" height="1000" alt="Telemetry Portal — Network health per router" loading="lazy" decoding="async"></figure></div>
+    
+  </div></div>
+  <div class="envelope"><dl class="metricas metricas--linha"><div><dt>background collection cycle</dt><dd>30 s</dd></div><div><dt>RouterOS versions auto-detected</dt><dd>v6 + v7</dd></div><div><dt>alert per drop, 1 per recovery</dt><dd>1</dd></div><div><dt>to install on a VM (systemd)</dt><dd>1 command</dd></div></dl></div>
+  <div class="envelope projeto__corpo">
+    <p class="projeto__resumo">On MikroTik, an OSPF neighbor that drops simply disappears from the table: there is no down state to poll for. The portal keeps a registry of every neighbor it has seen and infers the drop from the absence, guarding against the false positive where an entire PE goes unreachable. It also detects whether RouterOS is v6 or v7, since BFD sits at different API paths.</p>
+    <section class="bloco">
+    <h2 class="bloco__rotulo rotulo">The problem</h2>
+    <div class="bloco__conteudo"><p class="bloco__destaque">On RouterOS, an OSPF neighbor that goes down simply vanishes from the table — there is no “down” state to poll. Generic tools don&#39;t notice an absence, so a failed link between PEs only surfaced when someone happened to look at the router.</p></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Decisions</h2>
+    <div class="bloco__conteudo"><ol class="decisoes"><li class="decisao">
+      <span class="decisao__num dado">01</span>
+      <h3>Infer failure from absence</h3>
+      <p>The portal remembers every neighbor it has seen and marks it OFFLINE when it disappears — guarding against the false positive where the whole PE becomes unreachable.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">02</span>
+      <h3>Detect the version automatically</h3>
+      <p>BFD lives at different API paths on RouterOS v6 and v7. The portal detects the version and queries the right path with zero configuration.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">03</span>
+      <h3>Alert once per transition</h3>
+      <p>A background collector runs every 30 s and sends one Telegram message when a neighbor drops and one when it returns, with timestamps and duration — never one per poll.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">04</span>
+      <h3>Measure the customer&#39;s experience</h3>
+      <p>Probes — an RB750Gr3, for instance — report PPPoE, latency, loss, DNS and jitter over HTTP. Everything is exposed at /metrics for Prometheus and in a ready-made Grafana dashboard.</p>
+    </li></ol></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Architecture</h2>
+    <div class="bloco__conteudo"><div class="arq" data-arq>
+    <span class="arq__pacote" aria-hidden="true"></span>
+    <div class="arq__camada">
+      <p class="arq__nome rotulo">Routers</p>
+      <ul class="arq__itens"><li>API do RouterOS v6/v7</li><li>Usuário só-leitura</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Collector</p>
+      <ul class="arq__itens"><li>Python · Flask</li><li>Ciclo de 30 s em segundo plano</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Data</p>
+      <ul class="arq__itens"><li>SQLite</li><li>Log de auditoria somente leitura</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Outputs</p>
+      <ul class="arq__itens"><li>Painel próprio</li><li>Telegram</li><li>Prometheus /metrics</li><li>Grafana</li></ul>
+    </div>
+  </div></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Outcome</h2>
+    <div class="bloco__conteudo"><p class="bloco__destaque">Drops and recoveries reach Telegram once per transition, from a background collector, so nobody has to be watching a panel.</p></div>
+  </section>
+    <section class="galeria" aria-label="Screens">
+    <h2 class="rotulo galeria__titulo">Screens</h2>
+    <p class="galeria__nota">Screens use fictitious data, captured by running the system in demo mode.</p>
+    <div class="galeria__grade">
+      <figure class="galeria__item"><a href="/fotos/projetos/telemetry/painel.webp" data-ampliar><img class="" src="/fotos/projetos/telemetry/painel.webp" srcset="/fotos/projetos/telemetry/painel-800.webp 800w, /fotos/projetos/telemetry/painel.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="Status dashboard: the neighbor that vanished shows up as OFFLINE" loading="lazy" decoding="async"></a><figcaption>Status dashboard: the neighbor that vanished shows up as OFFLINE</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/telemetry/sonda.webp" data-ampliar><img class="" src="/fotos/projetos/telemetry/sonda.webp" srcset="/fotos/projetos/telemetry/sonda-800.webp 800w, /fotos/projetos/telemetry/sonda.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="Probes: latency, loss and jitter seen from the customer side" loading="lazy" decoding="async"></a><figcaption>Probes: latency, loss and jitter seen from the customer side</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/telemetry/auditoria.webp" data-ampliar><img class="" src="/fotos/projetos/telemetry/auditoria.webp" srcset="/fotos/projetos/telemetry/auditoria-800.webp 800w, /fotos/projetos/telemetry/auditoria.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="Read-only audit log" loading="lazy" decoding="async"></a><figcaption>Read-only audit log</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/telemetry/roteadores.webp" data-ampliar><img class="" src="/fotos/projetos/telemetry/roteadores.webp" srcset="/fotos/projetos/telemetry/roteadores-800.webp 800w, /fotos/projetos/telemetry/roteadores.webp 1600w" sizes="(min-width: 1024px) 45vw, 100vw" width="1600" height="1000" alt="Network health per router" loading="lazy" decoding="async"></a><figcaption>Network health per router</figcaption></figure>
+    </div>
+  </section>
+  </div>
+  <nav class="envelope vizinhos" aria-label="More projects">
+    <a class="vizinho" href="/en/projects/popmanager/"><span class="rotulo">Previous project</span><span class="vizinho__nome">PopManager</span></a>
+    <a class="vizinho vizinho--todos" href="/en/projects/"><span class="rotulo">All projects</span><span class="vizinho__nome">26</span></a>
+    <a class="vizinho vizinho--proximo" href="/en/projects/roasmonitor/"><span class="rotulo">Next project</span><span class="vizinho__nome">ROAs Monitor Status</span></a>
+  </nav>
+</article>
+</main>
+<footer class="rodape">
+  <div class="envelope rodape__grade">
+    <div class="rodape__marca">
+      <a class="marca" href="/en/"><svg class="marca__d" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 22H48A28 28 0 0 1 48 78H30Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="11" fill="var(--tinta)"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg><span class="marca__nome">davi castro</span></a>
+      <p>Hand-built, no framework: static pages generated from Firestore, with content editable in my own admin panel.</p>
+      <p class="rodape__nota">The ping at the top is measured in your browser and isn&#39;t stored anywhere.</p>
+    </div>
+    <nav class="rodape__links" aria-label="Footer">
+      <a href="/en/projects/">All projects</a>
+      <a href="/Curriculo/en.html">Résumé</a>
+      <a href="/brand/">Brand guidelines</a>
+      <a href="/coffee/">Buy me a coffee</a>
+    </nav>
+    <div class="rodape__fim rotulo">
+      <span>© 2026 Davi Castro · davicjc</span>
+      <span>Updated <time datetime="2026-10-26T13:11:04.356Z">26 Oct 2026</time></span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="/assets/js/site.js?v=5c1f5c47a6"></script>
+</body>
+</html>

@@ -1,50 +1,509 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- Portfólio: página única (SPA). Gerado por tools/seo.js em 2026-10-04. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://davicjc.com/</loc>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/"/>
+    <lastmod>2026-10-26</lastmod>
     <priority>1.0</priority>
-    <image:image><image:loc>https://davicjc.com/brand/og.png</image:loc><image:title>Davi Castro — Desenvolvedor Full Stack &amp; Infraestrutura de Redes</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/me/me.jpg</image:loc><image:title>Davi Castro Jorge da Costa</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomhub.webp</image:loc><image:title>Audicom Hub — Portal interno multiprojeto com controle de acesso por função</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/facesafety.webp</image:loc><image:title>Face Safety — Controle de acesso por reconhecimento facial em Python</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/roasmonitor.webp</image:loc><image:title>ROAs Monitor Status — Alerta no Telegram quando os ROAs do seu ASN ficam inválidos</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/patricia.webp</image:loc><image:title>Patricia Moura Lash Design — Agendamento online em tempo real para um estúdio de cílios</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomtelecom.webp</image:loc><image:title>Site Audicom Telecom — Site institucional em produção da provedora Audicom Telecom</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/capile.webp</image:loc><image:title>Capilé Drinks — Cardápio interativo e painel de gestão para bar de drinks autorais</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/speedtest.webp</image:loc><image:title>Audicom Speed Test — Teste de velocidade próprio, medindo na rota real do cliente</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/ddwilber.webp</image:loc><image:title>Portfólio Dennis Wilber — Portfólio one-page para um líder de vendas da Xiaomi Brasil</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/acessoaudicom.webp</image:loc><image:title>Acesso Audicom (QR Code) — Liberação de catracas por QR Code gerado no cadastro do visitante</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/fitia.webp</image:loc><image:title>FitIA — Contagem de repetições e análise de forma por webcam, no navegador</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/desenhobase64.webp</image:loc><image:title>DesenhoBase64 — Canvas HTML5 vira quadro de desenho e assinatura, sem dependências</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/barbearia.webp</image:loc><image:title>Barbearia Soares — Site de vitrine para barbearia local, em HTML e CSS puros</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomreuniao.webp</image:loc><image:title>Painel da Sala de Reunião — Tela de recepção da sala de reunião da Audicom Telecom</image:title></image:image>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/qrcodeaudicom.webp</image:loc><image:title>Página dos QR Codes Audicom — Destino dos QR Codes aplicados nos carros e materiais da Audicom</image:title></image:image>
   </url>
-
   <url>
-    <loc>https://davicjc.com/Curriculo/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/Curriculo/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/Curriculo/en.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/Curriculo/"/>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://davicjc.com/projetos/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/"/>
+    <lastmod>2026-10-26</lastmod>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://davicjc.com/Curriculo/en.html</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/Curriculo/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/Curriculo/en.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/Curriculo/"/>
-    <lastmod>2026-10-04</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://davicjc.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/"/>
+    <lastmod>2026-10-26</lastmod>
     <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://davicjc.com/projetos/nexusatlas/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/nexusatlas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/nexusatlas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/nexusatlas/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/nexusatlas.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/nexusatlas/agenda.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/nexusatlas/nova-os.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/nexusatlas/sugestoes.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/nexusatlas/mapa.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/nexusatlas/detalhe.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/nexusatlas/rota.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/nexusatlas/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/nexusatlas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/nexusatlas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/nexusatlas/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/speedtest/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/speedtest/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/speedtest/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/speedtest/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/speedtest.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/speedtest/resultado.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/speedtest/medindo.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/speedtest/painel.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/speedtest/admin.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/speedtest/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/speedtest/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/speedtest/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/speedtest/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/audicomhub/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/audicomhub/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/audicomhub/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/audicomhub/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomhub.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomhub/frota-painel.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomhub/frota-custos.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomhub/modulos.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomhub/frota-veiculos.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/audicomhub/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/audicomhub/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/audicomhub/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/audicomhub/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/ecolyra/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/ecolyra/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/ecolyra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/ecolyra/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/ecolyra.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/ecolyra/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/ecolyra/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/ecolyra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/ecolyra/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/facesafety/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/facesafety/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/facesafety/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/facesafety/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/facesafety/key.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/facesafety/cadastro.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/facesafety/administradores.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/facesafety/remover.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/facesafety/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/facesafety/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/facesafety/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/facesafety/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/popmanager/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/popmanager/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/popmanager/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/popmanager/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/popmanager.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/popmanager/visao-geral.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/popmanager/topologia.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/popmanager/monitoramento.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/popmanager/pops.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/popmanager/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/popmanager/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/popmanager/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/popmanager/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/telemetry/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/telemetry/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/telemetry.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/telemetry/painel.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/telemetry/sonda.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/telemetry/auditoria.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/telemetry/roteadores.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/telemetry/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/telemetry/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/roasmonitor/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/roasmonitor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/roasmonitor/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/roasmonitor/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/roasmonitor.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/roasmonitor/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/roasmonitor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/roasmonitor/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/roasmonitor/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/cooperbant/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/cooperbant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/cooperbant/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/cooperbant/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/cooperbant.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/cooperbant/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/cooperbant/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/cooperbant/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/cooperbant/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/diariodoverdao/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/diariodoverdao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/diariodoverdao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/diariodoverdao/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/diariodoverdao.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/diariodoverdao/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/diariodoverdao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/diariodoverdao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/diariodoverdao/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/uec/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/uec/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/uec/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/uec/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/uec.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/uec/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/uec/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/uec/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/uec/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/socioverdao/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/socioverdao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/socioverdao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/socioverdao/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/socioverdao.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/socioverdao/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/socioverdao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/socioverdao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/socioverdao/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/elora/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/elora/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/elora/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/elora/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/elora.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/elora/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/elora/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/elora/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/elora/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/alpa/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/alpa/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/alpa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/alpa/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/alpa.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/alpa/dashboard.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/alpa/view360.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/alpa/orcamentos.webp</image:loc></image:image>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/alpa/financeiro.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/alpa/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/alpa/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/alpa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/alpa/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/audicomtecnologia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/audicomtecnologia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/audicomtecnologia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/audicomtecnologia/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomtecnologia.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/audicomtecnologia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/audicomtecnologia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/audicomtecnologia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/audicomtecnologia/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/audicomtelecom/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/audicomtelecom/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/audicomtelecom/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/audicomtelecom/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomtelecom.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/audicomtelecom/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/audicomtelecom/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/audicomtelecom/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/audicomtelecom/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/quizturma/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/quizturma/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/quizturma/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/quizturma/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/quizturma.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/quizturma/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/quizturma/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/quizturma/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/quizturma/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/gestorapi/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/gestorapi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/gestorapi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/gestorapi/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/gestorapi.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/gestorapi/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/gestorapi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/gestorapi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/gestorapi/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/footer/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/footer/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/footer/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/footer/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/footer.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/footer/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/footer/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/footer/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/footer/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/ddwilber/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/ddwilber/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/ddwilber/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/ddwilber/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/ddwilber.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/ddwilber/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/ddwilber/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/ddwilber/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/ddwilber/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/sanctorum/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/sanctorum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/sanctorum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/sanctorum/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/sanctorum.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/sanctorum/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/sanctorum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/sanctorum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/sanctorum/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/capile/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/capile/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/capile/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/capile/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/capile.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/capile/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/capile/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/capile/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/capile/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/barbearia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/barbearia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/barbearia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/barbearia/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/barbearia.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/barbearia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/barbearia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/barbearia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/barbearia/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/audicomreuniao/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/audicomreuniao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/audicomreuniao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/audicomreuniao/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/audicomreuniao.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/audicomreuniao/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/audicomreuniao/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/audicomreuniao/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/audicomreuniao/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/qrcodeaudicom/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/qrcodeaudicom/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/qrcodeaudicom/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/qrcodeaudicom/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/qrcodeaudicom.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/qrcodeaudicom/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/qrcodeaudicom/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/qrcodeaudicom/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/qrcodeaudicom/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/projetos/patricia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/patricia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/patricia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/patricia/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://davicjc.com/fotos/projetos/patricia.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/projects/patricia/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/patricia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/patricia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/patricia/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url><loc>https://davicjc.com/Curriculo/</loc><lastmod>2026-10-26</lastmod><priority>0.7</priority></url>
+  <url><loc>https://davicjc.com/Curriculo/en.html</loc><lastmod>2026-10-26</lastmod><priority>0.6</priority></url>
+  <url><loc>https://davicjc.com/brand/</loc><lastmod>2026-10-26</lastmod><priority>0.3</priority></url>
 </urlset>

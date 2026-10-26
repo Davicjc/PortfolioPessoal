@@ -1,0 +1,1834 @@
+{
+ "_sincronizado": "2026-10-26T12:22:37.053Z",
+ "site": {
+  "id": "site",
+  "cargo_es": "Desarrollador Full Stack e infraestructura de red",
+  "camadas": [
+   {
+    "nome_pt": "interface",
+    "nome_en": "interface",
+    "ordem": 1,
+    "itens": [
+     "HTML",
+     "CSS",
+     "JavaScript",
+     "TypeScript",
+     "React"
+    ]
+   },
+   {
+    "ordem": 2,
+    "nome_en": "application",
+    "itens": [
+     "Python",
+     "C#",
+     "Node.js",
+     "Firebase",
+     "REST"
+    ],
+    "nome_pt": "aplicação"
+   },
+   {
+    "itens": [
+     "Linux",
+     "Docker",
+     "VMware ESXi",
+     "WireGuard"
+    ],
+    "nome_en": "servers",
+    "ordem": 3,
+    "nome_pt": "servidores"
+   },
+   {
+    "nome_pt": "rede",
+    "nome_en": "network",
+    "ordem": 4,
+    "itens": [
+     "MikroTik",
+     "Cisco",
+     "Ubiquiti",
+     "BGP",
+     "RPKI",
+     "OSPF"
+    ]
+   },
+   {
+    "itens": [
+     "catracas",
+     "biometria",
+     "câmeras",
+     "Raspberry Pi"
+    ],
+    "nome_pt": "dispositivos",
+    "nome_en": "devices",
+    "ordem": 5
+   }
+  ],
+  "disponibilidade_es": "Abierto a nuevos proyectos",
+  "clientes_sub_pt": "Empregadores, clientes de projeto e parceiros — de provedores de internet a estúdios de beleza.",
+  "trajetoria_titulo_en": "From the support desk to technical supervision",
+  "destaques_sub_en": "Three projects that sum up what I do. The full list, with live demos, is on the projects page.",
+  "certificados_titulo_en": "Continuous learning",
+  "numeros": [
+   {
+    "rotulo_pt": "projetos",
+    "ordem": 1,
+    "rotulo_en": "projects",
+    "valor": "35+"
+   },
+   {
+    "ordem": 2,
+    "rotulo_pt": "sites entregues",
+    "valor": "20+",
+    "rotulo_en": "websites shipped"
+   },
+   {
+    "valor": "15+",
+    "ordem": 3,
+    "rotulo_en": "clients & brands",
+    "rotulo_pt": "clientes e marcas"
+   },
+   {
+    "rotulo_en": "years of experience",
+    "ordem": 4,
+    "rotulo_pt": "anos de experiência",
+    "valor": "3+"
+   }
+  ],
+  "projetos_sub_pt": "Metade software, metade rede: sistemas web completos, sites de clientes e ferramentas de monitoramento de rede. Onde houver demonstração pública, você abre o projeto aqui mesmo, em tamanho de computador ou de celular.",
+  "resumo_es": "Soy desarrollador full stack y analista de redes — las dos cosas, de verdad. Construyo sistemas web de punta a punta (interfaz, API, base de datos y publicación) y, en Audicom Telecom, me encargo de la infraestructura de un proveedor de internet, desde routers MikroTik y BGP hasta servidores VMware. Por eso mis sistemas nacen pensando en la red en la que van a funcionar. Fuera de la empresa, entrego sitios y plataformas para clientes de salud, belleza, finanzas y gastronomía.",
+  "destaques_sub_pt": "Três projetos que resumem o que eu faço. A lista completa, com demonstração ao vivo, está na aba de projetos.",
+  "clientes_titulo_pt": "Empresas e marcas atendidas",
+  "trajetoria_sub_pt": "Comecei no atendimento e cresci por dentro das empresas, somando responsabilidade técnica a cada etapa.",
+  "cargo_pt": "Desenvolvedor Full Stack & Infraestrutura de Redes",
+  "trajetoria_titulo_pt": "Do atendimento à supervisão técnica",
+  "clientes_titulo_en": "Companies and brands I've worked with",
+  "projetos_titulo_pt": "Projetos",
+  "contato_sub_en": "For projects, roles or a technical conversation, pick whichever channel suits you.",
+  "capacidades_sub_pt": "Boa parte do que entrego cruza mais de uma destas áreas: um sistema web que conversa com uma catraca, um painel que lê o estado dos roteadores.",
+  "destaques_titulo_en": "Selected work",
+  "clientes_sub_en": "Employers, project clients and partners — from internet providers to beauty studios.",
+  "disponibilidade_en": "Open to new projects",
+  "trajetoria_sub_en": "I started in customer support and grew from within, taking on more technical responsibility at every step.",
+  "capacidades_titulo_pt": "Da tela ao roteador",
+  "projetos_sub_en": "Half software, half network: full web systems, client websites and network monitoring tools. Wherever a public demo exists, you can open it right here, at desktop or phone width.",
+  "projetos_titulo_en": "Projects",
+  "local_pt": "Uberlândia, MG · Brasil",
+  "disponivel": true,
+  "contato_sub_pt": "Para projetos, vagas ou uma conversa técnica, escolha o canal que preferir.",
+  "depoimentos_sub_en": "Recommendations from managers, teammates and clients, each linked to their LinkedIn profile.",
+  "disponibilidade_pt": "Aberto a novos projetos",
+  "capacidades_titulo_en": "From the screen to the router",
+  "contato_titulo_en": "Let's talk",
+  "certificados_titulo_pt": "Formação contínua",
+  "depoimentos_sub_pt": "Recomendações de gestores, colegas de equipe e clientes, com o perfil de cada um no LinkedIn.",
+  "resumo_pt": "Sou desenvolvedor full stack e analista de redes — as duas coisas, de verdade. Construo sistemas web de ponta a ponta (interface, API, banco de dados e publicação) e, na Audicom Telecom, cuido da infraestrutura de um provedor, de roteadores MikroTik e BGP a servidores VMware. Por isso meus sistemas nascem pensando na rede em que vão rodar. Fora da empresa, entrego sites e plataformas para clientes de saúde, beleza, finanças e gastronomia.",
+  "nome_completo": "Davi Castro Jorge da Costa",
+  "cargo_en": "Full Stack Developer & Network Infrastructure",
+  "destaques_titulo_pt": "Trabalhos selecionados",
+  "local_es": "Uberlandia, MG · Brasil",
+  "contato_titulo_pt": "Vamos conversar",
+  "nome": "Davi Castro",
+  "depoimentos_titulo_en": "What colleagues and clients say",
+  "local_en": "Uberlândia, MG · Brazil",
+  "resumo_en": "I am a full stack developer and a network engineer — genuinely both. I build web systems end to end (interface, API, database and deployment) and, at Audicom Telecom, I run an ISP's infrastructure, from MikroTik routers and BGP to VMware servers. That is why my systems are designed with the network they run on in mind. Outside the company, I deliver websites and platforms for clients in health, beauty, finance and food service.",
+  "capacidades_sub_en": "Much of what I ship crosses more than one of these areas: a web system that talks to a turnstile, a dashboard that reads router state.",
+  "depoimentos_titulo_pt": "O que dizem colegas e clientes",
+  "_atualizado": "2026-10-07T13:59:31.393442Z"
+ },
+ "projetos": [
+  {
+   "id": "acessoaudicom",
+   "tipo_botao": "demo",
+   "destaque": false,
+   "impacto_en": "Digitizes front-desk visitor records and keeps an exportable CSV history, running entirely in the browser with no server. Discontinued, but still functional as a demo.",
+   "tagline_en": "Turnstile release via QR code generated at visitor sign-in",
+   "titulo_pt": "Acesso Audicom (QR Code)",
+   "papel_en": "Sole developer, responsible for the sign-in front end, QR code generation and the serial integration with the turnstile hardware",
+   "demo": "https://davicjc.github.io/AcessoAudicom/",
+   "vitrine": false,
+   "ordem": 30,
+   "papel_pt": "Desenvolvedor único, responsável pelo front-end de cadastro, pela geração dos QR Codes e pela integração serial com o hardware da catraca",
+   "categoria": "corporativo",
+   "descricao_en": "Visitor access control at turnstiles without physical badges or a paper logbook at the front desk. The web form validates CPF check digits, blocks duplicate entries and generates the release QR code; a Java receiver reads it over the serial port and triggers the turnstile unlock program.",
+   "descricao_pt": "Controle de acesso de visitantes em catracas sem crachá físico nem registro em papel na portaria. O cadastro web valida o CPF por cálculo de dígito, bloqueia duplicidade e gera o QR Code de liberação; um receptor em Java lê o código pela porta serial e aciona o programa de desbloqueio da catraca.",
+   "titulo_en": "Audicom Access (QR Code)",
+   "tagline_pt": "Liberação de catracas por QR Code gerado no cadastro do visitante",
+   "impacto_pt": "Digitaliza o registro de visitantes na portaria e mantém o histórico exportável em CSV, rodando inteiramente no navegador, sem servidor. Descontinuado, mas funcional como demonstração.",
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript ES6+",
+    "Java",
+    "Raspberry Pi Pico"
+   ],
+   "repo": "https://github.com/Davicjc/AcessoAudicom",
+   "imagem": "fotos/projetos/acessoaudicom.webp",
+   "publicado": false,
+   "_atualizado": "2026-10-26T11:37:31.010905Z"
+  },
+  {
+   "id": "alpa",
+   "titulo_pt": "CRM Alpa Solutions",
+   "destaque": false,
+   "papel_en": "Sole developer, responsible for the interface, the application logic and delivery to the client",
+   "repo": "",
+   "tagline_pt": "Base única de clientes e histórico comercial para a Valoria",
+   "vitrine": false,
+   "ordem": 10,
+   "impacto_pt": "Centralizou a base de clientes da Valoria em um sistema próprio, com histórico consultável por toda a equipe.",
+   "descricao_en": "A custom CRM built for Alpa Solutions, which operates under the Valoria brand. It brings client records and the history of each commercial relationship into a single web interface the team can reach from any browser, with no local install. Written in JavaScript and shaped around the client's own sales process instead of bending a generic off-the-shelf CRM to fit.",
+   "descricao_pt": "CRM sob medida para a Alpa Solutions, que atua sob a marca Valoria. O sistema centraliza o cadastro de clientes e o histórico de relacionamento comercial em uma única interface web, acessível pela equipe sem instalação local. Foi desenvolvido em JavaScript e modelado sobre o processo comercial do cliente, em vez de adaptar um CRM genérico de mercado.",
+   "tagline_en": "One system for Valoria's client records and relationship history",
+   "papel_pt": "Desenvolvedor único do projeto, responsável pela interface, pela lógica da aplicação e pela entrega ao cliente",
+   "publicado": true,
+   "tipo_botao": "demo",
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Git"
+   ],
+   "categoria": "cliente",
+   "demo": "https://davicjc.github.io/Crm_Alpa-Solutions/",
+   "impacto_en": "Gave Valoria a single owned system for its client base, with history any team member can look up.",
+   "titulo_en": "Alpa Solutions CRM",
+   "imagem": "fotos/projetos/alpa.webp",
+   "_atualizado": "2026-10-07T21:35:20.419400Z"
+  },
+  {
+   "id": "appaudicom",
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "PWA"
+   ],
+   "papel_pt": "Desenvolvedor do app",
+   "vitrine": false,
+   "tagline_en": "Installable ISP app: login, customer portal and speed test",
+   "publicado": false,
+   "categoria": "corporativo",
+   "repo": "",
+   "titulo_en": "Audicom App",
+   "tipo_botao": "demo",
+   "impacto_en": "Customers reach everything from the home screen, with no app store involved.",
+   "titulo_pt": "App Audicom",
+   "ordem": 22,
+   "destaque": false,
+   "imagem": "fotos/projetos/appaudicom.webp",
+   "tagline_pt": "App instalável do provedor: login, central do cliente e teste de velocidade",
+   "impacto_pt": "O cliente acessa tudo do provedor pela tela inicial do celular, sem loja de aplicativos.",
+   "demo": "https://davicjc.github.io/AppAudicom/",
+   "descricao_pt": "Aplicativo web progressivo (PWA) da Audicom Telecom que se instala no celular como app. Reúne login do cliente, a central de atendimento e o teste de velocidade oficial num só lugar, com service worker para abrir rápido e funcionar com conexão instável.",
+   "descricao_en": "Progressive web app (PWA) for Audicom Telecom that installs on the phone like a native app. It brings customer login, the support portal and the official speed test together, with a service worker for fast startup on unstable connections.",
+   "papel_en": "App developer",
+   "_atualizado": "2026-10-26T11:38:10.196930Z"
+  },
+  {
+   "id": "audicomhub",
+   "impacto_en": "Field patrol logging survives connection drops, and per-role and per-client access is enforced at the database layer.",
+   "papel_en": "Full stack developer, responsible for architecture, data modeling and security rules",
+   "publicado": true,
+   "tipo_botao": "demo",
+   "titulo_en": "Audicom Hub",
+   "destaque": true,
+   "tagline_en": "Internal multi-project portal with role-based access control",
+   "stack": [
+    "JavaScript",
+    "Firebase Auth",
+    "Firestore",
+    "PWA / Service Worker",
+    "HTML5",
+    "CSS3"
+   ],
+   "repo": "https://github.com/Davicjc/AudicomHub",
+   "categoria": "corporativo",
+   "tagline_pt": "Portal interno multiprojeto com controle de acesso por função",
+   "titulo_pt": "Audicom Hub",
+   "impacto_pt": "Registro de rondas em campo sobrevive a queda de conexão, e o acesso por função e por cliente fica delimitado no próprio banco.",
+   "demo": "https://davicjc.github.io/AudicomHub/",
+   "papel_pt": "Desenvolvedor full stack, responsável pela arquitetura, modelagem de dados e regras de segurança",
+   "imagem": "fotos/projetos/audicomhub.webp",
+   "descricao_en": "Brings the operation's internal workflows into a single portal: support tickets, maintenance requests, a router troubleshooting knowledge base and technical patrol logs. Three-level authorization (user, admin, superadmin) is enforced in Firestore security rules rather than only in the UI, and the patrol form autosaves drafts so a technician can resume after losing connection.",
+   "vitrine": true,
+   "ordem": 4,
+   "descricao_pt": "Reúne em um só portal os fluxos internos da operação: chamados, solicitações de manutenção, base de conhecimento de roteadores e registro de rondas técnicas. A autorização em três níveis (user, admin, superadmin) é aplicada nas regras do Firestore, não apenas na interface, e o formulário de ronda salva rascunho automaticamente para o técnico retomar após queda de conexão.",
+   "_atualizado": "2026-10-07T21:35:26.727728Z"
+  },
+  {
+   "id": "audicomreuniao",
+   "tipo_botao": "pagina",
+   "impacto_en": "Visitors walk into the room with the Wi-Fi details and the day's information already on screen.",
+   "categoria": "corporativo",
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+   ],
+   "titulo_en": "Meeting Room Display",
+   "destaque": false,
+   "demo": "https://davicjc.github.io/AudicomSiteReuniao/",
+   "tagline_en": "Welcome screen for Audicom Telecom's meeting room",
+   "papel_en": "Design and front-end development",
+   "publicado": true,
+   "ordem": 27,
+   "vitrine": false,
+   "repo": "https://github.com/Davicjc/AudicomSiteReuniao",
+   "imagem": "fotos/projetos/audicomreuniao.webp",
+   "tagline_pt": "Tela de recepção da sala de reunião da Audicom Telecom",
+   "papel_pt": "Design e desenvolvimento front-end",
+   "impacto_pt": "Visitantes chegam à sala com o Wi-Fi e as informações do dia já na tela, sem precisar pedir.",
+   "titulo_pt": "Painel da Sala de Reunião",
+   "descricao_en": "A page that stays open on the screen in Audicom Telecom's meeting room. It shows whether the room is available, the date, time and temperature, offers a QR code for the guest Wi-Fi and cycles through the company's client logos.",
+   "descricao_pt": "Página que fica aberta na tela da sala de reunião da Audicom Telecom. Mostra se a sala está disponível, data, hora e temperatura, oferece o QR Code do Wi-Fi de visitantes e passa em carrossel as marcas de clientes da empresa.",
+   "_atualizado": "2026-10-07T21:34:57.322527Z"
+  },
+  {
+   "id": "audicomtecnologia",
+   "impacto_pt": "A empresa ganhou vitrine própria dos produtos, atualizada pela equipe sem mexer em código.",
+   "tagline_pt": "Site, catálogo e painel de controle de acesso e ponto eletrônico",
+   "titulo_en": "Audicom Tecnologia",
+   "categoria": "corporativo",
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Firebase"
+   ],
+   "destaque": false,
+   "demo": "https://davicjc.github.io/AudicomTecnologia/",
+   "publicado": true,
+   "papel_en": "Built the whole project: site, catalog and admin panel",
+   "ordem": 9,
+   "vitrine": false,
+   "repo": "",
+   "imagem": "fotos/projetos/audicomtecnologia.webp",
+   "impacto_en": "The company got its own product showcase, updated by the team without touching code.",
+   "tipo_botao": "pagina",
+   "papel_pt": "Desenvolvedor do projeto inteiro: site, catálogo e painel",
+   "descricao_pt": "Site da Audicom Tecnologia, representante Secullum, Topdata e Control iD em Uberlândia: controle de acesso, ponto eletrônico, catracas e reconhecimento facial. Tem catálogo de produtos dinâmico filtrado por categoria e painel administrativo sobre Firebase para a equipe cadastrar produtos e conteúdo, tudo em HTML, CSS e JavaScript puros.",
+   "tagline_en": "Website, catalog and admin for access control and time tracking",
+   "titulo_pt": "Audicom Tecnologia",
+   "descricao_en": "Website for Audicom Tecnologia, a Secullum, Topdata and Control iD reseller in Uberlândia: access control, time clocks, turnstiles and facial recognition. It has a dynamic product catalog filtered by category and a Firebase-backed admin panel for the team to manage products and content, all in plain HTML, CSS and JavaScript.",
+   "_atualizado": "2026-10-07T21:35:21.363426Z"
+  },
+  {
+   "id": "audicomtelecom",
+   "titulo_en": "Audicom Telecom Website",
+   "papel_pt": "Desenvolvedor responsável pelo front-end e pela estrutura de conteúdo",
+   "categoria": "corporativo",
+   "descricao_pt": "Site institucional principal da Audicom Telecom, provedora de telecomunicações. Concentra em um domínio próprio a apresentação dos planos, das soluções corporativas e dos canais de atendimento da operadora. Front-end em HTML, CSS e JavaScript, com layout responsivo e seções dedicadas a soluções e contato.",
+   "vitrine": false,
+   "descricao_en": "Main institutional website for Audicom Telecom, a telecommunications provider. It presents the company's plans, corporate solutions and support channels on its own domain. Built as a responsive front end in HTML, CSS and JavaScript, with dedicated sections for solutions and contact.",
+   "publicado": true,
+   "impacto_pt": "Site no ar em audicomtelecom.com.br, usado como canal oficial de apresentação da operadora a clientes e prospects.",
+   "repo": "",
+   "tagline_pt": "Site institucional em produção da provedora Audicom Telecom",
+   "ordem": 11,
+   "tagline_en": "Production institutional site for telecom provider Audicom",
+   "destaque": false,
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+   ],
+   "impacto_en": "Live at audicomtelecom.com.br as the operator's official channel for presenting itself to customers and prospects.",
+   "imagem": "fotos/projetos/audicomtelecom.webp",
+   "tipo_botao": "pagina",
+   "titulo_pt": "Site Audicom Telecom",
+   "papel_en": "Developer responsible for the front end and content structure",
+   "demo": "https://audicomtelecom.com.br/",
+   "_atualizado": "2026-10-07T21:35:16.167544Z"
+  },
+  {
+   "id": "barbearia",
+   "papel_en": "Front-end developer responsible for layout, markup and client delivery",
+   "publicado": true,
+   "destaque": false,
+   "demo": "https://davicjc.github.io/BarbeariaSoares/",
+   "titulo_en": "Barbearia Soares",
+   "tagline_pt": "Site de vitrine para barbearia local, em HTML e CSS puros",
+   "descricao_pt": "Site de apresentação para uma barbearia local, entregue como demo para um cliente real. A página é escrita apenas em HTML e CSS, sem framework nem etapa de build: carrega rápido no celular, roda em qualquer hospedagem estática e cada ajuste de conteúdo é uma edição direta na marcação.",
+   "impacto_pt": "Dá ao negócio uma vitrine própria na web, com custo de hospedagem e manutenção próximo de zero.",
+   "descricao_en": "Presentation site for a local barbershop, delivered as a demo for a real client. The page is written in plain HTML and CSS, with no framework and no build step: it loads fast on mobile, runs on any static hosting, and every content change is a direct edit to the markup.",
+   "categoria": "cliente",
+   "ordem": 26,
+   "tagline_en": "Storefront site for a local barbershop, in plain HTML and CSS",
+   "imagem": "fotos/projetos/barbearia.webp",
+   "titulo_pt": "Barbearia Soares",
+   "impacto_en": "Gives the business its own storefront on the web, with hosting and maintenance cost close to zero.",
+   "vitrine": false,
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "Git",
+    "GitHub"
+   ],
+   "tipo_botao": "pagina",
+   "papel_pt": "Desenvolvedor front-end responsável por layout, marcação e entrega ao cliente",
+   "repo": "https://github.com/Davicjc/BarbeariaSoares",
+   "_atualizado": "2026-10-07T21:34:57.831714Z"
+  },
+  {
+   "id": "brunofilho",
+   "impacto_pt": "",
+   "tagline_pt": "Vitrine digital para os trabalhos criativos da marca",
+   "ordem": 3,
+   "papel_en": "Design and development",
+   "imagem": "",
+   "titulo_pt": "Portfólio Bruno F. Creation",
+   "demo": "",
+   "destaque": false,
+   "categoria": "cliente",
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+   ],
+   "vitrine": false,
+   "tipo_botao": "pagina",
+   "titulo_en": "Bruno F. Creation Portfolio",
+   "impacto_en": "",
+   "descricao_pt": "Site portfólio para destacar os trabalhos criativos de Bruno Filho, reunindo artes e serviços em uma vitrine digital.",
+   "papel_pt": "Design e desenvolvimento",
+   "publicado": false,
+   "tagline_en": "A digital showcase for the brand's creative work",
+   "descricao_en": "Portfolio website highlighting Bruno Filho's creative work, bringing his art and services together in one digital showcase.",
+   "repo": "",
+   "_atualizado": "2026-10-07T21:35:40.329370Z"
+  },
+  {
+   "id": "capile",
+   "publicado": true,
+   "destaque": false,
+   "titulo_en": "Capilé Drinks",
+   "tagline_pt": "Cardápio interativo e painel de gestão para bar de drinks autorais",
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "LocalStorage",
+    "Chart.js"
+   ],
+   "impacto_pt": "Substitui a anotação manual de pedidos por autoatendimento e dá ao dono visibilidade de vendas sem exigir servidor.",
+   "papel_en": "Sole developer: interface, LocalStorage data model and admin panel",
+   "repo": "https://github.com/Davicjc/CapileSite",
+   "imagem": "fotos/projetos/capile.webp",
+   "vitrine": false,
+   "categoria": "cliente",
+   "papel_pt": "Desenvolvedor único: interface, modelo de dados em LocalStorage e painel administrativo",
+   "titulo_pt": "Capilé Drinks",
+   "tagline_en": "Interactive menu and management panel for a craft cocktail bar",
+   "impacto_en": "Replaces manual order-taking with self-service and gives the owner sales visibility without running a server.",
+   "ordem": 17,
+   "demo": "https://davicjc.github.io/CapileSite/",
+   "descricao_pt": "O bar anotava pedidos e controlava o cardápio manualmente, sem registro de vendas. O sistema entrega um cardápio mobile em que o cliente monta o pedido pelo celular, com carrinho e checkout, e um painel administrativo com CRUD do cardápio, aprovação de pedidos e gráficos de faturamento. Persistência em LocalStorage, sem backend para operar.",
+   "tipo_botao": "demo",
+   "descricao_en": "The bar took orders and managed its menu by hand, with no record of sales. This delivers a mobile-first menu where the customer builds the order on their phone, with cart and checkout, plus an admin panel for menu CRUD, order approval and revenue charts. State lives in LocalStorage, so there is no backend to run.",
+   "_atualizado": "2026-10-07T21:37:41.420486Z"
+  },
+  {
+   "id": "cooperbant",
+   "titulo_pt": "Cooperbant",
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Firebase",
+    "Cloudflare Pages",
+    "Turnstile"
+   ],
+   "tagline_pt": "Novo site e painel de conteúdo de uma cooperativa de crédito",
+   "impacto_pt": "A cooperativa deixa um site e painel legados por uma plataforma moderna, com contas em nome dela e sem depender de desenvolvedor para atualizar conteúdo.",
+   "papel_pt": "Desenvolvedor responsável: proposta, arquitetura, front-end, painel e migração do site antigo",
+   "descricao_en": "Full rebuild of the website and admin panel of Cooperbant, a credit union for bank workers in the Triângulo Mineiro region. Server-rendered public site (Cloudflare Pages Functions) and a CMS for the team to update copy, banners, news, files and galleries, with a real-time database and a spam-protected contact form.",
+   "descricao_pt": "Reconstrução completa do site e do painel da Cooperbant, cooperativa de crédito dos bancários do Triângulo Mineiro. Site público com páginas renderizadas no servidor (Cloudflare Pages Functions) e um CMS para a equipe atualizar textos, banners, notícias, arquivos e galerias, com banco em tempo real e formulário protegido contra spam.",
+   "repo": "",
+   "papel_en": "Lead developer: proposal, architecture, front end, admin panel and migration from the legacy site",
+   "categoria": "cliente",
+   "tagline_en": "New website and content panel for a credit union",
+   "imagem": "fotos/projetos/cooperbant.webp",
+   "titulo_en": "Cooperbant",
+   "destaque": false,
+   "vitrine": false,
+   "demo": "https://davicjc.github.io/Site_Cooperbant/",
+   "tipo_botao": "pagina",
+   "ordem": 2,
+   "publicado": true,
+   "impacto_en": "The credit union replaces a legacy site and panel with a modern platform it owns, and no longer needs a developer to update content.",
+   "_atualizado": "2026-10-20T01:05:00.536741Z"
+  },
+  {
+   "id": "ddwilber",
+   "tagline_en": "One-page career portfolio for a Xiaomi Brazil sales lead",
+   "publicado": true,
+   "ordem": 13,
+   "repo": "https://github.com/Davicjc/PortifolioDDWilber",
+   "destaque": false,
+   "titulo_en": "Dennis Wilber Portfolio",
+   "tipo_botao": "pagina",
+   "impacto_en": "The client publicly stated that the site was decisive in his promotion to store supervisor at Xiaomi Brazil.",
+   "imagem": "fotos/projetos/ddwilber.webp",
+   "papel_en": "Sole developer, from client content gathering through deployment",
+   "categoria": "cliente",
+   "demo": "https://davicjc.github.io/PortifolioDDWilber/",
+   "titulo_pt": "Portfólio Dennis Wilber",
+   "papel_pt": "Desenvolvedor único, do levantamento de conteúdo com o cliente ao deploy",
+   "vitrine": false,
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "GitHub Pages",
+    "Google Analytics"
+   ],
+   "descricao_en": "Dennis needed a web presence of his own that presented his sales career in one consolidated place for the people who decide promotions. I built a single-page site in plain HTML, CSS and JavaScript, covering his career path, skills and contact. There is no backend: the form serializes its fields into a WhatsApp deep link, keeping hosting static and replies immediate.",
+   "descricao_pt": "Dennis precisava de uma presença própria na web que apresentasse sua trajetória comercial de forma consolidada a quem decide promoções. Construí um site de página única em HTML, CSS e JavaScript puro, com seções de carreira, competências e contato. Sem backend: o formulário serializa os campos em um deep link do WhatsApp, mantendo hospedagem estática e resposta imediata.",
+   "tagline_pt": "Portfólio one-page para um líder de vendas da Xiaomi Brasil",
+   "impacto_pt": "O próprio cliente declarou publicamente que o site foi decisivo para sua promoção a supervisor de loja na Xiaomi Brasil.",
+   "_atualizado": "2026-10-07T21:37:43.382938Z"
+  },
+  {
+   "id": "desenhobase64",
+   "impacto_en": "Signatures and drawings travel as lightweight text instead of images, and the original strokes can be reloaded into the canvas for editing.",
+   "tipo_botao": "demo",
+   "destaque": false,
+   "vitrine": false,
+   "titulo_pt": "DesenhoBase64",
+   "descricao_en": "Web forms that capture a handwritten signature or sketch usually save a heavy PNG that cannot be edited afterwards. This dependency-free JavaScript library turns an HTML5 canvas into a drawing board or signature pad and serializes the strokes — coordinates, thickness and color — into a short Base64 string that can be loaded back into the canvas for editing.",
+   "descricao_pt": "Formulários que capturam assinatura ou desenho à mão costumam salvar um PNG pesado e não editável. Esta biblioteca JavaScript sem dependências transforma uma tag canvas do HTML5 em quadro de desenho ou painel de assinatura e serializa os traços — coordenadas, espessura e cor — em uma string Base64 curta, recarregável no canvas para edição.",
+   "tagline_en": "HTML5 canvas as a drawing board and signature pad, zero dependencies",
+   "repo": "https://github.com/Davicjc/DesenhoBase64",
+   "imagem": "fotos/projetos/desenhobase64.webp",
+   "ordem": 25,
+   "papel_en": "Library author and maintainer — API design, stroke capture engine and demo page",
+   "publicado": false,
+   "impacto_pt": "Assinaturas e desenhos trafegam como texto leve em vez de imagem, e o traço original volta ao canvas para edição.",
+   "papel_pt": "Autor e mantenedor da biblioteca — desenho da API, motor de captura de traços e página de demonstração",
+   "tagline_pt": "Canvas HTML5 vira quadro de desenho e assinatura, sem dependências",
+   "titulo_en": "DesenhoBase64",
+   "stack": [
+    "JavaScript",
+    "HTML5 Canvas",
+    "HTML5",
+    "CSS3"
+   ],
+   "demo": "https://davicjc.github.io/DesenhoBase64/",
+   "categoria": "open-source",
+   "_atualizado": "2026-10-26T11:37:39.304218Z"
+  },
+  {
+   "id": "ecolyra",
+   "descricao_pt": "Overlay para Windows que mostra a letra da música traduzida enquanto ela toca, em qualquer player (Spotify, YouTube e outros). Reconhece a faixa pelo áudio (Shazam), sincroniza a letra pelo próprio som com Whisper e gera imagens prontas para Stories e Feed.",
+   "descricao_en": "Windows overlay that shows translated lyrics while the song plays, in any player (Spotify, YouTube and others). It identifies the track from the audio (Shazam), syncs the lyrics to the sound itself with Whisper and exports ready-made images for Stories and Feed.",
+   "tagline_pt": "Letras traduzidas em tempo real que escutam a música",
+   "ordem": 14,
+   "impacto_pt": "Aprender idioma ouvindo música, sem trocar de app nem procurar a letra.",
+   "demo": "",
+   "papel_en": "Personal project from scratch: idea, code and distribution",
+   "titulo_pt": "Ecolyra",
+   "destaque": false,
+   "vitrine": false,
+   "categoria": "open-source",
+   "titulo_en": "Ecolyra",
+   "tipo_botao": "pagina",
+   "repo": "https://github.com/Davicjc/Ecolyra",
+   "stack": [
+    "Python",
+    "Tkinter",
+    "Whisper",
+    "Shazam"
+   ],
+   "impacto_en": "Learn a language through music, without switching apps or looking up lyrics.",
+   "papel_pt": "Projeto pessoal, do zero: ideia, código e distribuição",
+   "imagem": "fotos/projetos/ecolyra.webp",
+   "tagline_en": "Real-time translated lyrics that listen to the music",
+   "publicado": true,
+   "_atualizado": "2026-10-07T21:37:43.382938Z"
+  },
+  {
+   "id": "elora",
+   "tagline_pt": "Site, área do cliente com chat e painel para clínica de estética",
+   "impacto_pt": "A clínica passou a ter atendimento e relacionamento com o cliente num canal próprio, sem depender só de redes sociais.",
+   "papel_pt": "Desenvolvedor responsável pelo projeto, do layout à publicação",
+   "demo": "https://davicjc.github.io/InstitutoElora/",
+   "ordem": 1,
+   "titulo_pt": "Instituto Elora",
+   "imagem": "fotos/projetos/elora.webp",
+   "titulo_en": "Instituto Elora",
+   "repo": "",
+   "destaque": true,
+   "impacto_en": "The clinic now runs client support and relationship on its own channel, instead of relying only on social media.",
+   "categoria": "cliente",
+   "tipo_botao": "pagina",
+   "descricao_pt": "Plataforma do Instituto Elora, clínica de estética avançada e saúde integrativa. Vai além do site institucional: tem área do cliente com login, chat direto com a clínica e um painel administrativo para a equipe cuidar de agendamentos, conteúdo e atendimento. Visual escuro e dourado com abertura animada, responsivo do celular ao desktop.",
+   "descricao_en": "Platform for Instituto Elora, an advanced aesthetics and integrative health clinic. It goes beyond a brochure site: a client area with login, direct chat with the clinic and an admin panel for the team to handle bookings, content and support. Dark-and-gold look with an animated intro, responsive from phone to desktop.",
+   "papel_en": "Sole developer, from layout to publishing",
+   "publicado": true,
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Firebase"
+   ],
+   "vitrine": true,
+   "tagline_en": "Website, client area with chat and admin panel for an aesthetics clinic",
+   "_atualizado": "2026-10-07T21:34:33.359601Z"
+  },
+  {
+   "id": "facesafety",
+   "stack": [
+    "Python",
+    "OpenCV",
+    "face_recognition",
+    "dlib",
+    "NumPy",
+    "Tkinter"
+   ],
+   "titulo_pt": "Face Safety",
+   "impacto_pt": "1º lugar entre 60 projetos acadêmicos na Uniube e 16 estrelas no GitHub, com o código aberto e reaproveitável em catracas e fechaduras eletrônicas.",
+   "tagline_pt": "Controle de acesso por reconhecimento facial em Python",
+   "repo": "https://github.com/Davicjc/FaceSafety",
+   "papel_pt": "Desenvolvedor Python responsável pelo projeto, do pipeline de cadastro e reconhecimento à distribuição das versões para Windows e Linux",
+   "tipo_botao": "demo",
+   "impacto_en": "1st place among 60 academic projects at Uniube and 16 GitHub stars, with the code open and reusable for turnstiles and electronic locks.",
+   "vitrine": true,
+   "publicado": true,
+   "ordem": 8,
+   "descricao_en": "Facial recognition access control that runs entirely on the local machine. An operator enrolls a person through the camera, the system stores the face encoding, and scanner mode matches live frames against that database to identify who is in front of the device. Users flagged as administrators trigger a customizable Key function that can release an electronic lock.",
+   "descricao_pt": "Controle de acesso por reconhecimento facial rodando localmente. O operador cadastra a pessoa pela câmera, o sistema guarda o encoding do rosto e o modo scanner compara os quadros ao vivo com a base para identificar quem está na frente do equipamento. Usuários marcados como administradores disparam uma função Key personalizável, usada para acionar fechaduras eletrônicas.",
+   "papel_en": "Python developer and project owner, from the enrollment and recognition pipeline to the Windows and Linux builds",
+   "tagline_en": "Python-based facial recognition access control",
+   "imagem": "fotos/projetos/facesafety.webp",
+   "categoria": "academico",
+   "demo": "",
+   "titulo_en": "Face Safety",
+   "destaque": true,
+   "_atualizado": "2026-10-07T21:35:22.733512Z"
+  },
+  {
+   "id": "fitia",
+   "tagline_en": "Rep counting and form analysis from a webcam, fully in the browser",
+   "categoria": "open-source",
+   "papel_pt": "Desenvolvedor solo, responsável pela visão computacional, pelos algoritmos de contagem e pelo front-end",
+   "titulo_en": "FitIA",
+   "vitrine": false,
+   "tipo_botao": "demo",
+   "impacto_en": "All processing runs client-side: video never leaves the device, and using it requires no install, no inference server and no dedicated hardware.",
+   "imagem": "fotos/projetos/fitia.webp",
+   "repo": "https://github.com/Davicjc/FitIA",
+   "ordem": 24,
+   "publicado": false,
+   "destaque": false,
+   "descricao_en": "Training alone means counting reps by hand with no feedback on execution. FitIA reads 33 body landmarks per frame using MediaPipe in the browser, derives joint angles, and counts reps through a state machine guarded by a stability buffer, scoring the quality of each movement.",
+   "descricao_pt": "Quem treina sozinho conta repetição na mão e não recebe retorno sobre a execução. O FitIA lê 33 pontos corporais por quadro com MediaPipe no próprio navegador, calcula ângulos articulares e conta repetições com uma máquina de estados protegida por buffer de estabilidade, pontuando a qualidade de cada movimento.",
+   "titulo_pt": "FitIA",
+   "stack": [
+    "JavaScript",
+    "MediaPipe",
+    "Canvas API",
+    "Three.js",
+    "Firebase Firestore",
+    "HTML5"
+   ],
+   "demo": "https://davicjc.github.io/FitIA/",
+   "papel_en": "Solo developer, responsible for the computer vision, the rep-counting algorithms and the front end",
+   "tagline_pt": "Contagem de repetições e análise de forma por webcam, no navegador",
+   "impacto_pt": "Todo o processamento roda no cliente: o vídeo não sai do dispositivo e o uso dispensa instalação, servidor de inferência ou hardware dedicado.",
+   "_atualizado": "2026-10-26T11:37:54.928209Z"
+  },
+  {
+   "id": "footer",
+   "papel_en": "Own project: design, script and infrastructure",
+   "titulo_pt": "Footer davicjc",
+   "tipo_botao": "pagina",
+   "impacto_en": "Every delivered site becomes a subtle showcase that brings new clients to the portfolio.",
+   "destaque": false,
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Cloudflare Pages"
+   ],
+   "demo": "https://footer.davicjc.com/",
+   "tagline_en": "The signature badge on the websites I build",
+   "impacto_pt": "Cada site entregue vira uma vitrine discreta que leva novos clientes ao portfólio.",
+   "tagline_pt": "O selo de assinatura dos sites que eu faço",
+   "imagem": "fotos/projetos/footer.webp",
+   "publicado": true,
+   "categoria": "produto",
+   "vitrine": false,
+   "papel_pt": "Projeto próprio: design, script e infraestrutura",
+   "repo": "https://github.com/Davicjc/FooterDavicjc",
+   "titulo_en": "davicjc Footer",
+   "descricao_pt": "Selo \"by davicjc\" que aparece no canto dos sites dos clientes e, ao clicar, abre um cartão com o portfólio. Servido pela Cloudflare Pages, com contador de carregamentos no servidor, geração automática de versões de parceria e uma página que explica o selo para quem o encontra no código.",
+   "ordem": 19,
+   "descricao_en": "The \"by davicjc\" badge shown in the corner of client websites; clicking it opens a card with the portfolio. Served from Cloudflare Pages, with a server-side load counter, automatic partner versions and a page explaining the badge to anyone who finds it in the source.",
+   "_atualizado": "2026-10-07T21:35:09.573228Z"
+  },
+  {
+   "id": "gestorapi",
+   "impacto_en": "Credentials for every client are now looked up and updated in one place, instead of living in files spread across repositories.",
+   "destaque": false,
+   "tipo_botao": "demo",
+   "descricao_en": "Each client runs on its own Firebase project, so credentials end up scattered across files and repositories, which makes any key swap or revocation slow and risky. The panel concentrates registering and looking up those keys in a single Master interface, written in plain HTML, CSS and JavaScript, with no framework and no build step.",
+   "titulo_pt": "Gestor de API",
+   "descricao_pt": "Cada cliente atendido roda sobre um projeto Firebase próprio, e manter essas credenciais espalhadas por arquivos e repositórios torna qualquer troca ou revogação lenta e arriscada. O painel concentra o cadastro e a consulta dessas chaves em uma única interface Master, escrita em HTML, CSS e JavaScript puro, sem framework nem etapa de build.",
+   "papel_en": "Sole developer: architecture, interface and Firebase integration",
+   "tagline_en": "Master panel for multi-client Firebase credentials",
+   "ordem": 23,
+   "imagem": "fotos/projetos/gestorapi.webp",
+   "vitrine": false,
+   "demo": "",
+   "papel_pt": "Desenvolvedor único: arquitetura, interface e integração com o Firebase",
+   "publicado": true,
+   "tagline_pt": "Painel Master para credenciais Firebase de múltiplos clientes",
+   "impacto_pt": "As credenciais de todos os clientes passaram a ser consultadas e atualizadas em um só lugar, sem depender de arquivos espalhados por repositórios.",
+   "repo": "",
+   "titulo_en": "API Manager",
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Firebase"
+   ],
+   "categoria": "produto",
+   "_atualizado": "2026-10-07T21:35:01.768341Z"
+  },
+  {
+   "id": "hubcjc",
+   "titulo_en": "Hub CJC",
+   "ordem": 16,
+   "papel_en": "Sole author — architecture, data modeling and full stack development",
+   "demo": "",
+   "impacto_en": "Removes any gap between contract wording and agreed figures, and lets any printed copy be checked without access to the system.",
+   "tipo_botao": "demo",
+   "categoria": "produto",
+   "publicado": false,
+   "destaque": false,
+   "vitrine": false,
+   "tagline_en": "Personal hub for projects, tasks and e-signed contracts",
+   "tagline_pt": "Central de projetos, tarefas e contratos com assinatura eletrônica",
+   "impacto_pt": "Elimina a divergência entre o texto do contrato e os valores acordados, e permite conferir qualquer via impressa sem acesso ao sistema.",
+   "descricao_pt": "Painel único para projetos, tarefas, clientes e contratos, substituindo planilhas e anotações dispersas. Contratos são modelados como dados: escopo e pagamento estruturados geram o texto, então cláusula e tabela de parcelas nunca divergem. Cada versão guarda autor, motivo e hash SHA-256, e o cliente assina por link público.",
+   "repo": "",
+   "descricao_en": "A single dashboard for projects, tasks, clients and contracts, replacing scattered spreadsheets and notes. Contracts are modeled as data: structured scope and payment generate the text, so the clause and the installment table can never disagree. Every version stores author, reason and a SHA-256 hash, and clients sign via a public link.",
+   "stack": [
+    "TypeScript",
+    "React",
+    "Firebase",
+    "Vite",
+    "Tailwind CSS",
+    "React Query"
+   ],
+   "papel_pt": "Autor único — arquitetura, modelagem de dados e desenvolvimento full stack",
+   "imagem": "fotos/projetos/hubcjc.webp",
+   "titulo_pt": "Hub CJC",
+   "_atualizado": "2026-10-26T11:38:43.370416Z"
+  },
+  {
+   "id": "nexusatlas",
+   "demo": "https://nexusatlas.com.br/",
+   "impacto_pt": "Campo e escritório operam sobre o mesmo registro atualizado, sem cliente instalado e sem infraestrutura de servidor para manter.",
+   "titulo_pt": "NexusAtlas",
+   "tagline_pt": "Gestão de ordens de serviço de campo em tempo real, no navegador",
+   "vitrine": false,
+   "imagem": "fotos/projetos/nexusatlas.webp",
+   "ordem": 6,
+   "papel_pt": "Desenvolvimento full stack e definição da arquitetura, do modelo de dados ao front-end",
+   "impacto_en": "Field and office work from the same up-to-date record, with no client to install and no server infrastructure to maintain.",
+   "papel_en": "Full stack development and architecture, from the data model to the front-end",
+   "tipo_botao": "pagina",
+   "descricao_pt": "Centraliza as ordens de serviço de campo da Audicom em um sistema web que roda inteiramente no navegador, sem instalação e sem servidor próprio para manter. O Firebase concentra a camada de dados e propaga cada alteração em tempo real, de modo que escritório e técnico em campo leem e escrevem o mesmo registro de qualquer dispositivo.",
+   "repo": "",
+   "descricao_en": "Centralizes Audicom's field service orders in a web system that runs entirely in the browser, with no install and no server of its own to maintain. Firebase holds the data layer and propagates every change in real time, so the office and the technician in the field read and write the same record from any device.",
+   "publicado": true,
+   "categoria": "corporativo",
+   "destaque": true,
+   "titulo_en": "NexusAtlas",
+   "tagline_en": "Field service orders, real time, straight from the browser",
+   "stack": [
+    "JavaScript",
+    "Firebase",
+    "HTML5",
+    "CSS3"
+   ],
+   "_atualizado": "2026-10-07T21:35:24.686760Z"
+  },
+  {
+   "id": "patricia",
+   "vitrine": false,
+   "stack": [
+    "JavaScript",
+    "Firebase Firestore",
+    "Firebase Auth",
+    "HTML5",
+    "CSS3",
+    "GitHub Pages"
+   ],
+   "tipo_botao": "pagina",
+   "destaque": false,
+   "impacto_en": "A self-managed calendar with slots locked in real time and no server of its own: it runs entirely on Firebase's free tier.",
+   "titulo_pt": "Patricia Moura Lash Design",
+   "tagline_en": "Real-time online booking for a lash extension studio",
+   "descricao_pt": "Permite que a cliente reserve o próprio horário sem troca de mensagens: fluxo de quatro etapas com serviço, calendário, horários livres e formulário que valida CPF e WhatsApp. O Firestore sincroniza a agenda em tempo real, então um horário reservado já aparece indisponível para os demais visitantes. Um painel com Firebase Auth confirma, edita e bloqueia datas.",
+   "papel_en": "Sole full stack developer — interface, Firestore data model, authentication and admin dashboard",
+   "descricao_en": "Lets clients book their own slot without a back-and-forth chat: a four-step flow covering service, calendar, open times and a form that validates WhatsApp numbers and Brazilian tax-ID check digits. Firestore keeps the calendar in sync in real time, so a taken slot immediately shows as unavailable to everyone else. A Firebase Auth panel confirms, edits and blocks dates.",
+   "demo": "https://davicjc.github.io/PatriciaMouraLashDesign/",
+   "categoria": "cliente",
+   "imagem": "fotos/projetos/patricia.webp",
+   "impacto_pt": "Agenda autogerenciável com reservas travadas em tempo real e sem servidor próprio: roda inteiramente no plano gratuito do Firebase.",
+   "tagline_pt": "Agendamento online em tempo real para um estúdio de cílios",
+   "ordem": 29,
+   "papel_pt": "Desenvolvedor full stack e único responsável pelo projeto — interface, modelagem no Firestore, autenticação e painel administrativo",
+   "titulo_en": "Patricia Moura Lash Design",
+   "repo": "https://github.com/Davicjc/PatriciaMouraLashDesign",
+   "publicado": true,
+   "_atualizado": "2026-10-07T21:34:56.332735Z"
+  },
+  {
+   "id": "pedidosaudicom",
+   "categoria": "corporativo",
+   "ordem": 20,
+   "descricao_en": "A web system that centralizes how Audicom Telecom receives and tracks internet service orders. Customers submit and follow their requests from a phone or a desktop through a responsive interface, while the internal team handles and updates each one in an admin panel, with the same status visible on both sides.",
+   "descricao_pt": "Sistema web que centraliza a solicitação e o acompanhamento de pedidos de internet da Audicom Telecom. O cliente abre e consulta o pedido pelo celular ou pelo computador, em interface responsiva, enquanto a equipe interna trata e atualiza cada solicitação por um painel administrativo, com o mesmo status visível para os dois lados.",
+   "demo": "https://davicjc.github.io/PedidosAudicom/",
+   "impacto_en": "Consolidates internet orders into a single flow, with one status followed by both the customer and the internal team.",
+   "vitrine": false,
+   "tipo_botao": "pagina",
+   "titulo_en": "Audicom Orders",
+   "papel_en": "Full stack developer, responsible for the system end to end, from the customer interface to the internal admin panel",
+   "imagem": "fotos/projetos/pedidosaudicom.webp",
+   "publicado": true,
+   "tagline_en": "Customer internet orders, tracked through an internal admin panel",
+   "destaque": false,
+   "impacto_pt": "Concentra os pedidos de internet em um fluxo único, com o mesmo status acompanhado pelo cliente e pela equipe interna.",
+   "tagline_pt": "Solicitação de internet pelo cliente e gestão em painel interno",
+   "repo": "",
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+   ],
+   "titulo_pt": "Pedidos Audicom",
+   "papel_pt": "Desenvolvedor full stack, responsável pelo sistema de ponta a ponta, da interface do cliente ao painel administrativo interno",
+   "_atualizado": "2026-10-07T21:35:08.466575Z"
+  },
+  {
+   "id": "pokemon",
+   "titulo_pt": "Cronologia Pokémon",
+   "papel_en": "Author",
+   "tagline_en": "Interactive timeline of the Pokémon franchise",
+   "repo": "https://github.com/Davicjc/CronologiaPokemon",
+   "destaque": false,
+   "tipo_botao": "pagina",
+   "ordem": 31,
+   "descricao_pt": "Projeto pessoal: uma linha do tempo navegável da franquia Pokémon, feita para praticar layout, animação e organização de conteúdo extenso em JavaScript.",
+   "impacto_en": "",
+   "descricao_en": "Personal project: a browsable timeline of the Pokémon franchise, built to practise layout, animation and organising long-form content in JavaScript.",
+   "vitrine": false,
+   "imagem": "fotos/projetos/pokemon.webp",
+   "publicado": false,
+   "categoria": "pessoal",
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "CSS3"
+   ],
+   "impacto_pt": "",
+   "tagline_pt": "Linha do tempo interativa da franquia Pokémon",
+   "demo": "https://davicjc.github.io/CronologiaPokemon/",
+   "papel_pt": "Autor",
+   "titulo_en": "Pokémon Timeline",
+   "_atualizado": "2026-10-07T21:34:55.140684Z"
+  },
+  {
+   "id": "popmanager",
+   "categoria": "corporativo",
+   "tipo_botao": "demo",
+   "titulo_en": "PopManager",
+   "demo": "",
+   "vitrine": false,
+   "impacto_en": "Gives the technical team a single, queryable record of every POP, without needing local access to each site.",
+   "ordem": 21,
+   "publicado": true,
+   "papel_pt": "Desenvolvedor full stack e responsável pela arquitetura do sistema",
+   "tagline_en": "Centralized management of network POPs for an ISP",
+   "repo": "",
+   "tagline_pt": "Gestão centralizada de POPs de rede para provedor de internet",
+   "descricao_pt": "Um provedor de internet mantém vários POPs distribuídos, cada um com seus próprios equipamentos, enlaces e configurações. O PopManager reúne esse controle em um sistema server/web escrito em Python: cada ponto de presença fica cadastrado em um só lugar, e a equipe técnica consulta e atualiza os dados pelo navegador.",
+   "impacto_pt": "Dá à equipe técnica um registro único e consultável dos POPs, sem depender de acesso local a cada site.",
+   "descricao_en": "An ISP runs several distributed POPs, each with its own equipment, links and configuration. PopManager consolidates that into a single server/web application written in Python: every point of presence is recorded in one place, and the technical team reviews and updates site data straight from the browser.",
+   "papel_en": "Full stack developer, responsible for the system architecture",
+   "titulo_pt": "PopManager",
+   "stack": [
+    "Python",
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "Linux Server"
+   ],
+   "imagem": "fotos/projetos/popmanager.webp",
+   "destaque": false,
+   "_atualizado": "2026-10-26T11:38:14.969149Z"
+  },
+  {
+   "id": "qrcodeaudicom",
+   "tagline_pt": "Destino dos QR Codes aplicados nos carros e materiais da Audicom",
+   "titulo_en": "Audicom QR Code Landing Page",
+   "descricao_pt": "Os QR Codes da frota e dos materiais impressos da Audicom apontam para esta página. Ela reúne em uma tela leve, pensada para o celular, os caminhos que o cliente mais procura: WhatsApp de vendas, central do cliente, suporte técnico, site e teste de velocidade.",
+   "impacto_pt": "Um único QR Code impresso serve a todos os canais, e os destinos podem mudar sem reimprimir nada.",
+   "descricao_en": "The QR codes on Audicom's fleet and printed materials point to this page. It gathers, on a lightweight phone-first screen, the paths customers look for most: sales on WhatsApp, the customer portal, technical support, the website and the speed test.",
+   "categoria": "corporativo",
+   "papel_pt": "Design e desenvolvimento front-end",
+   "publicado": true,
+   "repo": "https://github.com/Davicjc/QRCodeAudicomSite",
+   "ordem": 28,
+   "papel_en": "Design and front-end development",
+   "impacto_en": "A single printed QR code serves every channel, and destinations can change without reprinting anything.",
+   "tipo_botao": "pagina",
+   "destaque": false,
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+   ],
+   "demo": "https://davicjc.github.io/QRCodeAudicomSite/",
+   "titulo_pt": "Página dos QR Codes Audicom",
+   "imagem": "fotos/projetos/qrcodeaudicom.webp",
+   "vitrine": false,
+   "tagline_en": "Landing page behind the QR codes on Audicom's vehicles and materials",
+   "_atualizado": "2026-10-07T21:34:56.817746Z"
+  },
+  {
+   "id": "quizturma",
+   "demo": "",
+   "destaque": false,
+   "imagem": "fotos/projetos/quizturma.webp",
+   "titulo_pt": "Quiz da Turma",
+   "ordem": 15,
+   "impacto_pt": "O professor usa em aula um sistema estável e seguro, sem precisar instalar nada nos celulares dos alunos.",
+   "papel_en": "Audited and rebuilt the original system: security, fixes, tests and deployment",
+   "tagline_pt": "Quiz ao vivo: professor no computador, alunos no celular com PIN",
+   "publicado": true,
+   "tagline_en": "Live quiz: teacher on the computer, students on their phones with a PIN",
+   "vitrine": false,
+   "descricao_en": "Live classroom quiz designed by a teacher for his students. The teacher builds the questions and runs the game from the computer; students join by team on their phones with a 6-digit PIN and answer in real time. Single file, no build step, with Firestore security rules and automated tests.",
+   "descricao_pt": "Quiz ao vivo para sala de aula, idealizado por um professor para os seus alunos. O professor monta as perguntas e conduz pelo computador; os alunos entram por equipe no celular com um PIN de 6 dígitos e respondem em tempo real. Arquivo único, sem build, com regras de segurança no Firestore e testes automatizados.",
+   "repo": "",
+   "papel_pt": "Auditoria e reconstrução do sistema original: segurança, correções, testes e publicação",
+   "impacto_en": "The teacher runs a stable, secure system in class, with nothing to install on students' phones.",
+   "tipo_botao": "pagina",
+   "titulo_en": "Class Quiz",
+   "categoria": "cliente",
+   "stack": [
+    "JavaScript",
+    "HTML5",
+    "Firebase",
+    "Firestore Rules"
+   ],
+   "_atualizado": "2026-10-07T21:37:42.856303Z"
+  },
+  {
+   "id": "roasmonitor",
+   "impacto_en": "Replaces finding out about an invalid ROA through a customer complaint with an automatic Telegram alert on the next check cycle.",
+   "publicado": true,
+   "tipo_botao": "demo",
+   "destaque": true,
+   "demo": "https://davicjc.github.io/ROAs-Monitor-Status/",
+   "ordem": 7,
+   "titulo_en": "ROAs Monitor Status",
+   "tagline_en": "Telegram alerts when your ASN's ROAs go invalid or expire",
+   "papel_en": "Sole author and developer, from the validation logic to packaging it as a systemd service",
+   "imagem": "fotos/projetos/roasmonitor.webp",
+   "descricao_en": "When a ROA expires or the RPKI publication service (Krill, for instance) fails, the ASN's prefixes start being seen as Invalid and operators running RPKI validation silently stop accepting the routes. The daemon polls each prefix at a configurable interval — against public RIPEstat or a local Routinator — and fires a Telegram alert the moment a status leaves Valid.",
+   "categoria": "open-source",
+   "descricao_pt": "Quando um ROA expira ou o serviço de publicação RPKI (como o Krill) falha, os prefixos do ASN passam a ser vistos como Invalid e operadores que validam RPKI param de aceitar as rotas — sem aviso. O daemon consulta a validade de cada prefixo em intervalo configurável, via RIPEstat ou Routinator local, e alerta no Telegram assim que o status sai de Valid.",
+   "repo": "https://github.com/Davicjc/ROAs-Monitor-Status",
+   "papel_pt": "Autor e único desenvolvedor, do desenho da lógica de validação ao empacotamento como serviço systemd",
+   "impacto_pt": "Substitui a descoberta acidental de um ROA inválido, geralmente via reclamação de cliente, por um alerta automático no Telegram no ciclo de verificação seguinte.",
+   "titulo_pt": "ROAs Monitor Status",
+   "tagline_pt": "Alerta no Telegram quando os ROAs do seu ASN ficam inválidos",
+   "stack": [
+    "Bash",
+    "RPKI",
+    "Telegram Bot API",
+    "Routinator",
+    "RIPEstat API",
+    "systemd"
+   ],
+   "vitrine": false,
+   "_atualizado": "2026-10-07T21:35:23.819379Z"
+  },
+  {
+   "id": "sanctorum",
+   "titulo_en": "Grupo Sanctorum",
+   "categoria": "cliente",
+   "papel_pt": "Design e desenvolvimento da página",
+   "vitrine": false,
+   "publicado": true,
+   "impacto_pt": "Dá ao escritório uma porta de entrada sofisticada, focada em gerar contato.",
+   "descricao_en": "Landing page for Grupo Sanctorum, an accounting firm in Uberlândia. It presents six services (accounting, tax, payroll, financial BPO, company setup and tax recovery), explains PIS/COFINS recovery under Simples Nacional and takes visitors straight to WhatsApp. Dark-and-gold look with a crystal as the symbol.",
+   "tagline_pt": "Landing page de contabilidade com visual de alto padrão",
+   "descricao_pt": "Landing page do Grupo Sanctorum, contabilidade em Uberlândia. Apresenta seis competências (contábil, fiscal, DP, BPO financeiro, legalização e recuperação de tributos), explica a recuperação de PIS/COFINS monofásico no Simples Nacional e leva o visitante direto ao WhatsApp. Visual escuro e dourado, com um cristal como símbolo.",
+   "repo": "",
+   "imagem": "fotos/projetos/sanctorum.webp",
+   "ordem": 18,
+   "destaque": false,
+   "tagline_en": "High-end landing page for an accounting firm",
+   "stack": [
+    "HTML5",
+    "CSS3",
+    "JavaScript"
+   ],
+   "demo": "https://davicjc.github.io/Pagina_Sanctorum/",
+   "impacto_en": "Gives the firm a refined front door focused on generating leads.",
+   "papel_en": "Page design and development",
+   "tipo_botao": "pagina",
+   "titulo_pt": "Grupo Sanctorum",
+   "_atualizado": "2026-10-07T21:35:10.030849Z"
+  },
+  {
+   "id": "speedtest",
+   "stack": [
+    "LibreSpeed",
+    "JavaScript",
+    "HTML5",
+    "CSS3"
+   ],
+   "imagem": "fotos/projetos/speedtest.webp",
+   "titulo_en": "Audicom Speed Test",
+   "destaque": false,
+   "impacto_en": "Gives support and customers a reference measurement taken on Audicom's own infrastructure, today used by real customers.",
+   "categoria": "corporativo",
+   "tipo_botao": "demo",
+   "repo": "",
+   "vitrine": false,
+   "papel_en": "Developer responsible for customization, branding and deployment on the company's servers",
+   "publicado": true,
+   "tagline_en": "Self-hosted speed test measured on the customer's real route",
+   "tagline_pt": "Teste de velocidade próprio, medindo na rota real do cliente",
+   "impacto_pt": "Dá ao suporte e ao cliente uma medição de referência feita na infraestrutura da própria Audicom, hoje usada por clientes reais.",
+   "papel_pt": "Desenvolvedor responsável pela customização, identidade visual e publicação nos servidores da empresa",
+   "ordem": 12,
+   "descricao_pt": "Clientes que relatam lentidão costumam ser medidos por testes públicos, cujo resultado depende do caminho até um servidor de terceiros. O projeto é uma instância própria do LibreSpeed, hospedada em servidores da Audicom e com a identidade visual da empresa, que mede a velocidade dentro da rota real do cliente.",
+   "descricao_en": "Customers reporting slow connections are usually measured by public speed tests, whose results depend on the network path to a third-party server. This is a self-hosted LibreSpeed instance running on Audicom's own servers, carrying the company's branding, that measures throughput along the customer's real route.",
+   "titulo_pt": "Audicom Speed Test",
+   "demo": "https://velocidadeteste.audicomtelecom.com.br/",
+   "_atualizado": "2026-10-07T21:35:15.219119Z"
+  },
+  {
+   "id": "telemetry",
+   "papel_en": "Sole author: Flask backend, Jinja/Chart.js front end, systemd packaging and production deployment",
+   "impacto_en": "Drops and recoveries reach Telegram once per transition, from a background collector, so nobody has to be watching a panel.",
+   "tipo_botao": "demo",
+   "repo": "https://github.com/Davicjc/telemetry-portal",
+   "titulo_pt": "Telemetry Portal",
+   "destaque": true,
+   "vitrine": false,
+   "tagline_en": "Self-hosted OSPF and BFD monitoring for MikroTik routers",
+   "descricao_en": "On MikroTik, an OSPF neighbor that drops simply disappears from the table: there is no down state to poll for. The portal keeps a registry of every neighbor it has seen and infers the drop from the absence, guarding against the false positive where an entire PE goes unreachable. It also detects whether RouterOS is v6 or v7, since BFD sits at different API paths.",
+   "descricao_pt": "No MikroTik, um vizinho OSPF que cai simplesmente some da tabela: não existe estado down para consultar. O portal mantém um registro dos vizinhos já vistos e infere a queda pela ausência, com proteção contra falso-positivo quando o PE inteiro fica inacessível. Detecta sozinho se o RouterOS é v6 ou v7, já que o BFD fica em caminhos diferentes da API.",
+   "stack": [
+    "Python",
+    "Flask",
+    "SQLite",
+    "RouterOS API",
+    "Grafana",
+    "Prometheus"
+   ],
+   "publicado": true,
+   "demo": "",
+   "tagline_pt": "Monitoramento de OSPF e BFD em MikroTik, auto-hospedado",
+   "impacto_pt": "A queda e o retorno de cada vizinho chegam ao Telegram uma única vez por transição, a partir de um coletor em segundo plano, sem depender de alguém olhando o painel.",
+   "imagem": "fotos/projetos/telemetry.webp",
+   "titulo_en": "Telemetry Portal",
+   "ordem": 5,
+   "papel_pt": "Autor solo: backend Flask, front-end Jinja/Chart.js, empacotamento systemd e deploy em produção",
+   "categoria": "open-source",
+   "_atualizado": "2026-10-07T21:35:25.274425Z"
+  }
+ ],
+ "experiencias": [
+  {
+   "id": "exp-algar",
+   "empresa": "Algar Telecom",
+   "cargo_en": "Bilingual Enterprise Account Manager",
+   "periodo_pt": "dez 2023 — jun 2025",
+   "descricao_en": "I handled the carrier's wholesale segment in English, serving international customers such as Verizon, BT and China Telecom. I drove critical connectivity incidents through to resolution and tracked those customers' infrastructure in Grafana and Zabbix.",
+   "cargo_pt": "Gerente de Relacionamento Empresarial Bilíngue",
+   "ordem": 2,
+   "atual": false,
+   "periodo_en": "Dec 2023 — Jun 2025",
+   "descricao_pt": "Atendi em inglês o segmento de atacado da operadora, com clientes internacionais como Verizon, BT e China Telecom. Conduzi incidentes críticos de conectividade até a resolução e acompanhei a infraestrutura desses clientes em Grafana e Zabbix.",
+   "progressao_pt": "Atendente → Time Premium → Atacado · Gerência Empresarial",
+   "progressao_en": "Agent → Premium team → Wholesale · Enterprise accounts",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "exp-audicom",
+   "descricao_pt": "Desenvolvo os sistemas internos da operação — ordens de serviço de campo, portal de suporte e pedidos de clientes — e integro biometria e reconhecimento facial ao controle de acesso por catracas. Na infraestrutura, administro servidores VMware ESXi, túneis WireGuard e equipamentos MikroTik, Cisco, Ubiquiti e Datacom, com monitoramento em Grafana e Zabbix. Implantei um LMS com login único via SSO (SAML/OIDC) e superviso as equipes de NOC, HelpDesk e CGR.",
+   "periodo_en": "Sep 2025 — present",
+   "empresa": "Audicom Telecom & Audicom Tecnologia",
+   "progressao_en": "Support agent → Developer → Deputy Supervisor",
+   "cargo_pt": "Vice Supervisor · Desenvolvedor Full Stack · Técnico de Redes",
+   "atual": true,
+   "ordem": 1,
+   "progressao_pt": "Atendente de suporte → Programador → Vice Supervisor",
+   "cargo_en": "Deputy Supervisor · Full Stack Developer · Network Technician",
+   "descricao_en": "I build the operation's internal systems — field service orders, the support portal and customer orders — and integrate biometrics and facial recognition with turnstile access control. On the infrastructure side I run VMware ESXi servers, WireGuard tunnels and MikroTik, Cisco, Ubiquiti and Datacom gear, monitored with Grafana and Zabbix. I rolled out an LMS with single sign-on over SSO (SAML/OIDC) and supervise the NOC, HelpDesk and network operations teams.",
+   "periodo_pt": "set 2025 — atual",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "exp-callink",
+   "descricao_en": "Customer service for the Bradesco operation, using structured questioning to understand and resolve complex requests.",
+   "cargo_pt": "Agente de atendimento",
+   "periodo_en": "Oct — Dec 2023",
+   "cargo_en": "Customer service agent",
+   "descricao_pt": "Atendimento a clientes da operação Bradesco, usando técnicas de sondagem para entender e resolver demandas complexas.",
+   "empresa": "Callink · operação Bradesco",
+   "atual": false,
+   "progressao_en": "",
+   "ordem": 5,
+   "progressao_pt": "",
+   "periodo_pt": "out — dez 2023",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "exp-uniube",
+   "descricao_pt": "Desenvolvi um sistema de controle de acesso por reconhecimento facial em Python e OpenCV, com cadastro pela câmera e liberação de fechadura para usuários autorizados. O projeto ficou em 1º lugar entre 60 trabalhos acadêmicos.",
+   "empresa": "Universidade de Uberaba (Uniube)",
+   "ordem": 4,
+   "periodo_pt": "out — dez 2023",
+   "atual": false,
+   "cargo_en": "Python Developer · Face Safety project",
+   "progressao_en": "",
+   "cargo_pt": "Desenvolvedor Python · Projeto Face Safety",
+   "progressao_pt": "",
+   "periodo_en": "Oct — Dec 2023",
+   "descricao_en": "I built a facial recognition access control system in Python and OpenCV, with camera-based enrolment and lock release for authorised users. The project took 1st place among 60 academic projects.",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "exp-wpv",
+   "periodo_en": "2023 — closed",
+   "cargo_pt": "Fundador e desenvolvedor",
+   "ordem": 3,
+   "cargo_en": "Founder and developer",
+   "atual": false,
+   "empresa": "Web pra Você · negócio próprio",
+   "descricao_pt": "Criação de sites para pequenas e médias empresas, cuidando de proposta, design, desenvolvimento e publicação. O negócio foi encerrado.",
+   "periodo_pt": "2023 — encerrado",
+   "descricao_en": "Websites for small and mid-sized businesses, covering proposal, design, development and launch. The business has since closed.",
+   "progressao_pt": "",
+   "progressao_en": "",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  }
+ ],
+ "capacidades": [
+  {
+   "id": "cap-acesso",
+   "titulo_pt": "Sites, integrações e automação",
+   "tecnologias": [
+    "HTML5",
+    "CSS3",
+    "C#",
+    "OpenCV",
+    "Cloudflare",
+    "Raspberry Pi",
+    "Git"
+   ],
+   "texto_en": "Websites and CMSs for clients, system integrations and hardware automation — such as turnstiles with biometrics and facial recognition wired to the software that decides who gets in.",
+   "texto_pt": "Sites e CMS para clientes, integrações entre sistemas e automação com hardware — como catracas com biometria e reconhecimento facial ligadas ao software que decide quem entra.",
+   "titulo_en": "Websites, integrations and automation",
+   "ordem": 2,
+   "_atualizado": "2026-10-07T13:59:31.393442Z"
+  },
+  {
+   "id": "cap-infra",
+   "texto_pt": "Roteamento e segurança de um provedor: BGP com RPKI, OSPF e BFD, VPNs e servidores virtualizados, em equipamentos MikroTik, Cisco, Ubiquiti e Datacom.",
+   "titulo_en": "Network infrastructure",
+   "tecnologias": [
+    "MikroTik",
+    "Cisco",
+    "Ubiquiti",
+    "BGP",
+    "RPKI",
+    "OSPF",
+    "VMware ESXi",
+    "WireGuard"
+   ],
+   "titulo_pt": "Infraestrutura de redes",
+   "ordem": 3,
+   "texto_en": "Routing and security for an ISP: BGP with RPKI, OSPF and BFD, VPNs and virtualized servers, on MikroTik, Cisco, Ubiquiti and Datacom gear.",
+   "_atualizado": "2026-10-07T13:59:31.393442Z"
+  },
+  {
+   "id": "cap-operacao",
+   "texto_pt": "Painéis e alertas para o que não pode cair, supervisão das equipes de NOC, HelpDesk e CGR e atendimento em inglês a operadoras internacionais.",
+   "ordem": 4,
+   "titulo_en": "Network monitoring and operations",
+   "titulo_pt": "Monitoramento e operação de rede",
+   "tecnologias": [
+    "Zabbix",
+    "Grafana",
+    "Telegram Bot",
+    "NOC",
+    "CGR",
+    "Inglês avançado"
+   ],
+   "texto_en": "Dashboards and alerts for what cannot go down, supervision of the NOC, HelpDesk and CGR teams, and English-language support for international carriers.",
+   "_atualizado": "2026-10-07T13:59:31.393442Z"
+  },
+  {
+   "id": "cap-software",
+   "ordem": 1,
+   "tecnologias": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Python",
+    "Firebase",
+    "REST",
+    "PWA"
+   ],
+   "titulo_en": "Full stack web systems",
+   "texto_en": "From layout to deployment: responsive interfaces, APIs, authentication, real-time databases and admin panels. Field-service SaaS, internal portals, CRMs and PWAs running in production.",
+   "texto_pt": "Do layout ao deploy: interfaces responsivas, APIs, autenticação, banco em tempo real e painéis administrativos. SaaS de ordens de serviço, portais internos, CRMs e PWAs que rodam em produção.",
+   "titulo_pt": "Sistemas web full stack",
+   "_atualizado": "2026-10-07T13:59:31.393442Z"
+  }
+ ],
+ "depoimentos": [
+  {
+   "id": "dep-01",
+   "texto_pt": "Davi demonstra alto nível de comprometimento, competência e proatividade, entregando todas as demandas com qualidade e excelência.",
+   "texto_en": "Davi demonstrates a high level of commitment, competence and proactivity, delivering all demands with quality and excellence.",
+   "linkedin": "https://www.linkedin.com/in/geisa-paula-1a66a0175/",
+   "cargo_pt": "Coordenadora de Relacionamento · Algar Telecom",
+   "ordem": 1,
+   "nome": "Geisa Paula",
+   "cargo_en": "Account Manager · Algar Telecom",
+   "foto": "fotos/sobremimterceiros/Geisa Paula.jpg",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "dep-02",
+   "nome": "Dennis Wilber",
+   "texto_pt": "Graças ao site que você fez sobre minhas experiências profissionais, consegui crescer, ser reconhecido e hoje sou supervisor.",
+   "texto_en": "Thanks to the website you made about my professional experiences, I managed to grow, be recognized and today I am a supervisor.",
+   "cargo_pt": "Supervisor de Loja · Xiaomi Brasil",
+   "foto": "fotos/sobremimterceiros/Dennis Wilber.jpg",
+   "linkedin": "https://www.linkedin.com/in/dennis-wilber-10aa33259/",
+   "cargo_en": "Store Supervisor · Xiaomi Brazil",
+   "ordem": 2,
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "dep-03",
+   "nome": "Fábio Marques Barbosa",
+   "cargo_en": "Process Analyst · Lyon Engineering",
+   "foto": "fotos/sobremimterceiros/Fabio Marques.jpg",
+   "linkedin": "https://www.linkedin.com/in/fabiomarquesbarbosa/",
+   "cargo_pt": "Analista de Processos · Lyon Engenharia",
+   "texto_pt": "Ele une conhecimentos sólidos em programação e hardware com atendimento profissional. Diagnostica problemas com precisão e entrega soluções consistentes.",
+   "texto_en": "He combines solid knowledge in programming and hardware with professional service. Diagnoses problems with precision and delivers consistent solutions.",
+   "ordem": 3,
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "dep-04",
+   "nome": "Stéfano Schwenck",
+   "cargo_en": "IT Coordinator · Uniube",
+   "foto": "fotos/sobremimterceiros/Stéfano Schwenck.jpeg",
+   "ordem": 4,
+   "linkedin": "https://www.linkedin.com/in/stefanosbvvita/",
+   "cargo_pt": "Coordenador de TI · Uniube",
+   "texto_en": "Always demonstrated ease in transforming complex requirements into structured solutions. A professional who is not content with the basics.",
+   "texto_pt": "Sempre demonstrou facilidade em transformar requisitos complexos em soluções funcionais estruturadas. Um profissional que não se contenta com o básico.",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "dep-05",
+   "cargo_pt": "Gerente de Redes de TI · Audicom Telecom",
+   "linkedin": "https://www.linkedin.com/in/reginaldo-junior-800078121/",
+   "foto": "fotos/sobremimterceiros/Reginaldo Junior.jpg",
+   "texto_pt": "Davi demonstra comprometimento, foco e postura profissional exemplar, enfrenta novos desafios com coragem e rapidez de aprendizado, sempre buscando soluções eficientes e seguras para NOC, HelpDesk e CGR. Sua seriedade e disponibilidade fazem dele um recurso valioso: participa de projetos críticos, apoia colegas em demandas emergenciais e contribui para a melhoria contínua dos processos. Acompanho com orgulho seu crescimento e confio plenamente em sua capacidade de assumir responsabilidades maiores.",
+   "nome": "Reginaldo Junior",
+   "texto_en": "Davi demonstrates commitment, focus and exemplary professionalism, facing new challenges with courage and quick learning, always seeking efficient and secure solutions for NOC, HelpDesk and CGR. His dedication makes him a valuable resource: he participates in critical projects, supports colleagues in emergencies and contributes to continuous process improvement. I follow his professional growth with pride and fully trust his ability to take on greater responsibilities.",
+   "publicado": true,
+   "cargo_en": "IT Network Manager · Audicom Telecom",
+   "ordem": 0,
+   "_atualizado": "2026-09-20T17:13:59.636056Z"
+  },
+  {
+   "id": "rodrigo-bastos",
+   "foto": "data:image/webp;base64,UklGRgoWAABXRUJQVlA4WAoAAAAgAAAA7wAA7wAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggHBQAAJBxAJ0BKvAA8AA+bTKVSCQipKWmUXq4sA2JZ24ONMlXzr3TcsdKI3tmLA28Dc/eJ2qJbo7u5xsMplxrTx4n/g8vz8b0Ky8GPpjwr+dP0QDHRqvhDk8n70GDOUxs7r4d7tvvRMkuc1p+3k2CHSzKeqjZvfQAyR0Vxh0y3GP5OJszpWNNzRLfC/ZoJNbvZzmuWchsnyh9quujycATPgd83IfALC8B5PB1eq0OJTrtKYPrrrlZkNUjme0CWh8GdO9BVLcj71ffRpoaFyXFHNBb+kFCF6IMlqkWhQypTiHIdixIjhtESRxPsHRo9C9eBkpoHZAHDgDRwl3ZGpoucioYwWL7qByFcoa+DlxLkaRz3VhQlGedUGI7qOXI45fePHKMVBwDmZpnpjHAronbhksLE7S/CNa385EmAoBH3gmWtbFSWLJP+rPBAQCMu0j+zvJHhl2X9nXA08mCVs3p9TM/KKU3JtVc221RQn3kncn+f1dDHmOMKvX8zuHUrN7MZvi0nCyaL86MVWzf0lV14UjsEQmy0VgJa2K7sKKZ/rg/KLoVDZyZknsZc3y4JzW3pJpDJd8Wv6mw1peZNzHOHUPvAojffb+o04eD6yt6HodbTnkUeGaNGDEeiL9QvgemKGMQfcLxTbyBJKfZdi4hCLY51BlyTfQmD+j5SHeoXal5QR8lXuoMq4TcGp/WHMG6C1yfv5TFkQmwUGqG5OPg0YMRsRKFlUFfgVBpm142mKVTlVlusae3Dcel6DSZWo3b7FLK15RZPtTgnU7jBiYkzrqPL+tF3+ouRXk4S+iAr5SOfeI4w4kUpswChD5to0iB1JaA80ONx9q0+p4+7MWTaonaOkiWixxanFPNjNJhMaXjPYsHQ/qozJT6rSO0W5RcGIlPwR+WfohIw5t0FDJMY0rMvCW0FcI8ZfBFn38eR25vK1H4InkviJnGZh8rXadq3E+tTcroYY+o1wzfeYUOjK/FlycPzUc7Oj0hu0gvg1K5WyfKQEWS56hj9ICkuJfGaN+3FOU6sv/aCLplcrunBQZRSCBas3pIVMominyDXDa1dpG0V09c3oq0eP9joFRcM0eh6fSSjjb6VxVngGY4y9GqI50JwPe8ZEJgl8IIuMfieaT/D/c2tGPlQVn8i9B2bd5myMMpiM7Hr6ir5T5oKoc/oaT3/Vg3hPhokWGZLh84QlAbk8O3aa3vpgTkCDIVun1GwtfsO6ggAP7vf3L7gTyZUV759FllXe4qz5PISfpLbHbWPvdwzOyKqr47tTU+wM8hTp5Ld6NUOFRj642pHxvyPA6wGmjhPbGpuZdO9MYI8COFecaCFzVWuojvcvd0g5eU/VA9JIBTnXTj6IPOnX20Z5hfZpjmSyzmKs81lOtLpBCTYhp5hMJzaJyIpe81aWF3IpdY6TWl9cUbuU2cfi0VkOql+aOHLr/FTmftCl6WmIz2fYUg9mij2OCbll92JiUdfkV7AFfiaHstgCysuyV6LlnmueNMSurXjJuXUsJHnKQ4VsX1MJVvzei7+3sR3cEQKXWii22uHvEGtnffhzj586WkOTwEdwf24YnfdwF1UJ74dMUIKg/l/hpH7dykjhAr2CmPlD4HBQ19Lxz6K+MPaGV23P5634dqCRl8YXdGQ7zCC1vuPfrhqfGvfBdbgOVKhYZemiO2eqp7MX9Xi9ha2SQuh3I2opsb+/Pefgj5HzBydAoZi9JZhGb5HV1ift0wAdcKigvRG2IyMOa8wJadHCBokUqETkQrs3gL8mdSUSog6keEOxXjbx/e0TIerqVGLoUQbta//nB0zgf5Y9zRCROjqaLbVB7paNPu3kfZED+kHrJzVl7fRux6XCz4D+4sPXevQC43vGePdHRLmoATuepkI8U3ooAtGzNP73Jr7U/FilcfKuSjfa3H4MP6PWQwheJVk/b953PpypkH7tpQJzdq6DupvsdCWGHWx4INFzMAUhopZfu9iXjOUTAiBRbEamphDgdLMRyXazgvIKDhROk+IU6+rG1+i1Qac1agA/y+oJyMlKFzUeL5EEKl43OhMYit8JP1XbCSYx1266yMahgm0RLhVcVl/V+epo2j2qwkJgJY97Xpo7kc0Eb62mBJbvyvLaB+WXYyxDJwoNi3T3UNDsXT26qHH1s7Oy58CYWjewobq/Fy3YceddbGRvu+IwUCSL8My8lb0styUpA7uZ+R+omLUGbRIip3s1LEqx9LdWOhHeAJp3DREV/JSPVbyP8Ut1Voz1t/g/Hg2Vq5orYJM0oQaFnRn0s4rcOAca4Jw8Azrn6q+h8olIwZx01YGucvQuWD7Uk2qjQibh8YG465fsbX4uWbVQWTJPfYU3rEyT4yWScN5FwrVY6K+I7SISupnOKzqdlrPEkVGL5gRtro0OBUlpWlVaP2r1v6rgTBNck3mqk4rG+AGsIA5FWSHK7ecf4W0WbXobm3mRiZh9CiS4N5E0vCVc7iVTyyxBr5CTtPg1O+SOhl0zvWSJVePRiG7DqIaKnO7oCR2tvK0SRxfg2n1VHLmWIKENLfwU4zYGyIAqRfJFtaPe442ZjggQ2f6/IZZE/WA1ZaAa7Poxrt/N+5kDU2PPJYXP//HEn1OypWe+dihqzBRM1iiEZpBFpxgBUCGn+y3Q63EolDJ/zpYsGt+Mq4loP7HGotfDUPe6rN1nqJLXPGOulLXGkOhoyx8i38jTWQjmS17tSJwqEDn6fBs+vQRJ8zGNQiXgalMsIiAcHspekliN62hCGi11NGUYOX18ve24d9nD3CLGRQnE/fnd3pEMB+AZTg4Iixf5NgBJVaU7Pn8lfnY024T7juismft6mN9iAcD+fFoqtxdBSmnEvZ/+fZifsKhiut2K7npxh0S+LmUnPVTwDNKDIvYhiH5hctRG+DeEFFS2N3pyy/h4Gro2Pm2Va/Cdetn22PdF1E8juVf8RIM59Z/EHz062nBK/wi/8FMSa9fXlWcs+p21BMzmaGoW4iOFi4hw4Y8OTMtjs/yLuDMtS2eM+/2qAxv4YUttO/qmxMmKjWGfSyxQSJBu93ZZHbVHpEohNJndOfDR2TukgkVP5LKFwBSAzpC8AjM/s+JSmCVFZcxeyJxd0ojY+0gM3ZeD7drpQ+X3XatDwv51I+a3U2/gat1ZqHHnBerIcsavJDn9RdsR1Al4fNvJzkgZ9lvVl2OxXj1UwIIpuro9OydRXFS6LSnaM7kVlxaIuEHBgq9urNTbZXox/aztCHJiVHLVmX+Rcf438QfrWaJPNNdqVw071mh7903cqniHMU5pgk8VmjxtFx6NmTafvZZCxZI3zpcJUVjWbTolSPQZA82nl8in0nnd/nnFMxdUOfVe9Zo+v+C+aMD9gMIcnFL3sqcMekgZTD8PVJUF07jbQt3ojLnRNiVfTH8wz+V7dnZzoU4iqE8LjfQWecjRSdNCBT7ZSCTBWYDRd7ALNMcLEFcLAeUrlSpLMJI4WnaIND5HmEFtz1a5gg8KyilQszi6N+9J+NgswtJQtM3TNpOsvKbQGOumf4kUYQHmotYTb5BeeUCSmD5g8hnFGvM63vDxdlybnOiOnNnAuPYNjw0+58AAsX/B7VV9irYcsDUhdMdtzIkzVWqt6IfT8R//V9TcSbZuFj0u1QzWvNDCL5TyNtFcATtGkmj9zV4LnioxD80CN7tdc2t6k+2+Xz/Y5bjj4rNIknW/JJxswFBajfXgmnjs09fIEvZ2QjUVg//0TPMeAfj5gYsEOoPLtddXIJxxaBDRG1DCiurj0UtgPhXkep6K8aBDyxZniKe6Uqd0KnzebK2tHhVk0vIbjmYM7tfAhw4kntYK8+H3u3MouAXIueKjTHOu9JaNBH9DCYYIhWqeJLXOhlWsdztHQX6wjjNodNjbl+vkEp/rLztYbSTkqiTnzF+FjXda9cyZ1mrqvf8TN6m51jsYGIIT+yI1tDFWt/nLOcN2gubzfC3WymWnjQMNkx6INPDRHvcwYNHOiTFuYTr0nlg06b9MJ9YWv9fgeCSYME8UenFxzOTg8lInnikoC7rPCOMHXt7oppKb0JqAhdg2WexXkd46e1ddY6cOjTw6LKmFPYXu7+PniZdwE42DeRzVQz0aBc6tfPmcHg4n6LkK5PVxM+jLpDEEhIHvtuqsuAVrXoGBlj/NAyVlM4MdQohSKjmJmZo5dtII7HtNCczo4Uz2u7UAWCfdbetMwfs2ppvNvUCdYWdngbU8PUb4EgfJAJhuOoo8s5atpAyLGa1tyrY4RQdUp5mOw/7fAymSZHpdTITEgvsasxQkwdxZjUkmtwL3A5i9E01V/mcnzQygXoSzfr6G1/XTt/gaNDORyECi0Ha3MeDBukxpsX6ny1r/bB/SzIhOgAtrE8AMWczRmUn1Bfm/onackOQ++V29szHwmv0Z1G4DIPisKv4Lew9eK0VHspPqDZMjvZ8SmCGxbDBMliLFIuZn8HzFoxPefPaXYCfuE1US0p5Kf7/ewNNakSz5fp6hLOgS8Km/yu9BQ2N1UQUGNohoSj0Yl9MKrx/OoNp56Ff+v28SKuwJEfU1C6YH60xxbpW9bWziIkZhCdWf+PHNxy/RtmVZGHXfF8RwxbN+z92QW9yxjUx4CYNWarz8iSeoJQRBvOK+mYO/nv5q9wosFce4dpLYMT/fNvyNLEz1z8VeVVmOKnu8oS0CsjjTeOWVpxw+AZEpxl5ttefLlBBUzRTKNgW3KHlWqr8rvwVdrgEHk0KwCHpl07fVHqaiQNBzPcWkTcA5k8p/YqGLUpy7WcsLLzumL7dMVApoDsNEj5vnDHxgCN1EtC+4du2rqi+c1wv6hjE9drCfwuYQiBn/fxYnU3K8h30pVJvUVl54S5rQ4EtA+Z+WZBOABL4qPS5CYghu9UyClmSqlcjGUq9iZL7mp5vl+cOEcD+2ox41dpdYHYXD30IC+zWvUiMRc4B/iAnmIlir03f5/a9oBhXdIyDwQ78j53YdeJp43ltEprhNiOkyyEFwSg+7ZdNTlbqRHRGBG0exJu+wkzN+B1/+sLhaf8rM+CgTaVTSNuuDiIGUe+gdODOqDz3cw5WzJZrS/n4sQZ3zWIjYLhnlLCeE6G8v50RGagBmBKePb4pwkJ3AK/vqWpBL/dL1717+yxWxfs35jrGB0Iqaw1quYW11VVlCsbt+zaX3/xzkGGQXmn/XHOQuQal72AIB4vrvmyX5pu9K0McofUpoRauTM7r97p7493svAU5upwbHsAO3ClxwCdsNeQ67teYVm5MsySOCE5fVsh6HcpXPEESzD0QlHqDOsq8HjYhqCbRIwKYb5YRtVO73sUdUZNE45h9UhjHpuY5ht02YcmGt8je7WgcPkHW0rK1LuY4wS+DSTyCrJdUQggb2vHmKrisueZgzU0zz74p5Lt7Qw2SXnrbnFVeBfDS5veRHU2k32mRHDX/Jj/NrerA18dnuhsj0xSSkL8LPrEI6UrmvAt0wyN+CFLauQdo1vnqUPh8LD7xUaXoE72ZkiLwNyPnIh1SOoPKT1ckdtAOxoh0Cc0Mt3H0plDslFQ9Rl4LqOPdFnJvK68E2S9yrUxSMUlKiEPWVyxYLhcp0L+yUwCtl/iA+pmeAWnYU7S5X/zJI6GPzE1B3NkpMC65ECR57izddbDC/ghHNYe27BFym9jdp80djKZWZQL+yGt6mt9r2UwUbfjfkF/TW5qtJtkEmCKH31wHBCw9OauXkwTOmUj7pD4QIDw9nrkE6SENpcN4Z56LJ6L89yo3qQ4z6+2XOo+Kms9rFR1thVekVCVtGScIQhm8b2Z4amDYZ0V4zP8av/j69XZl9mAioECH+Pmlzca1bPxAkL02Utt51YpL1jQIwQQo9uyuUYetNsynp7AIG8abXtvOG235TXxxr8mHyEMRwVBSYQSGJGfuDwsrm1abLAhX5Rh4RPU6kDeXejUzrM4GKZ65P6+80/p9gbzqPflpIGd6omW92mY9fjWX+VGrTJSDtfw++sLO/fhZjX5tzBfwVpkQofx1dUtNTmlsLJkWwuSbIus0m4okQWV6OkHmpSDUeh+LF+Ro2l1I4h5drpu4lhCKSvValm7vZ4GfiBspk5TEkxzCL0fQhu7tviW3KZeqO6UmEeUBuTbGi8k7J0XwU3qONxtp8Px0mPpu3Z8Rn+HnhPoc/EvmoOqkXJAnkjPU0lgHvZE5lAq7lV5EgBMKP1668Q047GP0GdyAHRykU8V8R4YhR4KTpQMyapUz6PDmZnS1aEwrkkfnKoGmeUZdldaih5krxuisaV/YYCmHk/Q654LGbn9/3YUAAHK7N2sFhx4rDMONbsQs5UWmh9oL9/wUQNIFZ89zdV23Ak1pXAjJnlvVNDlEcf75Z1XiGz2x5o/T/5zElR19VnOyRY5MyQcn6Ztx+wPdtjw8c+9OnsmoX5opeQ7pgQ0jWF6OWu3rcur3tazG/og6M+5tZloMODgunoyAMMSu1mVp06KbAzmKEOfmHamh4MQpBU0Z/r9BZm7DWDEwYbS2TTx8cmAKX8MmPh4Z1gQTnDhiSJHeBmQ/TSNfanHmUifWBHTcZVwsAMkdX3hD47KRAOqVYQEX042AiNgQAdO6t9a188pQMwx2MHhh9ZnuZVZcgiFcAj9j/k+KSrQ6CvDFjiJJ7RfyxOPMqvhwttG/rHOrJtsphd9TRILgcQegbv/+XmILBg0pbH/A9GGrYTNGLxYXZTqdVy4fi+GkCmxxIMxTSus/Bx6j+ifVeYDXFNu/FoHBW6sbBEmTqBEvOtiIS18EWNDRXqstglSpMKZwFjO/wXfK8OupfuFUt5XnqZ9zaOiBXNRIP7GIt6ygpTj22YH5QFyuINdK8bzwCDaKW/4yzcnPjoHKCElHCTOMYCBRwUAAA==",
+   "ordem": 5,
+   "nome": "Rodrigo Bastos ",
+   "cargo_en": "Teacher · Public servant",
+   "texto_en": "In the collaboration to develop a website based on a teacher's daily problem, Davi, with his advanced knowledge in the field, demonstrated agility and care, resulting in an incredible project.",
+   "texto_pt": "Na colaboração para o desenvolvimento de um site baseado em um problema cotidiano de um professor, Davi, com seus conhecimentos avançados na área, demonstrou agilidade e cuidado, resultando em um projeto incrível.",
+   "publicado": true,
+   "linkedin": "https://www.linkedin.com/in/rodrigo-bastos-718116144/",
+   "cargo_pt": "Professor · Funcionário público",
+   "_atualizado": "2026-09-14T20:37:31.768575Z"
+  }
+ ],
+ "certificados": [
+  {
+   "id": "cert-01",
+   "titulo_en": "Azure Copilot Fundamentals",
+   "publicado": true,
+   "emissor": "Microsoft",
+   "ordem": 1,
+   "titulo_pt": "Fundamentos de Azure Copilot",
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Azure%20Copilot.pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other"
+    }
+   ],
+   "_atualizado": "2026-09-20T17:16:38.082864Z"
+  },
+  {
+   "id": "cert-02",
+   "links": [
+    {
+     "url": "certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20GitHub%20Copilot.pdf",
+     "label": "pdf"
+    },
+    {
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other",
+     "label": "validar"
+    }
+   ],
+   "titulo_en": "GitHub Copilot Fundamentals",
+   "ordem": 2,
+   "emissor": "Microsoft",
+   "titulo_pt": "Fundamentos de GitHub Copilot",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-03",
+   "titulo_en": "Java for Azure Solutions",
+   "emissor": "Microsoft",
+   "ordem": 3,
+   "titulo_pt": "Java para Soluções em Azure",
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Java%20no%20Azure.pdf"
+    },
+    {
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other",
+     "label": "validar"
+    }
+   ],
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-04",
+   "titulo_en": "Linux on Azure",
+   "links": [
+    {
+     "url": "certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Linux%20no%20Azure.pdf",
+     "label": "pdf"
+    },
+    {
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other",
+     "label": "validar"
+    }
+   ],
+   "emissor": "Microsoft",
+   "titulo_pt": "Linux para Ambientes Azure",
+   "ordem": 4,
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-05",
+   "emissor": "Microsoft",
+   "ordem": 5,
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20aos%20agentes%20do%20Azure%20Copilot.pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other"
+    }
+   ],
+   "titulo_pt": "Agentes Inteligentes com Azure Copilot",
+   "titulo_en": "Intelligent Agents with Azure Copilot",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-06",
+   "titulo_en": "App Modernization with GitHub Copilot",
+   "titulo_pt": "Modernização de Aplicações com GitHub Copilot",
+   "links": [
+    {
+     "url": "certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20%C3%A0%20moderniza%C3%A7%C3%A3o%20do%20aplicativo%20GitHub%20Copilot.pdf",
+     "label": "pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other"
+    }
+   ],
+   "emissor": "Microsoft",
+   "ordem": 6,
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-07",
+   "ordem": 7,
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Microsoft/Conquistas/Migrar%20cargas%20de%20trabalho%20do%20SQL%20Server%20para%20o%20Banco%20de%20Dados%20SQL%20do%20Azure.pdf"
+    },
+    {
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other",
+     "label": "validar"
+    }
+   ],
+   "titulo_en": "Migrate SQL Server Workloads to Azure SQL",
+   "emissor": "Microsoft",
+   "titulo_pt": "Migrar cargas do SQL Server para Azure SQL",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-08",
+   "emissor": "Microsoft",
+   "links": [
+    {
+     "url": "certificados/Microsoft/Conquistas/Migrar%20de%20cargas%20de%20trabalho%20locais%20para%20o%20Azure.pdf",
+     "label": "pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other"
+    }
+   ],
+   "ordem": 8,
+   "titulo_pt": "Migrar cargas locais para Azure",
+   "titulo_en": "Migrate On-Premises Workloads to Azure",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-09",
+   "ordem": 9,
+   "titulo_pt": "Manter bancos SQL Server no Azure",
+   "emissor": "Microsoft",
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Microsoft/Conquistas/Preparar%20para%20manter%20bancos%20de%20dados%20baseados%20no%20SQL%20Server%20no%20Azure.pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other"
+    }
+   ],
+   "titulo_en": "Maintain SQL Server Databases on Azure",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-10",
+   "titulo_en": "Develop AI Solutions on Azure",
+   "emissor": "Microsoft",
+   "titulo_pt": "Desenvolver soluções de IA no Azure",
+   "ordem": 10,
+   "links": [
+    {
+     "url": "certificados/Microsoft/Conquistas/Preparar-se%20para%20desenvolver%20solu%C3%A7%C3%B5es%20de%20IA%20no%20Azure.pdf",
+     "label": "pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other"
+    }
+   ],
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-11",
+   "emissor": "Microsoft",
+   "links": [
+    {
+     "url": "certificados/Microsoft/Desafios/Migrate%20%26%20Modernize%20Challenge.pdf",
+     "label": "pdf"
+    },
+    {
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other",
+     "label": "validar"
+    }
+   ],
+   "ordem": 11,
+   "titulo_pt": "Migrate & Modernize Challenge",
+   "titulo_en": "Migrate & Modernize Challenge",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-12",
+   "ordem": 12,
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Microsoft/Roteiro%20de%20aprendizagem/Introdu%C3%A7%C3%A3o%20%C3%A0%20administra%C3%A7%C3%A3o%20do%20banco%20de%20dados%20do%20Azure.pdf"
+    },
+    {
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other",
+     "label": "validar"
+    }
+   ],
+   "titulo_en": "Azure Database Administration",
+   "titulo_pt": "Administração de Banco de Dados no Azure",
+   "emissor": "Microsoft",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-13",
+   "titulo_en": "AI Engineering Learning Path",
+   "links": [
+    {
+     "url": "certificados/Microsoft/Roteiro%20de%20aprendizagem/Preparar%20para%20engenharia%20de%20IA.pdf",
+     "label": "pdf"
+    },
+    {
+     "url": "https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other",
+     "label": "validar"
+    }
+   ],
+   "titulo_pt": "Trilha de Engenharia de IA",
+   "ordem": 13,
+   "emissor": "Microsoft",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-14",
+   "titulo_en": "Personal Finance",
+   "titulo_pt": "Finanças Pessoais",
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Sicoob/Finan%C3%A7as%20Pessoais.pdf"
+    },
+    {
+     "url": "https://se-liga-financas-online.memberkit.com.br/certificates/G6DyWX",
+     "label": "validar"
+    }
+   ],
+   "emissor": "Sicoob",
+   "ordem": 14,
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-15",
+   "links": [
+    {
+     "url": "certificados/Sicoob/Finan%C3%A7as%20para%20MEI.pdf",
+     "label": "pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://se-liga-financas-online.memberkit.com.br/certificates/QA02el"
+    }
+   ],
+   "titulo_en": "Finance for Micro-Entrepreneurs",
+   "ordem": 15,
+   "emissor": "Sicoob",
+   "titulo_pt": "Finanças para MEI",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-16",
+   "titulo_en": "Finance for Investors",
+   "emissor": "Sicoob",
+   "titulo_pt": "Finanças para Investidores",
+   "ordem": 16,
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Sicoob/Finan%C3%A7as%20para%20Investidores.pdf"
+    },
+    {
+     "label": "validar",
+     "url": "https://se-liga-financas-online.memberkit.com.br/certificates/bdJkV3"
+    }
+   ],
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-17",
+   "titulo_en": "Brazilian Data Protection Law (LGPD)",
+   "titulo_pt": "Lei Geral de Proteção de Dados",
+   "ordem": 17,
+   "links": [
+    {
+     "url": "certificados/Algar/Lei%20Geral%20de%20Prote%C3%A7%C3%A3o%20de%20Dados.pdf",
+     "label": "pdf"
+    }
+   ],
+   "emissor": "Algar Telecom",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-18",
+   "titulo_pt": "Código de Conduta",
+   "ordem": 18,
+   "titulo_en": "Code of Conduct",
+   "emissor": "Algar Telecom",
+   "links": [
+    {
+     "url": "certificados/Algar/C%C3%B3digo%20de%20Conduta.pdf",
+     "label": "pdf"
+    }
+   ],
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-19",
+   "emissor": "Alura",
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Alura/Python.pdf"
+    }
+   ],
+   "ordem": 19,
+   "titulo_pt": "Python para Desenvolvimento e Automação",
+   "titulo_en": "Python for Development and Automation",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-20",
+   "ordem": 20,
+   "titulo_en": "Windows Command Line",
+   "links": [
+    {
+     "url": "certificados/Alura/Prompt%20do%20Windows.pdf",
+     "label": "pdf"
+    },
+    {
+     "url": "https://cursos.alura.com.br/formalCertificate/928718ae-78bf-470c-8a9f-3f0eb90de3e2",
+     "label": "validar"
+    }
+   ],
+   "titulo_pt": "Linha de Comando no Windows",
+   "emissor": "Alura",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-21",
+   "ordem": 21,
+   "emissor": "Alura",
+   "links": [
+    {
+     "label": "pdf",
+     "url": "certificados/Alura/Ingl%C3%AAs.pdf"
+    }
+   ],
+   "titulo_en": "English for Technology and Careers",
+   "titulo_pt": "Inglês para Tecnologia e Carreira",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-22",
+   "titulo_pt": "Segurança da Informação",
+   "emissor": "Hacker Rangers",
+   "titulo_en": "Information Security",
+   "ordem": 22,
+   "links": [
+    {
+     "url": "certificados/Hacker%20Rangers/Seguran%C3%A7a%20da%20Informa%C3%A7%C3%A3o.pdf",
+     "label": "pdf"
+    }
+   ],
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-23",
+   "emissor": "TP-Link",
+   "titulo_en": "Webinar Participation Certificate",
+   "links": [
+    {
+     "url": "certificados/TPLink/Certificado%20de%20Participa%C3%A7%C3%A3o%20em%20Webinar.pdf",
+     "label": "pdf"
+    },
+    {
+     "label": "validar",
+     "url": "certificados/TPLink/Comprovante%20de%20Valida%C3%A7%C3%A3o%20do%20Certificado.pdf"
+    }
+   ],
+   "titulo_pt": "Certificado de Participação em Webinar",
+   "ordem": 23,
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cert-24",
+   "titulo_en": "Advanced English for Professional Communication",
+   "emissor": "Wizard",
+   "ordem": 24,
+   "titulo_pt": "Inglês Avançado para Comunicação Profissional",
+   "links": [
+    {
+     "url": "certificados/Wizard/Ingl%C3%AAs.pdf",
+     "label": "pdf"
+    }
+   ],
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  }
+ ],
+ "clientes": [
+  {
+   "id": "cli-01",
+   "nome": "Audicom Telecom",
+   "ordem": 1,
+   "site": "https://audicomtelecom.com.br/",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-02",
+   "nome": "Audicom Tecnologia",
+   "ordem": 2,
+   "site": "",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-03",
+   "site": "",
+   "ordem": 3,
+   "nome": "Algar Telecom",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-04",
+   "site": "",
+   "ordem": 4,
+   "nome": "Callink",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-05",
+   "site": "",
+   "ordem": 5,
+   "nome": "Link Call",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-06",
+   "site": "",
+   "nome": "Cooperbant",
+   "ordem": 6,
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-07",
+   "site": "",
+   "ordem": 7,
+   "nome": "Valoria · Alpa Solutions",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-08",
+   "nome": "Instituto Elora",
+   "ordem": 8,
+   "site": "",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-09",
+   "ordem": 9,
+   "site": "https://davicjc.github.io/CapileSite/",
+   "nome": "Capilé Drinks",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-10",
+   "ordem": 10,
+   "site": "https://davicjc.github.io/PatriciaMouraLashDesign/",
+   "nome": "Patricia Moura Lash Design",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-11",
+   "ordem": 11,
+   "site": "https://davicjc.github.io/BarbeariaSoares/",
+   "nome": "Barbearia Soares",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-12",
+   "ordem": 12,
+   "nome": "Dennis Wilber",
+   "site": "https://davicjc.github.io/PortifolioDDWilber/",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-13",
+   "ordem": 13,
+   "nome": "Bruno Filho",
+   "site": "",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "cli-14",
+   "nome": "Sanctorum",
+   "ordem": 14,
+   "site": "",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  }
+ ],
+ "contatos": [
+  {
+   "id": "ct-email",
+   "rotulo_pt": "e-mail",
+   "url": "mailto:davicjc@gmail.com",
+   "publicado": true,
+   "rotulo_en": "e-mail",
+   "ordem": 1,
+   "rotulo_es": "e-mail",
+   "valor": "contato@davicjc.com",
+   "_atualizado": "2026-09-20T17:18:40.172410Z"
+  },
+  {
+   "id": "ct-github",
+   "url": "https://github.com/Davicjc",
+   "valor": "Davicjc",
+   "rotulo_en": "github",
+   "ordem": 4,
+   "rotulo_pt": "github",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "ct-linkedin",
+   "rotulo_en": "linkedin",
+   "ordem": 3,
+   "url": "https://linkedin.com/in/davicjc",
+   "rotulo_pt": "linkedin",
+   "valor": "in/davicjc",
+   "_atualizado": "2026-09-11T01:11:30.016827Z"
+  },
+  {
+   "id": "ct-whatsapp",
+   "url": "https://wa.me/5534993336186",
+   "valor": "+55 34 99333-6186",
+   "rotulo_en": "whatsapp",
+   "publicado": true,
+   "ordem": 2,
+   "rotulo_pt": "whatsapp",
+   "_atualizado": "2026-09-20T17:19:39.599909Z"
+  }
+ ],
+ "categorias": []
+}

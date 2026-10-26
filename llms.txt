@@ -1,81 +1,54 @@
-# Davi Castro Jorge da Costa (Davi Castro · davicjc)
+# Davi Castro (davicjc) — Desenvolvedor full stack
 
-> Desenvolvedor Full Stack & Infraestrutura de Redes em Uberlândia, MG · Brasil. Escrevo o software e cuido da rede em que ele roda. Na Audicom Telecom, desenvolvo sistemas internos, integro biometria e reconhecimento facial a catracas e mantenho a infraestrutura de um provedor — de roteadores MikroTik a servidores VMware. Fora dela, entrego sites e sistemas para clientes de beleza, gastronomia, saúde e consultoria.
+> Sou Davi Castro, desenvolvedor full stack em Uberlândia. Construo produtos de ponta a ponta — interface, API, banco de dados, apps de Windows e Android e o deploy — e mantenho no ar os sistemas que a Audicom Telecom usa todos os dias.
 
-- Site: https://davicjc.com/
-- E-mail: davicjc@gmail.com
-- LinkedIn: https://linkedin.com/in/davicjc
+> I'm Davi Castro, a full-stack developer in Brazil. I build products end to end — interface, API, database, Windows and Android apps, and the deploy — and keep the systems Audicom Telecom runs on every day up and running.
+
+- Site: https://davicjc.com/ (English: https://davicjc.com/en/)
+- E-mail: contato@davicjc.com
 - GitHub: https://github.com/Davicjc
-- Currículo (PT): https://davicjc.com/Curriculo/
-- Résumé (EN): https://davicjc.com/Curriculo/en.html
+- LinkedIn: https://www.linkedin.com/in/davicjc
+- ORCID: https://orcid.org/0009-0005-8485-455X
+- Currículo: https://davicjc.com/Curriculo/ · Résumé: https://davicjc.com/Curriculo/en.html
+- Formação: Sistemas de Informação · Uniube · conclusão em dez 2026
+
+## Estudos de caso
+
+- [NexusAtlas](https://davicjc.com/projetos/nexusatlas/) — O SaaS de ordens de serviço em campo que a operação da Audicom usa todos os dias. Situação: no_ar. Tecnologias: JavaScript, Firebase Auth, Firestore, WebRTC, Leaflet, Tailwind CSS, C# · WebView2, Android, PWA.
+- [Teste de Velocidade Audicom](https://davicjc.com/projetos/speedtest/) — O teste de velocidade do próprio provedor, medido na rota real do cliente. Situação: desenvolvimento. Tecnologias: Node.js, WebRTC, WebSocket, Web Workers, SQLite, scrypt, LibreSpeed (v1).
+- [Audicom Hub](https://davicjc.com/projetos/audicomhub/) — Portal interno com 10 módulos — chamados, rondas, frota e estoque — e permissão aplicada no banco. Situação: no_ar. Tecnologias: JavaScript, Firebase Auth, Firestore, Firestore Rules, Chart.js, PWA, Gemini / OpenAI.
+- [Ecolyra](https://davicjc.com/projetos/ecolyra/) — Letras traduzidas em tempo real que escutam a música, por cima de qualquer janela. Situação: desenvolvimento. Tecnologias: Python, Tkinter, Shazam, yt-dlp, FFmpeg, WebView2.
+- [Face Safety](https://davicjc.com/projetos/facesafety/) — Controle de acesso por reconhecimento facial — 1º lugar entre 60 projetos. Situação: historico. Tecnologias: Python, OpenCV, YuNet, SFace (ONNX), NumPy, Tkinter, dlib (v2.5).
+- [PopManager](https://davicjc.com/projetos/popmanager/) — API em FastAPI e painel web para inventário e monitoramento dos pontos de presença. Situação: desenvolvimento. Tecnologias: Python, FastAPI, SQLAlchemy, asyncio, PostgreSQL, Nginx, Chart.js, vis-network.
+- [Telemetry Portal](https://davicjc.com/projetos/telemetry/) — Painel web em Python que monitora OSPF e BFD em MikroTik e avisa no Telegram. Situação: desenvolvimento. Tecnologias: Python, Flask, SQLite, RouterOS API, Telegram Bot API, Prometheus, Grafana.
+- [ROAs Monitor Status](https://davicjc.com/projetos/roasmonitor/) — Daemon em Bash que vigia a validade RPKI dos prefixos e alerta no Telegram. Situação: no_ar. Tecnologias: Bash, RPKI, Telegram Bot API, Routinator, RIPEstat API, systemd.
+
+## Outros projetos
+
+- [Cooperbant](https://davicjc.com/projetos/cooperbant/) — Novo site e painel de conteúdo de uma cooperativa de crédito. Situação: desenvolvimento. Tecnologias: JavaScript, HTML5, CSS3, Firebase, Cloudflare Pages, Turnstile.
+- [Minha História no Verdão](https://davicjc.com/projetos/diariodoverdao/) — O jornal de histórias do Uberlândia Esporte Clube, com abertura em 3D. Situação: desenvolvimento. Tecnologias: JavaScript, three.js, Firebase Auth, Firestore, Cloudflare Pages Functions.
+- [Uberlândia Esporte Clube](https://davicjc.com/projetos/uec/) — A página inicial do clube, falando a língua do placar de LED do Parque do Sabiá. Situação: desenvolvimento. Tecnologias: JavaScript, MediaPipe, Firebase, HTML5, CSS3.
+- [Sócio Verdão](https://davicjc.com/projetos/socioverdao/) — Proposta de portal do sócio: carteira digital, contas abertas e voto. Situação: desenvolvimento. Tecnologias: JavaScript, HTML5, CSS3, PWA.
+- [Instituto Elora](https://davicjc.com/projetos/elora/) — Site, área do cliente com chat e painel para clínica de estética. Situação: no_ar. Tecnologias: JavaScript, HTML5, CSS3, Firebase.
+- [Valoria CRM](https://davicjc.com/projetos/alpa/) — ERP de operações de campo white-label: do orçamento à nota fiscal. Situação: no_ar. Tecnologias: JavaScript, Tailwind CSS, Firebase, Chart.js, PDF.
+- [Audicom Tecnologia](https://davicjc.com/projetos/audicomtecnologia/) — Site, catálogo e painel de controle de acesso e ponto eletrônico. Situação: no_ar. Tecnologias: JavaScript, HTML5, CSS3, Firebase.
+- [Site Audicom Telecom](https://davicjc.com/projetos/audicomtelecom/) — Site institucional de internet fibra da Audicom Telecom, em três idiomas. Situação: no_ar. Tecnologias: HTML5, CSS3, JavaScript.
+- [Quiz da Turma](https://davicjc.com/projetos/quizturma/) — Quiz ao vivo: professor no computador, alunos no celular com PIN. Situação: no_ar. Tecnologias: JavaScript, HTML5, Firebase, Firestore Rules.
+- [Gestor de API](https://davicjc.com/projetos/gestorapi/) — Cofre de credenciais Firebase de vários clientes, servidas por uma API na Cloudflare. Situação: no_ar. Tecnologias: JavaScript, Firebase, Cloudflare Workers, Firestore Rules.
+- [Footer davicjc](https://davicjc.com/projetos/footer/) — O selo de assinatura dos sites que eu faço. Situação: no_ar. Tecnologias: JavaScript, HTML5, CSS3, Cloudflare Pages.
+- [Portfólio Dennis Wilber](https://davicjc.com/projetos/ddwilber/) — Portfólio one-page para um líder de vendas da Xiaomi Brasil. Situação: no_ar. Tecnologias: HTML5, CSS3, JavaScript, GitHub Pages, Google Analytics.
+- [Grupo Sanctorum](https://davicjc.com/projetos/sanctorum/) — Landing page de contabilidade com visual de alto padrão. Situação: aguardando. Tecnologias: HTML5, CSS3, JavaScript.
+- [Capilé Drinks](https://davicjc.com/projetos/capile/) — Cardápio interativo e painel de gestão para bar de drinks autorais. Situação: aguardando. Tecnologias: HTML5, CSS3, JavaScript, LocalStorage, Chart.js.
+- [Barbearia Soares](https://davicjc.com/projetos/barbearia/) — Site de vitrine para barbearia local, em HTML e CSS puros. Situação: aguardando. Tecnologias: HTML5, CSS3, Git, GitHub.
+- [Painel da Sala de Reunião](https://davicjc.com/projetos/audicomreuniao/) — Tela de recepção da sala de reunião da Audicom Telecom. Situação: no_ar. Tecnologias: HTML5, CSS3, JavaScript.
+- [Página dos QR Codes Audicom](https://davicjc.com/projetos/qrcodeaudicom/) — Destino dos QR Codes aplicados nos carros e materiais da Audicom. Situação: no_ar. Tecnologias: HTML5, CSS3, JavaScript.
+- [Patricia Moura Lash Design](https://davicjc.com/projetos/patricia/) — Agendamento online em tempo real para um estúdio de cílios. Situação: abandonado. Tecnologias: JavaScript, Firebase Firestore, Firebase Auth, HTML5, CSS3, GitHub Pages.
 
 ## Trajetória
 
-- Vice Supervisor · Desenvolvedor Full Stack · Técnico de Redes — Audicom Telecom & Audicom Tecnologia (set 2025 — atual). Desenvolvo os sistemas internos da operação — ordens de serviço de campo, portal de suporte e pedidos de clientes — e integro biometria e reconhecimento facial ao controle de acesso por catracas. Na infraestrutura, administro servidores VMware ESXi, túneis WireGuard e equipamentos MikroTik, Cisco, Ubiquiti e Datacom, com monitoramento em Grafana e Zabbix. Implantei um LMS com login único via SSO (SAML/OIDC) e superviso as equipes de NOC, HelpDesk e CGR.
-- Gerente de Relacionamento Empresarial Bilíngue — Algar Telecom (dez 2023 — jun 2025). Atendi em inglês o segmento de atacado da operadora, com clientes internacionais como Verizon, BT e China Telecom. Conduzi incidentes críticos de conectividade até a resolução e acompanhei a infraestrutura desses clientes em Grafana e Zabbix.
-- Fundador e desenvolvedor — Web pra Você · negócio próprio (2023 — encerrado). Criação de sites para pequenas e médias empresas, cuidando de proposta, design, desenvolvimento e publicação. O negócio foi encerrado.
-- Desenvolvedor Python · Projeto Face Safety — Universidade de Uberaba (Uniube) (out — dez 2023). Desenvolvi um sistema de controle de acesso por reconhecimento facial em Python e OpenCV, com cadastro pela câmera e liberação de fechadura para usuários autorizados. O projeto ficou em 1º lugar entre 60 trabalhos acadêmicos.
-- Agente de atendimento — Callink · operação Bradesco (out — dez 2023). Atendimento a clientes da operação Bradesco, usando técnicas de sondagem para entender e resolver demandas complexas.
-
-## O que faz
-
-- Sistemas web e aplicações: Sistemas internos, painéis administrativos e sites institucionais. Uso Firebase quando o projeto precisa de tempo real e autenticação sem servidor para manter. (JavaScript, TypeScript, React, Python, Node.js, Firebase, REST APIs)
-- Infraestrutura de provedor: Configuração e monitoramento de roteadores e enlaces, servidores virtualizados e VPNs, com alertas automáticos para o que não pode passar despercebido. (MikroTik, Cisco, Ubiquiti, BGP, RPKI, OSPF, VMware ESXi, WireGuard, Grafana, Zabbix)
-- Controle de acesso e visão computacional: Integração de catracas, biometria e reconhecimento facial com o software que decide quem entra — do cadastro do rosto à liberação da porta. (Python, C#, OpenCV, face_recognition, MediaPipe, Raspberry Pi)
-- Operação e liderança técnica: Supervisão das equipes de NOC, HelpDesk e CGR, organização das demandas técnicas e atendimento em inglês a operadoras internacionais. (NOC, HelpDesk, CGR, SSO · SAML · OIDC, Trello, Inglês avançado)
-
-## Projetos
-
-- [Audicom Hub](https://davicjc.github.io/AudicomHub/): Portal interno multiprojeto com controle de acesso por função — JavaScript, Firebase Auth, Firestore, PWA / Service Worker, HTML5, CSS3
-- [Telemetry Portal](https://github.com/Davicjc/telemetry-portal): Monitoramento de OSPF e BFD em MikroTik, auto-hospedado — Python, Flask, SQLite, RouterOS API, Grafana, Prometheus
-- [NexusAtlas](https://davicjc.com/#/projetos): Gestão de ordens de serviço de campo em tempo real, no navegador — JavaScript, Firebase, HTML5, CSS3
-- [Face Safety](https://github.com/Davicjc/FaceSafety): Controle de acesso por reconhecimento facial em Python — Python, OpenCV, face_recognition, dlib, NumPy, Tkinter
-- [ROAs Monitor Status](https://davicjc.github.io/ROAs-Monitor-Status/): Alerta no Telegram quando os ROAs do seu ASN ficam inválidos — Bash, RPKI, Telegram Bot API, Routinator, RIPEstat API, systemd
-- [Patricia Moura Lash Design](https://davicjc.github.io/PatriciaMouraLashDesign/): Agendamento online em tempo real para um estúdio de cílios — JavaScript, Firebase Firestore, Firebase Auth, HTML5, CSS3, GitHub Pages
-- [Hub CJC](https://davicjc.com/#/projetos): Central de projetos, tarefas e contratos com assinatura eletrônica — TypeScript, React, Firebase, Vite, Tailwind CSS, React Query
-- [Site Audicom Telecom](https://audicomtelecom.com.br/): Site institucional em produção da provedora Audicom Telecom — HTML5, CSS3, JavaScript
-- [Capilé Drinks](https://davicjc.github.io/CapileSite/): Cardápio interativo e painel de gestão para bar de drinks autorais — HTML5, CSS3, JavaScript, LocalStorage, Chart.js
-- [Audicom Speed Test](https://velocidadeteste.audicomtelecom.com.br/): Teste de velocidade próprio, medindo na rota real do cliente — LibreSpeed, JavaScript, HTML5, CSS3
-- [Portfólio Dennis Wilber](https://davicjc.github.io/PortifolioDDWilber/): Portfólio one-page para um líder de vendas da Xiaomi Brasil — HTML5, CSS3, JavaScript, GitHub Pages, Google Analytics
-- [Acesso Audicom (QR Code)](https://davicjc.github.io/AcessoAudicom/): Liberação de catracas por QR Code gerado no cadastro do visitante — HTML5, CSS3, JavaScript ES6+, Java, Raspberry Pi Pico
-- [FitIA](https://davicjc.github.io/FitIA/): Contagem de repetições e análise de forma por webcam, no navegador — JavaScript, MediaPipe, Canvas API, Three.js, Firebase Firestore, HTML5
-- [Pedidos Audicom](https://davicjc.com/#/projetos): Solicitação de internet pelo cliente e gestão em painel interno — HTML5, CSS3, JavaScript
-- [PopManager](https://davicjc.com/#/projetos): Gestão centralizada de POPs de rede para provedor de internet — Python, JavaScript, HTML5, CSS3, Linux Server
-- [CRM Alpa Solutions](https://davicjc.com/#/projetos): Base única de clientes e histórico comercial para a Valoria — JavaScript, HTML5, CSS3, Git
-- [Instituto Elora](https://davicjc.com/#/projetos): Site institucional para clínica de estética e saúde integrativa — JavaScript, HTML5, CSS3, Git
-- [Gestor de API](https://davicjc.com/#/projetos): Painel Master para credenciais Firebase de múltiplos clientes — JavaScript, HTML5, CSS3, Firebase
-- [DesenhoBase64](https://davicjc.github.io/DesenhoBase64/): Canvas HTML5 vira quadro de desenho e assinatura, sem dependências — JavaScript, HTML5 Canvas, HTML5, CSS3
-- [Barbearia Soares](https://davicjc.github.io/BarbeariaSoares/): Site de vitrine para barbearia local, em HTML e CSS puros — HTML5, CSS3, Git, GitHub
-- [Painel da Sala de Reunião](https://davicjc.github.io/AudicomSiteReuniao/): Tela de recepção da sala de reunião da Audicom Telecom — HTML5, CSS3, JavaScript
-- [Página dos QR Codes Audicom](https://davicjc.github.io/QRCodeAudicomSite/): Destino dos QR Codes aplicados nos carros e materiais da Audicom — HTML5, CSS3, JavaScript
-
-## Certificados
-
-- Fundamentos de Azure Copilot — Microsoft
-- Fundamentos de GitHub Copilot — Microsoft
-- Java para Soluções em Azure — Microsoft
-- Linux para Ambientes Azure — Microsoft
-- Agentes Inteligentes com Azure Copilot — Microsoft
-- Modernização de Aplicações com GitHub Copilot — Microsoft
-- Migrar cargas do SQL Server para Azure SQL — Microsoft
-- Migrar cargas locais para Azure — Microsoft
-- Manter bancos SQL Server no Azure — Microsoft
-- Desenvolver soluções de IA no Azure — Microsoft
-- Migrate & Modernize Challenge — Microsoft
-- Administração de Banco de Dados no Azure — Microsoft
-- Trilha de Engenharia de IA — Microsoft
-- Finanças Pessoais — Sicoob
-- Finanças para MEI — Sicoob
-- Finanças para Investidores — Sicoob
-- Lei Geral de Proteção de Dados — Algar Telecom
-- Código de Conduta — Algar Telecom
-- Python para Desenvolvimento e Automação — Alura
-- Linha de Comando no Windows — Alura
-- Inglês para Tecnologia e Carreira — Alura
-- Segurança da Informação — Hacker Rangers
-- Certificado de Participação em Webinar — TP-Link
-- Inglês Avançado para Comunicação Profissional — Wizard
-
-## Optional
-
-- English: Davi Castro is a Full Stack Developer & Network Infrastructure based in Uberlândia, Brazil. I write the software and look after the network it runs on. At Audicom Telecom I build internal systems, wire biometrics and facial recognition into access turnstiles and keep an ISP's infrastructure running — from MikroTik routers to VMware servers. Outside of it, I ship websites and systems for clients in beauty, hospitality, healthcare and consulting.
+- Programador Júnior — Audicom Telecom (jul 2026 — hoje). Desenvolvo os sistemas internos da operação — o NexusAtlas, o Audicom Hub, o teste de velocidade próprio e as ferramentas de monitoramento de OSPF/BFD, RPKI e POPs — e administro servidores VMware ESXi, túneis WireGuard e equipamentos MikroTik, Cisco, Ubiquiti e Datacom, monitorados em Grafana e Zabbix. Sigo ajudando a supervisionar as equipes de NOC, HelpDesk e CGR.
+- Atendente de Suporte — atuando como Desenvolvedor Full Stack, Técnico de Redes e Vice Supervisor — Audicom Telecom (set 2025 — jul 2026). Entrei no suporte e, em poucos meses, passei a desenvolver os sistemas internos, integrar biometria e reconhecimento facial ao controle de acesso por catracas e cuidar da infraestrutura de rede. Implantei um LMS com login único via SSO (SAML/OIDC) e ajudei a supervisionar NOC, HelpDesk e CGR.
+- Gerente de Relacionamento Empresarial Bilíngue (Analista de Suporte Computacional) — Algar Telecom (dez 2023 — jun 2025). Atendi em inglês o segmento de atacado da operadora, com clientes internacionais como Verizon, BT e China Telecom. Conduzi incidentes críticos de conectividade até a resolução e acompanhei a infraestrutura desses clientes em Grafana e Zabbix.
+- Bacharelado em Sistemas de Informação — Universidade de Uberaba (Uniube) (fev 2023 — dez 2026 (previsão)). O Face Safety, meu sistema de controle de acesso por reconhecimento facial, ficou em 1º lugar entre 60 projetos acadêmicos do curso (mai 2023).
+- Agente de Atendimento · SAC Alô Bradesco — Callink · operação Bradesco (out — dez 2023). Atendimento a clientes da operação Bradesco, usando técnicas de sondagem para entender e resolver demandas complexas.
+- Fundador e Desenvolvedor Web — Web pra Você · negócio próprio (2023 — encerrado). Criação de sites para pequenas e médias empresas, cuidando de proposta, design, desenvolvimento e publicação. O negócio foi encerrado.

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR" class="sem-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teste de Velocidade Audicom — O teste de velocidade do próprio provedor, medido na rota real do cliente · Davi Castro</title>
+<meta name="description" content="O teste de velocidade do próprio provedor, medido na rota real do cliente. Começou como uma instância do LibreSpeed com a marca da Audicom, que segue no ar. A versão 2 é uma reescrita do zero: motor de medição próprio, perda de pacotes por UDP de verdade, contas, histórico com mapa e um painel de…">
+<link rel="canonical" href="https://davicjc.com/projetos/speedtest/">
+<link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/speedtest/">
+<link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/speedtest/">
+<link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/speedtest/">
+<meta name="author" content="Davi Castro">
+<meta name="theme-color" content="#090C10">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Davi Castro">
+<meta property="og:title" content="Teste de Velocidade Audicom — O teste de velocidade do próprio provedor, medido na rota real do cliente · Davi Castro">
+<meta property="og:description" content="O teste de velocidade do próprio provedor, medido na rota real do cliente. Começou como uma instância do LibreSpeed com a marca da Audicom, que segue no ar. A versão 2 é uma reescrita do zero: motor de medição próprio, perda de pacotes por UDP de verdade, contas, histórico com mapa e um painel de…">
+<meta property="og:url" content="https://davicjc.com/projetos/speedtest/">
+<meta property="og:image" content="https://davicjc.com/assets/og/speedtest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Teste de Velocidade Audicom — O teste de velocidade do próprio provedor, medido na rota real do cliente · Davi Castro">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="me" href="https://github.com/Davicjc">
+<link rel="me" href="https://www.linkedin.com/in/davicjc">
+<link rel="me" href="https://orcid.org/0009-0005-8485-455X">
+<link rel="preload" href="/assets/fonts/archivo-500_700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/estilo.css?v=4c5c63c0fb">
+<script>document.documentElement.classList.replace('sem-js','js')</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://davicjc.com/projetos/speedtest/#projeto","name":"Teste de Velocidade Audicom","description":"Começou como uma instância do LibreSpeed com a marca da Audicom, que segue no ar. A versão 2 é uma reescrita do zero: motor de medição próprio, perda de pacotes por UDP de verdade, contas, histórico com mapa e um painel de administração ao vivo — tudo num único processo Node.js numa VM, sem serviços de terceiros.","url":"https://davicjc.com/projetos/speedtest/","image":"https://davicjc.com/fotos/projetos/speedtest.webp","inLanguage":"pt-BR","author":{"@id":"https://davicjc.com/#davi"},"creator":{"@id":"https://davicjc.com/#davi"},"dateCreated":"2026","keywords":"Node.js, WebRTC, WebSocket, Web Workers, SQLite, scrypt, LibreSpeed (v1)","sameAs":["https://velocidadeteste.audicomtelecom.com.br/","https://github.com/Davicjc/audicom-speedtest"],"applicationCategory":"BusinessApplication","operatingSystem":"Web"},{"@type":"Person","@id":"https://davicjc.com/#davi","name":"Davi Castro","alternateName":["Davi Castro Jorge da Costa","davicjc"],"givenName":"Davi","familyName":"Castro Jorge da Costa","jobTitle":"Desenvolvedor full stack","description":"Sou Davi Castro, desenvolvedor full stack em Uberlândia. Construo produtos de ponta a ponta — interface, API, banco de dados, apps de Windows e Android e o deploy — e mantenho no ar os sistemas que a Audicom Telecom usa todos os dias.","url":"https://davicjc.com/","image":"https://davicjc.com/fotos/me/me.jpg","email":"mailto:contato@davicjc.com","address":{"@type":"PostalAddress","addressLocality":"Uberlândia","addressRegion":"MG","addressCountry":"BR"},"worksFor":{"@type":"Organization","name":"Audicom Telecom","url":"https://audicomtelecom.com.br/"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Universidade de Uberaba (Uniube)"},"award":"1º lugar entre 60 projetos acadêmicos — Face Safety, Uniube (2023)","knowsLanguage":["pt-BR","en"],"knowsAbout":["Full-stack development","JavaScript","TypeScript","Python","Node.js","Firebase","WebRTC","Network automation","NetDevOps","Network monitoring","MikroTik RouterOS","BGP","RPKI","OSPF","BFD","Zabbix","Grafana","Computer vision","Facial recognition","Access control"],"identifier":{"@type":"PropertyValue","propertyID":"ORCID","value":"0009-0005-8485-455X"},"sameAs":["https://github.com/Davicjc","https://www.linkedin.com/in/davicjc","https://orcid.org/0009-0005-8485-455X"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Davi Castro","item":"https://davicjc.com/"},{"@type":"ListItem","position":2,"name":"Todos os projetos","item":"https://davicjc.com/projetos/"},{"@type":"ListItem","position":3,"name":"Teste de Velocidade Audicom","item":"https://davicjc.com/projetos/speedtest/"}]}]}</script>
+</head>
+<body class="pagina-projeto" data-lang="pt" data-build="2026-10-26T13:11:04.356Z">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo" data-topo>
+  <div class="envelope topo__barra">
+    <a class="marca" href="/" aria-label="Davi Castro — início"><svg class="marca__d" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 22H48A28 28 0 0 1 48 78H30Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="11" fill="var(--tinta)"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg><span class="marca__nome">davi castro</span></a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="/#trabalho">Trabalho</a>
+      <a href="/#trajetoria">Trajetória</a>
+      <a href="/#contato">Contato</a>
+      <a class="nav__cv" href="/Curriculo/">Currículo</a>
+    </nav>
+    <div class="idioma" role="group" aria-label="Idioma">
+      <a href="#" hreflang="pt-BR" lang="pt-BR" aria-current="true" data-idioma="pt">PT</a>
+      <a href="/en/projects/speedtest/" hreflang="en" lang="en" data-idioma="en">EN</a>
+    </div>
+    <button class="topo__menu" type="button" aria-expanded="false" aria-controls="nav" data-menu><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h16M4 16h16"/></svg><span class="sr">Menu</span></button>
+  </div>
+</header>
+<main id="conteudo">
+<article class="projeto" data-projeto="speedtest">
+  <header class="envelope projeto__cabeca">
+    <nav class="trilha rotulo" aria-label="Trilha"><a href="/#trabalho">Trabalho</a><span aria-hidden="true">/</span><span aria-current="page">Teste de Velocidade Audicom</span></nav>
+    <p class="caso__meta"><span class="situacao" data-situacao="desenvolvimento"><span class="led" data-situacao="desenvolvimento" aria-hidden="true"></span><span>Em desenvolvimento</span><span class="situacao__ativo"> · mantido ativamente</span></span><span class="rotulo">estudo de caso</span></p>
+    <h1 class="projeto__titulo">Teste de Velocidade Audicom</h1>
+    <p class="projeto__tagline">O teste de velocidade do próprio provedor, medido na rota real do cliente</p>
+    <div class="projeto__acoes"><a class="botao botao--sinal" href="https://velocidadeteste.audicomtelecom.com.br/" rel="noopener">Abrir o sistema<svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a><a class="botao botao--linha" href="https://github.com/Davicjc/audicom-speedtest" rel="noopener"><svg class="ic" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Código no GitHub</a></div>
+    <dl class="projeto__meta">
+      <div><dt class="rotulo">Meu papel</dt><dd>Autor único: motor de medição, servidor, segurança, painéis e instalador.</dd></div><div><dt class="rotulo">Período</dt><dd>fev 2026 — hoje</dd></div><div><dt class="rotulo">Para</dt><dd>Audicom Telecom</dd></div>
+      <div class="projeto__stack"><dt class="rotulo">Tecnologias</dt><dd><ul class="pilha"><li>Node.js</li><li>WebRTC</li><li>WebSocket</li><li>Web Workers</li><li>SQLite</li><li>scrypt</li><li>LibreSpeed (v1)</li></ul></dd></div>
+    </dl>
+  </header>
+  <div class="envelope projeto__visual"><div class="janela janela--carrossel janela--com-celular" data-carrossel>
+    <div class="janela__barra"><span class="janela__url"><svg class="ic ic--mini" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>velocidadeteste.audicomtelecom.com.br</span><span class="janela__legenda rotulo" data-legenda-atual aria-live="polite">Resultado em linguagem simples</span></div>
+    <div class="janela__tela"><figure class="janela__quadro ativo" data-legenda="Resultado em linguagem simples"><img class="" src="/fotos/projetos/speedtest/resultado.webp" srcset="/fotos/projetos/speedtest/resultado-800.webp 800w, /fotos/projetos/speedtest/resultado.webp 1440w" sizes="(min-width: 1240px) 1240px, 100vw" width="1440" height="900" alt="Teste de Velocidade Audicom — Resultado em linguagem simples" loading="eager" decoding="async" fetchpriority="high"></figure><figure class="janela__quadro" data-legenda="Medição em andamento"><img class="" src="/fotos/projetos/speedtest/medindo.webp" srcset="/fotos/projetos/speedtest/medindo-800.webp 800w, /fotos/projetos/speedtest/medindo.webp 1440w" sizes="(min-width: 1240px) 1240px, 100vw" width="1440" height="900" alt="Teste de Velocidade Audicom — Medição em andamento" loading="lazy" decoding="async"></figure><figure class="janela__quadro" data-legenda="Meu painel: histórico e mapa"><img class="" src="/fotos/projetos/speedtest/painel.webp" srcset="/fotos/projetos/speedtest/painel-800.webp 800w, /fotos/projetos/speedtest/painel.webp 1440w" sizes="(min-width: 1240px) 1240px, 100vw" width="1440" height="900" alt="Teste de Velocidade Audicom — Meu painel: histórico e mapa" loading="lazy" decoding="async"></figure><figure class="janela__quadro" data-legenda="Administração ao vivo"><img class="" src="/fotos/projetos/speedtest/admin.webp" srcset="/fotos/projetos/speedtest/admin-800.webp 800w, /fotos/projetos/speedtest/admin.webp 1440w" sizes="(min-width: 1240px) 1240px, 100vw" width="1440" height="900" alt="Teste de Velocidade Audicom — Administração ao vivo" loading="lazy" decoding="async"></figure></div>
+    <div class="celular"><img class="" src="/fotos/projetos/speedtest/celular.webp" srcset="/fotos/projetos/speedtest/celular-390.webp 390w, /fotos/projetos/speedtest/celular.webp 780w" sizes="(min-width: 1024px) 14vw, 30vw" width="780" height="1688" alt="Teste de Velocidade Audicom — no celular" loading="lazy" decoding="async"></div>
+  </div></div>
+  <div class="envelope"><dl class="metricas metricas--linha"><div><dt>Mbps medidos numa linha de 940/470</dt><dd>938,7 / 468,8</dd></div><div><dt>testes automáticos de medição e segurança</dt><dd>24</dd></div><div><dt>da VM crua ao site no ar</dt><dd>≈ 1 min</dd></div><div><dt>serviços de terceiros</dt><dd>0</dd></div></dl></div>
+  <div class="envelope projeto__corpo">
+    <p class="projeto__resumo">Começou como uma instância do LibreSpeed com a marca da Audicom, que segue no ar. A versão 2 é uma reescrita do zero: motor de medição próprio, perda de pacotes por UDP de verdade, contas, histórico com mapa e um painel de administração ao vivo — tudo num único processo Node.js numa VM, sem serviços de terceiros.</p>
+    <section class="bloco">
+    <h2 class="bloco__rotulo rotulo">O problema</h2>
+    <div class="bloco__conteudo"><p class="bloco__destaque">Quando um cliente reclama de lentidão, o suporte pede um teste em sites públicos, que medem o caminho até o servidor de outra empresa e não a rede do provedor. O resultado vira discussão: o cliente mostra um número, o técnico desconfia dele. Faltava uma medição que o provedor controlasse de ponta a ponta e que o próprio cliente pudesse mandar pelo WhatsApp.</p></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Decisões</h2>
+    <div class="bloco__conteudo"><ol class="decisoes"><li class="decisao">
+      <span class="decisao__num dado">01</span>
+      <h3>Quem conta o upload é o servidor</h3>
+      <p>O navegador superestima o envio, então o upload é contado do lado do servidor. Um resultado que não bate com o que o servidor recebeu sai marcado como “não conferido”.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">02</span>
+      <h3>Perda de pacote de verdade</h3>
+      <p>200 pacotes UDP por WebRTC, sem retransmissão — o mesmo tipo de tráfego de chamada e de jogo. Ping e jitter saem de 30 amostras num Web Worker (jitter pela RFC 3550), e a latência também é medida com a linha cheia, para pegar bufferbloat.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">03</span>
+      <h3>Uma VM, um comando</h3>
+      <p>Um processo Node.js serve o site, mede e guarda contas e testes em SQLite. Numa VM Debian crua, a instalação leva cerca de um minuto e termina rodando os 24 testes automáticos.</p>
+    </li><li class="decisao">
+      <span class="decisao__num dado">04</span>
+      <h3>Segurança de produto, não de demonstração</h3>
+      <p>Senhas com scrypt, sessão em cookie HttpOnly e SameSite com prefixo __Host-, proteção contra CSRF, bloqueio de tentativas, captcha próprio de uso único, CSP por página sem script inline, auditoria de toda ação de administrador e exportação e exclusão de dados pela LGPD.</p>
+    </li></ol></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Arquitetura</h2>
+    <div class="bloco__conteudo"><div class="arq" data-arq>
+    <span class="arq__pacote" aria-hidden="true"></span>
+    <div class="arq__camada">
+      <p class="arq__nome rotulo">Navegador</p>
+      <ul class="arq__itens"><li>Web Worker · ping e jitter</li><li>6 conexões HTTP · download</li><li>WebRTC UDP · perda</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Servidor</p>
+      <ul class="arq__itens"><li>Node.js · processo único</li><li>WebSocket</li><li>Upload contado no servidor</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Dados</p>
+      <ul class="arq__itens"><li>SQLite local</li><li>Sessão guardada como hash</li><li>Auditoria</li></ul>
+    </div><div class="arq__camada">
+      <p class="arq__nome rotulo">Operação</p>
+      <ul class="arq__itens"><li>Instalador de um comando</li><li>systemd + HTTPS</li><li>24 testes automáticos</li></ul>
+    </div>
+  </div></div>
+  </section>
+<section class="bloco">
+    <h2 class="bloco__rotulo rotulo">Resultado</h2>
+    <div class="bloco__conteudo"><p class="bloco__destaque">O suporte passa a discutir um número que o provedor mede e confere — e o cliente recebe um relatório em linguagem simples (“dá para 4K, jogos, home office?”) com protocolo, pronto para o WhatsApp.</p></div>
+  </section>
+    <section class="galeria" aria-label="Telas">
+    <h2 class="rotulo galeria__titulo">Telas</h2>
+    <p class="galeria__nota">Telas da documentação do projeto, com conta de demonstração.</p>
+    <div class="galeria__grade">
+      <figure class="galeria__item"><a href="/fotos/projetos/speedtest/resultado.webp" data-ampliar><img class="" src="/fotos/projetos/speedtest/resultado.webp" srcset="/fotos/projetos/speedtest/resultado-800.webp 800w, /fotos/projetos/speedtest/resultado.webp 1440w" sizes="(min-width: 1024px) 45vw, 100vw" width="1440" height="900" alt="Resultado em linguagem simples" loading="lazy" decoding="async"></a><figcaption>Resultado em linguagem simples</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/speedtest/medindo.webp" data-ampliar><img class="" src="/fotos/projetos/speedtest/medindo.webp" srcset="/fotos/projetos/speedtest/medindo-800.webp 800w, /fotos/projetos/speedtest/medindo.webp 1440w" sizes="(min-width: 1024px) 45vw, 100vw" width="1440" height="900" alt="Medição em andamento" loading="lazy" decoding="async"></a><figcaption>Medição em andamento</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/speedtest/painel.webp" data-ampliar><img class="" src="/fotos/projetos/speedtest/painel.webp" srcset="/fotos/projetos/speedtest/painel-800.webp 800w, /fotos/projetos/speedtest/painel.webp 1440w" sizes="(min-width: 1024px) 45vw, 100vw" width="1440" height="900" alt="Meu painel: histórico e mapa" loading="lazy" decoding="async"></a><figcaption>Meu painel: histórico e mapa</figcaption></figure>
+      <figure class="galeria__item"><a href="/fotos/projetos/speedtest/admin.webp" data-ampliar><img class="" src="/fotos/projetos/speedtest/admin.webp" srcset="/fotos/projetos/speedtest/admin-800.webp 800w, /fotos/projetos/speedtest/admin.webp 1440w" sizes="(min-width: 1024px) 45vw, 100vw" width="1440" height="900" alt="Administração ao vivo" loading="lazy" decoding="async"></a><figcaption>Administração ao vivo</figcaption></figure>
+    </div>
+  </section>
+  </div>
+  <nav class="envelope vizinhos" aria-label="Mais projetos">
+    <a class="vizinho" href="/projetos/nexusatlas/"><span class="rotulo">Projeto anterior</span><span class="vizinho__nome">NexusAtlas</span></a>
+    <a class="vizinho vizinho--todos" href="/projetos/"><span class="rotulo">Todos os projetos</span><span class="vizinho__nome">26</span></a>
+    <a class="vizinho vizinho--proximo" href="/projetos/audicomhub/"><span class="rotulo">Próximo projeto</span><span class="vizinho__nome">Audicom Hub</span></a>
+  </nav>
+</article>
+</main>
+<footer class="rodape">
+  <div class="envelope rodape__grade">
+    <div class="rodape__marca">
+      <a class="marca" href="/"><svg class="marca__d" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true" focusable="false"><path d="M30 22H48A28 28 0 0 1 48 78H30Z" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="11" fill="var(--tinta)"/><circle cx="30" cy="50" r="7" fill="var(--link)"/></svg><span class="marca__nome">davi castro</span></a>
+      <p>Feito à mão, sem framework: páginas estáticas geradas a partir do Firestore, com o conteúdo editável no meu painel.</p>
+      <p class="rodape__nota">O ping do topo é medido no seu navegador e não é guardado em lugar nenhum.</p>
+    </div>
+    <nav class="rodape__links" aria-label="Rodapé">
+      <a href="/projetos/">Todos os projetos</a>
+      <a href="/Curriculo/">Currículo</a>
+      <a href="/brand/">Manual da marca</a>
+      <a href="/coffee/">Me pague um café</a>
+    </nav>
+    <div class="rodape__fim rotulo">
+      <span>© 2026 Davi Castro · davicjc</span>
+      <span>Atualizado em <time datetime="2026-10-26T13:11:04.356Z">26 out 2026</time></span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="/assets/js/site.js?v=5c1f5c47a6"></script>
+</body>
+</html>
