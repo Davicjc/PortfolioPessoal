@@ -313,3 +313,35 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
   caixa.append(x);
   setTimeout(() => document.body.append(caixa), 2600);
 })();
+
+/* ───────── Easter egg: ↑ ↑ ↓ ↓ ← → ← → (ou 5 toques em "● Em produção" no celular) ───────── */
+(() => {
+  const codigo = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+  let pos = 0, carregando = false;
+  const abrir = () => {
+    if (carregando) return;
+    carregando = true;
+    import('/assets/js/vox.js?v=' + (document.body.dataset.vox || '1'))
+      .then(m => m.iniciar({ lang }))
+      .catch(e => console.warn('vox:', e))
+      .finally(() => { carregando = false; });
+  };
+  addEventListener('keydown', e => {
+    if (e.target.closest?.('input, textarea, [contenteditable]')) return;
+    pos = e.key === codigo[pos] ? pos + 1 : (e.key === codigo[0] ? 1 : 0);
+    if (pos === codigo.length) { pos = 0; abrir(); }
+  });
+  const estado = $('.hero__estado');
+  if (estado) {
+    let toques = [];
+    estado.addEventListener('pointerdown', () => {
+      const agora = Date.now();
+      toques = toques.filter(t => agora - t < 2500).concat(agora);
+      if (toques.length >= 5) { toques = []; abrir(); }
+    });
+  }
+  const dica = lang === 'en'
+    ? ['%c📺 Psst… a VoxTek signal is leaking into this site.', '%cType ↑ ↑ ↓ ↓ ← → ← → anywhere on the page (on a phone: tap “● In production” 5 times).']
+    : ['%c📺 Psst… tem um sinal da VoxTek vazando neste site.', '%cDigite ↑ ↑ ↓ ↓ ← → ← → em qualquer lugar da página (no celular: toque 5 vezes em “● Em produção”).'];
+  console.log(dica[0] + '\n' + dica[1], 'color:#7fe7ff;font:600 14px/1.6 monospace', 'color:#a9b3bf;font:12px/1.6 monospace');
+})();

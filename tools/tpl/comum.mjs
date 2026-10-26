@@ -168,7 +168,7 @@ export function documento(ctx, { titulo, descricao, caminho, caminhoAlt, ogImage
 <script>document.documentElement.classList.replace('sem-js','js')</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, '\\u003c')}</script>`).join('\n')}
 </head>
-<body class="${classe}" data-lang="${lang}" data-build="${dados._build.ts}">
+<body class="${classe}" data-lang="${lang}" data-build="${dados._build.ts}" data-vox="${v.vox || '1'}">
 <a class="pular" href="#conteudo">${t.pular}</a>
 ${cabecalho(ctx)}
 <main id="conteudo">

@@ -206,8 +206,9 @@ async function principal() {
   const css = [ler('assets/css/tokens.css'), ler('assets/css/fontes.css'), ler('assets/css/site.css')].join('\n');
   gravar('assets/css/estilo.css', css);
   const js = ler('assets/js/site.js');
+  const vox = ler('assets/js/vox.js');
   dados._imgs = catalogarImagens(dados);
-  dados._build = { ts, versoes: { css: hash(css), js: hash(js) } };
+  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox) } };
 
   // Páginas
   const gerados = [];
