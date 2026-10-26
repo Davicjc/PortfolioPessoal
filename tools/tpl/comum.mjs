@@ -16,7 +16,8 @@ export const rotas = {
   projetos: lang => (lang === 'en' ? '/en/projects/' : '/projetos/'),
   projeto: (lang, id) => (lang === 'en' ? `/en/projects/${id}/` : `/projetos/${id}/`),
   cv: lang => (lang === 'en' ? '/Curriculo/en.html' : '/Curriculo/'),
-  cvPdf: lang => (lang === 'en' ? '/Curriculo/Davi-Castro-Resume.pdf' : '/Curriculo/Davi-Castro-Curriculo.pdf')
+  cvPdf: lang => (lang === 'en' ? '/Curriculo/Davi-Castro-Resume.pdf' : '/Curriculo/Davi-Castro-Curriculo.pdf'),
+  cafe: lang => (lang === 'en' ? '/en/coffee/' : '/coffee/')
 };
 
 // Link do currículo: o PDF quando ele já existe no site; senão, a página do currículo.
@@ -115,7 +116,7 @@ export function rodape(ctx) {
       <a href="${rotas.projetos(lang)}">${t.todos_projetos}</a>
       <a href="${rotas.cv(lang)}">${t.nav_cv}</a>
       <a href="/brand/">${t.rodape_marca}</a>
-      <a href="/coffee/">${t.rodape_cafe}</a>
+      <a href="${rotas.cafe(lang)}">${t.rodape_cafe}</a>
     </nav>
     <div class="rodape__fim rotulo">
       <span>© ${data.ano} Davi Castro · davicjc</span>

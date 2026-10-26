@@ -15,6 +15,7 @@ import { paginaProjeto } from './tpl/projeto.mjs';
 import { paginaProjetos, paginaErro } from './tpl/projetos.mjs';
 import { paginaMarca } from './tpl/marca.mjs';
 import { paginaCurriculo } from './tpl/curriculo.mjs';
+import { paginaCafe } from './tpl/cafe.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ler = p => readFileSync(join(RAIZ, p), 'utf8');
@@ -171,6 +172,7 @@ function sitemap(dados, ts) {
   urls.push(`  <url><loc>${DOMINIO}/Curriculo/</loc><lastmod>${dia}</lastmod><priority>0.7</priority></url>`);
   urls.push(`  <url><loc>${DOMINIO}/Curriculo/en.html</loc><lastmod>${dia}</lastmod><priority>0.6</priority></url>`);
   urls.push(`  <url><loc>${DOMINIO}/brand/</loc><lastmod>${dia}</lastmod><priority>0.3</priority></url>`);
+  urls.push(entrada('/coffee/', '/en/coffee/', '0.3'), entrada('/en/coffee/', '/coffee/', '0.2'));
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.join('\n')}
@@ -230,11 +232,14 @@ async function principal() {
   // Currículo: só tokens, fontes e a folha A4 (não carrega o CSS do site).
   const cssCv = [ler('assets/css/tokens.css'), ler('assets/css/fontes.css'), ler('assets/css/cv.css')].join('\n');
   gravar('assets/css/curriculo.css', cssCv);
+  // Café: o qr.js (também usado aqui no build) e o cafe.js viram um arquivo só para o navegador.
+  const jsCafe = ler('assets/js/qr.js').replace(/^export /gm, '') + '\n' + ler('assets/js/cafe.js').replace(/^import .*$/m, '');
+  gravar('assets/js/cafe-app.js', jsCafe);
   const js = ler('assets/js/site.js');
   const vox = ler('assets/js/vox.js');
   dados._imgs = catalogarImagens(dados);
   dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')) : [];
-  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv) } };
+  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe) } };
 
   // Páginas
   const gerados = [];
@@ -250,6 +255,8 @@ async function principal() {
   pagina('brand/index.html', paginaMarca({ dados, lang: 'pt', t: T.pt }, lerJSON('brand/tokens.json')));
   pagina('Curriculo/index.html', paginaCurriculo({ dados, lang: 'pt', t: T.pt }));
   pagina('Curriculo/en.html', paginaCurriculo({ dados, lang: 'en', t: T.en }));
+  const cafe = lerJSON('data/cafe.json');
+  for (const lang of LINGUAS) pagina(rotas.cafe(lang).slice(1) + 'index.html', paginaCafe({ dados, lang, t: T[lang] }, cafe));
 
   // Remove páginas de projetos que saíram do ar desde o último build.
   const manifesto = join(RAIZ, 'data/gerados.json');

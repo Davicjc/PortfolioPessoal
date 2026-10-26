@@ -506,4 +506,20 @@
   <url><loc>https://davicjc.com/Curriculo/</loc><lastmod>2026-10-26</lastmod><priority>0.7</priority></url>
   <url><loc>https://davicjc.com/Curriculo/en.html</loc><lastmod>2026-10-26</lastmod><priority>0.6</priority></url>
   <url><loc>https://davicjc.com/brand/</loc><lastmod>2026-10-26</lastmod><priority>0.3</priority></url>
+  <url>
+    <loc>https://davicjc.com/coffee/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/coffee/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/coffee/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/coffee/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://davicjc.com/en/coffee/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/coffee/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/coffee/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/coffee/"/>
+    <lastmod>2026-10-26</lastmod>
+    <priority>0.2</priority>
+  </url>
 </urlset>
