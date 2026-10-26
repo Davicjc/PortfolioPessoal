@@ -187,22 +187,23 @@ p { text-wrap: pretty; }
 /* Máscara sólida (sem blur) que garante leitura do título por cima das telas. */
 .parede__mascara { position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(90deg, var(--tinta) 0%, var(--tinta) 33%, color-mix(in srgb, var(--tinta) 86%, transparent) 43%, color-mix(in srgb, var(--tinta) 38%, transparent) 56%, transparent 68%),
-    linear-gradient(0deg, var(--tinta) 0%, transparent 16%),
-    linear-gradient(180deg, var(--tinta) 0%, color-mix(in srgb, var(--tinta) 60%, transparent) 9%, transparent 22%); }
+    linear-gradient(90deg, var(--tinta) 0%, var(--tinta) 35%, color-mix(in srgb, var(--tinta) 72%, transparent) 42%, transparent 51%),
+    linear-gradient(0deg, var(--tinta) 0%, transparent 12%),
+    linear-gradient(180deg, var(--tinta) 0%, transparent 9%); }
 
-.parede { position: absolute; z-index: 0; inset: 0; perspective: 1900px; perspective-origin: 20% 30%; pointer-events: none; }
+/* As telas têm tamanho grande no CSS e o plano é empurrado para trás (translateZ): o navegador
+   rasteriza em resolução alta e a perspectiva só reduz — por isso a parede fica nítida. */
+.parede { position: absolute; z-index: 0; inset: 0; perspective: 1700px; perspective-origin: 22% 28%; pointer-events: none; }
 .parede__plano {
-  --rx: 14deg; --ry: -30deg; --rz: -6deg; --px: 0deg; --py: 0deg;
-  position: absolute; left: 36%; top: 9%;
-  display: grid; grid-template-columns: repeat(3, 360px); gap: 22px;
+  --rx: 13deg; --ry: -27deg; --rz: -6deg; --px: 0deg; --py: 0deg; --z: -1050px;
+  position: absolute; left: 37%; top: 1%;
+  display: grid; grid-template-columns: repeat(4, 440px); gap: 26px;
   transform-origin: 0 0;
-  transform: rotateX(calc(var(--rx) + var(--py))) rotateY(calc(var(--ry) + var(--px))) rotateZ(var(--rz));
-  will-change: transform;
+  transform: translateZ(var(--z)) rotateX(calc(var(--rx) + var(--py))) rotateY(calc(var(--ry) + var(--px))) rotateZ(var(--rz));
 }
 .tela { position: relative; margin: 0; border: 1px solid var(--cabo-forte); border-radius: 10px; background: #040608; overflow: hidden; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, .85); }
-.tela__barra { display: flex; align-items: center; gap: 7px; height: 24px; padding: 0 10px; border-bottom: 1px solid var(--cabo); background: var(--rack); font: 500 10.5px/1 var(--f-dados); color: var(--papel-3); white-space: nowrap; }
-.tela__led { width: 6px; height: 6px; border-radius: 50%; flex: none; background: var(--desligado); transition: background-color var(--m-base); }
+.tela__barra { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-bottom: 1px solid var(--cabo); background: var(--rack); font: 500 13px/1 var(--f-dados); color: var(--papel-3); white-space: nowrap; }
+.tela__led { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--desligado); transition: background-color var(--m-base); }
 .tela__nome { overflow: hidden; text-overflow: ellipsis; }
 .tela__ms { margin-left: auto; color: var(--papel-2); font-variant-numeric: tabular-nums; transition: color 1.2s var(--m-saida); }
 .tela__ms.nova { color: var(--link); transition: color 0s; }
@@ -237,12 +238,12 @@ p { text-wrap: pretty; }
 @keyframes surgir { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 1279px) and (min-width: 900px) {
-  .parede__plano { left: 40%; top: 14%; grid-template-columns: repeat(3, 300px); gap: 18px; }
+  .parede__plano { --z: -760px; left: 42%; top: 9%; }
   .hero__titulo { font-size: clamp(2.6rem, .6rem + 5.4vw, 5.2rem); }
 }
 @media (max-height: 800px) and (min-width: 900px) {
   .hero__titulo { font-size: clamp(2.6rem, 1rem + 4.6vw, 5.4rem); }
-  .parede__plano { top: 4%; }
+  .parede__plano { --z: -680px; top: 2%; }
 }
 
 /* Celular: título em cima, a parede centralizada no meio, texto e botões embaixo. */
@@ -252,13 +253,13 @@ p { text-wrap: pretty; }
   .hero__kicker { justify-content: center; margin-bottom: 14px; }
   .hero__titulo { max-width: 11ch; font-size: clamp(2.35rem, 10.6vw, 3.4rem); margin-inline: auto; }
   .parede__mascara { display: none; }
-  .hero__kicker > span:nth-child(2), .hero__kicker > span:nth-child(3) { display: none; }
+  .hero__kicker > span:nth-child(2) { display: none; }
   .parede { position: relative; inset: auto; width: calc(100% + 2 * var(--margem)); height: clamp(220px, 58vw, 300px); margin: 12px calc(-1 * var(--margem)) 4px; perspective: 900px; perspective-origin: 50% 0%; overflow: hidden; }
   .parede::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--tinta) 0%, transparent 18%, transparent 70%, var(--tinta) 100%), linear-gradient(90deg, var(--tinta) 0%, transparent 12%, transparent 88%, var(--tinta) 100%); }
-  .parede__plano { --rx: 46deg; --ry: 0deg; --rz: -18deg; left: 50%; top: 8%; grid-template-columns: repeat(3, 150px); gap: 10px; transform-origin: 50% 0; translate: -50% 0; }
-  .tela__barra { height: 16px; padding: 0 6px; font-size: 8px; gap: 4px; }
-  .tela__led { width: 4px; height: 4px; }
-  .tela:nth-child(n+7) { display: none; }
+  .parede__plano { --rx: 46deg; --ry: 0deg; --rz: -18deg; --z: -260px; left: 50%; top: 4%; grid-template-columns: repeat(4, 230px); gap: 14px; transform-origin: 50% 0; translate: -50% 0; }
+  .tela__barra { height: 22px; padding: 0 8px; font-size: 10px; gap: 5px; }
+  .tela__led { width: 5px; height: 5px; }
+  .tela:nth-child(n+9) { display: none; }
   .hero__base { justify-items: center; max-width: 34rem; margin-top: 6px; gap: 16px; }
   .hero__lead { font-size: 1rem; }
   .hero__acoes { justify-content: center; }

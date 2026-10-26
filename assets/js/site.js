@@ -142,9 +142,10 @@ async function medir(url, limite = 6000) {
         const lista = t.dataset.imagens.split('|');
         const vidro = $('.tela__vidro', t);
         const atual = $('img.ativa', vidro);
-        const prox = lista[(lista.indexOf(atual.getAttribute('src')) + 1) % lista.length];
+        const atualSrc = (atual.getAttribute('src') || '').replace('-800', '-1200');
+        const prox = lista[(lista.indexOf(atualSrc) + 1) % lista.length];
         const nova = new Image();
-        nova.alt = ''; nova.decoding = 'async'; nova.src = prox;
+        nova.alt = ''; nova.decoding = 'async'; nova.src = innerWidth < 900 ? prox.replace('-1200', '-800') : prox;
         nova.onload = () => {
           vidro.append(nova);
           requestAnimationFrame(() => requestAnimationFrame(() => { nova.classList.add('ativa'); atual.classList.remove('ativa'); }));

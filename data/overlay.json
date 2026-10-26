@@ -119,74 +119,115 @@
       {
         "projeto": "elora",
         "nome": "Instituto Elora",
-        "src": "fotos/projetos/elora.webp"
+        "src": "fotos/projetos/elora.webp",
+        "alt": []
       },
       {
         "projeto": "speedtest",
         "nome": "velocidadeteste.audicomtelecom.com.br",
-        "sonda": "https://velocidadeteste.audicomtelecom.com.br/backend/empty.php",
-        "src": "fotos/projetos/speedtest/resultado-800.webp",
+        "src": "fotos/projetos/speedtest/resultado-1200.webp",
         "alt": [
-          "fotos/projetos/speedtest/painel-800.webp",
-          "fotos/projetos/speedtest/admin-800.webp"
-        ]
+          "fotos/projetos/speedtest/painel-1200.webp"
+        ],
+        "sonda": "https://velocidadeteste.audicomtelecom.com.br/backend/empty.php"
       },
       {
         "projeto": "cooperbant",
         "nome": "Cooperbant",
-        "src": "fotos/projetos/cooperbant.webp"
+        "src": "fotos/projetos/cooperbant.webp",
+        "alt": []
+      },
+      {
+        "projeto": "socioverdao",
+        "nome": "Sócio Verdão",
+        "src": "fotos/projetos/socioverdao.webp",
+        "alt": []
       },
       {
         "projeto": "audicomhub",
         "nome": "Audicom Hub · frota",
-        "sonda": "https://davicjc.github.io/AudicomHub/manifest.webmanifest",
-        "src": "fotos/projetos/audicomhub/frota-painel-800.webp",
+        "src": "fotos/projetos/audicomhub/frota-painel-1200.webp",
         "alt": [
-          "fotos/projetos/audicomhub/frota-custos-800.webp",
-          "fotos/projetos/audicomhub/modulos-800.webp"
-        ]
+          "fotos/projetos/audicomhub/frota-custos-1200.webp"
+        ],
+        "sonda": "https://davicjc.github.io/AudicomHub/manifest.webmanifest"
       },
       {
         "projeto": "nexusatlas",
         "nome": "nexusatlas.com.br",
-        "sonda": "https://nexusatlas.com.br/manifest.json",
-        "src": "fotos/projetos/nexusatlas/agenda-800.webp",
+        "src": "fotos/projetos/nexusatlas/agenda-1200.webp",
         "alt": [
-          "fotos/projetos/nexusatlas/sugestoes-800.webp",
-          "fotos/projetos/nexusatlas/detalhe-800.webp"
-        ]
+          "fotos/projetos/nexusatlas/sugestoes-1200.webp"
+        ],
+        "sonda": "https://nexusatlas.com.br/manifest.json"
       },
       {
         "projeto": "diariodoverdao",
         "nome": "Minha História no Verdão",
         "src": "fotos/projetos/diariodoverdao.webp",
-        "alt": [
-          "fotos/projetos/uec.webp",
-          "fotos/projetos/socioverdao.webp"
-        ]
+        "alt": []
+      },
+      {
+        "projeto": "quizturma",
+        "nome": "Quiz da Turma",
+        "src": "fotos/projetos/quizturma.webp",
+        "alt": []
       },
       {
         "projeto": "alpa",
         "nome": "Valoria CRM · View 360°",
-        "src": "fotos/projetos/alpa/view360-800.webp",
+        "src": "fotos/projetos/alpa/view360-1200.webp",
         "alt": [
-          "fotos/projetos/alpa/dashboard-800.webp",
-          "fotos/projetos/alpa/financeiro-800.webp"
+          "fotos/projetos/alpa/dashboard-1200.webp"
         ]
       },
       {
         "projeto": "popmanager",
         "nome": "PopManager · topologia",
-        "src": "fotos/projetos/popmanager/topologia-800.webp",
+        "src": "fotos/projetos/popmanager/topologia-1200.webp",
         "alt": [
-          "fotos/projetos/popmanager/visao-geral-800.webp"
+          "fotos/projetos/popmanager/visao-geral-1200.webp"
         ]
+      },
+      {
+        "projeto": "uec",
+        "nome": "Uberlândia Esporte Clube",
+        "src": "fotos/projetos/uec.webp",
+        "alt": []
+      },
+      {
+        "projeto": "audicomtecnologia",
+        "nome": "Audicom Tecnologia",
+        "src": "fotos/projetos/audicomtecnologia.webp",
+        "alt": []
+      },
+      {
+        "projeto": "telemetry",
+        "nome": "Telemetry Portal",
+        "src": "fotos/projetos/telemetry/painel-1200.webp",
+        "alt": [
+          "fotos/projetos/telemetry/sonda-1200.webp"
+        ]
+      },
+      {
+        "projeto": "ecolyra",
+        "nome": "Ecolyra",
+        "src": "fotos/projetos/ecolyra.webp",
+        "alt": []
       },
       {
         "projeto": "audicomtelecom",
         "nome": "audicomtelecom.com.br",
-        "sonda": "https://audicomtelecom.com.br/robots.txt",
-        "src": "fotos/projetos/audicomtelecom.webp"
+        "src": "fotos/projetos/audicomtelecom.webp",
+        "alt": [],
+        "sonda": "https://audicomtelecom.com.br/robots.txt"
+      },
+      {
+        "projeto": "footer",
+        "nome": "footer.davicjc.com",
+        "src": "fotos/projetos/footer.webp",
+        "alt": [],
+        "sonda": "https://footer.davicjc.com/favicon.ico"
       }
     ]
   },

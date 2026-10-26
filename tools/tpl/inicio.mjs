@@ -18,9 +18,12 @@ function parede(ctx) {
         ${telas.map((x, i) => {
           const imagens = [x.src, ...(x.alt || [])].map(caminhoImg);
           const meta = dados._imgs?.[imagens[0]] || {};
+          // Telas grandes na perspectiva pedem a versão de 1200 px; o celular fica com a de 800.
+          const menor = imagens[0].replace('-1200', '-800');
+          const srcset = menor !== imagens[0] && dados._imgs?.[menor] ? ` srcset="${menor} 800w, ${imagens[0]} 1200w" sizes="(max-width: 899px) 300px, 1100px"` : '';
           return `<figure class="tela" style="--i:${i}" data-imagens="${esc(imagens.join('|'))}"${x.sonda ? ` data-sonda="${esc(x.sonda)}"` : ''}>
           <div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${esc(x.nome)}</span><span class="tela__ms" data-ms></span></div>
-          <div class="tela__vidro"><img src="${imagens[0]}"${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${i < 6 ? 'eager' : 'lazy'}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ''}></div>
+          <div class="tela__vidro"><img src="${imagens[0]}"${srcset}${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${i < 12 ? 'eager' : 'lazy'}" decoding="async"${i === 5 ? ' fetchpriority="high"' : ''}></div>
         </figure>`;
         }).join('\n        ')}
       </div>
@@ -35,7 +38,6 @@ function hero(ctx) {
   <div class="envelope hero__texto">
     <p class="hero__kicker rotulo">
       <span class="hero__estado">${led('no_ar')}${t.em_producao}</span>
-      <span>Davi Castro</span>
       <span>${esc(c(s, 'cargo', lang))}</span>
       <span>Uberlândia, MG · <span data-relogio>UTC−3</span></span>
     </p>

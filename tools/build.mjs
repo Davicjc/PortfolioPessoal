@@ -64,7 +64,13 @@ function catalogarImagens(dados) {
   for (const p of dados.projetos || []) {
     [p.imagem, p.celular, ...(p.galeria || []).map(g => (typeof g === 'string' ? g : g?.src))].forEach(x => x && caminhos.add(caminhoImg(x)));
   }
-  for (const tela of dados.site?.parede || []) [tela.src, ...(tela.alt || [])].forEach(x => x && caminhos.add(caminhoImg(x)));
+  for (const tela of dados.site?.parede || []) {
+    [tela.src, ...(tela.alt || [])].forEach(x => {
+      if (!x) return;
+      caminhos.add(caminhoImg(x));
+      if (/-1200\.\w+$/.test(x)) caminhos.add(caminhoImg(x.replace('-1200', '-800')));
+    });
+  }
   const imgs = {};
   for (const caminho of caminhos) {
     if (!caminho.startsWith('/')) continue;
