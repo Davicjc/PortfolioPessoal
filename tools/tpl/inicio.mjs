@@ -1,53 +1,53 @@
 // Página inicial (PT em /, EN em /en/).
 import { T, SITUACAO } from './textos.mjs';
-import { esc, c, v, rotas, icone, img, situacao, led, publicados, documento, pessoaLD, caminhoImg, DOMINIO } from './comum.mjs';
+import { esc, c, v, rotas, icone, img, situacao, led, publicados, documento, pessoaLD, caminhoImg, DOMINIO, linkCv, baixaCv } from './comum.mjs';
 
 const dominio = url => { try { return new URL(url).host.replace(/^www\./, ''); } catch { return ''; } };
 
 // Título com cada palavra num <span>: o pacote passa por baixo e acende uma de cada vez.
 const palavras = texto => esc(texto).split(' ').map((p, i) => `<span class="palavra" style="--i:${i}">${p}</span>`).join(' ');
 
+// A parede de produção: telas reais dos sistemas, numa parede em perspectiva. Na entrada elas
+// ligam uma a uma (como os monitores de uma sala de controle); as que têm sonda só ligam
+// quando o sistema responde ao ping feito pelo navegador de quem visita.
+function parede(ctx) {
+  const { dados } = ctx;
+  const telas = dados.site.parede || [];
+  return `<div class="parede" aria-hidden="true" data-parede>
+      <div class="parede__plano" data-plano>
+        ${telas.map((x, i) => {
+          const imagens = [x.src, ...(x.alt || [])].map(caminhoImg);
+          const meta = dados._imgs?.[imagens[0]] || {};
+          return `<figure class="tela" style="--i:${i}" data-imagens="${esc(imagens.join('|'))}"${x.sonda ? ` data-sonda="${esc(x.sonda)}"` : ''}>
+          <div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${esc(x.nome)}</span><span class="tela__ms" data-ms></span></div>
+          <div class="tela__vidro"><img src="${imagens[0]}"${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${i < 6 ? 'eager' : 'lazy'}" decoding="async"${i === 0 ? ' fetchpriority="high"' : ''}></div>
+        </figure>`;
+        }).join('\n        ')}
+      </div>
+    </div>`;
+}
+
 function hero(ctx) {
   const { dados, lang, t } = ctx;
   const s = dados.site;
-  const sondas = s.sondas || [];
   return `<section class="hero" aria-labelledby="hero-titulo">
+  <div class="parede__mascara" aria-hidden="true"></div>
   <div class="envelope hero__texto">
     <p class="hero__kicker rotulo">
       <span class="hero__estado">${led('no_ar')}${t.em_producao}</span>
       <span>Davi Castro</span>
       <span>${esc(c(s, 'cargo', lang))}</span>
-      <span>Uberlândia, MG · <span data-relogio>${lang === 'en' ? 'UTC−3' : 'UTC−3'}</span></span>
+      <span>Uberlândia, MG · <span data-relogio>UTC−3</span></span>
     </p>
     <h1 id="hero-titulo" class="hero__titulo">${palavras(c(s, 'titulo', lang))}</h1>
+    ${parede(ctx)}
     <div class="hero__base">
       <p class="hero__lead">${esc(c(s, 'lead', lang))}</p>
       <div class="hero__acoes">
         <a class="botao botao--sinal" href="#trabalho">${t.ver_casos}${icone('seta')}</a>
-        <a class="botao botao--linha" href="${rotas.cvPdf(lang)}" download>${t.cv_pdf}${icone('baixo')}</a>
+        <a class="botao botao--linha" href="${linkCv(dados, lang)}"${baixaCv(dados, lang)}>${t.cv_pdf}${icone('baixo')}</a>
       </div>
-    </div>
-  </div>
-  <div class="fibra" data-fibra aria-labelledby="fibra-titulo">
-    <div class="envelope fibra__cabeca">
-      <p class="rotulo"><span id="fibra-titulo" class="fibra__titulo">${t.ping_titulo}</span> · ${t.ping_sub}</p>
-      <p class="rotulo fibra__resumo" data-resumo aria-live="polite">${t.ping_medindo}</p>
-    </div>
-    <div class="envelope fibra__trilho" data-trilho>
-      <span class="fibra__origem rotulo" data-origem>${led('no_ar')}<span>${t.ping_voce}</span></span>
-      <ol class="fibra__estacoes">
-        ${sondas.map((x, i) => {
-          const p = (dados.projetos || []).find(pp => pp.id === x.projeto);
-          const destino = p && p.publicado !== false ? rotas.projeto(lang, p.id) : (x.url || '#');
-          return `<li class="estacao" data-url="${esc(x.url)}" style="--i:${i}">
-          <a class="estacao__ponto" href="${destino}">
-            <span class="estacao__no" aria-hidden="true"></span>
-            <span class="estacao__nome">${esc(x.nome)}</span>
-            <span class="estacao__ms" data-ms><span class="sr">${lang === 'en' ? 'response time' : 'tempo de resposta'}: </span>—</span>
-          </a>
-        </li>`;
-        }).join('\n        ')}
-      </ol>
+      <p class="hero__ping rotulo" data-resumo aria-live="polite"><span class="led" data-situacao="no_ar"></span><span data-resumo-texto>${t.ping_medindo}</span></p>
     </div>
   </div>
 </section>`;
@@ -236,8 +236,8 @@ function trajetoria(ctx) {
           ${orcid ? `<div><dt class="rotulo">ORCID</dt><dd><a class="link" href="https://orcid.org/${esc(orcid)}" rel="me">${esc(orcid)}</a></dd></div>` : ''}
         </dl>
         <div class="perfil__acoes">
-          <a class="botao botao--linha botao--pequeno" href="${rotas.cvPdf('pt')}" download>${t.cv_pt}${icone('baixo')}</a>
-          <a class="botao botao--linha botao--pequeno" href="${rotas.cvPdf('en')}" download>${t.cv_en}${icone('baixo')}</a>
+          <a class="botao botao--linha botao--pequeno" href="${linkCv(dados, 'pt')}"${baixaCv(dados, 'pt')}>${t.cv_pt}${icone('baixo')}</a>
+          <a class="botao botao--linha botao--pequeno" href="${linkCv(dados, 'en')}"${baixaCv(dados, 'en')}>${t.cv_en}${icone('baixo')}</a>
         </div>
       </aside>
       <ol class="linha-tempo">

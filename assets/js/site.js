@@ -6,8 +6,8 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const movimento = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 const lang = document.body.dataset.lang || 'pt';
 const TXT = {
-  pt: { resumo: (n, t, ms) => `${n}/${t} respondendo · mediana ${ms} ms`, nenhum: 'sem resposta do seu navegador', sem: 'sem resposta', fechar: 'Fechar' },
-  en: { resumo: (n, t, ms) => `${n}/${t} responding · median ${ms} ms`, nenhum: 'no reply from your browser', sem: 'no reply', fechar: 'Close' }
+  pt: { resumo: (n, t, ms) => `${n}/${t} sistemas no ar agora · mediana ${ms} ms`, nenhum: 'sem resposta do seu navegador', sem: 'sem resposta', fechar: 'Fechar' },
+  en: { resumo: (n, t, ms) => `${n}/${t} systems live now · median ${ms} ms`, nenhum: 'no reply from your browser', sem: 'no reply', fechar: 'Close' }
 }[lang];
 
 /* Rotas antigas da SPA (#/projetos, #/sobre, #/contato) continuam funcionando. */
@@ -49,7 +49,7 @@ const TXT = {
 /* Entrada do hero só depois das fontes, para nada pular de lugar. */
 (document.fonts?.ready || Promise.resolve()).then(() => requestAnimationFrame(() => document.body.classList.add('pronto')));
 
-/* ───────── A fibra: pings reais até sistemas em produção ───────── */
+/* ───────── A parede de produção: pings reais ligam as telas ───────── */
 async function medir(url, limite = 6000) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), limite);
@@ -61,88 +61,122 @@ async function medir(url, limite = 6000) {
 }
 
 (() => {
-  const fibra = $('[data-fibra]');
-  if (!fibra) return;
-  const trilho = $('[data-trilho]', fibra);
-  const origem = $('[data-origem] .led', fibra);
-  const resumo = $('[data-resumo]', fibra);
-  const estacoes = $$('.estacao', fibra);
-  const horizontal = matchMedia('(min-width: 900px)');
+  const parede = $('[data-parede]');
+  if (!parede) return;
+  const plano = $('[data-plano]', parede);
+  const telas = $$('.tela', parede);
+  const resumo = $('[data-resumo-texto]');
   const ultimos = new Map();
+  const espera = ms => new Promise(r => setTimeout(r, ms));
   let visivel = true;
+  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; }).observe(parede);
 
-  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; }).observe(fibra);
+  // Duas medições por destino: a primeira abre a conexão (DNS + TLS), a segunda mede o caminho.
+  const pings = new Map(telas.filter(t => t.dataset.sonda).map(t => [t, (async () => {
+    const a = await medir(t.dataset.sonda);
+    if (a == null) return null;
+    const b = await medir(t.dataset.sonda);
+    return b == null ? a : Math.min(a, b);
+  })()]));
 
-  const centro = el => { const a = el.getBoundingClientRect(), b = trilho.getBoundingClientRect(); return { x: a.left - b.left + a.width / 2, y: a.top - b.top + a.height / 2 }; };
-
-  function pacote(estacao, ms) {
-    if (!movimento) return Promise.resolve();
-    const no = $('.estacao__no', estacao);
-    const p = document.createElement('span');
-    p.className = 'pacote';
-    trilho.append(p);
-    const de = centro(origem), ate = centro(no);
-    const duracao = Math.min(1700, Math.max(520, 420 + (ms || 300) * 4.2));
-    const quadros = horizontal.matches
-      ? [{ transform: `translateX(${de.x - 34}px)`, opacity: 0 }, { opacity: 1, offset: .12 }, { transform: `translateX(${ate.x - 34}px)`, opacity: 1 }]
-      : [{ transform: `translateY(${de.y - 30}px)`, opacity: 0 }, { opacity: 1, offset: .12 }, { transform: `translateY(${ate.y - 30}px)`, opacity: 1 }];
-    const anim = p.animate(quadros, { duration: duracao, easing: 'cubic-bezier(.45,.05,.25,1)' });
-    return anim.finished.catch(() => {}).then(() => p.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220 }).finished.catch(() => {})).then(() => p.remove());
+  function mostrarMs(tela, ms) {
+    const alvo = $('[data-ms]', tela);
+    if (!alvo) return;
+    alvo.textContent = ms == null ? '—' : Math.round(ms) + ' ms';
+    alvo.classList.add('nova');
+    requestAnimationFrame(() => requestAnimationFrame(() => alvo.classList.remove('nova')));
   }
-
-  function mostrar(estacao, ms) {
-    const alvo = $('[data-ms]', estacao);
-    const rotulo = alvo.querySelector('.sr')?.outerHTML || '';
-    if (ms == null) { estacao.dataset.estado = 'falha'; alvo.innerHTML = rotulo + TXT.sem; return; }
-    estacao.dataset.estado = 'ok';
-    alvo.innerHTML = `${rotulo}${Math.round(ms)}<small>ms</small>`;
-  }
-
   function atualizarResumo() {
-    const vals = estacoes.map(e => ultimos.get(e)).filter(x => x != null).sort((a, b) => a - b);
+    if (!resumo) return;
+    const total = pings.size;
+    const vals = [...ultimos.values()].filter(x => x != null).sort((a, b) => a - b);
     if (!vals.length) { resumo.textContent = TXT.nenhum; return; }
     const mediana = vals[Math.floor((vals.length - 1) / 2)];
-    resumo.textContent = TXT.resumo(vals.length, estacoes.length, Math.round(mediana));
+    resumo.textContent = TXT.resumo(vals.length, total, Math.round(mediana));
+  }
+  function ligar(tela) {
+    const img = $('img', tela);
+    img.classList.add('ativa');
+    if (!movimento) { tela.classList.add('ligada'); return; }
+    tela.classList.add('ligando', 'ligada');
+    setTimeout(() => tela.classList.remove('ligando'), 700);
   }
 
-  async function primeiraRodada() {
-    // Duas medições por destino: a primeira abre a conexão (DNS + TLS), a segunda mede o caminho.
-    const medidas = estacoes.map(async e => {
-      const url = e.dataset.url;
-      const a = await medir(url);
-      if (a == null) return null;
-      const b = await medir(url);
-      return b == null ? a : Math.min(a, b);
-    });
-    // Os pacotes saem em sequência, um pouco sobrepostos; cada valor só aparece quando o seu pacote chega.
-    const chegadas = [];
-    for (const [i, e] of estacoes.entries()) {
-      const ms = await medidas[i];
-      ultimos.set(e, ms);
-      const chegada = pacote(e, ms).then(() => { mostrar(e, ms); atualizarResumo(); });
-      chegadas.push(chegada);
-      await Promise.race([chegada, new Promise(r => setTimeout(r, 260))]);
-    }
-    await Promise.all(chegadas);
+  // Ordem da onda: da tela mais próxima do título para as do fundo (diagonal).
+  const colunas = getComputedStyle(plano).gridTemplateColumns.split(' ').length || 3;
+  const ordem = telas.map((t, i) => ({ t, peso: (i % colunas) + Math.floor(i / colunas) * 0.8 })).sort((a, b) => a.peso - b.peso).map(x => x.t);
+
+  async function entrada() {
+    const inicio = movimento ? 520 : 0;
+    await espera(inicio);
+    await Promise.all(ordem.map(async (tela, k) => {
+      await espera(movimento ? k * 135 : 0);
+      if (pings.has(tela)) {
+        // Quem tem sonda só liga quando o sistema responde (com teto, para a entrada não travar).
+        const ms = await Promise.race([pings.get(tela), espera(1400).then(() => undefined)]);
+        if (ms !== undefined) { ultimos.set(tela, ms); mostrarMs(tela, ms); }
+        else pings.get(tela).then(v => { ultimos.set(tela, v); mostrarMs(tela, v); atualizarResumo(); });
+      }
+      ligar(tela);
+      atualizarResumo();
+    }));
   }
 
+  // Ao vivo: de tempos em tempos um sistema é medido de novo.
   async function aoVivo() {
+    const comSonda = telas.filter(t => t.dataset.sonda);
+    if (visivel && document.visibilityState === 'visible' && comSonda.length) {
+      const t = comSonda[Math.floor(Math.random() * comSonda.length)];
+      const ms = await medir(t.dataset.sonda, 4000);
+      if (ms != null || ultimos.get(t) == null) { ultimos.set(t, ms); mostrarMs(t, ms); atualizarResumo(); }
+    }
+    setTimeout(aoVivo, 3600 + Math.random() * 2000);
+  }
+
+  // Troca de canal: uma tela por vez mostra outra tela do mesmo sistema.
+  function trocarCanal() {
     if (visivel && document.visibilityState === 'visible') {
-      const e = estacoes[Math.floor(Math.random() * estacoes.length)];
-      const ms = await medir(e.dataset.url, 4000);
-      if (ms != null || ultimos.get(e) == null) {
-        ultimos.set(e, ms);
-        await pacote(e, ms);
-        mostrar(e, ms);
-        atualizarResumo();
+      const candidatas = telas.filter(t => t.classList.contains('ligada') && (t.dataset.imagens || '').includes('|'));
+      const t = candidatas[Math.floor(Math.random() * candidatas.length)];
+      if (t) {
+        const lista = t.dataset.imagens.split('|');
+        const vidro = $('.tela__vidro', t);
+        const atual = $('img.ativa', vidro);
+        const prox = lista[(lista.indexOf(atual.getAttribute('src')) + 1) % lista.length];
+        const nova = new Image();
+        nova.alt = ''; nova.decoding = 'async'; nova.src = prox;
+        nova.onload = () => {
+          vidro.append(nova);
+          requestAnimationFrame(() => requestAnimationFrame(() => { nova.classList.add('ativa'); atual.classList.remove('ativa'); }));
+          setTimeout(() => atual.remove(), 1100);
+        };
       }
     }
-    setTimeout(aoVivo, 3200 + Math.random() * 1800);
+    setTimeout(trocarCanal, 4800 + Math.random() * 1600);
   }
 
-  const inicio = movimento ? 1500 : 0;
-  setTimeout(() => primeiraRodada().then(() => setTimeout(aoVivo, 2500)), inicio);
+  // Inclinação leve com o ponteiro (só mouse; sem luz seguindo o cursor).
+  if (movimento && matchMedia('(pointer: fine)').matches) {
+    let alvoX = 0, alvoY = 0, x = 0, y = 0, rodando = false;
+    const passo = () => {
+      x += (alvoX - x) * 0.06; y += (alvoY - y) * 0.06;
+      plano.style.setProperty('--px', x.toFixed(3) + 'deg');
+      plano.style.setProperty('--py', y.toFixed(3) + 'deg');
+      rodando = Math.abs(alvoX - x) > 0.01 || Math.abs(alvoY - y) > 0.01;
+      if (rodando) requestAnimationFrame(passo);
+    };
+    addEventListener('pointermove', e => {
+      alvoX = (e.clientX / innerWidth - 0.5) * 5;
+      alvoY = (0.5 - e.clientY / innerHeight) * 3;
+      if (!rodando) { rodando = true; requestAnimationFrame(passo); }
+    }, { passive: true });
+  }
+
+  const comecar = () => entrada().then(() => { setTimeout(aoVivo, 2600); if (movimento) setTimeout(trocarCanal, 4200); });
+  if (document.body.classList.contains('pronto')) comecar();
+  else new MutationObserver((_, obs) => { if (document.body.classList.contains('pronto')) { obs.disconnect(); comecar(); } }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 })();
+
 
 /* ───────── Barramento: o pacote desce acompanhando a leitura ───────── */
 (() => {

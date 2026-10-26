@@ -238,7 +238,81 @@
   "principios_titulo_pt": "Como eu trabalho",
   "principios_titulo_en": "How I work",
   "medios_titulo_pt": "Mais sistemas que eu construí",
-  "medios_titulo_en": "More systems I built"
+  "medios_titulo_en": "More systems I built",
+  "parede": [
+   {
+    "projeto": "elora",
+    "nome": "Instituto Elora",
+    "src": "fotos/projetos/elora.webp"
+   },
+   {
+    "projeto": "speedtest",
+    "nome": "velocidadeteste.audicomtelecom.com.br",
+    "sonda": "https://velocidadeteste.audicomtelecom.com.br/backend/empty.php",
+    "src": "fotos/projetos/speedtest/resultado-800.webp",
+    "alt": [
+     "fotos/projetos/speedtest/painel-800.webp",
+     "fotos/projetos/speedtest/admin-800.webp"
+    ]
+   },
+   {
+    "projeto": "cooperbant",
+    "nome": "Cooperbant",
+    "src": "fotos/projetos/cooperbant.webp"
+   },
+   {
+    "projeto": "audicomhub",
+    "nome": "Audicom Hub · frota",
+    "sonda": "https://davicjc.github.io/AudicomHub/manifest.webmanifest",
+    "src": "fotos/projetos/audicomhub/frota-painel-800.webp",
+    "alt": [
+     "fotos/projetos/audicomhub/frota-custos-800.webp",
+     "fotos/projetos/audicomhub/modulos-800.webp"
+    ]
+   },
+   {
+    "projeto": "nexusatlas",
+    "nome": "nexusatlas.com.br",
+    "sonda": "https://nexusatlas.com.br/manifest.json",
+    "src": "fotos/projetos/nexusatlas/agenda-800.webp",
+    "alt": [
+     "fotos/projetos/nexusatlas/sugestoes-800.webp",
+     "fotos/projetos/nexusatlas/detalhe-800.webp"
+    ]
+   },
+   {
+    "projeto": "diariodoverdao",
+    "nome": "Minha História no Verdão",
+    "src": "fotos/projetos/diariodoverdao.webp",
+    "alt": [
+     "fotos/projetos/uec.webp",
+     "fotos/projetos/socioverdao.webp"
+    ]
+   },
+   {
+    "projeto": "alpa",
+    "nome": "Valoria CRM · View 360°",
+    "src": "fotos/projetos/alpa/view360-800.webp",
+    "alt": [
+     "fotos/projetos/alpa/dashboard-800.webp",
+     "fotos/projetos/alpa/financeiro-800.webp"
+    ]
+   },
+   {
+    "projeto": "popmanager",
+    "nome": "PopManager · topologia",
+    "src": "fotos/projetos/popmanager/topologia-800.webp",
+    "alt": [
+     "fotos/projetos/popmanager/visao-geral-800.webp"
+    ]
+   },
+   {
+    "projeto": "audicomtelecom",
+    "nome": "audicomtelecom.com.br",
+    "sonda": "https://audicomtelecom.com.br/robots.txt",
+    "src": "fotos/projetos/audicomtelecom.webp"
+   }
+  ]
  },
  "projetos": [
   {
@@ -3130,10 +3204,10 @@
  ],
  "categorias": [],
  "_build": {
-  "ts": "2026-10-26T13:11:04.356Z",
+  "ts": "2026-10-26T13:22:48.864Z",
   "versoes": {
-   "css": "4c5c63c0fb",
-   "js": "5c1f5c47a6"
+   "css": "5d3cf3767f",
+   "js": "86c15f2b03"
   }
  }
 }

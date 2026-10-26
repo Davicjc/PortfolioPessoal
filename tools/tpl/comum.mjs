@@ -19,6 +19,10 @@ export const rotas = {
   cvPdf: lang => (lang === 'en' ? '/Curriculo/Davi-Castro-Resume.pdf' : '/Curriculo/Davi-Castro-Curriculo.pdf')
 };
 
+// Link do currículo: o PDF quando ele já existe no site; senão, a página do currículo.
+export const linkCv = (dados, lang) => (dados._build?.cvPdf?.[lang] ? rotas.cvPdf(lang) : rotas.cv(lang));
+export const baixaCv = (dados, lang) => (dados._build?.cvPdf?.[lang] ? ' download' : '');
+
 export const absoluto = caminho => DOMINIO + caminho;
 export const caminhoImg = p => (!p ? '' : /^(https?:|data:|\/)/.test(p) ? p : '/' + p);
 
