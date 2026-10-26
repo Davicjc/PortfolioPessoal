@@ -173,7 +173,7 @@ export function documento(ctx, { titulo, descricao, caminho, caminhoAlt, ogImage
 <link rel="preload" href="/assets/fonts/archivo-500_700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/estilo.css?v=${v.css}">
-<script>document.documentElement.classList.replace('sem-js','js')</script>
+<script>if(/^adm\\./i.test(location.hostname))location.replace('/adm/'+location.hash);document.documentElement.classList.replace('sem-js','js')</script>
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, '\\u003c')}</script>`).join('\n')}
 </head>
 <body class="${classe}" data-lang="${lang}" data-build="${dados._build.ts}" data-vox="${v.vox || '1'}">

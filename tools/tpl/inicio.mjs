@@ -95,12 +95,18 @@ export function janela(dados, p, lang, { prioridade = false, sizes = '(min-width
       }).join('')
     : `<figure class="janela__quadro ativo">${img(dados, p.imagem, c(p, 'titulo', lang), { sizes, carregar: prioridade ? 'eager' : 'lazy', prioridade })}</figure>`;
   const primeira = galeria[0] && typeof galeria[0] !== 'string' ? c(galeria[0], 'legenda', lang) : '';
-  const celular = p.celular ? `<div class="celular">${img(dados, p.celular, `${c(p, 'titulo', lang)} — ${lang === 'en' ? 'on a phone' : 'no celular'}`, { sizes: '(min-width: 1024px) 14vw, 30vw' })}</div>` : '';
-  return `<div class="janela${galeria.length > 1 ? ' janela--carrossel' : ''}${p.celular ? ' janela--com-celular' : ''}"${galeria.length > 1 ? ' data-carrossel' : ''}>
+  // A moldura tem a proporção da própria tela (16:9 no NexusAtlas, 16:10 nos outros): a imagem aparece inteira.
+  const src0 = galeria.length ? (typeof galeria[0] === 'string' ? galeria[0] : galeria[0].src) : p.imagem;
+  const medidas = dados._imgs?.[caminhoImg(src0)];
+  const proporcao = medidas?.w ? ` style="--proporcao: ${medidas.w} / ${medidas.h}"` : '';
+  const moldura = `<div class="janela${galeria.length > 1 ? ' janela--carrossel' : ''}"${galeria.length > 1 ? ' data-carrossel' : ''}>
     <div class="janela__barra"><span class="janela__url">${p.demo ? icone('cadeado', 'ic ic--mini') : ''}${esc(host)}</span>${galeria.length > 1 ? `<span class="janela__legenda rotulo" data-legenda-atual aria-live="polite">${esc(primeira)}</span>` : ''}</div>
-    <div class="janela__tela">${quadros}</div>
-    ${celular}
+    <div class="janela__tela"${proporcao}>${quadros}</div>
   </div>`;
+  if (!p.celular) return moldura;
+  // O telefone fica fora da janela: sobreposto no canto em telas largas, embaixo e centralizado no celular.
+  const celular = `<div class="celular">${img(dados, p.celular, `${c(p, 'titulo', lang)} — ${lang === 'en' ? 'on a phone' : 'no celular'}`, { sizes: '(min-width: 640px) 16vw, 50vw' })}</div>`;
+  return `<div class="vitrine">${moldura}${celular}</div>`;
 }
 
 function casoGrande(ctx, p, i) {
