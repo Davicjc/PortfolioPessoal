@@ -1,7 +1,7 @@
 // Currículo (/Curriculo/ em PT, /Curriculo/en.html em EN), gerado dos mesmos dados do site.
 // Na tela é uma folha branca sobre o fundo escuro; na impressão o texto flui em páginas A4 (tools/pdf.mjs).
 // Cargos e datas vêm de dados.experiencias, que seguem o ORCID. Nada de cargo ou número fora do registro.
-import { esc, c, rotas, monograma, pessoaLD, publicados, DOMINIO } from './comum.mjs';
+import { esc, c, rotas, monograma, pessoaLD, publicados, partesData, DOMINIO } from './comum.mjs';
 
 export const PDF_CV = { pt: '/Curriculo/Davi-Castro-Curriculo.pdf', en: '/Curriculo/Davi-Castro-Resume.pdf' };
 const PROJETOS_CV = ['nexusatlas', 'audicomhub', 'speedtest', 'facesafety', 'popmanager', 'ecolyra'];
@@ -129,8 +129,8 @@ export function paginaCurriculo(ctx) {
   const x = X[lang];
   const outra = lang === 'en' ? 'pt' : 'en';
   const caminho = rotas.cv(lang);
-  const data = new Date(dados._build.ts);
-  const quando = `${x.atualizado} ${lang === 'en' ? `${x.meses[data.getMonth()]} ${data.getFullYear()}` : `${x.meses[data.getMonth()]} de ${data.getFullYear()}`}`;
+  const data = partesData(dados._build.ts);
+  const quando = `${x.atualizado} ${lang === 'en' ? `${x.meses[data.mes]} ${data.ano}` : `${x.meses[data.mes]} de ${data.ano}`}`;
   const v = dados._build.versoes;
   const jsonld = { '@context': 'https://schema.org', '@graph': [
     { '@type': 'ProfilePage', url: DOMINIO + caminho, name: x.titulo, inLanguage: x.lang, mainEntity: { '@id': DOMINIO + '/#davi' } },

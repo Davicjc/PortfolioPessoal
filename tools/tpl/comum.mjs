@@ -24,6 +24,12 @@ export const linkCv = (dados, lang) => (dados._build?.cvPdf?.[lang] ? rotas.cvPd
 export const baixaCv = (dados, lang) => (dados._build?.cvPdf?.[lang] ? ' download' : '');
 
 export const absoluto = caminho => DOMINIO + caminho;
+// Datas sempre no fuso de Uberlândia: o build roda em UTC no CI e em UTC−3 na máquina do Davi.
+export function partesData(iso) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: 'numeric', day: 'numeric' })
+    .formatToParts(new Date(iso)).map(x => [x.type, x.value]));
+  return { dia: +p.day, mes: +p.month - 1, ano: +p.year };
+}
 export const caminhoImg = p => (!p ? '' : /^(https?:|data:|\/)/.test(p) ? p : '/' + p);
 
 export const ICONES = {
@@ -96,8 +102,8 @@ export function cabecalho(ctx) {
 
 export function rodape(ctx) {
   const { dados, lang, t } = ctx;
-  const data = new Date(dados._build.ts);
-  const quando = `${data.getDate()} ${t.meses[data.getMonth()]} ${data.getFullYear()}`;
+  const data = partesData(dados._build.ts);
+  const quando = `${data.dia} ${t.meses[data.mes]} ${data.ano}`;
   return `<footer class="rodape">
   <div class="envelope rodape__grade">
     <div class="rodape__marca">
@@ -112,7 +118,7 @@ export function rodape(ctx) {
       <a href="/coffee/">${t.rodape_cafe}</a>
     </nav>
     <div class="rodape__fim rotulo">
-      <span>© ${data.getFullYear()} Davi Castro · davicjc</span>
+      <span>© ${data.ano} Davi Castro · davicjc</span>
       <span>${t.atualizado} <time datetime="${dados._build.ts}">${quando}</time></span>
     </div>
   </div>

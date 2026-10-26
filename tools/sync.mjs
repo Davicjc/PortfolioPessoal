@@ -25,6 +25,9 @@ function valor(v) {
   }
 }
 const documento = d => ({ id: d.name.split('/').pop(), ...Object.fromEntries(Object.entries(d.fields || {}).map(([k, v]) => [k, valor(v)])), _atualizado: d.updateTime });
+// Chaves em ordem alfabética e documentos por id: o REST não garante ordem, e o arquivo só deve mudar
+// quando o conteúdo muda (a automação agendada commita apenas diferenças reais).
+const ordenado = o => (Array.isArray(o) ? o.map(ordenado) : o && typeof o === 'object' ? Object.fromEntries(Object.keys(o).sort().map(k => [k, ordenado(o[k])])) : o);
 
 async function listar(colecao) {
   const docs = [];
@@ -40,13 +43,13 @@ async function listar(colecao) {
 }
 
 async function principal() {
-  const dados = { _sincronizado: new Date().toISOString() };
+  const dados = {};
   const site = await fetch(`${BASE}/config/site`);
   if (!site.ok) throw new Error('config/site: HTTP ' + site.status);
   dados.site = documento(await site.json());
-  for (const c of COLECOES) dados[c] = await listar(c);
+  for (const c of COLECOES) dados[c] = (await listar(c)).sort((a, b) => a.id.localeCompare(b.id));
   mkdirSync(dirname(SAIDA), { recursive: true });
-  writeFileSync(SAIDA, JSON.stringify(dados, null, 1));
+  writeFileSync(SAIDA, JSON.stringify(ordenado(dados), null, 1) + '\n');
   console.log('Firestore → data/firestore.json · ' + COLECOES.map(c => `${c} ${dados[c].length}`).join(' · '));
 }
 

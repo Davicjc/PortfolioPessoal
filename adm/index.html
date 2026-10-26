@@ -9,10 +9,8 @@
 <link rel="icon" type="image/svg+xml" href="../brand/favicon.svg">
 <link rel="apple-touch-icon" href="../brand/apple-touch-icon.png">
 <link rel="manifest" href="../site.webmanifest">
-<meta name="theme-color" content="#0a0d12">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#090C10">
+<link rel="stylesheet" href="../assets/css/fontes.css">
 <script>
   try {
     var t = localStorage.getItem('davicjc.tema');
@@ -21,24 +19,25 @@
   } catch (e) {}
 </script>
 <style>
+/* Cores da marca (brand/tokens.json): no claro, o pacote em verde escuro; no escuro, o #46E08C do site. */
 :root{
-  --tinta:#0A1628; --tinta-2:#33415C; --tinta-3:#697A94;
-  --papel:#F6F7F9; --superficie:#FFFFFF; --superficie-2:#EFF2F6;
-  --linha:#E2E6EC; --linha-forte:#C9D2DE;
-  --sinal:#08875D; --sinal-suave:#E6F4EE; --sinal-forte:#046C4A;
+  --tinta:#0B0F14; --tinta-2:#4A5563; --tinta-3:#677281;
+  --papel:#F4F6F8; --superficie:#FFFFFF; --superficie-2:#EEF1F4;
+  --linha:#E1E6EB; --linha-forte:#C8D0D9;
+  --sinal:#1E7B48; --sinal-suave:#E4F3EA; --sinal-forte:#17633A;
   --perigo:#B42318; --perigo-suave:#FDECEA; --alerta:#B45309; --alerta-suave:#FEF3E2;
   --sombra:0 1px 2px rgba(10,22,40,.05), 0 8px 24px -12px rgba(10,22,40,.14);
   --sombra-alta:0 2px 4px rgba(10,22,40,.06), 0 24px 60px -20px rgba(10,22,40,.3);
-  --fonte-display:'Archivo', system-ui, sans-serif;
+  --fonte-display:'Archivo', system-ui, sans-serif; --largura-display:112%;
   --fonte-corpo:'IBM Plex Sans', system-ui, sans-serif;
   --fonte-dados:'IBM Plex Mono', ui-monospace, Menlo, monospace;
   --raio:9px;
 }
 :root[data-tema="escuro"]{
-  --tinta:#EAF0F7; --tinta-2:#A9B7CA; --tinta-3:#7386A0;
-  --papel:#080F1A; --superficie:#0E1725; --superficie-2:#152034;
-  --linha:#1E2B40; --linha-forte:#2C3B54;
-  --sinal:#2ED191; --sinal-suave:#0F2A22; --sinal-forte:#5CE3AE;
+  --tinta:#E8EDF2; --tinta-2:#A9B3BF; --tinta-3:#7B8592;
+  --papel:#090C10; --superficie:#0F1318; --superficie-2:#151A21;
+  --linha:#222A34; --linha-forte:#313B47;
+  --sinal:#46E08C; --sinal-suave:#0E2A1C; --sinal-forte:#64EBA3;
   --perigo:#F97066; --perigo-suave:#2A1215; --alerta:#F79009; --alerta-suave:#2A1E0B;
   --sombra:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
   --sombra-alta:0 2px 4px rgba(0,0,0,.5), 0 24px 60px -20px rgba(0,0,0,.8);
@@ -60,7 +59,7 @@ a{color:inherit}
 .btn:hover{border-color:var(--linha-forte)}
 .btn:disabled{opacity:.5; cursor:not-allowed}
 .btn-forte{background:var(--tinta); color:var(--papel); border-color:var(--tinta)}
-.btn-forte:hover{background:var(--sinal); border-color:var(--sinal); color:#fff}
+.btn-forte:hover{background:var(--sinal); border-color:var(--sinal); color:var(--papel)}
 .btn-perigo{color:var(--perigo)}
 .btn-perigo:hover{border-color:var(--perigo); background:var(--perigo-suave)}
 .btn-mini{padding:.34rem .55rem; font-size:.7rem}
@@ -222,6 +221,19 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 .giro{width:14px; height:14px; border:2px solid var(--linha-forte); border-top-color:var(--sinal); border-radius:50%; animation:giro .7s linear infinite}
 @keyframes giro{to{transform:rotate(360deg)}}
 .msg-erro{color:var(--perigo); font-size:.84rem; min-height:1.2em}
+.login h1,.cabeca h1,.cartao h2,.editor-topo h2,.secao-form,.login-marca,.metricas b{font-stretch:var(--largura-display)}
+
+/* ── avisos de overlay e prévia de importação ── */
+.aviso-overlay{border:1px solid var(--alerta); background:var(--alerta-suave); border-radius:10px; padding:.85rem 1rem; font-size:.86rem}
+.aviso-overlay p{margin:.3rem 0 0; color:var(--tinta-2)}
+.previa-imp{margin-top:1rem; padding-top:1rem; border-top:1px solid var(--linha)}
+.previa-imp p{margin:.35rem 0 .75rem}
+.previa-imp.erro b{color:var(--perigo)}
+.previa-tabela{max-height:340px; overflow:auto; border:1px solid var(--linha); border-radius:8px; margin-bottom:.9rem}
+.previa-tabela table{width:100%; border-collapse:collapse; font-size:.8rem}
+.previa-tabela th{position:sticky; top:0; background:var(--superficie-2); text-align:left; font-family:var(--fonte-dados); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--tinta-3); padding:.45rem .6rem}
+.previa-tabela td{padding:.4rem .6rem; border-top:1px solid var(--linha); vertical-align:top}
+.previa-tabela td.mono{font-size:.74rem; word-break:break-word}
 </style>
 </head>
 <body>
@@ -229,7 +241,7 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 <!-- ═══ LOGIN ═══ -->
 <section class="login" id="tela-login" hidden>
   <div class="login-caixa">
-    <div class="login-marca"><svg class="marca-d" viewBox="20 12 66 76" aria-hidden="true"><path d="M30 39 V22 H48 A28 28 0 0 1 48 78 H30 V61" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="50" r="7" style="fill:var(--sinal)"/></svg>davi castro</div>
+    <div class="login-marca"><svg class="marca-d" viewBox="20 12 66 76" aria-hidden="true"><path d="M30 39V22H48A28 28 0 0 1 48 78H30V61" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="7" style="fill:var(--sinal)"/></svg>davi castro</div>
     <h1>Painel do portfólio</h1>
     <p>Entre para editar projetos, trajetória, depoimentos e o resto do site.</p>
     <form id="form-login" novalidate>
@@ -248,7 +260,7 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 <!-- ═══ APP ═══ -->
 <div class="app" id="app" hidden>
   <aside class="lateral">
-    <div class="login-marca"><svg class="marca-d" viewBox="20 12 66 76" aria-hidden="true"><path d="M30 39 V22 H48 A28 28 0 0 1 48 78 H30 V61" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="50" r="7" style="fill:var(--sinal)"/></svg>painel</div>
+    <div class="login-marca"><svg class="marca-d" viewBox="20 12 66 76" aria-hidden="true"><path d="M30 39V22H48A28 28 0 0 1 48 78H30V61" fill="none" stroke="currentColor" stroke-width="9" stroke-linejoin="round"/><circle cx="30" cy="50" r="7" style="fill:var(--sinal)"/></svg>painel</div>
     <nav class="nav" id="nav" aria-label="Seções"></nav>
     <div class="lateral-rodape">
       <div class="usuario" id="usuario"></div>
@@ -279,8 +291,6 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 
 <div class="avisos" id="avisos" aria-live="polite"></div>
 
-<!-- Carga inicial do banco, usada pelo botão "Popular o banco". Gerada a partir do mesmo conteúdo do index.html. -->
-<script type="application/json" id="semente">{"site":{"nome":"Davi Castro","nome_completo":"Davi Castro Jorge da Costa","local_pt":"Uberlândia, MG · Brasil","local_en":"Uberlândia, Brazil","disponivel":true,"disponibilidade_pt":"Aberto a novos projetos","disponibilidade_en":"Open to new projects","cargo_pt":"Desenvolvedor Full Stack & Infraestrutura de Redes","cargo_en":"Full Stack Developer & Network Infrastructure","resumo_pt":"Escrevo o software e cuido da rede em que ele roda. Na Audicom Telecom, desenvolvo sistemas internos, integro biometria e reconhecimento facial a catracas e mantenho a infraestrutura de um provedor — de roteadores MikroTik a servidores VMware. Fora dela, entrego sites e sistemas para clientes de beleza, gastronomia, saúde e consultoria.","resumo_en":"I write the software and look after the network it runs on. At Audicom Telecom I build internal systems, wire biometrics and facial recognition into access turnstiles and keep an ISP's infrastructure running — from MikroTik routers to VMware servers. Outside of it, I ship websites and systems for clients in beauty, hospitality, healthcare and consulting.","numeros":[{"ordem":1,"valor":"35+","rotulo_pt":"projetos","rotulo_en":"projects"},{"ordem":2,"valor":"20+","rotulo_pt":"sites entregues","rotulo_en":"websites shipped"},{"ordem":3,"valor":"15+","rotulo_pt":"clientes e marcas","rotulo_en":"clients & brands"},{"ordem":4,"valor":"3+","rotulo_pt":"anos de experiência","rotulo_en":"years of experience"}],"camadas":[{"ordem":1,"nome_pt":"interface","nome_en":"interface","itens":["HTML","CSS","JavaScript","TypeScript","React"]},{"ordem":2,"nome_pt":"aplicação","nome_en":"application","itens":["Python","C#","Node.js","Firebase","REST"]},{"ordem":3,"nome_pt":"servidores","nome_en":"servers","itens":["Linux","Docker","VMware ESXi","WireGuard"]},{"ordem":4,"nome_pt":"rede","nome_en":"network","itens":["MikroTik","Cisco","Ubiquiti","BGP","RPKI","OSPF"]},{"ordem":5,"nome_pt":"dispositivos","nome_en":"devices","itens":["catracas","biometria","câmeras","Raspberry Pi"]}],"capacidades_titulo_pt":"Da tela ao roteador","capacidades_titulo_en":"From the screen to the router","capacidades_sub_pt":"Boa parte do que entrego cruza mais de uma destas áreas: um sistema web que conversa com uma catraca, um painel que lê o estado dos roteadores.","capacidades_sub_en":"Much of what I ship crosses more than one of these areas: a web system that talks to a turnstile, a dashboard that reads router state.","trajetoria_titulo_pt":"Do atendimento à supervisão técnica","trajetoria_titulo_en":"From the support desk to technical supervision","trajetoria_sub_pt":"Comecei no atendimento e cresci por dentro das empresas, somando responsabilidade técnica a cada etapa.","trajetoria_sub_en":"I started in customer support and grew from within, taking on more technical responsibility at every step.","clientes_titulo_pt":"Empresas e marcas atendidas","clientes_titulo_en":"Companies and brands I've worked with","clientes_sub_pt":"Empregadores, clientes de projeto e parceiros — de provedores de internet a estúdios de beleza.","clientes_sub_en":"Employers, project clients and partners — from internet providers to beauty studios.","destaques_titulo_pt":"Trabalhos selecionados","destaques_titulo_en":"Selected work","destaques_sub_pt":"Três projetos que resumem o que eu faço. A lista completa, com demonstração ao vivo, está na aba de projetos.","destaques_sub_en":"Three projects that sum up what I do. The full list, with live demos, is on the projects page.","depoimentos_titulo_pt":"O que dizem colegas e clientes","depoimentos_titulo_en":"What colleagues and clients say","depoimentos_sub_pt":"Recomendações de gestores, colegas de equipe e clientes, com o perfil de cada um no LinkedIn.","depoimentos_sub_en":"Recommendations from managers, teammates and clients, each linked to their LinkedIn profile.","certificados_titulo_pt":"Formação contínua","certificados_titulo_en":"Continuous learning","contato_titulo_pt":"Vamos conversar","contato_titulo_en":"Let's talk","contato_sub_pt":"Para projetos, vagas ou uma conversa técnica, escolha o canal que preferir.","contato_sub_en":"For projects, roles or a technical conversation, pick whichever channel suits you.","projetos_titulo_pt":"Projetos","projetos_titulo_en":"Projects","projetos_sub_pt":"Sistemas internos, ferramentas de rede de código aberto e sites de clientes. Onde houver demonstração pública, você abre o projeto aqui mesmo, em tamanho de computador ou de celular.","projetos_sub_en":"Internal systems, open-source networking tools and client websites. Wherever a public demo exists, you can open it right here, at desktop or phone width."},"capacidades":[{"id":"cap-software","ordem":1,"titulo_pt":"Sistemas web e aplicações","titulo_en":"Web systems & applications","texto_pt":"Sistemas internos, painéis administrativos e sites institucionais. Uso Firebase quando o projeto precisa de tempo real e autenticação sem servidor para manter.","texto_en":"Internal systems, admin panels and company websites. I reach for Firebase when a project needs real-time data and authentication without a server to maintain.","tecnologias":["JavaScript","TypeScript","React","Python","Node.js","Firebase","REST APIs"]},{"id":"cap-infra","ordem":2,"titulo_pt":"Infraestrutura de provedor","titulo_en":"ISP infrastructure","texto_pt":"Configuração e monitoramento de roteadores e enlaces, servidores virtualizados e VPNs, com alertas automáticos para o que não pode passar despercebido.","texto_en":"Configuring and monitoring routers and links, virtualised servers and VPNs, with automatic alerts for anything that cannot go unnoticed.","tecnologias":["MikroTik","Cisco","Ubiquiti","BGP","RPKI","OSPF","VMware ESXi","WireGuard","Grafana","Zabbix"]},{"id":"cap-acesso","ordem":3,"titulo_pt":"Controle de acesso e visão computacional","titulo_en":"Access control & computer vision","texto_pt":"Integração de catracas, biometria e reconhecimento facial com o software que decide quem entra — do cadastro do rosto à liberação da porta.","texto_en":"Wiring turnstiles, biometrics and facial recognition into the software that decides who gets in — from enrolling a face to releasing the door.","tecnologias":["Python","C#","OpenCV","face_recognition","MediaPipe","Raspberry Pi"]},{"id":"cap-operacao","ordem":4,"titulo_pt":"Operação e liderança técnica","titulo_en":"Operations & technical leadership","texto_pt":"Supervisão das equipes de NOC, HelpDesk e CGR, organização das demandas técnicas e atendimento em inglês a operadoras internacionais.","texto_en":"Supervising NOC, HelpDesk and network operations teams, organising technical workload and supporting international carriers in English.","tecnologias":["NOC","HelpDesk","CGR","SSO · SAML · OIDC","Trello","Inglês avançado"]}],"experiencias":[{"id":"exp-audicom","ordem":1,"atual":true,"empresa":"Audicom Telecom & Audicom Tecnologia","cargo_pt":"Vice Supervisor · Desenvolvedor Full Stack · Técnico de Redes","cargo_en":"Deputy Supervisor · Full Stack Developer · Network Technician","periodo_pt":"set 2025 — atual","periodo_en":"Sep 2025 — present","descricao_pt":"Desenvolvo os sistemas internos da operação — ordens de serviço de campo, portal de suporte e pedidos de clientes — e integro biometria e reconhecimento facial ao controle de acesso por catracas. Na infraestrutura, administro servidores VMware ESXi, túneis WireGuard e equipamentos MikroTik, Cisco, Ubiquiti e Datacom, com monitoramento em Grafana e Zabbix. Implantei um LMS com login único via SSO (SAML/OIDC) e superviso as equipes de NOC, HelpDesk e CGR.","descricao_en":"I build the operation's internal systems — field service orders, the support portal and customer orders — and integrate biometrics and facial recognition with turnstile access control. On the infrastructure side I run VMware ESXi servers, WireGuard tunnels and MikroTik, Cisco, Ubiquiti and Datacom gear, monitored with Grafana and Zabbix. I rolled out an LMS with single sign-on over SSO (SAML/OIDC) and supervise the NOC, HelpDesk and network operations teams.","progressao_pt":"Atendente de suporte → Programador → Vice Supervisor","progressao_en":"Support agent → Developer → Deputy Supervisor"},{"id":"exp-algar","ordem":2,"atual":false,"empresa":"Algar Telecom","cargo_pt":"Gerente de Relacionamento Empresarial Bilíngue","cargo_en":"Bilingual Enterprise Account Manager","periodo_pt":"dez 2023 — jun 2025","periodo_en":"Dec 2023 — Jun 2025","descricao_pt":"Atendi em inglês o segmento de atacado da operadora, com clientes internacionais como Verizon, BT e China Telecom. Conduzi incidentes críticos de conectividade até a resolução e acompanhei a infraestrutura desses clientes em Grafana e Zabbix.","descricao_en":"I handled the carrier's wholesale segment in English, serving international customers such as Verizon, BT and China Telecom. I drove critical connectivity incidents through to resolution and tracked those customers' infrastructure in Grafana and Zabbix.","progressao_pt":"Atendente → Time Premium → Atacado · Gerência Empresarial","progressao_en":"Agent → Premium team → Wholesale · Enterprise accounts"},{"id":"exp-wpv","ordem":3,"atual":false,"empresa":"Web pra Você · negócio próprio","cargo_pt":"Fundador e desenvolvedor","cargo_en":"Founder and developer","periodo_pt":"2023 — encerrado","periodo_en":"2023 — closed","descricao_pt":"Criação de sites para pequenas e médias empresas, cuidando de proposta, design, desenvolvimento e publicação. O negócio foi encerrado.","descricao_en":"Websites for small and mid-sized businesses, covering proposal, design, development and launch. The business has since closed.","progressao_pt":"","progressao_en":""},{"id":"exp-uniube","ordem":4,"atual":false,"empresa":"Universidade de Uberaba (Uniube)","cargo_pt":"Desenvolvedor Python · Projeto Face Safety","cargo_en":"Python Developer · Face Safety project","periodo_pt":"out — dez 2023","periodo_en":"Oct — Dec 2023","descricao_pt":"Desenvolvi um sistema de controle de acesso por reconhecimento facial em Python e OpenCV, com cadastro pela câmera e liberação de fechadura para usuários autorizados. O projeto ficou em 1º lugar entre 60 trabalhos acadêmicos.","descricao_en":"I built a facial recognition access control system in Python and OpenCV, with camera-based enrolment and lock release for authorised users. The project took 1st place among 60 academic projects.","progressao_pt":"","progressao_en":""},{"id":"exp-callink","ordem":5,"atual":false,"empresa":"Callink · operação Bradesco","cargo_pt":"Agente de atendimento","cargo_en":"Customer service agent","periodo_pt":"out — dez 2023","periodo_en":"Oct — Dec 2023","descricao_pt":"Atendimento a clientes da operação Bradesco, usando técnicas de sondagem para entender e resolver demandas complexas.","descricao_en":"Customer service for the Bradesco operation, using structured questioning to understand and resolve complex requests.","progressao_pt":"","progressao_en":""}],"projetos":[{"id":"audicomhub","ordem":1,"publicado":true,"destaque":true,"vitrine":true,"categoria":"corporativo","titulo_pt":"Audicom Hub","titulo_en":"Audicom Hub","tagline_pt":"Portal interno multiprojeto com controle de acesso por função","tagline_en":"Internal multi-project portal with role-based access control","descricao_pt":"Reúne em um só portal os fluxos internos da operação: chamados, solicitações de manutenção, base de conhecimento de roteadores e registro de rondas técnicas. A autorização em três níveis (user, admin, superadmin) é aplicada nas regras do Firestore, não apenas na interface, e o formulário de ronda salva rascunho automaticamente para o técnico retomar após queda de conexão.","descricao_en":"Brings the operation's internal workflows into a single portal: support tickets, maintenance requests, a router troubleshooting knowledge base and technical patrol logs. Three-level authorization (user, admin, superadmin) is enforced in Firestore security rules rather than only in the UI, and the patrol form autosaves drafts so a technician can resume after losing connection.","papel_pt":"Desenvolvedor full stack, responsável pela arquitetura, modelagem de dados e regras de segurança","papel_en":"Full stack developer, responsible for architecture, data modeling and security rules","impacto_pt":"Registro de rondas em campo sobrevive a queda de conexão, e o acesso por função e por cliente fica delimitado no próprio banco.","impacto_en":"Field patrol logging survives connection drops, and per-role and per-client access is enforced at the database layer.","stack":["JavaScript","Firebase Auth","Firestore","PWA / Service Worker","HTML5","CSS3"],"demo":"https://davicjc.github.io/AudicomHub/","repo":"https://github.com/Davicjc/AudicomHub","imagem":"fotos/projetos/audicomhub.webp","tipo_botao":"demo"},{"id":"telemetry","ordem":2,"publicado":true,"destaque":true,"vitrine":false,"categoria":"open-source","titulo_pt":"Telemetry Portal","titulo_en":"Telemetry Portal","tagline_pt":"Monitoramento de OSPF e BFD em MikroTik, auto-hospedado","tagline_en":"Self-hosted OSPF and BFD monitoring for MikroTik routers","descricao_pt":"No MikroTik, um vizinho OSPF que cai simplesmente some da tabela: não existe estado down para consultar. O portal mantém um registro dos vizinhos já vistos e infere a queda pela ausência, com proteção contra falso-positivo quando o PE inteiro fica inacessível. Detecta sozinho se o RouterOS é v6 ou v7, já que o BFD fica em caminhos diferentes da API.","descricao_en":"On MikroTik, an OSPF neighbor that drops simply disappears from the table: there is no down state to poll for. The portal keeps a registry of every neighbor it has seen and infers the drop from the absence, guarding against the false positive where an entire PE goes unreachable. It also detects whether RouterOS is v6 or v7, since BFD sits at different API paths.","papel_pt":"Autor solo: backend Flask, front-end Jinja/Chart.js, empacotamento systemd e deploy em produção","papel_en":"Sole author: Flask backend, Jinja/Chart.js front end, systemd packaging and production deployment","impacto_pt":"A queda e o retorno de cada vizinho chegam ao Telegram uma única vez por transição, a partir de um coletor em segundo plano, sem depender de alguém olhando o painel.","impacto_en":"Drops and recoveries reach Telegram once per transition, from a background collector, so nobody has to be watching a panel.","stack":["Python","Flask","SQLite","RouterOS API","Grafana","Prometheus"],"demo":"","repo":"https://github.com/Davicjc/telemetry-portal","imagem":"","tipo_botao":"demo"},{"id":"nexusatlas","ordem":3,"publicado":true,"destaque":true,"vitrine":false,"categoria":"corporativo","titulo_pt":"NexusAtlas","titulo_en":"NexusAtlas","tagline_pt":"Gestão de ordens de serviço de campo em tempo real, no navegador","tagline_en":"Field service orders, real time, straight from the browser","descricao_pt":"Centraliza as ordens de serviço de campo da Audicom em um sistema web que roda inteiramente no navegador, sem instalação e sem servidor próprio para manter. O Firebase concentra a camada de dados e propaga cada alteração em tempo real, de modo que escritório e técnico em campo leem e escrevem o mesmo registro de qualquer dispositivo.","descricao_en":"Centralizes Audicom's field service orders in a web system that runs entirely in the browser, with no install and no server of its own to maintain. Firebase holds the data layer and propagates every change in real time, so the office and the technician in the field read and write the same record from any device.","papel_pt":"Desenvolvimento full stack e definição da arquitetura, do modelo de dados ao front-end","papel_en":"Full stack development and architecture, from the data model to the front-end","impacto_pt":"Campo e escritório operam sobre o mesmo registro atualizado, sem cliente instalado e sem infraestrutura de servidor para manter.","impacto_en":"Field and office work from the same up-to-date record, with no client to install and no server infrastructure to maintain.","stack":["JavaScript","Firebase","HTML5","CSS3"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"facesafety","ordem":4,"publicado":true,"destaque":true,"vitrine":true,"categoria":"academico","titulo_pt":"Face Safety","titulo_en":"Face Safety","tagline_pt":"Controle de acesso por reconhecimento facial em Python","tagline_en":"Python-based facial recognition access control","descricao_pt":"Controle de acesso por reconhecimento facial rodando localmente. O operador cadastra a pessoa pela câmera, o sistema guarda o encoding do rosto e o modo scanner compara os quadros ao vivo com a base para identificar quem está na frente do equipamento. Usuários marcados como administradores disparam uma função Key personalizável, usada para acionar fechaduras eletrônicas.","descricao_en":"Facial recognition access control that runs entirely on the local machine. An operator enrolls a person through the camera, the system stores the face encoding, and scanner mode matches live frames against that database to identify who is in front of the device. Users flagged as administrators trigger a customizable Key function that can release an electronic lock.","papel_pt":"Desenvolvedor Python responsável pelo projeto, do pipeline de cadastro e reconhecimento à distribuição das versões para Windows e Linux","papel_en":"Python developer and project owner, from the enrollment and recognition pipeline to the Windows and Linux builds","impacto_pt":"1º lugar entre 60 projetos acadêmicos na Uniube e 16 estrelas no GitHub, com o código aberto e reaproveitável em catracas e fechaduras eletrônicas.","impacto_en":"1st place among 60 academic projects at Uniube and 16 GitHub stars, with the code open and reusable for turnstiles and electronic locks.","stack":["Python","OpenCV","face_recognition","dlib","NumPy","Tkinter"],"demo":"","repo":"https://github.com/Davicjc/FaceSafety","imagem":"fotos/projetos/facesafety.webp","tipo_botao":"demo"},{"id":"roasmonitor","ordem":5,"publicado":true,"destaque":true,"vitrine":false,"categoria":"open-source","titulo_pt":"ROAs Monitor Status","titulo_en":"ROAs Monitor Status","tagline_pt":"Alerta no Telegram quando os ROAs do seu ASN ficam inválidos","tagline_en":"Telegram alerts when your ASN's ROAs go invalid or expire","descricao_pt":"Quando um ROA expira ou o serviço de publicação RPKI (como o Krill) falha, os prefixos do ASN passam a ser vistos como Invalid e operadores que validam RPKI param de aceitar as rotas — sem aviso. O daemon consulta a validade de cada prefixo em intervalo configurável, via RIPEstat ou Routinator local, e alerta no Telegram assim que o status sai de Valid.","descricao_en":"When a ROA expires or the RPKI publication service (Krill, for instance) fails, the ASN's prefixes start being seen as Invalid and operators running RPKI validation silently stop accepting the routes. The daemon polls each prefix at a configurable interval — against public RIPEstat or a local Routinator — and fires a Telegram alert the moment a status leaves Valid.","papel_pt":"Autor e único desenvolvedor, do desenho da lógica de validação ao empacotamento como serviço systemd","papel_en":"Sole author and developer, from the validation logic to packaging it as a systemd service","impacto_pt":"Substitui a descoberta acidental de um ROA inválido, geralmente via reclamação de cliente, por um alerta automático no Telegram no ciclo de verificação seguinte.","impacto_en":"Replaces finding out about an invalid ROA through a customer complaint with an automatic Telegram alert on the next check cycle.","stack":["Bash","RPKI","Telegram Bot API","Routinator","RIPEstat API","systemd"],"demo":"https://davicjc.github.io/ROAs-Monitor-Status/","repo":"https://github.com/Davicjc/ROAs-Monitor-Status","imagem":"fotos/projetos/roasmonitor.webp","tipo_botao":"demo"},{"id":"patricia","ordem":6,"publicado":true,"destaque":false,"vitrine":true,"categoria":"cliente","titulo_pt":"Patricia Moura Lash Design","titulo_en":"Patricia Moura Lash Design","tagline_pt":"Agendamento online em tempo real para um estúdio de cílios","tagline_en":"Real-time online booking for a lash extension studio","descricao_pt":"Permite que a cliente reserve o próprio horário sem troca de mensagens: fluxo de quatro etapas com serviço, calendário, horários livres e formulário que valida CPF e WhatsApp. O Firestore sincroniza a agenda em tempo real, então um horário reservado já aparece indisponível para os demais visitantes. Um painel com Firebase Auth confirma, edita e bloqueia datas.","descricao_en":"Lets clients book their own slot without a back-and-forth chat: a four-step flow covering service, calendar, open times and a form that validates WhatsApp numbers and Brazilian tax-ID check digits. Firestore keeps the calendar in sync in real time, so a taken slot immediately shows as unavailable to everyone else. A Firebase Auth panel confirms, edits and blocks dates.","papel_pt":"Desenvolvedor full stack e único responsável pelo projeto — interface, modelagem no Firestore, autenticação e painel administrativo","papel_en":"Sole full stack developer — interface, Firestore data model, authentication and admin dashboard","impacto_pt":"Agenda autogerenciável com reservas travadas em tempo real e sem servidor próprio: roda inteiramente no plano gratuito do Firebase.","impacto_en":"A self-managed calendar with slots locked in real time and no server of its own: it runs entirely on Firebase's free tier.","stack":["JavaScript","Firebase Firestore","Firebase Auth","HTML5","CSS3","GitHub Pages"],"demo":"https://davicjc.github.io/PatriciaMouraLashDesign/","repo":"https://github.com/Davicjc/PatriciaMouraLashDesign","imagem":"fotos/projetos/patricia.webp","tipo_botao":"pagina"},{"id":"hubcjc","ordem":7,"publicado":true,"destaque":true,"vitrine":false,"categoria":"produto","titulo_pt":"Hub CJC","titulo_en":"Hub CJC","tagline_pt":"Central de projetos, tarefas e contratos com assinatura eletrônica","tagline_en":"Personal hub for projects, tasks and e-signed contracts","descricao_pt":"Painel único para projetos, tarefas, clientes e contratos, substituindo planilhas e anotações dispersas. Contratos são modelados como dados: escopo e pagamento estruturados geram o texto, então cláusula e tabela de parcelas nunca divergem. Cada versão guarda autor, motivo e hash SHA-256, e o cliente assina por link público.","descricao_en":"A single dashboard for projects, tasks, clients and contracts, replacing scattered spreadsheets and notes. Contracts are modeled as data: structured scope and payment generate the text, so the clause and the installment table can never disagree. Every version stores author, reason and a SHA-256 hash, and clients sign via a public link.","papel_pt":"Autor único — arquitetura, modelagem de dados e desenvolvimento full stack","papel_en":"Sole author — architecture, data modeling and full stack development","impacto_pt":"Elimina a divergência entre o texto do contrato e os valores acordados, e permite conferir qualquer via impressa sem acesso ao sistema.","impacto_en":"Removes any gap between contract wording and agreed figures, and lets any printed copy be checked without access to the system.","stack":["TypeScript","React","Firebase","Vite","Tailwind CSS","React Query"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"audicomtelecom","ordem":8,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Site Audicom Telecom","titulo_en":"Audicom Telecom Website","tagline_pt":"Site institucional em produção da provedora Audicom Telecom","tagline_en":"Production institutional site for telecom provider Audicom","descricao_pt":"Site institucional principal da Audicom Telecom, provedora de telecomunicações. Concentra em um domínio próprio a apresentação dos planos, das soluções corporativas e dos canais de atendimento da operadora. Front-end em HTML, CSS e JavaScript, com layout responsivo e seções dedicadas a soluções e contato.","descricao_en":"Main institutional website for Audicom Telecom, a telecommunications provider. It presents the company's plans, corporate solutions and support channels on its own domain. Built as a responsive front end in HTML, CSS and JavaScript, with dedicated sections for solutions and contact.","papel_pt":"Desenvolvedor responsável pelo front-end e pela estrutura de conteúdo","papel_en":"Developer responsible for the front end and content structure","impacto_pt":"Site no ar em audicomtelecom.com.br, usado como canal oficial de apresentação da operadora a clientes e prospects.","impacto_en":"Live at audicomtelecom.com.br as the operator's official channel for presenting itself to customers and prospects.","stack":["HTML5","CSS3","JavaScript"],"demo":"https://audicomtelecom.com.br/","repo":"","imagem":"fotos/projetos/audicomtelecom.webp","tipo_botao":"pagina"},{"id":"capile","ordem":9,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Capilé Drinks","titulo_en":"Capilé Drinks","tagline_pt":"Cardápio interativo e painel de gestão para bar de drinks autorais","tagline_en":"Interactive menu and management panel for a craft cocktail bar","descricao_pt":"O bar anotava pedidos e controlava o cardápio manualmente, sem registro de vendas. O sistema entrega um cardápio mobile em que o cliente monta o pedido pelo celular, com carrinho e checkout, e um painel administrativo com CRUD do cardápio, aprovação de pedidos e gráficos de faturamento. Persistência em LocalStorage, sem backend para operar.","descricao_en":"The bar took orders and managed its menu by hand, with no record of sales. This delivers a mobile-first menu where the customer builds the order on their phone, with cart and checkout, plus an admin panel for menu CRUD, order approval and revenue charts. State lives in LocalStorage, so there is no backend to run.","papel_pt":"Desenvolvedor único: interface, modelo de dados em LocalStorage e painel administrativo","papel_en":"Sole developer: interface, LocalStorage data model and admin panel","impacto_pt":"Substitui a anotação manual de pedidos por autoatendimento e dá ao dono visibilidade de vendas sem exigir servidor.","impacto_en":"Replaces manual order-taking with self-service and gives the owner sales visibility without running a server.","stack":["HTML5","CSS3","JavaScript","LocalStorage","Chart.js"],"demo":"https://davicjc.github.io/CapileSite/","repo":"https://github.com/Davicjc/CapileSite","imagem":"fotos/projetos/capile.webp","tipo_botao":"demo"},{"id":"speedtest","ordem":10,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Audicom Speed Test","titulo_en":"Audicom Speed Test","tagline_pt":"Teste de velocidade próprio, medindo na rota real do cliente","tagline_en":"Self-hosted speed test measured on the customer's real route","descricao_pt":"Clientes que relatam lentidão costumam ser medidos por testes públicos, cujo resultado depende do caminho até um servidor de terceiros. O projeto é uma instância própria do LibreSpeed, hospedada em servidores da Audicom e com a identidade visual da empresa, que mede a velocidade dentro da rota real do cliente.","descricao_en":"Customers reporting slow connections are usually measured by public speed tests, whose results depend on the network path to a third-party server. This is a self-hosted LibreSpeed instance running on Audicom's own servers, carrying the company's branding, that measures throughput along the customer's real route.","papel_pt":"Desenvolvedor responsável pela customização, identidade visual e publicação nos servidores da empresa","papel_en":"Developer responsible for customization, branding and deployment on the company's servers","impacto_pt":"Dá ao suporte e ao cliente uma medição de referência feita na infraestrutura da própria Audicom, hoje usada por clientes reais.","impacto_en":"Gives support and customers a reference measurement taken on Audicom's own infrastructure, today used by real customers.","stack":["LibreSpeed","JavaScript","HTML5","CSS3"],"demo":"https://velocidadeteste.audicomtelecom.com.br/","repo":"","imagem":"fotos/projetos/speedtest.webp","tipo_botao":"demo"},{"id":"ddwilber","ordem":11,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Portfólio Dennis Wilber","titulo_en":"Dennis Wilber Portfolio","tagline_pt":"Portfólio one-page para um líder de vendas da Xiaomi Brasil","tagline_en":"One-page career portfolio for a Xiaomi Brazil sales lead","descricao_pt":"Dennis precisava de uma presença própria na web que apresentasse sua trajetória comercial de forma consolidada a quem decide promoções. Construí um site de página única em HTML, CSS e JavaScript puro, com seções de carreira, competências e contato. Sem backend: o formulário serializa os campos em um deep link do WhatsApp, mantendo hospedagem estática e resposta imediata.","descricao_en":"Dennis needed a web presence of his own that presented his sales career in one consolidated place for the people who decide promotions. I built a single-page site in plain HTML, CSS and JavaScript, covering his career path, skills and contact. There is no backend: the form serializes its fields into a WhatsApp deep link, keeping hosting static and replies immediate.","papel_pt":"Desenvolvedor único, do levantamento de conteúdo com o cliente ao deploy","papel_en":"Sole developer, from client content gathering through deployment","impacto_pt":"O próprio cliente declarou publicamente que o site foi decisivo para sua promoção a supervisor de loja na Xiaomi Brasil.","impacto_en":"The client publicly stated that the site was decisive in his promotion to store supervisor at Xiaomi Brazil.","stack":["HTML5","CSS3","JavaScript","GitHub Pages","Google Analytics"],"demo":"https://davicjc.github.io/PortifolioDDWilber/","repo":"https://github.com/Davicjc/PortifolioDDWilber","imagem":"fotos/projetos/ddwilber.webp","tipo_botao":"pagina"},{"id":"acessoaudicom","ordem":12,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Acesso Audicom (QR Code)","titulo_en":"Audicom Access (QR Code)","tagline_pt":"Liberação de catracas por QR Code gerado no cadastro do visitante","tagline_en":"Turnstile release via QR code generated at visitor sign-in","descricao_pt":"Controle de acesso de visitantes em catracas sem crachá físico nem registro em papel na portaria. O cadastro web valida o CPF por cálculo de dígito, bloqueia duplicidade e gera o QR Code de liberação; um receptor em Java lê o código pela porta serial e aciona o programa de desbloqueio da catraca.","descricao_en":"Visitor access control at turnstiles without physical badges or a paper logbook at the front desk. The web form validates CPF check digits, blocks duplicate entries and generates the release QR code; a Java receiver reads it over the serial port and triggers the turnstile unlock program.","papel_pt":"Desenvolvedor único, responsável pelo front-end de cadastro, pela geração dos QR Codes e pela integração serial com o hardware da catraca","papel_en":"Sole developer, responsible for the sign-in front end, QR code generation and the serial integration with the turnstile hardware","impacto_pt":"Digitaliza o registro de visitantes na portaria e mantém o histórico exportável em CSV, rodando inteiramente no navegador, sem servidor. Descontinuado, mas funcional como demonstração.","impacto_en":"Digitizes front-desk visitor records and keeps an exportable CSV history, running entirely in the browser with no server. Discontinued, but still functional as a demo.","stack":["HTML5","CSS3","JavaScript ES6+","Java","Raspberry Pi Pico"],"demo":"https://davicjc.github.io/AcessoAudicom/","repo":"https://github.com/Davicjc/AcessoAudicom","imagem":"fotos/projetos/acessoaudicom.webp","tipo_botao":"demo"},{"id":"fitia","ordem":13,"publicado":true,"destaque":false,"vitrine":false,"categoria":"open-source","titulo_pt":"FitIA","titulo_en":"FitIA","tagline_pt":"Contagem de repetições e análise de forma por webcam, no navegador","tagline_en":"Rep counting and form analysis from a webcam, fully in the browser","descricao_pt":"Quem treina sozinho conta repetição na mão e não recebe retorno sobre a execução. O FitIA lê 33 pontos corporais por quadro com MediaPipe no próprio navegador, calcula ângulos articulares e conta repetições com uma máquina de estados protegida por buffer de estabilidade, pontuando a qualidade de cada movimento.","descricao_en":"Training alone means counting reps by hand with no feedback on execution. FitIA reads 33 body landmarks per frame using MediaPipe in the browser, derives joint angles, and counts reps through a state machine guarded by a stability buffer, scoring the quality of each movement.","papel_pt":"Desenvolvedor solo, responsável pela visão computacional, pelos algoritmos de contagem e pelo front-end","papel_en":"Solo developer, responsible for the computer vision, the rep-counting algorithms and the front end","impacto_pt":"Todo o processamento roda no cliente: o vídeo não sai do dispositivo e o uso dispensa instalação, servidor de inferência ou hardware dedicado.","impacto_en":"All processing runs client-side: video never leaves the device, and using it requires no install, no inference server and no dedicated hardware.","stack":["JavaScript","MediaPipe","Canvas API","Three.js","Firebase Firestore","HTML5"],"demo":"https://davicjc.github.io/FitIA/","repo":"https://github.com/Davicjc/FitIA","imagem":"fotos/projetos/fitia.webp","tipo_botao":"demo"},{"id":"pedidosaudicom","ordem":14,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Pedidos Audicom","titulo_en":"Audicom Orders","tagline_pt":"Solicitação de internet pelo cliente e gestão em painel interno","tagline_en":"Customer internet orders, tracked through an internal admin panel","descricao_pt":"Sistema web que centraliza a solicitação e o acompanhamento de pedidos de internet da Audicom Telecom. O cliente abre e consulta o pedido pelo celular ou pelo computador, em interface responsiva, enquanto a equipe interna trata e atualiza cada solicitação por um painel administrativo, com o mesmo status visível para os dois lados.","descricao_en":"A web system that centralizes how Audicom Telecom receives and tracks internet service orders. Customers submit and follow their requests from a phone or a desktop through a responsive interface, while the internal team handles and updates each one in an admin panel, with the same status visible on both sides.","papel_pt":"Desenvolvedor full stack, responsável pelo sistema de ponta a ponta, da interface do cliente ao painel administrativo interno","papel_en":"Full stack developer, responsible for the system end to end, from the customer interface to the internal admin panel","impacto_pt":"Concentra os pedidos de internet em um fluxo único, com o mesmo status acompanhado pelo cliente e pela equipe interna.","impacto_en":"Consolidates internet orders into a single flow, with one status followed by both the customer and the internal team.","stack":["HTML5","CSS3","JavaScript"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"popmanager","ordem":15,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"PopManager","titulo_en":"PopManager","tagline_pt":"Gestão centralizada de POPs de rede para provedor de internet","tagline_en":"Centralized management of network POPs for an ISP","descricao_pt":"Um provedor de internet mantém vários POPs distribuídos, cada um com seus próprios equipamentos, enlaces e configurações. O PopManager reúne esse controle em um sistema server/web escrito em Python: cada ponto de presença fica cadastrado em um só lugar, e a equipe técnica consulta e atualiza os dados pelo navegador.","descricao_en":"An ISP runs several distributed POPs, each with its own equipment, links and configuration. PopManager consolidates that into a single server/web application written in Python: every point of presence is recorded in one place, and the technical team reviews and updates site data straight from the browser.","papel_pt":"Desenvolvedor full stack e responsável pela arquitetura do sistema","papel_en":"Full stack developer, responsible for the system architecture","impacto_pt":"Dá à equipe técnica um registro único e consultável dos POPs, sem depender de acesso local a cada site.","impacto_en":"Gives the technical team a single, queryable record of every POP, without needing local access to each site.","stack":["Python","JavaScript","HTML5","CSS3","Linux Server"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"alpa","ordem":16,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"CRM Alpa Solutions","titulo_en":"Alpa Solutions CRM","tagline_pt":"Base única de clientes e histórico comercial para a Valoria","tagline_en":"One system for Valoria's client records and relationship history","descricao_pt":"CRM sob medida para a Alpa Solutions, que atua sob a marca Valoria. O sistema centraliza o cadastro de clientes e o histórico de relacionamento comercial em uma única interface web, acessível pela equipe sem instalação local. Foi desenvolvido em JavaScript e modelado sobre o processo comercial do cliente, em vez de adaptar um CRM genérico de mercado.","descricao_en":"A custom CRM built for Alpa Solutions, which operates under the Valoria brand. It brings client records and the history of each commercial relationship into a single web interface the team can reach from any browser, with no local install. Written in JavaScript and shaped around the client's own sales process instead of bending a generic off-the-shelf CRM to fit.","papel_pt":"Desenvolvedor único do projeto, responsável pela interface, pela lógica da aplicação e pela entrega ao cliente","papel_en":"Sole developer, responsible for the interface, the application logic and delivery to the client","impacto_pt":"Centralizou a base de clientes da Valoria em um sistema próprio, com histórico consultável por toda a equipe.","impacto_en":"Gave Valoria a single owned system for its client base, with history any team member can look up.","stack":["JavaScript","HTML5","CSS3","Git"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"elora","ordem":17,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Instituto Elora","titulo_en":"Instituto Elora","tagline_pt":"Site institucional para clínica de estética e saúde integrativa","tagline_en":"Institutional site for an aesthetics and integrative health clinic","descricao_pt":"Site institucional do Instituto Elora, clínica de estética avançada e saúde integrativa. Desenvolvi a página em HTML, CSS e JavaScript, com layout responsivo para celular e desktop, marcação semântica e carregamento leve, apresentando os serviços da clínica de forma clara para quem pesquisa antes de escolher onde se tratar.","descricao_en":"Institutional website for Instituto Elora, a clinic working with advanced aesthetics and integrative health. I built the page in HTML, CSS and JavaScript, with a responsive layout for phone and desktop, semantic markup and a light payload, presenting the clinic's services clearly to people researching before choosing where to go.","papel_pt":"Desenvolvedor responsável pelo projeto, do layout à publicação","papel_en":"Sole developer, from layout to publishing","impacto_pt":"Deu ao instituto um canal próprio na web para apresentar seus serviços a novos pacientes.","impacto_en":"Gave the clinic a web presence of its own to present its services to new patients.","stack":["JavaScript","HTML5","CSS3","Git"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"gestorapi","ordem":18,"publicado":true,"destaque":false,"vitrine":false,"categoria":"produto","titulo_pt":"Gestor de API","titulo_en":"API Manager","tagline_pt":"Painel Master para credenciais Firebase de múltiplos clientes","tagline_en":"Master panel for multi-client Firebase credentials","descricao_pt":"Cada cliente atendido roda sobre um projeto Firebase próprio, e manter essas credenciais espalhadas por arquivos e repositórios torna qualquer troca ou revogação lenta e arriscada. O painel concentra o cadastro e a consulta dessas chaves em uma única interface Master, escrita em HTML, CSS e JavaScript puro, sem framework nem etapa de build.","descricao_en":"Each client runs on its own Firebase project, so credentials end up scattered across files and repositories, which makes any key swap or revocation slow and risky. The panel concentrates registering and looking up those keys in a single Master interface, written in plain HTML, CSS and JavaScript, with no framework and no build step.","papel_pt":"Desenvolvedor único: arquitetura, interface e integração com o Firebase","papel_en":"Sole developer: architecture, interface and Firebase integration","impacto_pt":"As credenciais de todos os clientes passaram a ser consultadas e atualizadas em um só lugar, sem depender de arquivos espalhados por repositórios.","impacto_en":"Credentials for every client are now looked up and updated in one place, instead of living in files spread across repositories.","stack":["JavaScript","HTML5","CSS3","Firebase"],"demo":"","repo":"","imagem":"","tipo_botao":"demo"},{"id":"desenhobase64","ordem":19,"publicado":true,"destaque":false,"vitrine":false,"categoria":"open-source","titulo_pt":"DesenhoBase64","titulo_en":"DesenhoBase64","tagline_pt":"Canvas HTML5 vira quadro de desenho e assinatura, sem dependências","tagline_en":"HTML5 canvas as a drawing board and signature pad, zero dependencies","descricao_pt":"Formulários que capturam assinatura ou desenho à mão costumam salvar um PNG pesado e não editável. Esta biblioteca JavaScript sem dependências transforma uma tag canvas do HTML5 em quadro de desenho ou painel de assinatura e serializa os traços — coordenadas, espessura e cor — em uma string Base64 curta, recarregável no canvas para edição.","descricao_en":"Web forms that capture a handwritten signature or sketch usually save a heavy PNG that cannot be edited afterwards. This dependency-free JavaScript library turns an HTML5 canvas into a drawing board or signature pad and serializes the strokes — coordinates, thickness and color — into a short Base64 string that can be loaded back into the canvas for editing.","papel_pt":"Autor e mantenedor da biblioteca — desenho da API, motor de captura de traços e página de demonstração","papel_en":"Library author and maintainer — API design, stroke capture engine and demo page","impacto_pt":"Assinaturas e desenhos trafegam como texto leve em vez de imagem, e o traço original volta ao canvas para edição.","impacto_en":"Signatures and drawings travel as lightweight text instead of images, and the original strokes can be reloaded into the canvas for editing.","stack":["JavaScript","HTML5 Canvas","HTML5","CSS3"],"demo":"https://davicjc.github.io/DesenhoBase64/","repo":"https://github.com/Davicjc/DesenhoBase64","imagem":"fotos/projetos/desenhobase64.webp","tipo_botao":"demo"},{"id":"barbearia","ordem":20,"publicado":true,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Barbearia Soares","titulo_en":"Barbearia Soares","tagline_pt":"Site de vitrine para barbearia local, em HTML e CSS puros","tagline_en":"Storefront site for a local barbershop, in plain HTML and CSS","descricao_pt":"Site de apresentação para uma barbearia local, entregue como demo para um cliente real. A página é escrita apenas em HTML e CSS, sem framework nem etapa de build: carrega rápido no celular, roda em qualquer hospedagem estática e cada ajuste de conteúdo é uma edição direta na marcação.","descricao_en":"Presentation site for a local barbershop, delivered as a demo for a real client. The page is written in plain HTML and CSS, with no framework and no build step: it loads fast on mobile, runs on any static hosting, and every content change is a direct edit to the markup.","papel_pt":"Desenvolvedor front-end responsável por layout, marcação e entrega ao cliente","papel_en":"Front-end developer responsible for layout, markup and client delivery","impacto_pt":"Dá ao negócio uma vitrine própria na web, com custo de hospedagem e manutenção próximo de zero.","impacto_en":"Gives the business its own storefront on the web, with hosting and maintenance cost close to zero.","stack":["HTML5","CSS3","Git","GitHub"],"demo":"https://davicjc.github.io/BarbeariaSoares/","repo":"https://github.com/Davicjc/BarbeariaSoares","imagem":"fotos/projetos/barbearia.webp","tipo_botao":"pagina"},{"id":"audicomreuniao","ordem":21,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Painel da Sala de Reunião","titulo_en":"Meeting Room Display","tagline_pt":"Tela de recepção da sala de reunião da Audicom Telecom","tagline_en":"Welcome screen for Audicom Telecom's meeting room","descricao_pt":"Página que fica aberta na tela da sala de reunião da Audicom Telecom. Mostra se a sala está disponível, data, hora e temperatura, oferece o QR Code do Wi-Fi de visitantes e passa em carrossel as marcas de clientes da empresa.","descricao_en":"A page that stays open on the screen in Audicom Telecom's meeting room. It shows whether the room is available, the date, time and temperature, offers a QR code for the guest Wi-Fi and cycles through the company's client logos.","papel_pt":"Design e desenvolvimento front-end","papel_en":"Design and front-end development","impacto_pt":"Visitantes chegam à sala com o Wi-Fi e as informações do dia já na tela, sem precisar pedir.","impacto_en":"Visitors walk into the room with the Wi-Fi details and the day's information already on screen.","stack":["HTML5","CSS3","JavaScript"],"demo":"https://davicjc.github.io/AudicomSiteReuniao/","repo":"https://github.com/Davicjc/AudicomSiteReuniao","imagem":"fotos/projetos/audicomreuniao.webp","tipo_botao":"pagina"},{"id":"qrcodeaudicom","ordem":22,"publicado":true,"destaque":false,"vitrine":false,"categoria":"corporativo","titulo_pt":"Página dos QR Codes Audicom","titulo_en":"Audicom QR Code Landing Page","tagline_pt":"Destino dos QR Codes aplicados nos carros e materiais da Audicom","tagline_en":"Landing page behind the QR codes on Audicom's vehicles and materials","descricao_pt":"Os QR Codes da frota e dos materiais impressos da Audicom apontam para esta página. Ela reúne em uma tela leve, pensada para o celular, os caminhos que o cliente mais procura: WhatsApp de vendas, central do cliente, suporte técnico, site e teste de velocidade.","descricao_en":"The QR codes on Audicom's fleet and printed materials point to this page. It gathers, on a lightweight phone-first screen, the paths customers look for most: sales on WhatsApp, the customer portal, technical support, the website and the speed test.","papel_pt":"Design e desenvolvimento front-end","papel_en":"Design and front-end development","impacto_pt":"Um único QR Code impresso serve a todos os canais, e os destinos podem mudar sem reimprimir nada.","impacto_en":"A single printed QR code serves every channel, and destinations can change without reprinting anything.","stack":["HTML5","CSS3","JavaScript"],"demo":"https://davicjc.github.io/QRCodeAudicomSite/","repo":"https://github.com/Davicjc/QRCodeAudicomSite","imagem":"fotos/projetos/qrcodeaudicom.webp","tipo_botao":"pagina"},{"id":"pokemon","ordem":23,"publicado":false,"destaque":false,"vitrine":false,"categoria":"pessoal","titulo_pt":"Cronologia Pokémon","titulo_en":"Pokémon Timeline","tagline_pt":"Linha do tempo interativa da franquia Pokémon","tagline_en":"Interactive timeline of the Pokémon franchise","descricao_pt":"Projeto pessoal: uma linha do tempo navegável da franquia Pokémon, feita para praticar layout, animação e organização de conteúdo extenso em JavaScript.","descricao_en":"Personal project: a browsable timeline of the Pokémon franchise, built to practise layout, animation and organising long-form content in JavaScript.","papel_pt":"Autor","papel_en":"Author","impacto_pt":"","impacto_en":"","stack":["JavaScript","HTML5","CSS3"],"demo":"https://davicjc.github.io/CronologiaPokemon/","repo":"https://github.com/Davicjc/CronologiaPokemon","imagem":"fotos/projetos/pokemon.webp","tipo_botao":"pagina"},{"id":"brunofilho","ordem":24,"publicado":false,"destaque":false,"vitrine":false,"categoria":"cliente","titulo_pt":"Portfólio Bruno F. Creation","titulo_en":"Bruno F. Creation Portfolio","tagline_pt":"Vitrine digital para os trabalhos criativos da marca","tagline_en":"A digital showcase for the brand's creative work","descricao_pt":"Site portfólio para destacar os trabalhos criativos de Bruno Filho, reunindo artes e serviços em uma vitrine digital.","descricao_en":"Portfolio website highlighting Bruno Filho's creative work, bringing his art and services together in one digital showcase.","papel_pt":"Design e desenvolvimento","papel_en":"Design and development","impacto_pt":"","impacto_en":"","stack":["HTML5","CSS3","JavaScript"],"demo":"","repo":"","imagem":"","tipo_botao":"pagina"}],"depoimentos":[{"id":"dep-01","ordem":1,"nome":"Geisa Paula","cargo_pt":"Coordenadora de Relacionamento · Algar Telecom","cargo_en":"Account Manager · Algar Telecom","texto_pt":"Davi demonstra alto nível de comprometimento, competência e proatividade, entregando todas as demandas com qualidade e excelência.","texto_en":"Davi demonstrates a high level of commitment, competence and proactivity, delivering all demands with quality and excellence.","foto":"fotos/sobremimterceiros/Geisa Paula.jpg","linkedin":"https://www.linkedin.com/in/geisa-paula-1a66a0175/"},{"id":"dep-02","ordem":2,"nome":"Dennis Wilber","cargo_pt":"Supervisor de Loja · Xiaomi Brasil","cargo_en":"Store Supervisor · Xiaomi Brazil","texto_pt":"Graças ao site que você fez sobre minhas experiências profissionais, consegui crescer, ser reconhecido e hoje sou supervisor.","texto_en":"Thanks to the website you made about my professional experiences, I managed to grow, be recognized and today I am a supervisor.","foto":"fotos/sobremimterceiros/Dennis Wilber.jpg","linkedin":"https://www.linkedin.com/in/dennis-wilber-10aa33259/"},{"id":"dep-03","ordem":3,"nome":"Fábio Marques Barbosa","cargo_pt":"Analista de Processos · Lyon Engenharia","cargo_en":"Process Analyst · Lyon Engineering","texto_pt":"Ele une conhecimentos sólidos em programação e hardware com atendimento profissional. Diagnostica problemas com precisão e entrega soluções consistentes.","texto_en":"He combines solid knowledge in programming and hardware with professional service. Diagnoses problems with precision and delivers consistent solutions.","foto":"fotos/sobremimterceiros/Fabio Marques.jpg","linkedin":"https://www.linkedin.com/in/fabiomarquesbarbosa/"},{"id":"dep-04","ordem":4,"nome":"Stéfano Schwenck","cargo_pt":"Coordenador de TI · Uniube","cargo_en":"IT Coordinator · Uniube","texto_pt":"Sempre demonstrou facilidade em transformar requisitos complexos em soluções funcionais estruturadas. Um profissional que não se contenta com o básico.","texto_en":"Always demonstrated ease in transforming complex requirements into structured solutions. A professional who is not content with the basics.","foto":"fotos/sobremimterceiros/Stéfano Schwenck.jpeg","linkedin":"https://www.linkedin.com/in/stefanosbvvita/"},{"id":"dep-05","ordem":0,"nome":"Reginaldo Junior","cargo_pt":"Gerente de Redes de TI · Audicom Telecom","cargo_en":"IT Network Manager · Audicom Telecom","texto_pt":"Davi demonstra comprometimento, foco e postura profissional exemplar, enfrenta novos desafios com coragem e rapidez de aprendizado, sempre buscando soluções eficientes e seguras para NOC, HelpDesk e CGR. Sua seriedade e disponibilidade fazem dele um recurso valioso: participa de projetos críticos, apoia colegas em demandas emergenciais e contribui para a melhoria contínua dos processos. Acompanho com orgulho seu crescimento e confio plenamente em sua capacidade de assumir responsabilidades maiores.","texto_en":"Davi demonstrates commitment, focus and exemplary professionalism, facing new challenges with courage and quick learning, always seeking efficient and secure solutions for NOC, HelpDesk and CGR. His dedication makes him a valuable resource: he participates in critical projects, supports colleagues in emergencies and contributes to continuous process improvement. I follow his professional growth with pride and fully trust his ability to take on greater responsibilities.","foto":"fotos/sobremimterceiros/Reginaldo Junior.jpg","linkedin":"https://www.linkedin.com/in/reginaldo-junior-800078121/"}],"certificados":[{"id":"cert-01","ordem":1,"emissor":"Microsoft","titulo_pt":"Fundamentos de Azure Copilot","titulo_en":"Azure Copilot Fundamentals","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Azure%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-02","ordem":2,"emissor":"Microsoft","titulo_pt":"Fundamentos de GitHub Copilot","titulo_en":"GitHub Copilot Fundamentals","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20GitHub%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-03","ordem":3,"emissor":"Microsoft","titulo_pt":"Java para Soluções em Azure","titulo_en":"Java for Azure Solutions","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Java%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-04","ordem":4,"emissor":"Microsoft","titulo_pt":"Linux para Ambientes Azure","titulo_en":"Linux on Azure","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20ao%20Linux%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-05","ordem":5,"emissor":"Microsoft","titulo_pt":"Agentes Inteligentes com Azure Copilot","titulo_en":"Intelligent Agents with Azure Copilot","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20aos%20agentes%20do%20Azure%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-06","ordem":6,"emissor":"Microsoft","titulo_pt":"Modernização de Aplicações com GitHub Copilot","titulo_en":"App Modernization with GitHub Copilot","links":[{"url":"certificados/Microsoft/Conquistas/Introdu%C3%A7%C3%A3o%20%C3%A0%20moderniza%C3%A7%C3%A3o%20do%20aplicativo%20GitHub%20Copilot.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-07","ordem":7,"emissor":"Microsoft","titulo_pt":"Migrar cargas do SQL Server para Azure SQL","titulo_en":"Migrate SQL Server Workloads to Azure SQL","links":[{"url":"certificados/Microsoft/Conquistas/Migrar%20cargas%20de%20trabalho%20do%20SQL%20Server%20para%20o%20Banco%20de%20Dados%20SQL%20do%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-08","ordem":8,"emissor":"Microsoft","titulo_pt":"Migrar cargas locais para Azure","titulo_en":"Migrate On-Premises Workloads to Azure","links":[{"url":"certificados/Microsoft/Conquistas/Migrar%20de%20cargas%20de%20trabalho%20locais%20para%20o%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-09","ordem":9,"emissor":"Microsoft","titulo_pt":"Manter bancos SQL Server no Azure","titulo_en":"Maintain SQL Server Databases on Azure","links":[{"url":"certificados/Microsoft/Conquistas/Preparar%20para%20manter%20bancos%20de%20dados%20baseados%20no%20SQL%20Server%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-10","ordem":10,"emissor":"Microsoft","titulo_pt":"Desenvolver soluções de IA no Azure","titulo_en":"Develop AI Solutions on Azure","links":[{"url":"certificados/Microsoft/Conquistas/Preparar-se%20para%20desenvolver%20solu%C3%A7%C3%B5es%20de%20IA%20no%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-11","ordem":11,"emissor":"Microsoft","titulo_pt":"Migrate & Modernize Challenge","titulo_en":"Migrate & Modernize Challenge","links":[{"url":"certificados/Microsoft/Desafios/Migrate%20%26%20Modernize%20Challenge.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-12","ordem":12,"emissor":"Microsoft","titulo_pt":"Administração de Banco de Dados no Azure","titulo_en":"Azure Database Administration","links":[{"url":"certificados/Microsoft/Roteiro%20de%20aprendizagem/Introdu%C3%A7%C3%A3o%20%C3%A0%20administra%C3%A7%C3%A3o%20do%20banco%20de%20dados%20do%20Azure.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-13","ordem":13,"emissor":"Microsoft","titulo_pt":"Trilha de Engenharia de IA","titulo_en":"AI Engineering Learning Path","links":[{"url":"certificados/Microsoft/Roteiro%20de%20aprendizagem/Preparar%20para%20engenharia%20de%20IA.pdf","label":"pdf"},{"url":"https://learn.microsoft.com/pt-br/users/davicastro-8836/transcript/v0gp9felmpm9xnn?tab=tab-other","label":"validar"}]},{"id":"cert-14","ordem":14,"emissor":"Sicoob","titulo_pt":"Finanças Pessoais","titulo_en":"Personal Finance","links":[{"url":"certificados/Sicoob/Finan%C3%A7as%20Pessoais.pdf","label":"pdf"},{"url":"https://se-liga-financas-online.memberkit.com.br/certificates/G6DyWX","label":"validar"}]},{"id":"cert-15","ordem":15,"emissor":"Sicoob","titulo_pt":"Finanças para MEI","titulo_en":"Finance for Micro-Entrepreneurs","links":[{"url":"certificados/Sicoob/Finan%C3%A7as%20para%20MEI.pdf","label":"pdf"},{"url":"https://se-liga-financas-online.memberkit.com.br/certificates/QA02el","label":"validar"}]},{"id":"cert-16","ordem":16,"emissor":"Sicoob","titulo_pt":"Finanças para Investidores","titulo_en":"Finance for Investors","links":[{"url":"certificados/Sicoob/Finan%C3%A7as%20para%20Investidores.pdf","label":"pdf"},{"url":"https://se-liga-financas-online.memberkit.com.br/certificates/bdJkV3","label":"validar"}]},{"id":"cert-17","ordem":17,"emissor":"Algar Telecom","titulo_pt":"Lei Geral de Proteção de Dados","titulo_en":"Brazilian Data Protection Law (LGPD)","links":[{"url":"certificados/Algar/Lei%20Geral%20de%20Prote%C3%A7%C3%A3o%20de%20Dados.pdf","label":"pdf"}]},{"id":"cert-18","ordem":18,"emissor":"Algar Telecom","titulo_pt":"Código de Conduta","titulo_en":"Code of Conduct","links":[{"url":"certificados/Algar/C%C3%B3digo%20de%20Conduta.pdf","label":"pdf"}]},{"id":"cert-19","ordem":19,"emissor":"Alura","titulo_pt":"Python para Desenvolvimento e Automação","titulo_en":"Python for Development and Automation","links":[{"url":"certificados/Alura/Python.pdf","label":"pdf"}]},{"id":"cert-20","ordem":20,"emissor":"Alura","titulo_pt":"Linha de Comando no Windows","titulo_en":"Windows Command Line","links":[{"url":"certificados/Alura/Prompt%20do%20Windows.pdf","label":"pdf"},{"url":"https://cursos.alura.com.br/formalCertificate/928718ae-78bf-470c-8a9f-3f0eb90de3e2","label":"validar"}]},{"id":"cert-21","ordem":21,"emissor":"Alura","titulo_pt":"Inglês para Tecnologia e Carreira","titulo_en":"English for Technology and Careers","links":[{"url":"certificados/Alura/Ingl%C3%AAs.pdf","label":"pdf"}]},{"id":"cert-22","ordem":22,"emissor":"Hacker Rangers","titulo_pt":"Segurança da Informação","titulo_en":"Information Security","links":[{"url":"certificados/Hacker%20Rangers/Seguran%C3%A7a%20da%20Informa%C3%A7%C3%A3o.pdf","label":"pdf"}]},{"id":"cert-23","ordem":23,"emissor":"TP-Link","titulo_pt":"Certificado de Participação em Webinar","titulo_en":"Webinar Participation Certificate","links":[{"url":"certificados/TPLink/Certificado%20de%20Participa%C3%A7%C3%A3o%20em%20Webinar.pdf","label":"pdf"},{"url":"certificados/TPLink/Comprovante%20de%20Valida%C3%A7%C3%A3o%20do%20Certificado.pdf","label":"validar"}]},{"id":"cert-24","ordem":24,"emissor":"Wizard","titulo_pt":"Inglês Avançado para Comunicação Profissional","titulo_en":"Advanced English for Professional Communication","links":[{"url":"certificados/Wizard/Ingl%C3%AAs.pdf","label":"pdf"}]}],"clientes":[{"id":"cli-01","ordem":1,"nome":"Audicom Telecom","site":"https://audicomtelecom.com.br/"},{"id":"cli-02","ordem":2,"nome":"Audicom Tecnologia","site":""},{"id":"cli-03","ordem":3,"nome":"Algar Telecom","site":""},{"id":"cli-04","ordem":4,"nome":"Callink","site":""},{"id":"cli-05","ordem":5,"nome":"Link Call","site":""},{"id":"cli-06","ordem":6,"nome":"Cooperbant","site":""},{"id":"cli-07","ordem":7,"nome":"Valoria · Alpa Solutions","site":""},{"id":"cli-08","ordem":8,"nome":"Instituto Elora","site":""},{"id":"cli-09","ordem":9,"nome":"Capilé Drinks","site":"https://davicjc.github.io/CapileSite/"},{"id":"cli-10","ordem":10,"nome":"Patricia Moura Lash Design","site":"https://davicjc.github.io/PatriciaMouraLashDesign/"},{"id":"cli-11","ordem":11,"nome":"Barbearia Soares","site":"https://davicjc.github.io/BarbeariaSoares/"},{"id":"cli-12","ordem":12,"nome":"Dennis Wilber","site":"https://davicjc.github.io/PortifolioDDWilber/"},{"id":"cli-13","ordem":13,"nome":"Bruno Filho","site":""},{"id":"cli-14","ordem":14,"nome":"Sanctorum","site":""}],"contatos":[{"id":"ct-email","ordem":1,"rotulo_pt":"e-mail","rotulo_en":"email","valor":"davicjc@gmail.com","url":"mailto:davicjc@gmail.com"},{"id":"ct-whatsapp","ordem":2,"rotulo_pt":"whatsapp","rotulo_en":"whatsapp","valor":"+55 34 99333-6186","url":"https://wa.me/5534993336186"},{"id":"ct-linkedin","ordem":3,"rotulo_pt":"linkedin","rotulo_en":"linkedin","valor":"in/davicjc","url":"https://linkedin.com/in/davicjc"},{"id":"ct-github","ordem":4,"rotulo_pt":"github","rotulo_en":"github","valor":"Davicjc","url":"https://github.com/Davicjc"}]}</script>
 
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
@@ -304,103 +314,139 @@ const CONSOLE = 'https://console.firebase.google.com/project/' + PROJETO;
 
 /* ══════════════ ESQUEMAS ══════════════
    Cada seção descreve seus campos. O formulário, a lista e a validação
-   saem daqui — para adicionar um campo novo, basta declará-lo. */
+   saem daqui — para adicionar um campo novo, basta declará-lo.
+   Salvar regrava o documento inteiro a partir do que foi lido do banco:
+   campos que não aparecem no formulário (categoria, textos em espanhol…) continuam como estão. */
+const SITUACOES = [['no_ar','No ar'],['desenvolvimento','Em desenvolvimento'],['prototipo','Protótipo'],['aguardando','Aguardando o cliente'],['abandonado','Descontinuado'],['historico','Histórico']];
+const ORIGENS = [['pessoal','Projeto meu'],['empresa','Feito na empresa onde trabalho'],['cliente','Feito para um cliente'],['estudo','Faculdade ou estudo']];
+const nomeSituacao = k => (SITUACOES.find(s => s[0] === k) || [k, k])[1];
+const idsProjetos = () => (estado.dados.projetos || []).map(p => p.id).sort();
+const AJUDA_IMAGEM = 'Caminho de um arquivo do repositório, como fotos/projetos/nexusatlas/agenda.webp. O build gera as versões menores e o srcset a partir dele.';
+
 const SECOES = [
-  { id:'categorias', nome:'Categorias', prefixo:'cat',
-    descricao:'Categorias dos projetos. A cor será usada na bolinha do projeto.',
-    titulo: c => c.nome_pt, sub: c => c.cor || 'Sem cor',
-    novo: { cor: '#94a3b8' },
-    campos:[
-      { k:'nome', tipo:'bi', rotulo:'Nome', obrigatorio:true },
-      { k:'cor', tipo:'texto', rotulo:'Cor (HEX)', ajuda:'Ex: #60a5fa' },
-      { k:'ordem', tipo:'texto', rotulo:'Ordem (numérico)' }
-    ] },
   { id:'site', nome:'Página inicial', doc:true,
-    descricao:'Apresentação, números do topo, diagrama de camadas e os títulos de cada seção da home.',
+    descricao:'Título, apresentação, provas, princípios, a parede de telas do topo e os títulos de cada seção.',
     campos:[
       { secao:'Apresentação' },
       { k:'nome', tipo:'texto', rotulo:'Nome curto' },
       { k:'nome_completo', tipo:'texto', rotulo:'Nome completo' },
-      { k:'cargo', tipo:'bi', rotulo:'Cargo (linha abaixo do nome)' },
+      { k:'cargo', tipo:'bi', rotulo:'Cargo', ajuda:'Aparece no topo, nos dados estruturados e no currículo.' },
+      { k:'titulo', tipo:'bi', rotulo:'Título grande da home' },
+      { k:'lead', tipo:'bi-longo', rotulo:'Texto abaixo do título' },
       { k:'local', tipo:'bi', rotulo:'Localização' },
-      { k:'resumo', tipo:'bi-longo', rotulo:'Texto de apresentação' },
-      { k:'disponivel', tipo:'bool', rotulo:'Mostrar selo de disponibilidade' },
-      { k:'disponibilidade', tipo:'bi', rotulo:'Texto do selo' },
-      { secao:'Números do topo' },
-      { k:'numeros', tipo:'grupo', rotulo:'Números', item:'número', novo:{ valor:'', rotulo_pt:'', rotulo_en:'' },
-        campos:[ { k:'valor', tipo:'texto', rotulo:'Valor (ex.: 20+)' }, { k:'rotulo', tipo:'bi', rotulo:'Legenda' } ] },
-      { secao:'Diagrama de camadas' },
-      { k:'camadas', tipo:'grupo', rotulo:'Camadas (de cima para baixo)', item:'camada', novo:{ nome_pt:'', nome_en:'', itens:[] },
-        campos:[ { k:'nome', tipo:'bi', rotulo:'Nome da camada' }, { k:'itens', tipo:'lista', rotulo:'Tecnologias' } ] },
+      { k:'formatura', tipo:'bi', rotulo:'Formação (linha curta)', ajuda:'Ex.: Sistemas de Informação · Uniube · conclusão em dez 2026' },
+      { k:'orcid', tipo:'texto', rotulo:'ORCID', ajuda:'Só o número: 0009-0005-8485-455X' },
+      { secao:'Busca e compartilhamento' },
+      { k:'seo_titulo', tipo:'bi', rotulo:'Título na aba e no Google' },
+      { k:'seo_descricao', tipo:'bi-longo', rotulo:'Descrição no Google', ajuda:'Entre 140 e 160 caracteres.' },
+      { secao:'Provas (números que dá para conferir)' },
+      { k:'provas', tipo:'grupo', rotulo:'Provas', item:'prova', novo:{ valor:'', valor_en:'', rotulo_pt:'', rotulo_en:'', chave:'' },
+        campos:[
+          { k:'valor', tipo:'texto', rotulo:'Valor em português (ex.: 1.164)' },
+          { k:'valor_en', tipo:'texto', rotulo:'Valor em inglês (ex.: 1,164)' },
+          { k:'rotulo', tipo:'bi', rotulo:'Legenda' },
+          { k:'chave', tipo:'select', rotulo:'Atualizar sozinho', opcoes:[['','Não, o valor é fixo'],['contribuicoes','Sim: contribuições no GitHub'],['repositorios','Sim: repositórios no GitHub']] }
+        ] },
+      { secao:'Como eu trabalho' },
+      { k:'principios_titulo', tipo:'bi', rotulo:'Título da seção' },
+      { k:'principios', tipo:'grupo', rotulo:'Princípios', item:'princípio', novo:{ titulo_pt:'', titulo_en:'', texto_pt:'', texto_en:'' },
+        campos:[ { k:'titulo', tipo:'bi', rotulo:'Título' }, { k:'texto', tipo:'bi-longo', rotulo:'Texto' } ] },
+      { secao:'Parede de telas do topo' },
+      { k:'parede', tipo:'grupo', rotulo:'Telas (a ordem define a posição na parede)', item:'tela', novo:{ projeto:'', nome:'', src:'', alt:[] },
+        campos:[
+          { k:'projeto', tipo:'texto', rotulo:'Projeto (id)', datalist: idsProjetos },
+          { k:'nome', tipo:'texto', rotulo:'Texto na barra da tela', ajuda:'Ex.: nexusatlas.com.br' },
+          { k:'src', tipo:'caminho-imagem', rotulo:'Imagem' },
+          { k:'alt', tipo:'linhas', rotulo:'Outras imagens (troca de canal)', ajuda:'Uma por linha.' },
+          { k:'sonda', tipo:'url', rotulo:'Endereço do ping', ajuda:'Quando responde, a tela liga e mostra os ms. Deixe vazio para telas sem ping.' }
+        ] },
       { secao:'Títulos das seções' },
-      { k:'capacidades_titulo', tipo:'bi', rotulo:'"O que eu faço" — título' },
-      { k:'capacidades_sub', tipo:'bi-longo', rotulo:'"O que eu faço" — subtítulo' },
+      { k:'trabalhos_titulo', tipo:'bi', rotulo:'Trabalho — título' },
+      { k:'trabalhos_sub', tipo:'bi-longo', rotulo:'Trabalho — subtítulo' },
+      { k:'medios_titulo', tipo:'bi', rotulo:'"Mais sistemas que eu construí" — título' },
+      { k:'entregas_titulo', tipo:'bi', rotulo:'Entregas — título' },
+      { k:'entregas_sub', tipo:'bi-longo', rotulo:'Entregas — subtítulo' },
       { k:'trajetoria_titulo', tipo:'bi', rotulo:'Trajetória — título' },
       { k:'trajetoria_sub', tipo:'bi-longo', rotulo:'Trajetória — subtítulo' },
-      { k:'clientes_titulo', tipo:'bi', rotulo:'Clientes — título' },
-      { k:'clientes_sub', tipo:'bi-longo', rotulo:'Clientes — subtítulo' },
-      { k:'destaques_titulo', tipo:'bi', rotulo:'Destaques — título' },
-      { k:'destaques_sub', tipo:'bi-longo', rotulo:'Destaques — subtítulo' },
-      { k:'depoimentos_titulo', tipo:'bi', rotulo:'Depoimentos — título' },
-      { k:'depoimentos_sub', tipo:'bi-longo', rotulo:'Depoimentos — subtítulo' },
-      { k:'certificados_titulo', tipo:'bi', rotulo:'Certificados — título' },
       { k:'contato_titulo', tipo:'bi', rotulo:'Contato — título' },
       { k:'contato_sub', tipo:'bi-longo', rotulo:'Contato — subtítulo' },
-      { k:'projetos_titulo', tipo:'bi', rotulo:'Aba Projetos — título' },
-      { k:'projetos_sub', tipo:'bi-longo', rotulo:'Aba Projetos — introdução' },
     ] },
 
   { id:'projetos', nome:'Projetos', prefixo:'proj',
-    descricao:'Cada projeto vira uma linha na aba Projetos. "Mostrar na home" coloca até três deles em destaque na página inicial.',
-    titulo: p => p.titulo_pt, sub: p => p.tagline_pt, imagem: p => p.imagem,
-    selos: p => [p.destaque && ['destaque','sinal'], p.vitrine && ['na home','sinal'], !p.demo && !p.repo && ['privado'], p.categoria && [rotuloCategoria(p.categoria)]],
-    novo: { publicado:true, destaque:false, vitrine:false, categoria:'cliente', tipo_botao:'demo', stack:[] },
+    descricao:'Cada projeto publicado ganha página própria em PT e EN. Os marcados como estudo de caso aparecem grandes na home.',
+    titulo: p => p.titulo_pt, sub: p => [nomeSituacao(p.situacao || 'no_ar'), p.ano, p.cliente].filter(Boolean).join(' · '), imagem: p => p.imagem,
+    selos: p => [p.caso && ['estudo de caso','sinal'], p.ativo && ['em uso'], p.privado && !p.repo && ['código privado']],
+    novo: { publicado:true, situacao:'desenvolvimento', origem:'pessoal', tipo_botao:'demo', stack:[] },
     campos:[
-      { secao:'Conteúdo' },
+      { secao:'Identificação' },
       { k:'titulo', tipo:'bi', rotulo:'Nome do projeto', obrigatorio:true },
-      { k:'tagline', tipo:'bi', rotulo:'Frase de resumo', ajuda:'Uma linha curta, aparece em verde abaixo do nome.' },
-      { k:'descricao', tipo:'bi-longo', rotulo:'Descrição', ajuda:'Qual problema o projeto resolve e como.' },
+      { k:'tagline', tipo:'bi', rotulo:'Frase de resumo', ajuda:'Uma linha, sem ponto final.' },
+      { k:'situacao', tipo:'select', rotulo:'Situação', opcoes: SITUACOES },
+      { k:'ativo', tipo:'bool', rotulo:'Em uso agora (mostra "em uso" ao lado da situação)' },
+      { k:'ano', tipo:'texto', rotulo:'Ano' },
+      { k:'periodo', tipo:'bi', rotulo:'Período (opcional)', ajuda:'Ex.: mai 2025 — hoje' },
+      { k:'origem', tipo:'select', rotulo:'De onde veio', opcoes: ORIGENS },
+      { k:'cliente', tipo:'texto', rotulo:'Cliente ou empresa' },
       { k:'papel', tipo:'bi', rotulo:'Meu papel' },
+      { secao:'Conteúdo' },
+      { k:'descricao', tipo:'bi-longo', rotulo:'Descrição', ajuda:'Qual problema o projeto resolve e como.' },
       { k:'impacto', tipo:'bi-longo', rotulo:'Resultado' },
-      { k:'stack', tipo:'lista', rotulo:'Tecnologias', ajuda:'Separe por vírgula.' },
-      { secao:'Links e imagem' },
-      { k:'demo', tipo:'url', rotulo:'Link da demo ou página', ajuda:'Abre dentro do site, no visor. Deixe vazio para projeto privado.' },
-      { k:'tipo_botao', tipo:'select', rotulo:'Texto do botão', opcoes:[['demo','acessar demo'],['pagina','acessar página']] },
+      { k:'stack', tipo:'linhas', rotulo:'Tecnologias', ajuda:'Uma por linha.' },
+      { secao:'Estudo de caso' },
+      { k:'caso', tipo:'bool', rotulo:'É estudo de caso (página completa e destaque na home)' },
+      { k:'contexto', tipo:'bi-longo', rotulo:'O problema' },
+      { k:'decisoes', tipo:'grupo', rotulo:'Decisões', item:'decisão', novo:{ titulo_pt:'', titulo_en:'', texto_pt:'', texto_en:'' },
+        campos:[ { k:'titulo', tipo:'bi', rotulo:'Título' }, { k:'texto', tipo:'bi-longo', rotulo:'Texto' } ] },
+      { k:'arquitetura', tipo:'grupo', rotulo:'Arquitetura (camadas, de cima para baixo)', item:'camada', novo:{ camada_pt:'', camada_en:'', itens:[] },
+        campos:[ { k:'camada', tipo:'bi', rotulo:'Nome da camada' }, { k:'itens', tipo:'linhas', rotulo:'Itens', ajuda:'Um por linha.' } ] },
+      { k:'metricas', tipo:'grupo', rotulo:'Números do projeto', item:'número', novo:{ valor:'', valor_en:'', rotulo_pt:'', rotulo_en:'' },
+        campos:[ { k:'valor', tipo:'texto', rotulo:'Valor em português' }, { k:'valor_en', tipo:'texto', rotulo:'Valor em inglês' }, { k:'rotulo', tipo:'bi', rotulo:'Legenda' } ] },
+      { secao:'Links e telas' },
+      { k:'demo', tipo:'url', rotulo:'Endereço no ar', ajuda:'Deixe vazio se não houver página pública.' },
+      { k:'tipo_botao', tipo:'select', rotulo:'Texto do botão', opcoes:[['demo','Abrir o sistema'],['pagina','Abrir a página']] },
       { k:'repo', tipo:'url', rotulo:'Repositório no GitHub' },
-      { k:'imagem', tipo:'imagem', rotulo:'Captura de tela', largura:1200 },
+      { k:'privado', tipo:'bool', rotulo:'Código privado (mostra o selo quando não há repositório)' },
+      { k:'imagem', tipo:'caminho-imagem', rotulo:'Imagem principal' },
+      { k:'celular', tipo:'caminho-imagem', rotulo:'Tela no celular (opcional)' },
+      { k:'galeria', tipo:'grupo', rotulo:'Galeria (a primeira abre a janela do projeto)', item:'tela', novo:{ src:'', legenda_pt:'', legenda_en:'' },
+        campos:[ { k:'src', tipo:'caminho-imagem', rotulo:'Imagem' }, { k:'legenda', tipo:'bi', rotulo:'Legenda' } ] },
+      { k:'nota_demo', tipo:'bi-longo', rotulo:'Nota sobre as telas', ajuda:'Ex.: telas com dados fictícios, montadas a partir do sistema real.' },
       { secao:'Exibição' },
-      { k:'categoria', tipo:'select', rotulo:'Categoria', opcoes: () => { const cats = estado.dados.categorias||[]; return cats.length ? cats.map(c => [c.id, c.nome_pt || c.id]) : [['','Crie uma categoria primeiro']]; } },
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
-      { k:'destaque', tipo:'bool', rotulo:'Marcar como destaque' },
-      { k:'vitrine', tipo:'bool', rotulo:'Mostrar na página inicial (até 3)' },
+      { k:'grupo', tipo:'select', rotulo:'Grupo na home', opcoes:[['','Normal'],['rede','Ferramenta de rede']] },
     ] },
 
   { id:'experiencias', nome:'Trajetória', prefixo:'exp',
-    descricao:'Linha do tempo profissional, da mais recente para a mais antiga.',
+    descricao:'Linha do tempo e currículo. Cargos e datas como estão no ORCID.',
     titulo: e => e.empresa, sub: e => (e.cargo_pt||'') + ' · ' + (e.periodo_pt||''),
-    selos: e => [e.atual && ['atual','sinal']],
-    novo: { publicado:true, atual:false },
+    selos: e => [e.atual && ['atual','sinal'], e.tipo === 'formacao' && ['formação']],
+    novo: { publicado:true, atual:false, tipo:'trabalho' },
     campos:[
-      { k:'empresa', tipo:'texto', rotulo:'Empresa', obrigatorio:true },
-      { k:'cargo', tipo:'bi', rotulo:'Cargo' },
-      { k:'periodo', tipo:'bi', rotulo:'Período', ajuda:'Ex.: set 2025 — atual' },
+      { k:'empresa', tipo:'texto', rotulo:'Empresa ou instituição', obrigatorio:true },
+      { k:'empresa_en', tipo:'texto', rotulo:'Empresa em inglês (só se o nome mudar)', ajuda:'Ex.: Callink · Bradesco operation' },
+      { k:'cargo', tipo:'bi', rotulo:'Cargo ou curso' },
+      { k:'area', tipo:'bi', rotulo:'Área (opcional)' },
+      { k:'periodo', tipo:'bi', rotulo:'Período', ajuda:'Ex.: jul 2026 — hoje' },
+      { k:'inicio', tipo:'texto', rotulo:'Início (AAAA-MM)' },
+      { k:'fim', tipo:'texto', rotulo:'Fim (AAAA-MM, vazio se atual)' },
+      { k:'tipo', tipo:'select', rotulo:'Tipo', opcoes:[['trabalho','Trabalho'],['formacao','Formação']] },
       { k:'descricao', tipo:'bi-longo', rotulo:'O que eu fiz' },
-      { k:'progressao', tipo:'bi', rotulo:'Progressão interna (opcional)', ajuda:'Ex.: Atendente → Programador → Vice Supervisor' },
-      { k:'atual', tipo:'bool', rotulo:'Emprego atual (ponto verde na linha do tempo)' },
+      { k:'progressao', tipo:'bi', rotulo:'Progressão interna (opcional)' },
+      { k:'atual', tipo:'bool', rotulo:'Atual (ponto verde na linha do tempo)' },
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
     ] },
 
   { id:'depoimentos', nome:'Depoimentos', prefixo:'dep',
-    descricao:'Recomendações exibidas na home. Textos longos ocupam a largura inteira automaticamente.',
+    descricao:'Recomendações exibidas na home.',
     titulo: d => d.nome, sub: d => d.cargo_pt, imagem: d => d.foto, redonda:true,
     novo: { publicado:true },
     campos:[
       { k:'nome', tipo:'texto', rotulo:'Nome', obrigatorio:true },
-      { k:'projeto_vinculado', tipo:'texto', rotulo:'Projeto vinculado', ajuda:'Qual projeto este cliente está avaliando? (Ex: Audicom Hub)' },
+      { k:'projeto_vinculado', tipo:'texto', rotulo:'Projeto vinculado', ajuda:'Qual projeto esta pessoa está avaliando? (ex.: Audicom Hub)' },
       { k:'cargo', tipo:'bi', rotulo:'Cargo e empresa' },
       { k:'texto', tipo:'bi-longo', rotulo:'Depoimento' },
       { k:'linkedin', tipo:'url', rotulo:'LinkedIn' },
-      { k:'foto', tipo:'imagem', rotulo:'Foto', largura:240, redonda:true },
+      { k:'foto', tipo:'imagem', rotulo:'Foto', largura:240, redonda:true, base64:true },
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
     ] },
 
@@ -411,8 +457,7 @@ const SECOES = [
     campos:[
       { k:'titulo', tipo:'bi', rotulo:'Nome do certificado', obrigatorio:true },
       { k:'emissor', tipo:'texto', rotulo:'Emissor', ajuda:'Certificados com o mesmo emissor formam um filtro.', datalist: () => [...new Set((estado.dados.certificados||[]).map(c=>c.emissor).filter(Boolean))] },
-      { k:'ordem', tipo:'texto', rotulo:'Ordem (numérico)', ajuda:'Deixe em branco para ir para o fim da lista' },
-      { k:'links', tipo:'grupo', rotulo:'Links e PDFs', item:'Link',
+      { k:'links', tipo:'grupo', rotulo:'Links e PDFs', item:'link',
         campos:[
           { k:'url', tipo:'url', rotulo:'URL', obrigatorio:true },
           { k:'label', tipo:'select', rotulo:'Tipo', opcoes:[['pdf','PDF'],['validar','Validação']] }
@@ -420,30 +465,8 @@ const SECOES = [
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
     ] },
 
-  { id:'clientes', nome:'Clientes e marcas', prefixo:'cli',
-    descricao:'Nomes e logos exibidos na seção de clientes. Com site preenchido, o nome vira link.',
-    titulo: c => c.nome, sub: c => c.site || 'sem link',
-    novo: { publicado:true },
-    campos:[
-      { k:'nome', tipo:'texto', rotulo:'Nome', obrigatorio:true },
-      { k:'logo', tipo:'imagem', rotulo:'Logo da empresa (Base64)', largura:400, base64:true },
-      { k:'site', tipo:'url', rotulo:'Site (opcional)' },
-      { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
-    ] },
-
-  { id:'capacidades', nome:'O que eu faço', prefixo:'cap',
-    descricao:'Os blocos da seção "Da tela ao roteador". Quatro é o número que melhor encaixa no layout.',
-    titulo: c => c.titulo_pt, sub: c => (c.tecnologias||[]).join(', '),
-    novo: { publicado:true, tecnologias:[] },
-    campos:[
-      { k:'titulo', tipo:'bi', rotulo:'Título', obrigatorio:true },
-      { k:'texto', tipo:'bi-longo', rotulo:'Texto' },
-      { k:'tecnologias', tipo:'lista', rotulo:'Tecnologias', ajuda:'Separe por vírgula.' },
-      { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
-    ] },
-
   { id:'contatos', nome:'Contatos', prefixo:'ct',
-    descricao:'Canais exibidos no fim da home.',
+    descricao:'Canais do fim da home e do cabeçalho do currículo.',
     titulo: c => c.rotulo_pt, sub: c => c.valor,
     novo: { publicado:true },
     campos:[
@@ -453,16 +476,17 @@ const SECOES = [
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
     ] },
 
-  { id:'banco', nome:'Banco de dados', ferramentas:true },
+  { id:'banco', nome:'Banco e publicação', ferramentas:true },
 ];
 const COLECOES = SECOES.filter(s => !s.doc && !s.ferramentas).map(s => s.id);
+/* O site novo não usa estas coleções, mas elas continuam no banco: entram na cópia de segurança e na importação. */
+const TODAS = [...COLECOES, 'capacidades', 'clientes', 'categorias'];
 
 /* ══════════════ UTILITÁRIOS ══════════════ */
 const $ = sel => document.querySelector(sel);
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 const clonar = o => JSON.parse(JSON.stringify(o ?? null));
 const ordenar = l => (l||[]).slice().sort((a,b) => (a.ordem||0) - (b.ordem||0));
-function rotuloCategoria(k){ const c = (estado.dados.categorias||[]).find(x => x.id === k); return c ? (c.nome_pt || k) : k; }
 function secao(id){ return SECOES.find(s => s.id === id); }
 
 function ler(obj, caminho){
@@ -538,8 +562,10 @@ const estado = {
   editando: null,      // { secao, id|null }
   rascunho: null,
   sujo: false,
+  overlay: null,       // data/overlay.json do repositório, enquanto existir
+  importacao: null,    // prévia de um JSON a importar
 };
-COLECOES.forEach(c => estado.dados[c] = []);
+TODAS.forEach(c => estado.dados[c] = []);
 
 /* ══════════════ AUTENTICAÇÃO ══════════════ */
 onAuthStateChanged(auth, async usuario => {
@@ -598,10 +624,11 @@ async function carregarTudo(){
   try {
     const [siteSnap, ...snaps] = await comTempo(Promise.all([
       getDoc(doc(bd, 'config', 'site')),
-      ...COLECOES.map(c => getDocs(collection(bd, c))),
+      ...TODAS.map(c => getDocs(collection(bd, c))),
+      carregarOverlay(),
     ]), 15000, 'tempo esgotado');
     estado.dados.site = siteSnap.exists() ? siteSnap.data() : null;
-    snaps.forEach((s, i) => { estado.dados[COLECOES[i]] = s.docs.map(d => Object.assign({}, d.data(), { id: d.id })); });
+    snaps.slice(0, TODAS.length).forEach((s, i) => { estado.dados[TODAS[i]] = s.docs.map(d => Object.assign({}, d.data(), { id: d.id })); });
     estado.carregado = true;
     if (bancoVazio() && estado.secao !== 'banco'){ estado.secao = 'banco'; }
   } catch (e) {
@@ -610,7 +637,7 @@ async function carregarTudo(){
   renderNav();
   renderPrincipal();
 }
-function totalDocs(){ return COLECOES.reduce((n, c) => n + estado.dados[c].length, 0) + (estado.dados.site ? 1 : 0); }
+function totalDocs(){ return TODAS.reduce((n, c) => n + estado.dados[c].length, 0) + (estado.dados.site ? 1 : 0); }
 function bancoVazio(){ return totalDocs() === 0; }
 
 /* ══════════════ NAVEGAÇÃO ══════════════ */
@@ -661,16 +688,16 @@ function cabecalho(titulo, descricao, acoes = ''){
 function renderDocumento(alvo, s){
   const site = estado.dados.site;
   alvo.innerHTML = cabecalho(s.nome, s.descricao, `<button class="btn btn-forte" data-acao="editar-site">Editar página inicial</button>`) +
-    (site ? `<div class="cartao"><h2>${esc(site.nome || '')}</h2><p>${esc(site.cargo_pt || '')}</p>
-       <p style="margin:0">${esc(site.resumo_pt || '')}</p></div>`
-          : `<div class="cartao aviso"><p>A configuração da página inicial ainda não existe no banco. Popule o banco na seção “Banco de dados” ou clique em editar para criá-la do zero.</p></div>`);
+    (site ? `<div class="cartao"><span class="rotulo">${esc(site.cargo_pt || '')}</span><h2>${esc(site.titulo_pt || site.nome || '')}</h2>
+       <p style="margin:0">${esc(site.lead_pt || site.resumo_pt || '')}</p></div>`
+          : `<div class="cartao aviso"><p>A página inicial ainda não existe no banco. Importe uma cópia em “Banco e publicação” ou clique em editar para criá-la do zero.</p></div>`);
 }
 
 function renderLista(alvo, s){
   const itens = ordenar(estado.dados[s.id]);
   let h = cabecalho(s.nome, s.descricao, `<button class="btn btn-forte" data-acao="novo"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Novo</button>`);
   if (!itens.length){
-    h += `<div class="lista"><div class="vazio">Nada aqui ainda. Use “Novo” para adicionar${bancoVazio() ? ', ou popule o banco em “Banco de dados”' : ''}.</div></div>`;
+    h += `<div class="lista"><div class="vazio">Nada aqui ainda. Use “Novo” para adicionar${bancoVazio() ? ', ou importe uma cópia em “Banco e publicação”' : ''}.</div></div>`;
     alvo.innerHTML = h; return;
   }
   h += '<div class="lista">';
@@ -722,8 +749,10 @@ $('#principal').addEventListener('click', async ev => {
     if (acao === 'excluir') return excluir(s, id);
     if (acao === 'publicar') return alternarPublicado(s, id);
     if (acao === 'subir' || acao === 'descer') return mover(s, id, acao === 'subir' ? -1 : 1);
-    if (acao === 'popular') return popular(b);
     if (acao === 'exportar') return exportar();
+    if (acao === 'importar-overlay') return prepararImportacao(estado.overlay, 'data/overlay.json do repositório');
+    if (acao === 'gravar-importacao') return gravarImportacao(b);
+    if (acao === 'cancelar-importacao'){ estado.importacao = null; return renderPrincipal(); }
     if (acao === 'copiar-regras') return copiar(b.dataset.alvo);
   } catch (e) { avisar(explicarErro(e), 'erro'); }
 });
@@ -744,7 +773,7 @@ async function alternarPublicado(s, id){
   await setDoc(doc(bd, s.id, id), { publicado: novo }, { merge:true });
   it.publicado = novo;
   renderPrincipal();
-  avisar(novo ? 'Publicado no site.' : 'Oculto do site.');
+  avisar(novo ? 'Marcado como publicado. Entra no site na próxima atualização.' : 'Marcado como oculto. Sai do site na próxima atualização.', 'ok', 5000);
 }
 
 async function mover(s, id, passo){
@@ -808,36 +837,41 @@ function renderFormulario(){
   const s = secao(estado.editando.secao);
   const corpo = $('#editor-corpo');
   const rolagem = corpo.scrollTop;
-  corpo.innerHTML = s.campos.map(c => renderCampo(c, estado.rascunho, '')).join('');
+  // Enquanto data/overlay.json existir, os campos dele vencem o banco no build: avisar antes de editar.
+  const cobertos = camposOverlay(s.doc ? 'site' : s.id, estado.editando.id);
+  const aviso = cobertos.length ? `<div class="aviso-overlay"><b>Ainda não vale editar: ${cobertos.length} campo${cobertos.length > 1 ? 's' : ''} deste documento vêm de data/overlay.json.</b>
+    <p>No build, o arquivo do repositório vence o banco: ${esc(cobertos.slice(0, 10).join(', '))}${cobertos.length > 10 ? ' e mais ' + (cobertos.length - 10) : ''}. Importe o overlay em “Banco e publicação” antes de mexer nesses campos.</p></div>` : '';
+  corpo.innerHTML = aviso + s.campos.map(c => renderCampo(c, estado.rascunho, '')).join('');
   corpo.scrollTop = rolagem;
 }
 
+function atualizarPrevia(caminho, valor){
+  const alvo = $('#editor-corpo').querySelector(`[data-previa="${CSS.escape(caminho)}"]`);
+  if (!alvo) return;
+  const url = urlPrevia(valor);
+  const novo = document.createElement(url ? 'img' : 'div');
+  novo.className = url ? 'previa' : 'previa previa-vazia';
+  novo.dataset.previa = caminho;
+  if (url){ novo.src = url; novo.alt = ''; novo.onerror = () => { novo.replaceWith(Object.assign(document.createElement('div'), { className:'previa previa-vazia', textContent:'arquivo não encontrado' })); }; }
+  else novo.textContent = 'sem imagem';
+  alvo.replaceWith(novo);
+}
+
+/* Rascunho de tradução para o inglês; revise antes de salvar (o site é lido por recrutadores de fora). */
 window.traduzirCampo = async function(caminho) {
   const ptEl = document.querySelector(`[data-caminho="${CSS.escape(caminho + '_pt')}"]`);
   const enEl = document.querySelector(`[data-caminho="${CSS.escape(caminho + '_en')}"]`);
-  const esEl = document.querySelector(`[data-caminho="${CSS.escape(caminho + '_es')}"]`);
-  if (!ptEl || !ptEl.value) return avisar('Preencha o campo em PT primeiro.', 'aviso');
-  
-  const texto = ptEl.value;
-  avisar('Traduzindo...', 'ok');
-  
+  if (!ptEl || !enEl) return;
+  if (!ptEl.value) return avisar('Preencha o campo em português primeiro.', 'erro');
+  avisar('Traduzindo…');
   try {
-    const [resEn, resEs] = await Promise.all([
-      fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=en&dt=t&q=${encodeURIComponent(texto)}`),
-      fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=es&dt=t&q=${encodeURIComponent(texto)}`)
-    ]);
-    const jsonEn = await resEn.json();
-    const jsonEs = await resEs.json();
-    
-    enEl.value = jsonEn[0].map(x => x[0]).join('');
+    const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=pt&tl=en&dt=t&q=${encodeURIComponent(ptEl.value)}`);
+    const json = await r.json();
+    enEl.value = json[0].map(x => x[0]).join('');
     enEl.dispatchEvent(new Event('input', { bubbles: true }));
-    
-    esEl.value = jsonEs[0].map(x => x[0]).join('');
-    esEl.dispatchEvent(new Event('input', { bubbles: true }));
-
-    avisar('Tradução concluída.', 'ok');
+    avisar('Tradução pronta. Revise antes de salvar.');
   } catch (err) {
-    avisar('Erro ao traduzir.', 'erro');
+    avisar('Não consegui traduzir agora.', 'erro');
   }
 };
 
@@ -866,12 +900,24 @@ function renderCampo(c, obj, base){
           ? `<textarea data-caminho="${caminho}_${lang}" rows="4">${val}</textarea>`
           : `<input type="text" data-caminho="${caminho}_${lang}" value="${val}">`}</label>`;
       };
-      const btnTraduzir = `<button type="button" class="btn btn-mini" style="margin-left:auto" onclick="traduzirCampo('${caminho}')" title="Traduzir PT para EN e ES">Traduzir</button>`;
-      return `<fieldset class="campo"><legend style="display:flex; width:100%; align-items:center;">${esc(c.rotulo)}${obrig}${btnTraduzir}</legend><div class="bi-grade">${par('pt')}${par('en')}${par('es')}</div>${ajuda}</fieldset>`;
+      const btnTraduzir = `<button type="button" class="btn btn-mini" style="margin-left:auto" onclick="traduzirCampo('${caminho}')" title="Traduzir o português para o inglês">Traduzir</button>`;
+      return `<fieldset class="campo"><legend style="display:flex; width:100%; align-items:center;">${esc(c.rotulo)}${obrig}${btnTraduzir}</legend><div class="bi-grade">${par('pt')}${par('en')}</div>${ajuda}</fieldset>`;
     }
     case 'lista':
       return `<label class="campo"><span>${esc(c.rotulo)}</span>
         <input type="text" data-caminho="${caminho}" data-tipo="lista" value="${esc((v || []).join(', '))}">${ajuda}</label>`;
+    case 'linhas':
+      return `<label class="campo"><span>${esc(c.rotulo)}</span>
+        <textarea data-caminho="${caminho}" data-tipo="linhas" rows="${Math.min(8, Math.max(3, (v || []).length + 1))}">${esc((v || []).join('\n'))}</textarea>${ajuda}</label>`;
+    case 'caminho-imagem': {
+      const prev = urlPrevia(v);
+      return `<div class="campo"><span>${esc(c.rotulo)}</span><div class="imagem-campo">
+        ${prev ? `<img class="previa" src="${esc(prev)}" alt="" data-previa="${caminho}">` : `<div class="previa previa-vazia" data-previa="${caminho}">sem imagem</div>`}
+        <div class="imagem-acoes">
+          <input type="text" data-caminho="${caminho}" data-tipo="caminho" value="${esc(v ?? '')}" placeholder="fotos/projetos/...">
+          <span class="ajuda">${esc(AJUDA_IMAGEM)}</span>
+        </div></div></div>`;
+    }
     case 'bool':
       return `<label class="chave"><input type="checkbox" data-caminho="${caminho}" ${v ? 'checked' : ''}><span>${esc(c.rotulo)}</span></label>`;
     case 'select':
@@ -918,7 +964,10 @@ function aoEditar(ev){
   if (!el.dataset || !el.dataset.caminho || !estado.rascunho) return;
   let v = el.type === 'checkbox' ? el.checked : el.value;
   if (el.dataset.tipo === 'lista') v = v.split(',').map(x => x.trim()).filter(Boolean);
+  if (el.dataset.tipo === 'linhas') v = v.split('\n').map(x => x.trim()).filter(Boolean);
+  if (el.dataset.tipo === 'caminho') v = v.trim();
   definir(estado.rascunho, el.dataset.caminho, v);
+  if (el.dataset.tipo === 'caminho') atualizarPrevia(el.dataset.caminho, v);
   el.classList.remove('erro-campo');
   marcarSujo();
 }
@@ -1048,15 +1097,11 @@ async function salvar(){
       await setDoc(doc(bd, s.id, obj.id), obj);
       const i = estado.dados[s.id].findIndex(x => x.id === obj.id);
       if (i >= 0) estado.dados[s.id][i] = obj; else estado.dados[s.id].push(obj);
-      if (s.id === 'projetos' && obj.vitrine){
-        const naHome = estado.dados.projetos.filter(p => p.vitrine && p.publicado !== false).length;
-        if (naHome > 3) avisar('Há ' + naHome + ' projetos marcados para a home; só os 3 primeiros aparecem.', 'ok', 5000);
-      }
     }
     estado.sujo = false;
     fecharEditor(true);
     renderNav(); renderPrincipal();
-    avisar('Salvo. O site já mostra a mudança.');
+    avisar('Salvo no banco. O site muda na próxima atualização (até 1 hora).', 'ok', 5000);
   } catch (e) {
     avisar(explicarErro(e), 'erro');
   } finally {
@@ -1064,7 +1109,8 @@ async function salvar(){
   }
 }
 
-/* ══════════════ BANCO DE DADOS ══════════════ */
+/* ══════════════ BANCO E PUBLICAÇÃO ══════════════ */
+const ACAO_ATUALIZAR = 'https://github.com/Davicjc/PortfolioPessoal/actions/workflows/atualizar.yml';
 const REGRAS_FIRESTORE = `rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -1076,55 +1122,45 @@ service cloud.firestore {
     }
   }
 }`;
-const REGRAS_STORAGE = `rules_version = '2';
-service firebase.storage {
-  match /b/{bucket}/o {
-    match /portfolio/{arquivo=**} {
-      allow read: if true;
-      allow write: if request.auth != null
-                   && request.auth.token.email == '${EMAIL_ADMIN}'
-                   && request.resource.size < 2 * 1024 * 1024
-                   && request.resource.contentType.matches('image/.*');
-    }
-  }
-}`;
 
 function renderFerramentas(alvo){
-  const n = totalDocs();
-  const vazio = n === 0;
   const email = auth.currentUser ? auth.currentUser.email : '';
   const emailDiferente = email && email.toLowerCase() !== EMAIL_ADMIN;
-  alvo.innerHTML = cabecalho('Banco de dados', 'Estado do Firestore, carga inicial, cópia de segurança e as regras de acesso.') +
+  const ov = resumoOverlay();
+  alvo.innerHTML = cabecalho('Banco e publicação', 'Como o que você salva aqui chega ao site, importação, cópia de segurança e as regras de acesso.') +
   `<div class="metricas">
-     ${COLECOES.map(c => `<div><b>${estado.dados[c].length}</b><span>${esc(secao(c).nome)}</span></div>`).join('')}
+     ${TODAS.map(c => `<div><b>${estado.dados[c].length}</b><span>${esc(secao(c) ? secao(c).nome : c)}</span></div>`).join('')}
      <div><b>${estado.dados.site ? 'ok' : '—'}</b><span>página inicial</span></div>
    </div>
    <div class="cartoes">
      ${emailDiferente ? `<div class="cartao aviso"><h2>E-mail diferente do previsto nas regras</h2>
         <p>Você entrou como <b>${esc(email)}</b>, mas as regras abaixo liberam escrita para <b>${EMAIL_ADMIN}</b>. Ajuste o e-mail nas regras antes de publicá-las, ou você perde o acesso de escrita.</p></div>` : ''}
-     <div class="cartao${vazio ? ' destaque' : ''}">
-       <h2>${vazio ? 'Seu banco está vazio' : 'Popular com os dados do site'}</h2>
-       <p>${vazio
-         ? 'Carregue de uma vez tudo o que o site mostra hoje — 24 projetos, trajetória, depoimentos, 24 certificados, clientes e contatos. Depois disso, tudo se edita por aqui.'
-         : 'Recarrega a semente original. Documentos com o mesmo identificador são sobrescritos; os que você criou depois ficam como estão.'}</p>
-       <div class="linha-acoes"><button class="btn ${vazio ? 'btn-forte' : ''}" data-acao="popular">${vazio ? 'Popular o banco agora' : 'Recarregar a semente'}</button></div>
+     <div class="cartao">
+       <h2>Como o site é atualizado</h2>
+       <p>O site é estático: um build lê este banco e gera as páginas, o currículo e as imagens de compartilhamento. A automação <b>Atualizar o site</b> roda de hora em hora no GitHub e só publica quando algo mudou. Para publicar na hora, abra a automação e use <b>Run workflow</b>.</p>
+       <div class="linha-acoes"><a class="btn" href="${ACAO_ATUALIZAR}" target="_blank" rel="noopener">Abrir a automação ↗</a></div>
+     </div>
+     ${ov.docs ? `<div class="cartao destaque">
+       <h2>Conteúdo novo esperando no repositório</h2>
+       <p>O arquivo <code>data/overlay.json</code> tem ${ov.docs} documentos (${ov.campos} campos) da versão nova do site que ainda não estão neste banco. Enquanto ele existir, esses campos vencem o banco no build: editar aqui não muda o site. Importe uma vez; depois o arquivo é esvaziado no repositório.</p>
+       <div class="linha-acoes"><button class="btn btn-forte" data-acao="importar-overlay">Pré-visualizar a importação</button></div>
+     </div>` : ''}
+     <div class="cartao">
+       <h2>Importar JSON</h2>
+       <p>Mescla um arquivo por cima do banco, campo a campo, com a mesma regra do build: o que o arquivo traz substitui; o resto do documento fica. Aceita o <code>data/overlay.json</code> e cópias de segurança baixadas aqui. Nada é gravado antes da prévia, e uma cópia do banco é baixada antes de gravar.</p>
+       <div class="linha-acoes"><label class="btn" style="cursor:pointer">Escolher arquivo…<input type="file" accept="application/json,.json" data-importar-arquivo hidden></label></div>
+       <div id="previa-importacao">${renderPreviaImportacao()}</div>
      </div>
      <div class="cartao">
-       <h2>Cópia de segurança e semente do site</h2>
-       <p>Baixa todo o conteúdo do banco em JSON e copia para a área de transferência. O mesmo texto pode substituir a semente embutida no <code>index.html</code>, entre <code>/* SEMENTE:INICIO */</code> e <code>/* SEMENTE:FIM */</code> — assim o site abre com o conteúdo atualizado mesmo antes de o Firebase responder.</p>
-       <div class="linha-acoes"><button class="btn" data-acao="exportar" ${vazio ? 'disabled' : ''}>Exportar JSON</button></div>
+       <h2>Cópia de segurança</h2>
+       <p>Baixa todo o banco em JSON, inclusive as coleções que o site novo não usa. Serve para importar de volta aqui se algo der errado.</p>
+       <div class="linha-acoes"><button class="btn" data-acao="exportar" ${bancoVazio() ? 'disabled' : ''}>Baixar cópia</button></div>
      </div>
      <div class="cartao">
        <h2>Regras do Firestore</h2>
-       <p>Enquanto estas regras não forem publicadas, qualquer pessoa pode alterar o conteúdo do site. Cole em <a href="${CONSOLE}/firestore/rules" target="_blank" rel="noopener">Firestore → Regras ↗</a> e clique em Publicar.</p>
+       <p>O site lê tudo; só ${EMAIL_ADMIN} grava. Se precisar republicar, cole em <a href="${CONSOLE}/firestore/rules" target="_blank" rel="noopener">Firestore → Regras ↗</a>.</p>
        <pre id="regras-fs">${esc(REGRAS_FIRESTORE)}</pre>
        <div class="linha-acoes"><button class="btn btn-mini" data-acao="copiar-regras" data-alvo="regras-fs">copiar regras</button></div>
-     </div>
-     <div class="cartao">
-       <h2>Regras do Storage <span class="selo">opcional</span></h2>
-       <p>Só se você ativar o Storage para as imagens. Sem ele, o painel guarda as imagens comprimidas no próprio banco — funciona no plano gratuito.</p>
-       <pre id="regras-st">${esc(REGRAS_STORAGE)}</pre>
-       <div class="linha-acoes"><button class="btn btn-mini" data-acao="copiar-regras" data-alvo="regras-st">copiar regras</button></div>
      </div>
    </div>`;
 }
@@ -1135,46 +1171,126 @@ async function copiar(idAlvo){
   catch (e) { avisar('Não consegui copiar automaticamente; selecione o texto e copie.', 'erro'); }
 }
 
-async function popular(botao){
-  const n = totalDocs();
-  if (n > 0 && !confirm(`O banco já tem ${n} documentos. Recarregar a semente sobrescreve os que tiverem o mesmo identificador. Continuar?`)) return;
-  botao.disabled = true; const txt = botao.textContent; botao.textContent = 'Carregando…';
+/* ── overlay do repositório: o que ainda vence o banco no build ── */
+async function carregarOverlay(){
   try {
-    /* A semente vem embutida na página: nenhuma requisição de rede, então funciona
-       aberta do disco, num servidor local ou publicada. */
-    const bloco = document.getElementById('semente');
-    if (!bloco) throw new Error('A semente não está embutida neste painel.');
-    const sem = JSON.parse(bloco.textContent);
-    const lotes = []; let lote = writeBatch(bd), ops = 0, total = 0;
-    const gravar = (referencia, dados) => {
-      lote.set(referencia, dados); ops++; total++;
-      if (ops === 450){ lotes.push(lote); lote = writeBatch(bd); ops = 0; }
-    };
-    if (sem.site) gravar(doc(bd, 'config', 'site'), sem.site);
-    COLECOES.forEach(c => (sem[c] || []).forEach(item => gravar(doc(bd, c, item.id), item)));
-    lotes.push(lote);
-    for (const l of lotes) await l.commit();
-    avisar(total + ' documentos gravados no banco.');
-    estado.secao = 'projetos';
-    history.replaceState(null, '', '#projetos');
-    await carregarTudo();
-  } catch (e) {
-    avisar(e.code || e instanceof TypeError ? explicarErro(e) : e.message, 'erro');
-    botao.disabled = false; botao.textContent = txt;
+    const r = await fetch('../data/overlay.json', { cache:'no-store' });
+    estado.overlay = r.ok ? await r.json() : null;
+  } catch (e) { estado.overlay = null; }
+}
+function camposOverlay(colecao, id){
+  const o = estado.overlay;
+  if (!o) return [];
+  const docOv = colecao === 'site' ? o.site : (o[colecao] || {})[id];
+  return Object.keys(docOv || {}).filter(k => !k.startsWith('$') && !k.startsWith('_'));
+}
+function resumoOverlay(){
+  const o = estado.overlay;
+  if (!o) return { docs:0, campos:0 };
+  let docs = 0, campos = 0;
+  for (const [k, v] of Object.entries(o)){
+    if (k.startsWith('$') || !v || typeof v !== 'object') continue;
+    const lista = k === 'site' ? [v] : Object.values(v);
+    for (const d of lista){ const n = Object.keys(d || {}).filter(x => !x.startsWith('$') && !x.startsWith('_')).length; if (n){ docs++; campos += n; } }
   }
+  return { docs, campos };
 }
 
+/* ── importar: mesma regra do build ({...atual, ...campos}, raso), sem merge do Firestore ── */
+function normalizarImportacao(json){
+  if (!json || typeof json !== 'object' || Array.isArray(json)) throw new Error('O arquivo não é um objeto JSON.');
+  if (json._build || json._imgs || json._og)
+    throw new Error('Este é o data/conteudo.json gerado pelo build: as imagens dele estão trocadas por "[base64]" e importar apagaria fotos. Use o data/overlay.json ou uma cópia baixada neste painel.');
+  if (JSON.stringify(json).includes('"[base64]"'))
+    throw new Error('O arquivo tem imagens trocadas por "[base64]". Use uma cópia baixada neste painel.');
+  const limpar = o => Object.fromEntries(Object.entries(o || {}).filter(([k]) => !k.startsWith('_') && !k.startsWith('$')));
+  const docs = [];
+  for (const [chave, valor] of Object.entries(json)){
+    if (chave.startsWith('$') || chave.startsWith('_')) continue;
+    if (chave === 'site'){ if (valor && typeof valor === 'object') docs.push({ colecao:'config', id:'site', campos: limpar(valor) }); continue; }
+    if (!TODAS.includes(chave)) throw new Error('Coleção desconhecida no arquivo: ' + chave);
+    const lista = Array.isArray(valor) ? valor.map(d => [d && d.id, d]) : Object.entries(valor || {});
+    for (const [id, d] of lista){
+      if (!id) throw new Error('Há um documento sem id em ' + chave + '.');
+      docs.push({ colecao: chave, id, campos: limpar(d) });
+    }
+  }
+  return docs;
+}
+function planejarImportacao(docs){
+  return docs.map(d => {
+    const atual = d.colecao === 'config' ? estado.dados.site : estado.dados[d.colecao].find(x => x.id === d.id);
+    const base = atual ? clonar(atual) : (d.colecao === 'config' ? {} : { id: d.id });
+    const novo = Object.assign(base, d.campos);
+    if (d.colecao !== 'config') novo.id = d.id;
+    const antes = atual || {};
+    const mudam = Object.keys(d.campos).filter(k => JSON.stringify(antes[k]) !== JSON.stringify(d.campos[k]));
+    return { colecao: d.colecao, id: d.id, novo, mudam, existe: !!atual };
+  }).filter(x => x.mudam.length || !x.existe);
+}
+function prepararImportacao(json, origem){
+  try {
+    const plano = planejarImportacao(normalizarImportacao(json));
+    estado.importacao = { origem, plano };
+  } catch (e) {
+    estado.importacao = { origem, erro: e.message };
+  }
+  const alvo = $('#previa-importacao');
+  if (alvo){ alvo.innerHTML = renderPreviaImportacao(); alvo.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+}
+function renderPreviaImportacao(){
+  const imp = estado.importacao;
+  if (!imp) return '';
+  if (imp.erro) return `<div class="previa-imp erro"><b>${esc(imp.origem)}</b><p>${esc(imp.erro)}</p></div>`;
+  if (!imp.plano.length) return `<div class="previa-imp"><b>${esc(imp.origem)}</b><p>Nada a gravar: o banco já tem exatamente esse conteúdo.</p></div>`;
+  const novos = imp.plano.filter(x => !x.existe).length;
+  const linhas = imp.plano.map(x => `<tr><td class="mono">${esc(x.colecao === 'config' ? 'página inicial' : x.colecao + ' / ' + x.id)}</td><td>${x.existe ? 'atualiza' : '<b>novo</b>'}</td><td class="mono">${esc(x.mudam.slice(0, 8).join(', '))}${x.mudam.length > 8 ? ' e mais ' + (x.mudam.length - 8) : ''}</td></tr>`).join('');
+  return `<div class="previa-imp"><b>${esc(imp.origem)}</b>
+    <p>${imp.plano.length} documentos: ${novos} novos e ${imp.plano.length - novos} atualizados. Campos que o arquivo não traz ficam como estão.</p>
+    <div class="previa-tabela"><table><thead><tr><th>documento</th><th></th><th>campos que mudam</th></tr></thead><tbody>${linhas}</tbody></table></div>
+    <div class="linha-acoes"><button class="btn btn-forte" data-acao="gravar-importacao">Gravar no banco</button><button class="btn" data-acao="cancelar-importacao">Cancelar</button></div></div>`;
+}
+async function gravarImportacao(botao){
+  const imp = estado.importacao;
+  if (!imp || !imp.plano || !imp.plano.length) return;
+  if (!confirm(`Gravar ${imp.plano.length} documentos no banco? Antes, o painel baixa uma cópia de segurança do banco atual.`)) return;
+  exportar();
+  botao.disabled = true; botao.textContent = 'Gravando…';
+  try {
+    const lotes = []; let lote = writeBatch(bd), ops = 0;
+    for (const x of imp.plano){
+      lote.set(doc(bd, x.colecao, x.id), x.novo);
+      if (++ops === 450){ lotes.push(lote); lote = writeBatch(bd); ops = 0; }
+    }
+    lotes.push(lote);
+    for (const l of lotes) await l.commit();
+    avisar(imp.plano.length + ' documentos gravados. O site muda na próxima atualização.', 'ok', 6000);
+    estado.importacao = null;
+    await carregarTudo();
+  } catch (e) {
+    avisar(explicarErro(e), 'erro');
+    botao.disabled = false; botao.textContent = 'Gravar no banco';
+  }
+}
+$('#principal').addEventListener('change', async ev => {
+  const inp = ev.target.closest('[data-importar-arquivo]');
+  if (!inp || !inp.files || !inp.files[0]) return;
+  const arquivo = inp.files[0];
+  try { prepararImportacao(JSON.parse(await arquivo.text()), arquivo.name); }
+  catch (e) { estado.importacao = { origem: arquivo.name, erro: 'Não é um JSON válido: ' + e.message }; $('#previa-importacao').innerHTML = renderPreviaImportacao(); }
+  inp.value = '';
+});
+
 function exportar(){
-  const sem = { site: estado.dados.site };
-  COLECOES.forEach(c => sem[c] = ordenar(estado.dados[c]));
-  const json = JSON.stringify(sem);
-  const blob = new Blob([JSON.stringify(sem, null, 1)], { type:'application/json' });
+  const copia = { $exportado: new Date().toISOString(), site: estado.dados.site };
+  TODAS.forEach(c => copia[c] = ordenar(estado.dados[c]));
+  const blob = new Blob([JSON.stringify(copia, null, 1)], { type:'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'semente-davicjc-' + new Date().toISOString().slice(0,10) + '.json';
+  a.download = 'davicjc-banco-' + new Date().toISOString().slice(0,16).replace(/[:T]/g, '-') + '.json';
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-  navigator.clipboard.writeText(json).then(() => avisar('JSON baixado e copiado.'), () => avisar('JSON baixado.'));
+  avisar('Cópia do banco baixada.');
 }
 </script>
 </body>

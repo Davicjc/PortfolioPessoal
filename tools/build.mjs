@@ -126,6 +126,26 @@ async function numerosGitHub() {
   } catch { return null; }
 }
 const formatar = (n, lang) => n.toLocaleString(lang === 'en' ? 'en-US' : 'pt-BR');
+// Os números buscados na máquina do Davi ficam em data/github.json; o CI só lê esse arquivo.
+async function numerosGuardados() {
+  const arquivo = join(RAIZ, 'data/github.json');
+  const vivos = await numerosGitHub();
+  if (vivos) {
+    const texto = JSON.stringify(vivos, null, 1) + '\n';
+    if (!existsSync(arquivo) || readFileSync(arquivo, 'utf8') !== texto) writeFileSync(arquivo, texto);
+    return vivos;
+  }
+  return existsSync(arquivo) ? JSON.parse(readFileSync(arquivo, 'utf8')) : null;
+}
+
+// Data do conteúdo, não do build: a última alteração no banco (updateTime de cada documento) ou no overlay.
+// Assim dois builds do mesmo conteúdo saem idênticos, aqui ou no CI.
+function dataDoConteudo(base, overlay) {
+  const datas = [overlay.$atualizado, base.site?._atualizado];
+  for (const lista of Object.values(base)) if (Array.isArray(lista)) for (const d of lista) datas.push(d?._atualizado);
+  const ms = datas.filter(Boolean).map(Date.parse).filter(n => !Number.isNaN(n));
+  return new Date(ms.length ? Math.max(...ms) : Date.now()).toISOString();
+}
 
 /* ─────────── 4. Arquivos de apoio ─────────── */
 function sitemap(dados, ts) {
@@ -197,9 +217,9 @@ async function principal() {
   const overlay = existsSync(join(RAIZ, 'data/overlay.json')) ? lerJSON('data/overlay.json') : {};
   const dados = mesclar(base, overlay);
   extrairBase64(dados);
-  const ts = new Date().toISOString();
+  const ts = dataDoConteudo(base, overlay);
 
-  const gh = await numerosGitHub();
+  const gh = await numerosGuardados();
   for (const p of dados.site.provas || []) {
     if (gh && p.chave && gh[p.chave] != null) { p.valor = formatar(gh[p.chave], 'pt'); p.valor_en = formatar(gh[p.chave], 'en'); }
   }
@@ -250,6 +270,7 @@ async function principal() {
   // Retrato do conteúdo mesclado (sem imagens em base64), para conferência e para importar no painel.
   const retrato = JSON.parse(JSON.stringify(dados, (k, val) => (typeof val === 'string' && val.startsWith('data:') ? '[base64]' : val)));
   delete retrato._imgs;
+  delete retrato._sincronizado;
   gravar('data/conteudo.json', JSON.stringify(retrato, null, 1));
 
   const n = publicados(dados.projetos).length;

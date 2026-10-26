@@ -1,5 +1,6 @@
 {
   "$descricao": "Conteúdo novo da versão 3 do portfólio, ainda não importado no Firestore. O build mescla este arquivo por cima de data/firestore.json (este arquivo vence). Depois de importado pelo painel /adm (Banco de dados → Importar JSON), ele pode ser esvaziado.",
+  "$atualizado": "2026-10-26T18:00:00Z",
   "site": {
     "cargo_pt": "Desenvolvedor full stack",
     "cargo_en": "Full-stack developer",
@@ -1654,7 +1655,6 @@
       "fim": "2023-12",
       "cargo_pt": "Agente de Atendimento · SAC Alô Bradesco",
       "cargo_en": "Customer Service Agent · Bradesco support line",
-      "empresa_pt": "Callink · operação Bradesco",
       "empresa_en": "Callink · Bradesco operation"
     },
     "exp-wpv": {
@@ -1664,7 +1664,6 @@
       "fim": "2023",
       "cargo_pt": "Fundador e Desenvolvedor Web",
       "cargo_en": "Founder and Web Developer",
-      "empresa_pt": "Web pra Você · negócio próprio",
       "empresa_en": "Web pra Você · own business"
     }
   },

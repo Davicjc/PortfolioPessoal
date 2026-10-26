@@ -1,0 +1,58 @@
+# Refaz o site a partir do banco (Firestore) de hora em hora e publica só quando algo mudou.
+# O build é determinístico (a data vem do conteúdo, não do relógio): sem mudança no banco,
+# nenhum arquivo muda e nada é commitado. O push na main dispara o deploy do Cloudflare Pages.
+name: Atualizar o site
+
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-site
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Puxar o banco
+        run: node tools/sync.mjs
+
+      - name: Gerar as páginas
+        run: node tools/build.mjs
+
+      # Cards de compartilhamento e PDFs usam o Chrome e levam minutos: só quando o conteúdo mudou.
+      - name: Imagens de compartilhamento e PDFs
+        run: |
+          if ! git diff --quiet -- data/conteudo.json; then
+            node tools/og.mjs
+            node tools/pdf.mjs
+          else
+            echo "Conteúdo igual: cards e PDFs ficam como estão."
+          fi
+
+      - name: Publicar
+        run: |
+          for caminho in data index.html 404.html en projetos brand Curriculo sitemap.xml llms.txt assets fotos/depoimentos; do
+            if [ -e "$caminho" ]; then git add -- "$caminho"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "Nada mudou no banco desde a última publicação."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Conteúdo atualizado pelo painel"
+          git pull --rebase
+          git push
