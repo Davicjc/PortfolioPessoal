@@ -211,57 +211,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://davicjc.com/projetos/diariodoverdao/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/diariodoverdao/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/diariodoverdao/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/diariodoverdao/"/>
-    <lastmod>2026-10-27</lastmod>
-    <priority>0.6</priority>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/diariodoverdao.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://davicjc.com/en/projects/diariodoverdao/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/diariodoverdao/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/diariodoverdao/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/diariodoverdao/"/>
-    <lastmod>2026-10-27</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://davicjc.com/projetos/uec/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/uec/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/uec/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/uec/"/>
-    <lastmod>2026-10-27</lastmod>
-    <priority>0.6</priority>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/uec.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://davicjc.com/en/projects/uec/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/uec/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/uec/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/uec/"/>
-    <lastmod>2026-10-27</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://davicjc.com/projetos/socioverdao/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/socioverdao/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/socioverdao/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/projetos/socioverdao/"/>
-    <lastmod>2026-10-27</lastmod>
-    <priority>0.6</priority>
-    <image:image><image:loc>https://davicjc.com/fotos/projetos/socioverdao.webp</image:loc></image:image>
-  </url>
-  <url>
-    <loc>https://davicjc.com/en/projects/socioverdao/</loc>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/en/projects/socioverdao/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/projetos/socioverdao/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://davicjc.com/en/projects/socioverdao/"/>
-    <lastmod>2026-10-27</lastmod>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://davicjc.com/projetos/elora/</loc>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://davicjc.com/projetos/elora/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://davicjc.com/en/projects/elora/"/>

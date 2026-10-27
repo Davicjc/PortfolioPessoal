@@ -206,6 +206,9 @@ async function principal() {
   const base = existsSync(join(RAIZ, 'data/firestore.json')) ? lerJSON('data/firestore.json') : {};
   const dados = structuredClone(base);
   dados.site ||= {};
+  // Projeto despublicado no /adm some também da parede do topo (que tem lista própria em site.parede).
+  const fora = new Set((dados.projetos || []).filter(p => p.publicado === false).map(p => p.id));
+  if (dados.site.parede) dados.site.parede = dados.site.parede.filter(t => !fora.has(t.projeto));
   extrairBase64(dados);
   const ts = dataDoConteudo(base);
 
