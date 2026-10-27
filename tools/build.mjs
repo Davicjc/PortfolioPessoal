@@ -239,7 +239,9 @@ async function principal() {
   const vox = ler('assets/js/vox.js');
   dados._imgs = catalogarImagens(dados);
   dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')) : [];
-  dados._build = { ts, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe) } };
+  // Com os PDFs gerados (tools/pdf.mjs), o botão "Currículo em PDF" baixa o arquivo em vez de abrir a página.
+  const cvPdf = { pt: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Curriculo.pdf')), en: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Resume.pdf')) };
+  dados._build = { ts, cvPdf, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe) } };
 
   // Páginas
   const gerados = [];

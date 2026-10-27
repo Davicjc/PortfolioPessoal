@@ -48,6 +48,10 @@ function hero(ctx) {
       <div class="hero__acoes">
         <a class="botao botao--sinal" href="#trabalho">${t.ver_casos}${icone('seta')}</a>
         <a class="botao botao--linha" href="${linkCv(dados, lang)}"${baixaCv(dados, lang)}>${t.cv_pdf}${icone('baixo')}</a>
+        ${[['ct-github', 'github', 'GitHub'], ['ct-linkedin', 'linkedin', 'LinkedIn']].map(([id, ic, nome]) => {
+          const k = (dados.contatos || []).find(x => x.id === id);
+          return k?.url ? `<a class="hero__rede" href="${esc(k.url)}" rel="me noopener" aria-label="${nome}" title="${nome}">${icone(ic)}</a>` : '';
+        }).join('')}
       </div>
       <p class="hero__ping rotulo" data-resumo aria-live="polite"><span class="led" data-situacao="no_ar"></span><span data-resumo-texto>${t.ping_medindo}</span></p>
     </div>
