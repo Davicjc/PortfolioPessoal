@@ -1,97 +1,137 @@
-/* Me pague um café (/coffee/). Sem JavaScript, os três painéis aparecem um embaixo do outro;
-   com ele, viram abas. No celular, copiar vem antes do QR (não dá para escanear a própria tela). */
+/* Me pague um café (/coffee/). Cabe numa tela: texto e abas à esquerda, painel à direita;
+   no celular, um embaixo do outro e sem QR (não dá para escanear a própria tela), com o copiar na frente.
+   Sem JavaScript, os painéis aparecem um embaixo do outro; com ele, viram abas. */
 
-.cafe-topo { padding-bottom: clamp(28px, 4vw, 48px); }
-.cafe-topo .secao__titulo { margin: 14px 0 18px; }
-.cafe-topo .secao__sub { max-width: 46ch; }
-.cafe { padding-bottom: clamp(80px, 10vw, 144px); }
+.pagina-cafe .rodape { display: none; }
+.cafe { display: grid; align-content: center; min-height: calc(100svh - 65px); padding-block: clamp(16px, 4vh, 48px); }
+.cafe__grade { display: grid; gap: 14px; grid-template-areas: "intro" "abas" "paineis" "depois"; }
+.cafe__intro { grid-area: intro; }
+.cafe__abas { grid-area: abas; }
+.cafe__paineis { grid-area: paineis; min-width: 0; }
+.cafe__depois { grid-area: depois; }
+
+.cafe__intro .secao__num { margin-bottom: 0; }
+.cafe__titulo { margin: 10px 0 12px; font-size: clamp(2.125rem, 4.6vw, 4rem); line-height: 1; }
+.cafe__lead { max-width: 42ch; color: var(--papel-2); font-size: clamp(.9375rem, 1.1vw, 1.0625rem); line-height: 1.55; }
 
 /* abas */
-.cafe__abas { display: flex; gap: 4px; width: max-content; max-width: 100%; margin-bottom: 20px; padding: 4px; overflow-x: auto; border: 1px solid var(--cabo); border-radius: var(--r-selo); background: var(--rack); }
-.cafe__abas button { flex: none; min-height: 44px; padding: 0 18px; border: 0; border-radius: var(--r-selo); background: none; color: var(--papel-2); font: 500 .9375rem/1 var(--f-texto); cursor: pointer; transition: background-color var(--m-rapido), color var(--m-rapido); }
+.cafe__abas { display: flex; gap: 4px; width: max-content; max-width: 100%; padding: 4px; border: 1px solid var(--cabo); border-radius: var(--r-selo); background: var(--rack); }
+.cafe__abas button { flex: none; min-height: 42px; padding: 0 20px; border: 0; border-radius: var(--r-selo); background: none; color: var(--papel-2); font: 500 .9375rem/1 var(--f-texto); cursor: pointer; transition: background-color var(--m-rapido), color var(--m-rapido); }
 .cafe__abas button:hover { color: var(--papel); }
 .cafe__abas button[aria-selected="true"] { background: var(--papel); color: var(--tinta); }
 .sem-js .cafe__abas { display: none; }
 .js .cafe__painel[data-oculto] { display: none; }
 
-.cafe__painel { padding: clamp(18px, 3vw, 32px); border: 1px solid var(--cabo); border-radius: var(--r-cartao); background: var(--rack); }
-.cafe__painel + .cafe__painel { margin-top: 20px; }
+.cafe__painel { padding: clamp(16px, 2.4vw, 28px); border: 1px solid var(--cabo); border-radius: var(--r-cartao); background: var(--rack); }
+.cafe__painel + .cafe__painel { margin-top: 14px; }
 .js .cafe__painel + .cafe__painel { margin-top: 0; }
-.cafe__painel-titulo { margin-bottom: 20px; font-size: var(--fs-h3); }
+.cafe__painel-titulo { margin-bottom: 16px; font-size: var(--fs-h3); }
 .js .cafe__painel-titulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.cafe__texto { max-width: 52ch; margin-bottom: 22px; font-size: var(--fs-lead); line-height: 1.55; color: var(--papel-2); }
-.cafe__nota { max-width: 64ch; font-size: .875rem; line-height: 1.55; color: var(--papel-3); }
+.cafe__nota { max-width: 64ch; font-size: .8125rem; line-height: 1.5; color: var(--papel-3); }
 .cafe__nota .dado { display: block; margin-top: 4px; font-size: 12px; color: var(--papel-2); }
 
-/* escolhas: valores do PIX e redes cripto */
+/* escolhas: valores do Pix e redes cripto */
 .doses, .redes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; min-width: 0; margin: 0; padding: 0; border: 0; }
-.doses legend, .redes legend { margin-bottom: 10px; padding: 0; }
-.dose, .rede-op { position: relative; display: grid; align-content: center; gap: 3px; min-height: 64px; padding: 10px 14px; border: 1px solid var(--cabo); border-radius: var(--r-peca); background: var(--tinta); cursor: pointer; transition: border-color var(--m-rapido), background-color var(--m-rapido); }
+.doses legend, .redes legend { margin-bottom: 8px; padding: 0; }
+.dose, .rede-op { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; padding: 8px 14px; border: 1px solid var(--cabo); border-radius: var(--r-peca); background: var(--tinta); cursor: pointer; transition: border-color var(--m-rapido), background-color var(--m-rapido); }
 .dose:hover, .rede-op:hover { border-color: var(--cabo-forte); }
 .dose > input, .rede-op > input { position: absolute; opacity: 0; pointer-events: none; }
 .dose:has(> input:checked), .rede-op:has(> input:checked) { border-color: var(--link); background: var(--link-fundo); }
 .dose:has(> input:focus-visible), .rede-op:has(> input:focus-visible) { outline: 2px solid var(--link); outline-offset: 2px; }
 .dose__nome { font-size: .8125rem; color: var(--papel-2); }
-.dose__valor { font-size: 1.125rem; font-weight: 500; color: var(--papel); }
-.dose--outro { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr); align-items: center; }
+.dose__valor { font-size: 1rem; font-weight: 500; color: var(--papel); white-space: nowrap; }
+.dose--outro { grid-column: 1 / -1; }
 .dose__campo { display: flex; align-items: center; justify-content: flex-end; gap: 8px; color: var(--papel-2); }
-.dose__campo input { width: 128px; min-height: 42px; padding: 0 12px; border: 1px solid var(--cabo-forte); border-radius: var(--r-peca); background: var(--patch); color: var(--papel); font: 500 1rem/1 var(--f-dados); }
+.dose__campo input { width: 112px; min-height: 36px; padding: 0 10px; border: 1px solid var(--cabo-forte); border-radius: var(--r-peca); background: var(--patch); color: var(--papel); font: 500 1rem/1 var(--f-dados); }
 .dose__campo input:focus { outline: 2px solid var(--link); outline-offset: 1px; }
-.rede-op { min-height: 52px; font-size: .9375rem; }
+.rede-op { justify-content: flex-start; font-size: .875rem; }
 .rede-op span { color: var(--papel); }
 
-/* PIX */
-.pix, .cripto { display: grid; gap: 22px; }
-.pix { grid-template-areas: "doses" "acoes" "dados" "qr" "nota"; }
-.pix__intro { max-width: 60ch; margin-bottom: 22px; color: var(--papel-2); }
+/* Pix */
+.pix, .cripto { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.pix { grid-template-areas: "doses" "acoes" "chave" "nota"; }
+.pix__intro { max-width: 60ch; margin-bottom: 14px; font-size: .875rem; color: var(--papel-2); }
 .pix .doses { grid-area: doses; }
-.pix__acoes { grid-area: acoes; display: flex; flex-wrap: wrap; gap: 10px; }
-.pix__dados { grid-area: dados; }
-.pix .qr { grid-area: qr; }
+.pix__acoes { grid-area: acoes; display: flex; }
+.pix__acoes .botao { flex: 1; justify-content: center; }
+.pix__chave { grid-area: chave; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.pix__chave .dado { color: var(--papel); }
+.pix__chave .botao { flex: none; margin-left: auto; }
 .pix .cafe__nota { grid-area: nota; }
-.pix__dados, .cripto__dados { display: grid; gap: 14px; margin: 0; }
-.pix__dados div, .cripto__dados div { display: grid; gap: 6px; }
-.pix__dados dd, .cripto__dados dd { margin: 0; }
-.pix__dados .dado { font-size: 1rem; color: var(--papel); }
-.pix__codigo, .cripto__endereco { display: block; padding: 10px 12px; border: 1px solid var(--cabo); border-radius: var(--r-peca); background: var(--tinta); font: 400 12px/1.55 var(--f-dados); color: var(--papel-2); word-break: break-all; user-select: all; }
-.cripto__endereco { font-size: 13px; color: var(--papel); }
+.pix .qr { grid-area: qr; }
+/* o código longo só serve para o botão de copiar */
+.pix__codigo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .botao[data-copiado] { background: var(--link-fundo); border-color: var(--link); color: var(--link); }
 
 /* QR: escuro sobre branco, com folga, como os leitores esperam */
-.qr { display: grid; justify-items: center; gap: 10px; margin: 0; }
-.qr__cartao { width: min(64%, 240px); padding: 8px; border-radius: 14px; background: #fff; box-shadow: 0 24px 48px -24px rgba(0, 0, 0, .8); }
+.qr { display: none; justify-items: center; align-content: start; gap: 8px; margin: 0; }
+.qr__cartao { width: 100%; padding: 8px; border-radius: 12px; background: #fff; box-shadow: 0 24px 48px -24px rgba(0, 0, 0, .8); }
 .qr__cartao svg { display: block; width: 100%; height: auto; }
-.qr figcaption { font-size: .8125rem; color: var(--papel-3); text-align: center; }
+.qr figcaption { font-size: .75rem; line-height: 1.4; color: var(--papel-3); text-align: center; }
 .qr figcaption .dado { color: var(--papel); }
 
 /* cripto */
-.cripto { grid-template-areas: "redes" "qr" "dados" "botao" "aviso" "nota"; }
+.cripto { grid-template-areas: "redes" "dados" "botao" "aviso" "nota"; }
 .cripto .redes { grid-area: redes; }
 .cripto .qr { grid-area: qr; }
-.cripto__dados { grid-area: dados; }
-.cripto > .botao { grid-area: botao; justify-self: start; }
+.cripto__dados { grid-area: dados; display: grid; gap: 6px; margin: 0; }
+.cripto__dados div { display: grid; gap: 6px; }
+.cripto__dados dd { margin: 0; }
+.cripto__endereco { display: block; padding: 9px 12px; border: 1px solid var(--cabo); border-radius: var(--r-peca); background: var(--tinta); font: 400 12.5px/1.5 var(--f-dados); color: var(--papel); word-break: break-all; user-select: all; }
+.cripto > .botao { grid-area: botao; justify-content: center; }
 .cripto [data-cripto-aviso] { grid-area: aviso; color: var(--papel-2); }
 .cripto .cafe__nota:last-child { grid-area: nota; }
 
 /* depois de mandar */
-.cafe__depois { display: grid; gap: 8px; margin-top: 28px; padding: 22px 24px; border: 1px dashed var(--cabo-forte); border-radius: var(--r-cartao); }
-.cafe__depois h2 { font-size: var(--fs-h3); }
-.cafe__depois p { color: var(--papel-2); }
-.cafe__depois-acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.cafe__depois { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.cafe__depois p { font-size: .875rem; color: var(--papel-2); }
+.cafe__depois strong { color: var(--papel); font-weight: 500; }
+.cafe__depois-acoes { display: flex; flex-wrap: wrap; gap: 8px; }
 
 @media (max-width: 639px) {
+  .cafe { padding-block: 8px; }
+  .cafe__grade { gap: 12px; }
+  .cafe__intro .secao__num { display: none; }
+  /* os quatro valores numa linha; o resto do Pix em uma linha cada */
+  .doses { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .dose:not(.dose--outro) { flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; min-height: 52px; padding: 6px 9px; }
+  .dose:not(.dose--outro) .dose__nome { font-size: .6875rem; }
+  .dose:not(.dose--outro) .dose__valor { font-size: .9375rem; }
+  .pix__chave { flex-wrap: nowrap; }
+  .pix__chave .rotulo { display: none; }
+  .pix__chave .dado { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: .875rem; }
+  .pix .cafe__nota { display: none; }
+  .rede-op { min-height: 42px; padding: 6px 12px; font-size: .8125rem; }
+  .cripto { gap: 10px; }
+  .redes legend, .cripto__dados dt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .cafe__titulo { margin-top: 0; }
   .cafe__abas { width: 100%; }
-  .cafe__abas button { flex: 1; padding: 0 10px; }
-  .pix__acoes .botao, .cripto > .botao { width: 100%; justify-content: center; }
-  .cripto > .botao { justify-self: stretch; }
+  .cafe__abas button { flex: 1; }
+  .cafe__depois-acoes { width: 100%; }
+  .cafe__depois-acoes .botao { flex: 1; justify-content: center; }
 }
-@media (min-width: 640px) {
-  .doses { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .redes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+@media (max-width: 379px) {
+  .pix__chave { gap: 8px; }
+  .pix__chave .dado { font-size: .8125rem; }
+  .pix__chave .botao { padding-inline: 10px; }
+  .cripto__endereco { font-size: 11.5px; }
+  .dose:not(.dose--outro) { padding: 6px 7px; }
+  .dose:not(.dose--outro) .dose__valor { font-size: .875rem; }
 }
+
+/* computador: duas colunas, QR ao lado das escolhas */
 @media (min-width: 960px) {
-  .pix { grid-template-columns: minmax(0, 1fr) 280px; grid-template-areas: "doses qr" "acoes qr" "dados qr" "nota nota"; column-gap: 48px; align-items: start; }
-  .pix .qr { align-self: start; }
-  .cripto { grid-template-columns: minmax(0, 1fr) 280px; grid-template-areas: "redes qr" "dados qr" "botao qr" "aviso qr" "nota nota"; column-gap: 48px; align-items: start; }
-  .qr__cartao { width: 100%; }
+  .cafe__grade {
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    grid-template-rows: 1fr auto auto auto 1fr;
+    grid-template-areas: ". paineis" "intro paineis" "abas paineis" "depois paineis" ". paineis";
+    column-gap: clamp(40px, 6vw, 96px); row-gap: 24px; align-items: center;
+  }
+  .cafe__depois { flex-direction: column; align-items: flex-start; }
+  .qr { display: grid; }
+  .pix { grid-template-columns: minmax(0, 1fr) 188px; grid-template-areas: "doses qr" "acoes acoes" "chave chave" "nota nota"; column-gap: 24px; }
+  .pix__acoes .botao { flex: none; }
+  .cripto { grid-template-columns: minmax(0, 1fr) 188px; grid-template-areas: "redes qr" "dados dados" "botao botao" "aviso aviso" "nota nota"; column-gap: 24px; }
+  .cripto > .botao { justify-self: start; }
 }

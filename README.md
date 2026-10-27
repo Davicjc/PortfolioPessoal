@@ -27,7 +27,7 @@ Portfólio de **Davi Castro**, desenvolvedor full stack em Uberlândia (MG). O s
 | [`/projetos/`](https://davicjc.com/projetos/) | 26 projetos, cada um com página própria nas duas línguas e a situação de hoje (no ar, em desenvolvimento, descontinuado…) |
 | [`/Curriculo/`](https://davicjc.com/Curriculo/) | Currículo em PT e EN gerado dos mesmos dados, com PDF de duas páginas |
 | [`/brand/`](https://davicjc.com/brand/) | Manual da marca, com PDF de 12 páginas e os arquivos para baixar |
-| [`/coffee/`](https://davicjc.com/coffee/) | Me pague um café: Pix com QR gerado na hora, PayPal e cripto |
+| [`/coffee/`](https://davicjc.com/coffee/) | Me pague um café, numa tela só: Pix com QR gerado na hora e cripto |
 | `/adm/` | Painel que edita todo o conteúdo (Firebase Auth + Firestore) |
 
 <p align="center">

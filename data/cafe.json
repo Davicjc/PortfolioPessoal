@@ -1,12 +1,11 @@
 {
-  "$descricao": "Meios de pagamento do /coffee. Só o que está configurado de verdade: PIX, PayPal e as carteiras do Phantom. Mude aqui e rode o build.",
+  "$descricao": "Meios de pagamento do /coffee. Só o que está configurado de verdade: Pix e as carteiras do Phantom. Mude aqui e rode o build.",
   "pix": {
     "chave": "coffee@davicjc.com",
     "nome": "Davi Castro",
     "cidade": "Uberlandia",
     "txid": "CAFEDAVICJC"
   },
-  "paypal": "https://www.paypal.com/donate/?business=B4WQYC3HVN7CJ&no_recurring=0&item_name=Give+me+a+coffee+%E2%98%95%EF%B8%8F%E2%98%BA%EF%B8%8F%F0%9F%91%BE&currency_code=BRL",
   "doses": [
     { "valor": 7, "pt": "Espresso", "en": "Espresso" },
     { "valor": 15, "pt": "Duplo", "en": "Double", "padrao": true },
@@ -15,29 +14,49 @@
   ],
   "carteiras": [
     {
-      "id": "sol", "rede_pt": "Solana", "rede_en": "Solana", "uri": "solana:",
+      "id": "sol",
+      "rede_pt": "Solana",
+      "rede_en": "Solana",
+      "uri": "solana:",
       "endereco": "H8A6qF3KKEChQyTdPjR9zBUYqm442MRMa6tKA9gq8W6b",
       "aviso_pt": "SOL e tokens SPL, como USDC, na rede Solana.",
       "aviso_en": "SOL and SPL tokens, such as USDC, on the Solana network."
     },
     {
-      "id": "evm", "rede_pt": "Ethereum e redes EVM", "rede_en": "Ethereum and EVM networks", "uri": "ethereum:",
+      "id": "evm",
+      "rede_pt": "Ethereum e EVM",
+      "rede_en": "Ethereum and EVM",
+      "uri": "ethereum:",
       "endereco": "0x69b6347356b4c8c7a4a6a1e2c850ac8f345da2eb",
-      "redes": ["Ethereum", "Base", "Polygon", "BNB Chain", "Arc", "HyperEVM", "Robinhood Chain"],
-      "aviso_pt": "O mesmo endereço vale em todas estas redes. Escolha a rede na sua carteira antes de enviar.",
-      "aviso_en": "The same address works on all of these networks. Pick the network in your wallet before sending."
+      "redes": [
+        "Ethereum",
+        "Base",
+        "Polygon",
+        "BNB Chain",
+        "Arc",
+        "HyperEVM",
+        "Robinhood Chain"
+      ],
+      "aviso_pt": "Mesmo endereço em todas estas redes. Escolha a rede na carteira antes de enviar.",
+      "aviso_en": "Same address on all of these networks. Pick the network in your wallet first."
     },
     {
-      "id": "btc", "rede_pt": "Bitcoin · Taproot", "rede_en": "Bitcoin · Taproot", "uri": "bitcoin:",
+      "id": "btc",
+      "rede_pt": "Bitcoin · Taproot",
+      "rede_en": "Bitcoin · Taproot",
+      "uri": "bitcoin:",
       "endereco": "bc1pa79r08geq0fgyrh8lync4wvq4qkqcw02szmmz6tan0jlah65h0jqx4mvgt",
       "aviso_pt": "Só BTC, na rede Bitcoin. Endereço Taproot (bc1p).",
       "aviso_en": "BTC only, on the Bitcoin network. Taproot address (bc1p)."
     },
     {
-      "id": "btcsw", "rede_pt": "Bitcoin · SegWit", "rede_en": "Bitcoin · SegWit", "uri": "bitcoin:",
+      "id": "btcsw",
+      "rede_pt": "Bitcoin · SegWit",
+      "rede_en": "Bitcoin · SegWit",
+      "uri": "bitcoin:",
       "endereco": "bc1qspkllx7hqd3442d27er0z5wg0vuauwja8a0dx6",
-      "aviso_pt": "Só BTC, na rede Bitcoin. Endereço SegWit nativo (bc1q), para carteiras que ainda não enviam a Taproot.",
-      "aviso_en": "BTC only, on the Bitcoin network. Native SegWit address (bc1q), for wallets that can't send to Taproot yet."
+      "aviso_pt": "Só BTC, na rede Bitcoin. SegWit (bc1q), para carteiras que não enviam a Taproot.",
+      "aviso_en": "BTC only, on the Bitcoin network. SegWit (bc1q), for wallets that can't send to Taproot."
     }
   ]
 }
