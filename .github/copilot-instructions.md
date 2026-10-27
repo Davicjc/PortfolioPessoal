@@ -11,7 +11,7 @@ Mude a fonte e rode o gerador correspondente.
 - **Templates:** `tools/tpl/` (`inicio.mjs`, `projeto.mjs`, `projetos.mjs`, `curriculo.mjs`, `cafe.mjs`, `marca.mjs`, `comum.mjs` com `<head>`, cabeçalho e rodapé, `textos.mjs` com os textos fixos PT/EN).
 - **Estilos:** `assets/css/site.css` (site), `marca.css` (/brand/), `cv.css` (currículo), `cafe.css` (/coffee/). Tokens só em `brand/tokens.json` → `node tools/tokens.mjs`.
 - **Scripts do navegador:** `assets/js/site.js`, `vox.js` (easter egg), `cafe.js` + `qr.js` (Pix/QR, também usados no build).
-- **Conteúdo:** pelo `/adm` (Firestore). `data/overlay.json` guarda conteúdo novo ainda não importado e **vence o Firestore** no build; depois de importado pelo painel (Banco e publicação → Importar), deve ser esvaziado. `data/cafe.json` tem os meios de pagamento.
+- **Conteúdo:** só pelo `/adm` (Firestore). O banco é a única fonte: `data/firestore.json` é um retrato dele gerado pelo `tools/sync.mjs`, nunca editado à mão. `data/cafe.json` tem os meios de pagamento.
 
 ## Comandos
 ```
@@ -21,7 +21,7 @@ node tools/og.mjs      # cards 1200×630 (Chrome)
 node tools/pdf.mjs     # PDFs do currículo e do manual (Chrome)
 python brand/gerar-marca.py   # SVGs e ícones da marca
 ```
-O build é determinístico: a data vem do conteúdo (updateTime do Firestore e `$atualizado` do overlay). Rodar duas vezes não pode mudar nenhum arquivo; a automação `.github/workflows/atualizar.yml` depende disso.
+O build é determinístico: a data vem do conteúdo (updateTime do Firestore). Rodar duas vezes não pode mudar nenhum arquivo; a automação `.github/workflows/atualizar.yml` depende disso.
 
 ## Regras de conteúdo
 - Cargos e datas exatamente como no ORCID 0009-0005-8485-455X. Números só se forem conferíveis.

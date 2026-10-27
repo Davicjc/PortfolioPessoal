@@ -168,6 +168,19 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 .cartao.destaque{border-color:var(--sinal); box-shadow:0 0 0 3px var(--sinal-suave)}
 .cartao.aviso{border-color:var(--alerta); background:var(--alerta-suave)}
 .cartao.aviso p{color:var(--tinta)}
+/* resumo da página inicial: tudo o que está no banco, sem abrir o editor */
+.resumo-doc{display:grid; gap:1rem}
+.resumo-doc__cabeca{display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.85rem}
+.resumo-doc__cabeca h2{margin:0}
+.resumo-doc dl{display:grid; grid-template-columns:minmax(9rem, 15rem) 1fr; gap:.6rem 1.25rem; margin:0; font-size:.86rem}
+.resumo-doc dt{font-family:var(--fonte-dados); font-size:.7rem; letter-spacing:.04em; color:var(--tinta-3); padding-top:.15rem}
+.resumo-doc dd{margin:0; min-width:0; overflow-wrap:anywhere; color:var(--tinta)}
+.resumo-en{display:block; margin-top:.2rem; color:var(--tinta-3); font-size:.8rem}
+.resumo-vazio{color:var(--tinta-3)}
+.resumo-img{width:72px; height:45px; object-fit:cover; object-position:top; border-radius:5px; border:1px solid var(--linha); vertical-align:middle}
+.resumo-grupo{margin:0; padding-left:1.2rem; display:grid; gap:.4rem}
+.resumo-grupo .resumo-img{margin-right:.6rem}
+@media (max-width:640px){ .resumo-doc dl{grid-template-columns:1fr; gap:.15rem} .resumo-doc dd{margin-bottom:.55rem} }
 .cartao ol{margin:0 0 1rem; padding-left:1.2rem; color:var(--tinta-2); font-size:.88rem}
 .cartao ol li{margin-bottom:.35rem}
 .cartao code, .cartao pre{font-family:var(--fonte-dados); font-size:.76rem}
@@ -223,9 +236,7 @@ input:focus,textarea:focus,select:focus{outline:none; border-color:var(--sinal);
 .msg-erro{color:var(--perigo); font-size:.84rem; min-height:1.2em}
 .login h1,.cabeca h1,.cartao h2,.editor-topo h2,.secao-form,.login-marca,.metricas b{font-stretch:var(--largura-display)}
 
-/* ── avisos de overlay e prévia de importação ── */
-.aviso-overlay{border:1px solid var(--alerta); background:var(--alerta-suave); border-radius:10px; padding:.85rem 1rem; font-size:.86rem}
-.aviso-overlay p{margin:.3rem 0 0; color:var(--tinta-2)}
+/* ── prévia de importação ── */
 .previa-imp{margin-top:1rem; padding-top:1rem; border-top:1px solid var(--linha)}
 .previa-imp p{margin:.35rem 0 .75rem}
 .previa-imp.erro b{color:var(--perigo)}
@@ -331,6 +342,7 @@ const SECOES = [
       { k:'nome', tipo:'texto', rotulo:'Nome curto' },
       { k:'nome_completo', tipo:'texto', rotulo:'Nome completo' },
       { k:'cargo', tipo:'bi', rotulo:'Cargo', ajuda:'Aparece no topo, nos dados estruturados e no currículo.' },
+      { k:'empresa', tipo:'texto', rotulo:'Empresa atual', ajuda:'Aparece ao lado do cargo, abaixo do nome. Vazio: só o cargo.' },
       { k:'titulo', tipo:'bi', rotulo:'Título grande da home' },
       { k:'lead', tipo:'bi-longo', rotulo:'Texto abaixo do título' },
       { k:'local', tipo:'bi', rotulo:'Localização' },
@@ -368,6 +380,7 @@ const SECOES = [
       { k:'entregas_sub', tipo:'bi-longo', rotulo:'Entregas — subtítulo' },
       { k:'trajetoria_titulo', tipo:'bi', rotulo:'Trajetória — título' },
       { k:'trajetoria_sub', tipo:'bi-longo', rotulo:'Trajetória — subtítulo' },
+      { k:'depoimentos_titulo', tipo:'bi', rotulo:'Depoimentos — título' },
       { k:'contato_titulo', tipo:'bi', rotulo:'Contato — título' },
       { k:'contato_sub', tipo:'bi-longo', rotulo:'Contato — subtítulo' },
     ] },
@@ -566,7 +579,6 @@ const estado = {
   editando: null,      // { secao, id|null }
   rascunho: null,
   sujo: false,
-  overlay: null,       // data/overlay.json do repositório, enquanto existir
   importacao: null,    // prévia de um JSON a importar
 };
 TODAS.forEach(c => estado.dados[c] = []);
@@ -629,7 +641,6 @@ async function carregarTudo(){
     const [siteSnap, ...snaps] = await comTempo(Promise.all([
       getDoc(doc(bd, 'config', 'site')),
       ...TODAS.map(c => getDocs(collection(bd, c))),
-      carregarOverlay(),
     ]), 15000, 'tempo esgotado');
     estado.dados.site = siteSnap.exists() ? siteSnap.data() : null;
     snaps.slice(0, TODAS.length).forEach((s, i) => { estado.dados[TODAS[i]] = s.docs.map(d => Object.assign({}, d.data(), { id: d.id })); });
@@ -730,10 +741,48 @@ function cabecalho(titulo, descricao, acoes = ''){
 
 function renderDocumento(alvo, s){
   const site = estado.dados.site;
-  alvo.innerHTML = cabecalho(s.nome, s.descricao, `<button class="btn btn-forte" data-acao="editar-site">Editar página inicial</button>`) +
-    (site ? `<div class="cartao"><span class="rotulo">${esc(site.cargo_pt || '')}</span><h2>${esc(site.titulo_pt || site.nome || '')}</h2>
-       <p style="margin:0">${esc(site.lead_pt || site.resumo_pt || '')}</p></div>`
-          : `<div class="cartao aviso"><p>A página inicial ainda não existe no banco. Importe uma cópia em “Banco e publicação” ou clique em editar para criá-la do zero.</p></div>`);
+  const topo = cabecalho(s.nome, s.descricao, `<button class="btn btn-forte" data-acao="editar-site">Editar página inicial</button>`);
+  if (!site){
+    alvo.innerHTML = topo + `<div class="cartao aviso"><p>A página inicial ainda não existe no banco. Importe uma cópia em “Banco e publicação” ou clique em editar para criá-la do zero.</p></div>`;
+    return;
+  }
+  // Tudo o que está no banco, separado pelas mesmas seções do formulário. Campo vazio aparece como "—".
+  const blocos = [];
+  for (const c of s.campos){
+    if (c.secao){ blocos.push({ titulo: c.secao, linhas: [] }); continue; }
+    if (!blocos.length) blocos.push({ titulo: '', linhas: [] });
+    blocos[blocos.length - 1].linhas.push(`<dt>${esc(c.rotulo)}</dt><dd>${resumoCampo(c, site)}</dd>`);
+  }
+  alvo.innerHTML = topo + `<div class="resumo-doc">${blocos.map(b => `<section class="cartao">
+      <div class="resumo-doc__cabeca"><h2>${esc(b.titulo)}</h2><button class="btn btn-mini" data-acao="editar-site">Editar</button></div>
+      <dl>${b.linhas.join('')}</dl></section>`).join('')}</div>`;
+}
+
+const semValor = '<span class="resumo-vazio">—</span>';
+function resumoCampo(c, obj){
+  const v = obj[c.k];
+  switch (c.tipo){
+    case 'bi': case 'bi-longo': {
+      const pt = obj[c.k + '_pt'], en = obj[c.k + '_en'];
+      if (!pt && !en) return semValor;
+      return `${pt ? esc(pt) : semValor}${en ? `<span class="resumo-en">EN · ${esc(en)}</span>` : ''}`;
+    }
+    case 'bool': return v ? 'Sim' : 'Não';
+    case 'select': { const op = (c.opcoes || []).find(([k]) => k === (v ?? '')); return op ? esc(op[1]) : (v ? esc(v) : semValor); }
+    case 'lista': case 'linhas': return Array.isArray(v) && v.length ? esc(v.join(', ')) : semValor;
+    case 'caminho-imagem': { const u = urlPrevia(v); return u ? `<img class="resumo-img" src="${esc(u)}" alt="" loading="lazy">` : semValor; }
+    case 'grupo': {
+      if (!Array.isArray(v) || !v.length) return semValor;
+      const img = c.campos.find(x => x.tipo === 'caminho-imagem');
+      return `<ol class="resumo-grupo">${v.map(item => {
+        const u = img ? urlPrevia(item[img.k]) : '';
+        const textos = c.campos.filter(x => ['texto', 'url', 'bi'].includes(x.tipo))
+          .map(x => x.tipo === 'bi' ? item[x.k + '_pt'] : item[x.k]).filter(Boolean);
+        return `<li>${u ? `<img class="resumo-img" src="${esc(u)}" alt="" loading="lazy">` : ''}${textos.length ? esc(textos.join(' · ')) : semValor}</li>`;
+      }).join('')}</ol>`;
+    }
+    default: return v != null && v !== '' ? esc(String(v)) : semValor;
+  }
 }
 
 function renderLista(alvo, s){
@@ -793,7 +842,6 @@ $('#principal').addEventListener('click', async ev => {
     if (acao === 'publicar') return alternarPublicado(s, id);
     if (acao === 'subir' || acao === 'descer') return mover(s, id, acao === 'subir' ? -1 : 1);
     if (acao === 'exportar') return exportar();
-    if (acao === 'importar-overlay') return prepararImportacao(estado.overlay, 'data/overlay.json do repositório');
     if (acao === 'gravar-importacao') return gravarImportacao(b);
     if (acao === 'cancelar-importacao'){ estado.importacao = null; return renderPrincipal(); }
     if (acao === 'copiar-regras') return copiar(b.dataset.alvo);
@@ -880,11 +928,7 @@ function renderFormulario(){
   const s = secao(estado.editando.secao);
   const corpo = $('#editor-corpo');
   const rolagem = corpo.scrollTop;
-  // Enquanto data/overlay.json existir, os campos dele vencem o banco no build: avisar antes de editar.
-  const cobertos = camposOverlay(s.doc ? 'site' : s.id, estado.editando.id);
-  const aviso = cobertos.length ? `<div class="aviso-overlay"><b>Ainda não vale editar: ${cobertos.length} campo${cobertos.length > 1 ? 's' : ''} deste documento vêm de data/overlay.json.</b>
-    <p>No build, o arquivo do repositório vence o banco: ${esc(cobertos.slice(0, 10).join(', '))}${cobertos.length > 10 ? ' e mais ' + (cobertos.length - 10) : ''}. Importe o overlay em “Banco e publicação” antes de mexer nesses campos.</p></div>` : '';
-  corpo.innerHTML = aviso + s.campos.map(c => renderCampo(c, estado.rascunho, '')).join('');
+  corpo.innerHTML = s.campos.map(c => renderCampo(c, estado.rascunho, '')).join('');
   corpo.scrollTop = rolagem;
 }
 
@@ -1154,14 +1198,46 @@ async function salvar(){
 
 /* ══════════════ BANCO E PUBLICAÇÃO ══════════════ */
 const ACAO_ATUALIZAR = 'https://github.com/Davicjc/PortfolioPessoal/actions/workflows/atualizar.yml';
-const REGRAS_FIRESTORE = `rules_version = '2';
+// Cópia de firestore.rules (a versão publicada no console em 27/10/2026).
+const REGRAS_FIRESTORE = String.raw`rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // O site lê tudo; só o dono do painel grava.
-    match /{documento=**} {
+
+    function dono() {
+      return request.auth != null && request.auth.token.email == '${EMAIL_ADMIN}';
+    }
+
+    // Conteúdo público do site.
+    match /config/{doc} {
       allow read: if true;
-      allow write: if request.auth != null
-                   && request.auth.token.email == '${EMAIL_ADMIN}';
+      allow write: if dono();
+    }
+    match /{colecao}/{doc} {
+      allow read: if colecao in ['projetos', 'experiencias', 'capacidades', 'depoimentos', 'certificados', 'clientes', 'contatos', 'categorias'] || dono();
+      allow write: if dono();
+    }
+
+    // Pedidos do formulário guiado.
+    match /pedidos/{id} {
+      allow create: if pedidoValido(request.resource.data) && id.size() <= 40;
+    }
+
+    function texto(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+    function pedidoValido(d) {
+      return d.keys().hasOnly(['protocolo', 'modo', 'lang', 'criado_em', 'origem', 'nome', 'email', 'telefone', 'empresa', 'cnpj', 'resumo', 'respostas'])
+        && d.keys().hasAll(['protocolo', 'modo', 'nome', 'email', 'telefone', 'resumo'])
+        && texto(d.protocolo, 8, 40)
+        && d.modo in ['rapido', 'completo']
+        && texto(d.nome, 2, 120)
+        && texto(d.email, 5, 160) && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && texto(d.telefone, 8, 30)
+        && (!('empresa' in d) || texto(d.empresa, 0, 160))
+        && (!('cnpj' in d) || texto(d.cnpj, 0, 18))
+        && texto(d.resumo, 1, 12000)
+        && (!('respostas' in d) || d.respostas is map);
     }
   }
 }`;
@@ -1169,7 +1245,6 @@ service cloud.firestore {
 function renderFerramentas(alvo){
   const email = auth.currentUser ? auth.currentUser.email : '';
   const emailDiferente = email && email.toLowerCase() !== EMAIL_ADMIN;
-  const ov = resumoOverlay();
   alvo.innerHTML = cabecalho('Banco e publicação', 'Como o que você salva aqui chega ao site, importação, cópia de segurança e as regras de acesso.') +
   `<div class="metricas">
      ${TODAS.map(c => `<div><b>${estado.dados[c].length}</b><span>${esc(secao(c) ? secao(c).nome : c)}</span></div>`).join('')}
@@ -1183,14 +1258,9 @@ function renderFerramentas(alvo){
        <p>O site é estático: um build lê este banco e gera as páginas, o currículo e as imagens de compartilhamento. A automação <b>Atualizar o site</b> roda de hora em hora no GitHub e só publica quando algo mudou. Para publicar na hora, abra a automação e use <b>Run workflow</b>.</p>
        <div class="linha-acoes"><a class="btn" href="${ACAO_ATUALIZAR}" target="_blank" rel="noopener">Abrir a automação ↗</a></div>
      </div>
-     ${ov.docs ? `<div class="cartao destaque">
-       <h2>Conteúdo novo esperando no repositório</h2>
-       <p>O arquivo <code>data/overlay.json</code> tem ${ov.docs} documentos (${ov.campos} campos) da versão nova do site que ainda não estão neste banco. Enquanto ele existir, esses campos vencem o banco no build: editar aqui não muda o site. Importe uma vez; depois o arquivo é esvaziado no repositório.</p>
-       <div class="linha-acoes"><button class="btn btn-forte" data-acao="importar-overlay">Pré-visualizar a importação</button></div>
-     </div>` : ''}
      <div class="cartao">
        <h2>Importar JSON</h2>
-       <p>Mescla um arquivo por cima do banco, campo a campo, com a mesma regra do build: o que o arquivo traz substitui; o resto do documento fica. Aceita o <code>data/overlay.json</code> e cópias de segurança baixadas aqui. Nada é gravado antes da prévia, e uma cópia do banco é baixada antes de gravar.</p>
+       <p>Mescla um arquivo por cima do banco, campo a campo, com a mesma regra do build: o que o arquivo traz substitui; o resto do documento fica. Aceita as cópias de segurança baixadas aqui. Nada é gravado antes da prévia, e uma cópia do banco é baixada antes de gravar.</p>
        <div class="linha-acoes"><label class="btn" style="cursor:pointer">Escolher arquivo…<input type="file" accept="application/json,.json" data-importar-arquivo hidden></label></div>
        <div id="previa-importacao">${renderPreviaImportacao()}</div>
      </div>
@@ -1201,7 +1271,7 @@ function renderFerramentas(alvo){
      </div>
      <div class="cartao">
        <h2>Regras do Firestore</h2>
-       <p>O site lê tudo; só ${EMAIL_ADMIN} grava. Se precisar republicar, cole em <a href="${CONSOLE}/firestore/rules" target="_blank" rel="noopener">Firestore → Regras ↗</a>.</p>
+       <p>O conteúdo tem leitura pública; só ${EMAIL_ADMIN} grava, e os pedidos só você lê. Se precisar republicar, cole em <a href="${CONSOLE}/firestore/rules" target="_blank" rel="noopener">Firestore → Regras ↗</a>.</p>
        <pre id="regras-fs">${esc(REGRAS_FIRESTORE)}</pre>
        <div class="linha-acoes"><button class="btn btn-mini" data-acao="copiar-regras" data-alvo="regras-fs">copiar regras</button></div>
      </div>
@@ -1214,36 +1284,11 @@ async function copiar(idAlvo){
   catch (e) { avisar('Não consegui copiar automaticamente; selecione o texto e copie.', 'erro'); }
 }
 
-/* ── overlay do repositório: o que ainda vence o banco no build ── */
-async function carregarOverlay(){
-  try {
-    const r = await fetch('../data/overlay.json', { cache:'no-store' });
-    estado.overlay = r.ok ? await r.json() : null;
-  } catch (e) { estado.overlay = null; }
-}
-function camposOverlay(colecao, id){
-  const o = estado.overlay;
-  if (!o) return [];
-  const docOv = colecao === 'site' ? o.site : (o[colecao] || {})[id];
-  return Object.keys(docOv || {}).filter(k => !k.startsWith('$') && !k.startsWith('_'));
-}
-function resumoOverlay(){
-  const o = estado.overlay;
-  if (!o) return { docs:0, campos:0 };
-  let docs = 0, campos = 0;
-  for (const [k, v] of Object.entries(o)){
-    if (k.startsWith('$') || !v || typeof v !== 'object') continue;
-    const lista = k === 'site' ? [v] : Object.values(v);
-    for (const d of lista){ const n = Object.keys(d || {}).filter(x => !x.startsWith('$') && !x.startsWith('_')).length; if (n){ docs++; campos += n; } }
-  }
-  return { docs, campos };
-}
-
 /* ── importar: mesma regra do build ({...atual, ...campos}, raso), sem merge do Firestore ── */
 function normalizarImportacao(json){
   if (!json || typeof json !== 'object' || Array.isArray(json)) throw new Error('O arquivo não é um objeto JSON.');
   if (json._build || json._imgs || json._og)
-    throw new Error('Este é o data/conteudo.json gerado pelo build: as imagens dele estão trocadas por "[base64]" e importar apagaria fotos. Use o data/overlay.json ou uma cópia baixada neste painel.');
+    throw new Error('Este é o data/conteudo.json gerado pelo build: as imagens dele estão trocadas por "[base64]" e importar apagaria fotos. Use uma cópia baixada neste painel.');
   if (JSON.stringify(json).includes('"[base64]"'))
     throw new Error('O arquivo tem imagens trocadas por "[base64]". Use uma cópia baixada neste painel.');
   const limpar = o => Object.fromEntries(Object.entries(o || {}).filter(([k]) => !k.startsWith('_') && !k.startsWith('$')));

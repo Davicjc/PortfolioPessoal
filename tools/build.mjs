@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Gera o site estático a partir do conteúdo do Firestore (data/firestore.json) + data/overlay.json.
+// Gera o site estático a partir do conteúdo do Firestore (data/firestore.json). O banco é a única fonte.
 //   node tools/sync.mjs   → puxa o Firestore
 //   node tools/build.mjs  → gera as páginas, o sitemap, o robots, o llms.txt e o CSS final
 // Nenhuma dependência: só Node 20+.
@@ -26,22 +26,6 @@ const lerJSON = p => JSON.parse(ler(p));
 const gravar = (p, conteudo) => { const alvo = join(RAIZ, p); mkdirSync(dirname(alvo), { recursive: true }); writeFileSync(alvo, conteudo); };
 const hash = s => createHash('sha1').update(s).digest('hex').slice(0, 10);
 const LINGUAS = ['pt', 'en'];
-
-/* ─────────── 1. Conteúdo: Firestore + overlay ─────────── */
-function mesclar(base, overlay) {
-  const dados = structuredClone(base);
-  dados.site = { ...(base.site || {}), ...(overlay.site || {}) };
-  for (const [colecao, docs] of Object.entries(overlay)) {
-    if (colecao === 'site' || colecao.startsWith('$') || typeof docs !== 'object') continue;
-    const lista = (dados[colecao] ||= []);
-    for (const [id, campos] of Object.entries(docs)) {
-      const atual = lista.find(d => d.id === id);
-      if (atual) Object.assign(atual, campos);
-      else lista.push({ id, ...campos });
-    }
-  }
-  return dados;
-}
 
 /* ─────────── 2. Dimensões das imagens (PNG, JPEG, WebP) sem bibliotecas ─────────── */
 function dimensoes(arquivo) {
@@ -142,10 +126,10 @@ async function numerosGuardados() {
   return existsSync(arquivo) ? JSON.parse(readFileSync(arquivo, 'utf8')) : null;
 }
 
-// Data do conteúdo, não do build: a última alteração no banco (updateTime de cada documento) ou no overlay.
+// Data do conteúdo, não do build: a última alteração no banco (updateTime de cada documento).
 // Assim dois builds do mesmo conteúdo saem idênticos, aqui ou no CI.
-function dataDoConteudo(base, overlay) {
-  const datas = [overlay.$atualizado, base.site?._atualizado];
+function dataDoConteudo(base) {
+  const datas = [base.site?._atualizado];
   for (const lista of Object.values(base)) if (Array.isArray(lista)) for (const d of lista) datas.push(d?._atualizado);
   const ms = datas.filter(Boolean).map(Date.parse).filter(n => !Number.isNaN(n));
   return new Date(ms.length ? Math.max(...ms) : Date.now()).toISOString();
@@ -220,10 +204,10 @@ ${exps.map(e => `- ${c(e, 'cargo', 'pt')} — ${e.empresa} (${c(e, 'periodo', 'p
 /* ─────────── 5. Geração ─────────── */
 async function principal() {
   const base = existsSync(join(RAIZ, 'data/firestore.json')) ? lerJSON('data/firestore.json') : {};
-  const overlay = existsSync(join(RAIZ, 'data/overlay.json')) ? lerJSON('data/overlay.json') : {};
-  const dados = mesclar(base, overlay);
+  const dados = structuredClone(base);
+  dados.site ||= {};
   extrairBase64(dados);
-  const ts = dataDoConteudo(base, overlay);
+  const ts = dataDoConteudo(base);
 
   const gh = await numerosGuardados();
   for (const p of dados.site.provas || []) {

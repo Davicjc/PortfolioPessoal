@@ -41,7 +41,6 @@ flowchart LR
   adm["/adm<br>(Firebase Auth)"] -- grava --> fs[(Firestore)]
   fs -- tools/sync.mjs --> json[data/firestore.json]
   json --> build[tools/build.mjs]
-  overlay[data/overlay.json] --> build
   build --> paginas["HTML estático PT/EN<br>sitemap · llms.txt"]
   build --> og["tools/og.mjs<br>cards 1200×630"]
   build --> pdf["tools/pdf.mjs<br>currículo e manual"]
@@ -84,7 +83,7 @@ As páginas usam caminhos absolutos (`/assets/...`), então sirva a partir da ra
 │   ├── og.mjs · og.html    # cards de compartilhamento
 │   ├── pdf.mjs             # PDFs a partir das próprias páginas
 │   └── tokens.mjs          # brand/tokens.json → assets/css/tokens.css
-├── data/                   # retrato do banco, overlay, café, pedido, números do GitHub
+├── data/                   # retrato do banco, café, pedido, números do GitHub
 ├── assets/                 # CSS, JS (site, easter egg, café, QR, pedido), fontes e cards
 ├── brand/                  # tokens, SVGs da marca, ícones, gerador e manual em PDF
 ├── adm/                    # painel do conteúdo e dos pedidos
