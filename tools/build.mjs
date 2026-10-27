@@ -18,7 +18,9 @@ import { paginaCurriculo } from './tpl/curriculo.mjs';
 import { paginaCafe } from './tpl/cafe.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
-const ler = p => readFileSync(join(RAIZ, p), 'utf8');
+// Fim de linha sempre LF: no Windows o checkout vem com CRLF e no CI com LF; sem isto os hashes ?v= e os
+// arquivos gerados mudariam de uma máquina para a outra.
+const ler = p => readFileSync(join(RAIZ, p), 'utf8').replace(/\r\n/g, '\n');
 const lerJSON = p => JSON.parse(ler(p));
 const gravar = (p, conteudo) => { const alvo = join(RAIZ, p); mkdirSync(dirname(alvo), { recursive: true }); writeFileSync(alvo, conteudo); };
 const hash = s => createHash('sha1').update(s).digest('hex').slice(0, 10);
@@ -238,7 +240,7 @@ async function principal() {
   const js = ler('assets/js/site.js');
   const vox = ler('assets/js/vox.js');
   dados._imgs = catalogarImagens(dados);
-  dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')) : [];
+  dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')).sort() : [];
   // Com os PDFs gerados (tools/pdf.mjs), o botão "Currículo em PDF" baixa o arquivo em vez de abrir a página.
   const cvPdf = { pt: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Curriculo.pdf')), en: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Resume.pdf')) };
   dados._build = { ts, cvPdf, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe) } };
