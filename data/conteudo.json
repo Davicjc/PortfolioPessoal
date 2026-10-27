@@ -1067,6 +1067,12 @@
       "admin",
       "superadmin",
       "cliente só-leitura"
+     ],
+     "itens_en": [
+      "user",
+      "admin",
+      "superadmin",
+      "read-only client"
      ]
     },
     {
@@ -1077,6 +1083,12 @@
       "Manutenção",
       "Rondas técnicas",
       "Base de roteadores"
+     ],
+     "itens_en": [
+      "Tickets",
+      "Maintenance",
+      "Technical patrols",
+      "Router database"
      ]
     },
     {
@@ -1086,6 +1098,11 @@
       "Firebase Auth",
       "Firestore + regras por papel",
       "Rascunho com autosave"
+     ],
+     "itens_en": [
+      "Firebase Auth",
+      "Firestore + role-based rules",
+      "Autosaved drafts"
      ]
     },
     {
@@ -1095,6 +1112,11 @@
       "PWA instalável",
       "Relatórios em PDF",
       "Impressão A4 com QR"
+     ],
+     "itens_en": [
+      "Installable PWA",
+      "PDF reports",
+      "A4 printouts with QR"
      ]
     }
    ],
@@ -1505,6 +1527,10 @@
      "itens": [
       "Controles de mídia do Windows",
       "Link ou nome da música"
+     ],
+     "itens_en": [
+      "Windows media controls",
+      "Song link or title"
      ]
     },
     {
@@ -1514,6 +1540,11 @@
       "Shazam · sincronia pelo áudio",
       "Catálogo Deezer + iTunes",
       "Tradução"
+     ],
+     "itens_en": [
+      "Shazam · audio sync",
+      "Deezer + iTunes catalog",
+      "Translation"
      ]
     },
     {
@@ -1523,6 +1554,11 @@
       "Overlay sobre qualquer janela",
       "Plataforma em aba única",
       "PNG e MP4 (H.264 + AAC)"
+     ],
+     "itens_en": [
+      "Overlay on top of any window",
+      "Single-tab platform",
+      "PNG and MP4 (H.264 + AAC)"
      ]
     }
    ],
@@ -1651,6 +1687,10 @@
      "itens": [
       "Câmera ao vivo",
       "Validação de rosto nítido"
+     ],
+     "itens_en": [
+      "Live camera",
+      "Sharp-face validation"
      ]
     },
     {
@@ -1658,6 +1698,10 @@
      "camada_en": "Recognition",
      "itens": [
       "YuNet (detecção)",
+      "SFace (encoding) · ONNX"
+     ],
+     "itens_en": [
+      "YuNet (detection)",
       "SFace (encoding) · ONNX"
      ]
     },
@@ -1667,6 +1711,10 @@
      "itens": [
       "Perfis ADM e comuns",
       "Função key() → fechadura"
+     ],
+     "itens_en": [
+      "Admin and regular profiles",
+      "key() function → door lock"
      ]
     }
    ],
@@ -1931,6 +1979,11 @@
       "Navegador · PWA",
       "Windows · C# + WebView2",
       "Android · APK"
+     ],
+     "itens_en": [
+      "Browser · PWA",
+      "Windows · C# + WebView2",
+      "Android · APK"
      ]
     },
     {
@@ -1941,6 +1994,12 @@
       "Leaflet + OpenStreetMap",
       "WebRTC (voz e vídeo)",
       "IA de despacho"
+     ],
+     "itens_en": [
+      "Framework-free JavaScript",
+      "Leaflet + OpenStreetMap",
+      "WebRTC (voice and video)",
+      "Dispatch AI"
      ]
     },
     {
@@ -1950,6 +2009,11 @@
       "Firebase Auth",
       "Firestore em tempo real",
       "Regras por perfil e por módulo"
+     ],
+     "itens_en": [
+      "Firebase Auth",
+      "Real-time Firestore",
+      "Rules per profile and per module"
      ]
     },
     {
@@ -1958,6 +2022,10 @@
      "itens": [
       "HubSoft · OAuth, só leitura",
       "API própria com chaves por escopo"
+     ],
+     "itens_en": [
+      "HubSoft · OAuth, read-only",
+      "Own API with scoped keys"
      ]
     }
    ],
@@ -2197,12 +2265,22 @@
       "HTML + JS + Tailwind",
       "Chart.js",
       "vis-network"
+     ],
+     "itens_en": [
+      "HTML + JS + Tailwind",
+      "Chart.js",
+      "vis-network"
      ]
     },
     {
      "camada_pt": "Backend",
      "camada_en": "Backend",
      "itens": [
+      "Python · FastAPI",
+      "SQLAlchemy",
+      "asyncio (ICMP)"
+     ],
+     "itens_en": [
       "Python · FastAPI",
       "SQLAlchemy",
       "asyncio (ICMP)"
@@ -2215,6 +2293,11 @@
       "PostgreSQL (produção)",
       "SQLite (dev)",
       "Backups de 30 dias"
+     ],
+     "itens_en": [
+      "PostgreSQL (production)",
+      "SQLite (dev)",
+      "30-day backups"
      ]
     }
    ],
@@ -2400,6 +2483,10 @@
      "itens": [
       "RIPEstat (pública)",
       "Routinator (local)"
+     ],
+     "itens_en": [
+      "RIPEstat (public)",
+      "Routinator (local)"
      ]
     },
     {
@@ -2409,12 +2496,21 @@
       "Bash",
       "Console interativo",
       "Intervalo configurável"
+     ],
+     "itens_en": [
+      "Bash",
+      "Interactive console",
+      "Configurable interval"
      ]
     },
     {
      "camada_pt": "Aviso",
      "camada_en": "Alerting",
      "itens": [
+      "Telegram Bot API",
+      "/status · /check · /log"
+     ],
+     "itens_en": [
       "Telegram Bot API",
       "/status · /check · /log"
      ]
@@ -2551,6 +2647,11 @@
       "Web Worker · ping e jitter",
       "6 conexões HTTP · download",
       "WebRTC UDP · perda"
+     ],
+     "itens_en": [
+      "Web Worker · ping and jitter",
+      "6 HTTP connections · download",
+      "WebRTC UDP · packet loss"
      ]
     },
     {
@@ -2560,6 +2661,11 @@
       "Node.js · processo único",
       "WebSocket",
       "Upload contado no servidor"
+     ],
+     "itens_en": [
+      "Node.js · single process",
+      "WebSocket",
+      "Upload measured on the server"
      ]
     },
     {
@@ -2569,6 +2675,11 @@
       "SQLite local",
       "Sessão guardada como hash",
       "Auditoria"
+     ],
+     "itens_en": [
+      "Local SQLite",
+      "Session stored as a hash",
+      "Audit log"
      ]
     },
     {
@@ -2578,6 +2689,11 @@
       "Instalador de um comando",
       "systemd + HTTPS",
       "24 testes automáticos"
+     ],
+     "itens_en": [
+      "One-command installer",
+      "systemd + HTTPS",
+      "24 automated tests"
      ]
     }
    ],
@@ -2708,6 +2824,10 @@
      "itens": [
       "API do RouterOS v6/v7",
       "Usuário só-leitura"
+     ],
+     "itens_en": [
+      "RouterOS v6/v7 API",
+      "Read-only user"
      ]
     },
     {
@@ -2716,6 +2836,10 @@
      "itens": [
       "Python · Flask",
       "Ciclo de 30 s em segundo plano"
+     ],
+     "itens_en": [
+      "Python · Flask",
+      "30 s background cycle"
      ]
     },
     {
@@ -2724,6 +2848,10 @@
      "itens": [
       "SQLite",
       "Log de auditoria somente leitura"
+     ],
+     "itens_en": [
+      "SQLite",
+      "Read-only audit log"
      ]
     },
     {
@@ -2731,6 +2859,12 @@
      "camada_en": "Outputs",
      "itens": [
       "Painel próprio",
+      "Telegram",
+      "Prometheus /metrics",
+      "Grafana"
+     ],
+     "itens_en": [
+      "Own dashboard",
       "Telegram",
       "Prometheus /metrics",
       "Grafana"
@@ -3302,7 +3436,7 @@
   "uec.jpg"
  ],
  "_build": {
-  "ts": "2026-10-26T18:00:00.000Z",
+  "ts": "2026-10-27T05:30:00.000Z",
   "cvPdf": {
    "pt": true,
    "en": true

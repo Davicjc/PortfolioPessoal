@@ -27,7 +27,7 @@ function arquitetura(p, lang) {
     <span class="arq__pacote" aria-hidden="true"></span>
     ${p.arquitetura.map(cam => `<div class="arq__camada">
       <p class="arq__nome rotulo">${esc(c(cam, 'camada', lang))}</p>
-      <ul class="arq__itens">${(cam.itens || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      <ul class="arq__itens">${(lang === 'en' && cam.itens_en?.length ? cam.itens_en : cam.itens || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
     </div>`).join('')}
   </div>`;
 }
