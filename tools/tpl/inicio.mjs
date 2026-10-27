@@ -91,7 +91,11 @@ export function janela(dados, p, lang, { prioridade = false, sizes = '(min-width
     ? galeria.map((g, i) => {
         const src = typeof g === 'string' ? g : g.src;
         const leg = typeof g === 'string' ? '' : c(g, 'legenda', lang);
-        return `<figure class="janela__quadro${i === 0 ? ' ativo' : ''}" data-legenda="${esc(leg)}">${img(dados, src, `${c(p, 'titulo', lang)} — ${leg}`, { sizes, carregar: i === 0 && prioridade ? 'eager' : 'lazy', prioridade: i === 0 && prioridade })}</figure>`;
+        // Só a primeira tela vem com src: as outras ficam empilhadas no mesmo lugar e o navegador baixaria
+        // todas de uma vez. O site.js preenche cada uma pouco antes de o carrossel chegar nela.
+        let tag = img(dados, src, `${c(p, 'titulo', lang)} — ${leg}`, { sizes, carregar: i === 0 && prioridade ? 'eager' : 'lazy', prioridade: i === 0 && prioridade });
+        if (i > 0) tag = tag.replace(' src="', ' data-src="').replace(' srcset="', ' data-srcset="');
+        return `<figure class="janela__quadro${i === 0 ? ' ativo' : ''}" data-legenda="${esc(leg)}">${tag}</figure>`;
       }).join('')
     : `<figure class="janela__quadro ativo">${img(dados, p.imagem, c(p, 'titulo', lang), { sizes, carregar: prioridade ? 'eager' : 'lazy', prioridade })}</figure>`;
   const primeira = galeria[0] && typeof galeria[0] !== 'string' ? c(galeria[0], 'legenda', lang) : '';

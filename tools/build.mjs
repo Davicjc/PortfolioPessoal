@@ -82,7 +82,7 @@ function catalogarImagens(dados) {
     const d = dimensoes(arquivo);
     if (!d) continue;
     const variantes = [];
-    for (const suf of ['-390', '-800']) {
+    for (const suf of ['-390', '-800', '-1200']) {
       const alt = caminho.replace(/(\.\w+)$/, suf + '$1');
       const arqAlt = join(RAIZ, decodeURIComponent(alt));
       if (existsSync(arqAlt)) { const da = dimensoes(arqAlt); if (da && da.w < d.w) variantes.push({ caminho: alt, w: da.w }); }

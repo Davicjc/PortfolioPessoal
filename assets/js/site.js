@@ -203,13 +203,23 @@ $$('[data-carrossel]').forEach(j => {
   const quadros = $$('.janela__quadro', j);
   const legenda = $('[data-legenda-atual]', j);
   let i = 0, parado = false, visivel = false;
+  // As telas seguintes chegam sem src (ver janela() no build): preenche a próxima antes de precisar dela.
+  const preparar = n => {
+    const img = $('img[data-src]', quadros[(n + quadros.length) % quadros.length]);
+    if (!img) return;
+    if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    img.src = img.dataset.src;
+    img.removeAttribute('data-src'); img.removeAttribute('data-srcset');
+  };
   const ir = n => {
+    preparar(n);
     quadros[i].classList.remove('ativo');
     i = (n + quadros.length) % quadros.length;
     quadros[i].classList.add('ativo');
     if (legenda) legenda.textContent = quadros[i].dataset.legenda || '';
+    preparar(i + 1);
   };
-  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; }, { threshold: .35 }).observe(j);
+  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; if (visivel) preparar(i + 1); }, { threshold: .35 }).observe(j);
   j.addEventListener('mouseenter', () => { parado = true; });
   j.addEventListener('mouseleave', () => { parado = false; });
   $('.janela__tela', j).addEventListener('click', () => ir(i + 1));
