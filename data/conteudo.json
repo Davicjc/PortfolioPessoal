@@ -1870,7 +1870,7 @@
    "vitrine": false
   },
   {
-   "_atualizado": "2026-10-27T17:23:47.211464Z",
+   "_atualizado": "2026-10-27T18:52:59.922879Z",
    "ano": "2026",
    "ativo": false,
    "categoria": "produto",
@@ -3425,7 +3425,7 @@
   "uec.jpg"
  ],
  "_build": {
-  "ts": "2026-10-27T18:25:14.275Z",
+  "ts": "2026-10-27T18:52:59.922Z",
   "cvPdf": {
    "pt": true,
    "en": true
