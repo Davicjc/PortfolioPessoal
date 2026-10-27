@@ -1,0 +1,53 @@
+rules_version = '2';
+
+// Regras do Firestore do davicjc.com. Publique pelo console do Firebase
+// (Firestore Database → Regras) ou com `firebase deploy --only firestore:rules`.
+//
+// O que elas garantem:
+//   • o conteúdo do site continua com leitura pública (o build e o sync leem sem chave);
+//   • só o dono escreve no conteúdo, pelo painel /adm;
+//   • os pedidos (/pedido/) podem ser CRIADOS por qualquer visitante, com campos e tamanhos
+//     conferidos aqui, mas só o dono lê, edita ou apaga. Ninguém lista os pedidos de fora.
+//
+// Antes de publicar: confira no console se existe alguma coleção que não está na lista
+// CONTEUDO abaixo e que o site precise ler. Coleção fora da lista fica fechada para leitura.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function dono() {
+      return request.auth != null && request.auth.token.email == 'davicjc@gmail.com';
+    }
+
+    // Conteúdo público do site.
+    match /config/{doc} {
+      allow read: if true;
+      allow write: if dono();
+    }
+    match /{colecao}/{doc} {
+      allow read: if colecao in ['projetos', 'experiencias', 'capacidades', 'depoimentos', 'certificados', 'clientes', 'contatos', 'categorias'] || dono();
+      allow write: if dono();
+    }
+
+    // Pedidos do formulário guiado.
+    match /pedidos/{id} {
+      allow create: if pedidoValido(request.resource.data) && id.size() <= 40;
+    }
+
+    function texto(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+    function pedidoValido(d) {
+      return d.keys().hasOnly(['protocolo', 'modo', 'lang', 'criado_em', 'origem', 'nome', 'email', 'telefone', 'empresa', 'cnpj', 'resumo', 'respostas'])
+        && d.keys().hasAll(['protocolo', 'modo', 'nome', 'email', 'telefone', 'resumo'])
+        && texto(d.protocolo, 8, 40)
+        && d.modo in ['rapido', 'completo']
+        && texto(d.nome, 2, 120)
+        && texto(d.email, 5, 160) && d.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
+        && texto(d.telefone, 8, 30)
+        && (!('empresa' in d) || texto(d.empresa, 0, 160))
+        && (!('cnpj' in d) || texto(d.cnpj, 0, 18))
+        && texto(d.resumo, 1, 12000)
+        && (!('respostas' in d) || d.respostas is map);
+    }
+  }
+}

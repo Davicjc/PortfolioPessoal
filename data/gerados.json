@@ -60,5 +60,7 @@
  "Curriculo/index.html",
  "Curriculo/en.html",
  "coffee/index.html",
- "en/coffee/index.html"
+ "en/coffee/index.html",
+ "pedido/index.html",
+ "en/order/index.html"
 ]

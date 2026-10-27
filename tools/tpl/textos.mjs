@@ -3,7 +3,7 @@ export const T = {
   pt: {
     lang: 'pt-BR', og_locale: 'pt_BR',
     pular: 'Pular para o conteúdo', menu: 'Menu', fechar: 'Fechar',
-    nav_trabalho: 'Trabalho', nav_trajetoria: 'Trajetória', nav_contato: 'Contato', nav_cv: 'Currículo',
+    nav_trabalho: 'Trabalho', nav_trajetoria: 'Trajetória', nav_contato: 'Contato', nav_pedido: 'Fazer pedido', simular: 'Simule um projeto', simular_sub: '2 minutos · a maquete se monta enquanto você responde', pedido_rotulo: 'novo projeto', pedido_titulo: 'Monte o seu pedido', pedido_txt: 'Em 2 minutos ou num briefing completo. Você vê o projeto tomando forma enquanto responde.', nav_cv: 'Currículo',
     em_producao: 'Em produção', em: 'em',
     ver_casos: 'Ver os estudos de caso', cv_pdf: 'Currículo em PDF',
     ping_titulo: 'Ping ao vivo', ping_sub: 'do seu navegador até sistemas que eu construí',
@@ -40,7 +40,7 @@ export const T = {
   en: {
     lang: 'en', og_locale: 'en_US',
     pular: 'Skip to content', menu: 'Menu', fechar: 'Close',
-    nav_trabalho: 'Work', nav_trajetoria: 'Experience', nav_contato: 'Contact', nav_cv: 'Résumé',
+    nav_trabalho: 'Work', nav_trajetoria: 'Experience', nav_contato: 'Contact', nav_pedido: 'Start a project', simular: 'Simulate your project', simular_sub: '2 minutes · the mockup builds itself as you answer', pedido_rotulo: 'new project', pedido_titulo: 'Build your brief', pedido_txt: 'In 2 minutes or as a full brief. You watch the project take shape as you answer.', nav_cv: 'Résumé',
     em_producao: 'In production', em: 'in',
     ver_casos: 'See the case studies', cv_pdf: 'Résumé (PDF)',
     ping_titulo: 'Live ping', ping_sub: 'from your browser to systems I built',

@@ -3159,10 +3159,11 @@
   "trajetoria_sub_pt": "Comecei atendendo clientes e cresci por dentro de duas operadoras, somando responsabilidade técnica a cada etapa.",
   "trajetoria_titulo_en": "From the support desk to the code the operation runs on",
   "trajetoria_titulo_pt": "Do atendimento ao código que a operação usa",
-  "titulo_pt": "Do primeiro commit ao sistema no ar.",
-  "titulo_en": "From first commit to a live system.",
-  "lead_pt": "Sou Davi Castro, desenvolvedor full stack em Uberlândia. Construo produtos de ponta a ponta — interface, API, banco de dados, apps de Windows e Android e o deploy — e mantenho no ar os sistemas que a Audicom Telecom usa todos os dias.",
-  "lead_en": "I'm Davi Castro, a full-stack developer in Brazil. I build products end to end — interface, API, database, Windows and Android apps, and the deploy — and keep the systems Audicom Telecom runs on every day up and running.",
+  "titulo_pt": "Davi Castro",
+  "titulo_en": "Davi Castro",
+  "empresa": "Audicom Telecom",
+  "lead_pt": "Construo produtos de ponta a ponta — interface, API, banco de dados, apps de Windows e Android e o deploy — e mantenho no ar os sistemas que a Audicom Telecom usa todos os dias.",
+  "lead_en": "I build products end to end — interface, API, database, Windows and Android apps, and the deploy — and keep the systems Audicom Telecom runs on every day up and running.",
   "seo_titulo_pt": "Davi Castro — Desenvolvedor Full Stack em Uberlândia",
   "seo_titulo_en": "Davi Castro — Full-Stack Developer (Brazil)",
   "seo_descricao_pt": "Portfólio de Davi Castro (davicjc), desenvolvedor full stack em Uberlândia: o NexusAtlas, SaaS de ordens de serviço com apps de Windows e Android; uma plataforma de teste de velocidade; painéis, APIs e sites para empresas e clientes.",
@@ -3442,13 +3443,15 @@
    "en": true
   },
   "versoes": {
-   "css": "dc103d5fb7",
-   "js": "1fd0e4ee3b",
+   "css": "67bf25da8c",
+   "js": "90fc71ce18",
    "vox": "348744478b",
    "marca": "9b126f2e13",
    "cv": "2e68b8e58d",
    "cafe": "10f04d1a15",
-   "cafeJs": "729b3c5fd0"
+   "cafeJs": "729b3c5fd0",
+   "pedido": "7e326e8fa5",
+   "pedidoJs": "b350e3fea2"
   }
  }
 }

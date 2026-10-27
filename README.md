@@ -70,6 +70,7 @@ As páginas usam caminhos absolutos (`/assets/...`), então sirva a partir da ra
 - **SEO de verdade num site estático.** Uma URL por página e por língua, `hreflang` nos dois sentidos, JSON-LD (`Person` com ORCID, `SoftwareApplication`, `BreadcrumbList`, `ProfilePage`), sitemap com imagens, `llms.txt` e um card de compartilhamento próprio para cada página.
 - **Leve.** Fontes auto-hospedadas em subconjunto latino, imagens WebP com `srcset` de 800 e 1200 px, um CSS e um módulo JS por página.
 - **Acessível.** Contraste AA medido em todas as superfícies, foco visível, abas e escolhas que funcionam pelo teclado, e com `prefers-reduced-motion` tudo aparece direto no estado final.
+- **Pedido guiado.** Em `/pedido/` (e `/en/order/`) o cliente escolhe a análise rápida (6 perguntas) ou a completa (15), e cada resposta redesenha ao vivo a maquete do projeto dele. O pedido sai pronto pelo WhatsApp ou por e-mail. A gravação no Firestore fica desligada em `data/pedido.json` até as regras de `firestore.rules` serem publicadas, porque hoje a leitura do banco é pública.
 - **Marca como sistema.** `brand/tokens.json` é a fonte única de cores, tipos, espaços e movimento. Site, manual, currículo, cards e ícones leem dali.
 
 ## Estrutura
@@ -79,14 +80,15 @@ As páginas usam caminhos absolutos (`/assets/...`), então sirva a partir da ra
 ├── tools/
 │   ├── sync.mjs            # Firestore → data/firestore.json
 │   ├── build.mjs           # gera o site inteiro
-│   ├── tpl/                # templates: home, projeto, lista, currículo, café, manual da marca
+│   ├── tpl/                # templates: home, projeto, lista, currículo, café, pedido, manual da marca
 │   ├── og.mjs · og.html    # cards de compartilhamento
 │   ├── pdf.mjs             # PDFs a partir das próprias páginas
 │   └── tokens.mjs          # brand/tokens.json → assets/css/tokens.css
-├── data/                   # retrato do banco, overlay, café, números do GitHub
-├── assets/                 # CSS, JS (site, easter egg, café, QR), fontes e cards
+├── data/                   # retrato do banco, overlay, café, pedido, números do GitHub
+├── assets/                 # CSS, JS (site, easter egg, café, QR, pedido), fontes e cards
 ├── brand/                  # tokens, SVGs da marca, ícones, gerador e manual em PDF
-├── adm/                    # painel do conteúdo
+├── adm/                    # painel do conteúdo e dos pedidos
+├── firestore.rules         # regras do banco (publicar pelo console do Firebase)
 ├── fotos/                  # telas dos projetos (WebP) e fotos dos depoimentos
 ├── certificados/           # PDFs dos certificados
 └── .github/workflows/      # atualização automática do site

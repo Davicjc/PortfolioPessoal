@@ -16,6 +16,7 @@ import { paginaProjetos, paginaErro } from './tpl/projetos.mjs';
 import { paginaMarca } from './tpl/marca.mjs';
 import { paginaCurriculo } from './tpl/curriculo.mjs';
 import { paginaCafe } from './tpl/cafe.mjs';
+import { paginaPedido } from './tpl/pedido.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 // Fim de linha sempre LF: no Windows o checkout vem com CRLF e no CI com LF; sem isto os hashes ?v= e os
@@ -175,6 +176,7 @@ function sitemap(dados, ts) {
   urls.push(`  <url><loc>${DOMINIO}/Curriculo/en.html</loc><lastmod>${dia}</lastmod><priority>0.6</priority></url>`);
   urls.push(`  <url><loc>${DOMINIO}/brand/</loc><lastmod>${dia}</lastmod><priority>0.3</priority></url>`);
   urls.push(entrada('/coffee/', '/en/coffee/', '0.3'), entrada('/en/coffee/', '/coffee/', '0.2'));
+  urls.push(entrada('/pedido/', '/en/order/', '0.8'), entrada('/en/order/', '/pedido/', '0.6'));
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${urls.join('\n')}
@@ -243,7 +245,7 @@ async function principal() {
   dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')).sort() : [];
   // Com os PDFs gerados (tools/pdf.mjs), o botão "Currículo em PDF" baixa o arquivo em vez de abrir a página.
   const cvPdf = { pt: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Curriculo.pdf')), en: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Resume.pdf')) };
-  dados._build = { ts, cvPdf, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe) } };
+  dados._build = { ts, cvPdf, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe), pedido: hash(ler('assets/css/pedido.css')), pedidoJs: hash(ler('assets/js/pedido.js')) } };
 
   // Páginas
   const gerados = [];
@@ -261,6 +263,8 @@ async function principal() {
   pagina('Curriculo/en.html', paginaCurriculo({ dados, lang: 'en', t: T.en }));
   const cafe = lerJSON('data/cafe.json');
   for (const lang of LINGUAS) pagina(rotas.cafe(lang).slice(1) + 'index.html', paginaCafe({ dados, lang, t: T[lang] }, cafe));
+  const pedido = existsSync(join(RAIZ, 'data/pedido.json')) ? lerJSON('data/pedido.json') : {};
+  for (const lang of LINGUAS) pagina(rotas.pedido(lang).slice(1) + 'index.html', paginaPedido({ dados, lang, t: T[lang] }, pedido));
 
   // Remove páginas de projetos que saíram do ar desde o último build.
   const manifesto = join(RAIZ, 'data/gerados.json');

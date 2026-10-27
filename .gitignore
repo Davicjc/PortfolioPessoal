@@ -1,0 +1,31 @@
+# Dependências e pacotes locais
+node_modules/
+package-lock.json
+
+# Arquivos temporários, backups e rascunhos
+*.bak
+*.backup.*
+*.tmp
+*_extracted.txt
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editores, IDEs e assistentes locais
+.claude/
+.vscode/
+.idea/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Variáveis de ambiente locais
+.env
+.env.*
+.impeccable/
+
+# Transcrições de sessão exportadas do Claude Code
+*-local-command-caveat*.txt

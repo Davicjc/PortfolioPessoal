@@ -17,7 +17,8 @@ export const rotas = {
   projeto: (lang, id) => (lang === 'en' ? `/en/projects/${id}/` : `/projetos/${id}/`),
   cv: lang => (lang === 'en' ? '/Curriculo/en.html' : '/Curriculo/'),
   cvPdf: lang => (lang === 'en' ? '/Curriculo/Davi-Castro-Resume.pdf' : '/Curriculo/Davi-Castro-Curriculo.pdf'),
-  cafe: lang => (lang === 'en' ? '/en/coffee/' : '/coffee/')
+  cafe: lang => (lang === 'en' ? '/en/coffee/' : '/coffee/'),
+  pedido: lang => (lang === 'en' ? '/en/order/' : '/pedido/')
 };
 
 // Link do currículo: o PDF quando ele já existe no site; senão, a página do currículo.
@@ -90,6 +91,7 @@ export function cabecalho(ctx) {
       <a href="${ativo}#trabalho">${t.nav_trabalho}</a>
       <a href="${ativo}#trajetoria">${t.nav_trajetoria}</a>
       <a href="${ativo}#contato">${t.nav_contato}</a>
+      <a class="nav__pedido" href="${rotas.pedido(lang)}"${ctx.pagina === 'pedido' ? ' aria-current="page"' : ''}>${t.nav_pedido}</a>
       <a class="nav__cv" href="${rotas.cv(lang)}">${t.nav_cv}</a>
     </nav>
     <div class="idioma" role="group" aria-label="${lang === 'en' ? 'Language' : 'Idioma'}">

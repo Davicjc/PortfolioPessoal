@@ -38,15 +38,19 @@ function hero(ctx) {
   <div class="envelope hero__texto">
     <p class="hero__kicker rotulo">
       <span class="hero__estado">${led('no_ar')}${t.em_producao}</span>
-      <span>${esc(c(s, 'cargo', lang))}</span>
       <span>Uberlândia, MG · <span data-relogio>UTC−3</span></span>
     </p>
     <h1 id="hero-titulo" class="hero__titulo">${palavras(c(s, 'titulo', lang))}</h1>
+    <p class="hero__cargo"><span>${esc(c(s, 'cargo', lang))}</span>${s.empresa ? `<span class="hero__sep" aria-hidden="true"> · </span><span>${esc(s.empresa)}</span>` : ''}</p>
     ${parede(ctx)}
     <div class="hero__base">
       <p class="hero__lead">${esc(c(s, 'lead', lang))}</p>
+      <a class="hero__simular" href="${rotas.pedido(lang)}">
+        <span class="hero__simular-txt"><span class="hero__simular-nome">${t.simular}</span><span class="hero__simular-sub">${t.simular_sub}</span></span>
+        <span class="hero__simular-ir">${icone('seta')}</span>
+      </a>
       <div class="hero__acoes">
-        <a class="botao botao--sinal" href="#trabalho">${t.ver_casos}${icone('seta')}</a>
+        <a class="botao botao--linha" href="#trabalho">${t.ver_casos}${icone('seta')}</a>
         <a class="botao botao--linha" href="${linkCv(dados, lang)}"${baixaCv(dados, lang)}>${t.cv_pdf}${icone('baixo')}</a>
         ${[['ct-github', 'github', 'GitHub'], ['ct-linkedin', 'linkedin', 'LinkedIn']].map(([id, ic, nome]) => {
           const k = (dados.contatos || []).find(x => x.id === id);
@@ -316,6 +320,12 @@ function contato(ctx) {
     <p class="rotulo secao__num">06</p>
     <h2 class="contato__titulo" id="contato-titulo">${esc(c(s, 'contato_titulo', lang))}</h2>
     <p class="secao__sub">${esc(c(s, 'contato_sub', lang))}</p>
+    <a class="contato__pedido" href="${rotas.pedido(lang)}">
+      <span class="rotulo">${t.pedido_rotulo}</span>
+      <span class="contato__pedido-titulo">${t.pedido_titulo}</span>
+      <span class="contato__pedido-txt">${t.pedido_txt}</span>
+      <span class="contato__pedido-ir">${icone('seta')}</span>
+    </a>
     <div class="contato__email">
       <a class="contato__endereco" href="${esc(email.url)}">${esc(email.valor)}${icone('diagonal')}</a>
       <button type="button" class="botao botao--linha botao--pequeno" data-copiar="${esc(email.valor)}" data-copiado="${esc(t.copiado)}">${icone('copiar')}<span>${t.copiar}</span></button>

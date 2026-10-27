@@ -477,9 +477,12 @@ const SECOES = [
       { k:'publicado', tipo:'bool', rotulo:'Publicado no site' },
     ] },
 
+  { id:'pedidos', nome:'Pedidos', pedidos:true,
+    descricao:'O que chega pela página /pedido/. Só leitura: os pedidos ficam fora da cópia de segurança e da importação.' },
+
   { id:'banco', nome:'Banco e publicação', ferramentas:true },
 ];
-const COLECOES = SECOES.filter(s => !s.doc && !s.ferramentas).map(s => s.id);
+const COLECOES = SECOES.filter(s => !s.doc && !s.ferramentas && !s.pedidos).map(s => s.id);
 /* O site novo não usa estas coleções, mas elas continuam no banco: entram na cópia de segurança e na importação. */
 const TODAS = [...COLECOES, 'capacidades', 'clientes', 'categorias'];
 
@@ -644,7 +647,7 @@ function bancoVazio(){ return totalDocs() === 0; }
 /* ══════════════ NAVEGAÇÃO ══════════════ */
 function renderNav(){
   const html = SECOES.map(s => {
-    const n = s.doc ? '' : s.ferramentas ? '' : (estado.carregado ? estado.dados[s.id].length : '');
+    const n = s.doc || s.ferramentas ? '' : s.pedidos ? (estado.pedidos ? estado.pedidos.length : '') : (estado.carregado ? estado.dados[s.id].length : '');
     const sep = s.ferramentas ? '<div class="nav-sep"></div>' : '';
     return sep + `<button data-ir="${s.id}" aria-current="${estado.secao === s.id}">${esc(s.nome)}<em>${n}</em></button>`;
   }).join('');
@@ -678,8 +681,47 @@ function renderPrincipal(){
     return;
   }
   if (s.ferramentas) return renderFerramentas(alvo);
+  if (s.pedidos) return renderPedidos(alvo);
   if (s.doc) return renderDocumento(alvo, s);
   renderLista(alvo, s);
+}
+
+/* ══════════════ PEDIDOS ══════════════
+   Lidos sob demanda (não entram em TODAS): assim nunca vão para a cópia de segurança,
+   para a importação nem para o data/firestore.json do build. */
+async function renderPedidos(alvo){
+  const s = secao('pedidos');
+  alvo.innerHTML = cabecalho(s.nome, s.descricao, `<button class="btn" data-acao-ped="recarregar">Atualizar</button>`) + `<div class="carregando"><span class="giro"></span>lendo os pedidos…</div>`;
+  try {
+    const snap = await comTempo(getDocs(collection(bd, 'pedidos')), 15000, 'tempo esgotado');
+    estado.pedidos = snap.docs.map(d => Object.assign({}, d.data(), { id: d.id })).sort((a, b) => String(b.criado_em || '').localeCompare(String(a.criado_em || '')));
+  } catch (e) {
+    alvo.innerHTML = cabecalho(s.nome, s.descricao) + `<div class="cartao aviso"><p>${esc(explicarErro(e))}</p></div>`;
+    return;
+  }
+  renderNav();
+  const lista = estado.pedidos;
+  const data = iso => { try { return new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(iso)); } catch (e) { return iso || ''; } };
+  const zap = t => 'https://wa.me/' + String(t || '').replace(/\D/g, '').replace(/^(?!55)(\d{10,11})$/, '55$1');
+  alvo.innerHTML = cabecalho(s.nome, s.descricao, `<button class="btn" data-acao-ped="recarregar">Atualizar</button>`) +
+    (!lista.length
+      ? `<div class="cartao"><h2>Nenhum pedido no banco</h2><p>A página /pedido/ só grava aqui quando <code>gravar_no_firestore</code> está <code>true</code> em <code>data/pedido.json</code>, e isso só deve ser ligado depois de publicar as regras de <code>firestore.rules</code> (sem elas, a leitura do banco é pública). Até lá, os pedidos chegam pelo WhatsApp ou e-mail.</p></div>`
+      : lista.map(p => `<div class="cartao" style="margin-bottom:12px">
+          <span class="rotulo">${esc(p.protocolo || p.id)} · ${esc(p.modo === 'rapido' ? 'análise rápida' : 'análise completa')} · ${esc(data(p.criado_em))}</span>
+          <h2>${esc(p.nome || '')}${p.empresa ? ' · ' + esc(p.empresa) : ''}</h2>
+          <p>${esc(p.email || '')} · ${esc(p.telefone || '')}${p.cnpj ? ' · CNPJ ' + esc(p.cnpj) : ''}</p>
+          <details><summary class="rotulo" style="cursor:pointer;margin-bottom:.6rem">ver o pedido inteiro</summary><pre style="white-space:pre-wrap">${esc(p.resumo || '')}</pre></details>
+          <div class="linha-acoes">
+            <a class="btn btn-forte" href="${esc(zap(p.telefone))}" target="_blank" rel="noopener">Responder no WhatsApp</a>
+            <a class="btn" href="mailto:${esc(p.email || '')}?subject=${encodeURIComponent('Seu pedido ' + (p.protocolo || ''))}">Responder por e-mail</a>
+            <button class="btn" data-acao-ped="apagar" data-id="${esc(p.id)}">Apagar</button>
+          </div></div>`).join(''));
+  alvo.querySelectorAll('[data-acao-ped]').forEach(b => b.addEventListener('click', async () => {
+    if (b.dataset.acaoPed === 'recarregar') return renderPedidos(alvo);
+    if (!confirm('Apagar este pedido de vez?')) return;
+    await deleteDoc(doc(bd, 'pedidos', b.dataset.id));
+    renderPedidos(alvo);
+  }));
 }
 
 function cabecalho(titulo, descricao, acoes = ''){

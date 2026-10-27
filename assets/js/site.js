@@ -133,11 +133,35 @@ async function medir(url, limite = 6000) {
     setTimeout(aoVivo, 3600 + Math.random() * 2000);
   }
 
-  // Troca de canal: uma tela por vez mostra outra tela do mesmo sistema.
+  // Granulado do chiado: um quadro de ruído desenhado uma vez só e reaproveitado por todas as telas.
+  if (movimento) {
+    const quadro = document.createElement('canvas');
+    quadro.width = quadro.height = 90;
+    const g = quadro.getContext('2d');
+    const px = g.createImageData(90, 90);
+    for (let i = 0; i < px.data.length; i += 4) {
+      const v = Math.random() < .5 ? Math.random() * 70 : 120 + Math.random() * 135;
+      px.data[i] = px.data[i + 1] = px.data[i + 2] = v; px.data[i + 3] = 255;
+    }
+    g.putImageData(px, 0, 0);
+    quadro.toBlob(b => b && parede.style.setProperty('--chiado', `url(${URL.createObjectURL(b)})`));
+  }
+  function chiar(tela, ms, forca) {
+    tela.style.setProperty('--chiado-ms', ms + 'ms');
+    tela.style.setProperty('--chiado-forca', forca);
+    tela.classList.remove('chiando');
+    void tela.offsetWidth;
+    tela.classList.add('chiando');
+    clearTimeout(tela._chiado);
+    tela._chiado = setTimeout(() => tela.classList.remove('chiando'), ms);
+  }
+  const sorteia = lista => lista[Math.floor(Math.random() * lista.length)];
+  const ativa = () => visivel && document.visibilityState === 'visible';
+
+  // Troca de canal: a tela chia, a imagem nova entra por baixo do chiado e ele some.
   function trocarCanal() {
-    if (visivel && document.visibilityState === 'visible') {
-      const candidatas = telas.filter(t => t.classList.contains('ligada') && (t.dataset.imagens || '').includes('|'));
-      const t = candidatas[Math.floor(Math.random() * candidatas.length)];
+    if (ativa()) {
+      const t = sorteia(telas.filter(t => t.classList.contains('ligada') && !t.classList.contains('chiando') && (t.dataset.imagens || '').includes('|')));
       if (t) {
         const lista = t.dataset.imagens.split('|');
         const vidro = $('.tela__vidro', t);
@@ -147,33 +171,64 @@ async function medir(url, limite = 6000) {
         const nova = new Image();
         nova.alt = ''; nova.decoding = 'async'; nova.src = innerWidth < 900 ? prox.replace('-1200', '-800') : prox;
         nova.onload = () => {
-          vidro.append(nova);
-          requestAnimationFrame(() => requestAnimationFrame(() => { nova.classList.add('ativa'); atual.classList.remove('ativa'); }));
-          setTimeout(() => atual.remove(), 1100);
+          chiar(t, 620, .94);
+          setTimeout(() => {
+            vidro.append(nova);
+            requestAnimationFrame(() => requestAnimationFrame(() => { nova.classList.add('ativa'); atual.classList.remove('ativa'); }));
+            setTimeout(() => atual.remove(), 1100);
+          }, 200);
         };
       }
     }
-    setTimeout(trocarCanal, 4800 + Math.random() * 1600);
+    setTimeout(trocarCanal, 3400 + Math.random() * 1800);
   }
 
-  // Inclinação leve com o ponteiro (só mouse; sem luz seguindo o cursor).
-  if (movimento && matchMedia('(pointer: fine)').matches) {
-    let alvoX = 0, alvoY = 0, x = 0, y = 0, rodando = false;
-    const passo = () => {
-      x += (alvoX - x) * 0.06; y += (alvoY - y) * 0.06;
-      plano.style.setProperty('--px', x.toFixed(3) + 'deg');
-      plano.style.setProperty('--py', y.toFixed(3) + 'deg');
-      rodando = Math.abs(alvoX - x) > 0.01 || Math.abs(alvoY - y) > 0.01;
-      if (rodando) requestAnimationFrame(passo);
+  // Interferência: de vez em quando uma tela qualquer dá uma chiadinha rápida, sem trocar de canal.
+  function interferencia() {
+    if (ativa()) {
+      const t = sorteia(telas.filter(t => t.classList.contains('ligada') && !t.classList.contains('chiando') && t.offsetParent));
+      if (t) chiar(t, 240 + Math.random() * 160, .45 + Math.random() * .25);
+    }
+    setTimeout(interferencia, 1900 + Math.random() * 2600);
+  }
+
+  // Balanço: a parede flutua sozinha, devagar (duas ondas que não se repetem juntas), e o mouse
+  // soma uma inclinação por cima. Amortecimento por tempo, então fica igual em 60 ou 120 Hz.
+  if (movimento) {
+    const fino = matchMedia('(pointer: fine)').matches;
+    // Dois filtros em série: o mouse puxa um ponto intermediário e ele puxa a parede. Assim ela
+    // não acompanha a velocidade do mouse; arranca devagar e assenta devagar, como algo pesado.
+    let alvoX = 0, alvoY = 0, ix = 0, iy = 0, mx = 0, my = 0, antes = 0, pedido = 0;
+    const passo = agora => {
+      pedido = 0;
+      if (!ativa()) { antes = 0; return; }
+      const dt = antes ? Math.min(.05, (agora - antes) / 1000) : 0;
+      antes = agora;
+      const k = 1 - Math.exp(-dt * 2.6);
+      ix += (alvoX - ix) * k; iy += (alvoY - iy) * k;
+      mx += (ix - mx) * k; my += (iy - my) * k;
+      const s = agora / 1000;
+      const entra = Math.min(1, s / 3);
+      // Ondas de ~10 a 20 s: dá para ver a parede andando, sem parecer que está balançando.
+      const ox = Math.sin(s * .52) + Math.sin(s * .83 + 1.3) * .4;
+      const oy = Math.sin(s * .41 + .8) + Math.sin(s * .71) * .35;
+      plano.style.setProperty('--px', ((ox * 3.2) * entra + mx).toFixed(3) + 'deg');
+      plano.style.setProperty('--py', ((oy * 1.8) * entra + my).toFixed(3) + 'deg');
+      plano.style.setProperty('--dx', ((ox * 34) * entra + mx * 9).toFixed(2) + 'px');
+      plano.style.setProperty('--dy', ((oy * 22) * entra - my * 9).toFixed(2) + 'px');
+      pedido = requestAnimationFrame(passo);
     };
-    addEventListener('pointermove', e => {
-      alvoX = (e.clientX / innerWidth - 0.5) * 5;
-      alvoY = (0.5 - e.clientY / innerHeight) * 3;
-      if (!rodando) { rodando = true; requestAnimationFrame(passo); }
+    const seguir = () => { if (!pedido && ativa()) pedido = requestAnimationFrame(passo); };
+    new IntersectionObserver(([e]) => { visivel = e.isIntersecting; seguir(); }).observe(parede);
+    document.addEventListener('visibilitychange', seguir);
+    if (fino) addEventListener('pointermove', e => {
+      alvoX = (e.clientX / innerWidth - 0.5) * 9;
+      alvoY = (0.5 - e.clientY / innerHeight) * 5;
     }, { passive: true });
+    seguir();
   }
 
-  const comecar = () => entrada().then(() => { setTimeout(aoVivo, 2600); if (movimento) setTimeout(trocarCanal, 4200); });
+  const comecar = () => entrada().then(() => { setTimeout(aoVivo, 2600); if (movimento) { setTimeout(trocarCanal, 3200); setTimeout(interferencia, 5200); } });
   if (document.body.classList.contains('pronto')) comecar();
   else new MutationObserver((_, obs) => { if (document.body.classList.contains('pronto')) { obs.disconnect(); comecar(); } }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 })();
