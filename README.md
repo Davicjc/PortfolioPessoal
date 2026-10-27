@@ -1,122 +1,105 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="brand/assinatura-davi-castro.svg">
-    <img src="brand/assinatura-davi-castro-claro.svg" alt="Davi Castro — full stack · infraestrutura de redes" width="420">
+    <img src="brand/assinatura-davi-castro-claro.svg" alt="Davi Castro — desenvolvedor full stack" width="360">
   </picture>
 </p>
 
-<h1 align="center">Davi Castro — Portfólio</h1>
-
 <p align="center">
-  <strong>Desenvolvedor Full Stack · Infraestrutura de Redes</strong><br>
-  <a href="https://davicjc.com">davicjc.com</a> ·
-  <a href="https://linkedin.com/in/davicjc">LinkedIn</a> ·
-  <a href="https://github.com/Davicjc">GitHub</a>
+  <a href="https://davicjc.com"><b>davicjc.com</b></a> ·
+  <a href="https://davicjc.com/en/">English</a> ·
+  <a href="https://davicjc.com/Curriculo/">Currículo</a> ·
+  <a href="https://davicjc.com/brand/">Manual da marca</a> ·
+  <a href="https://orcid.org/0009-0005-8485-455X">ORCID</a>
 </p>
 
----
-
-
 <p align="center">
-  <img src=".github/readme/preview.png" alt="Prévia de PortfolioPessoal no computador e no celular" width="100%">
+  <img src=".github/readme/preview.png" alt="A home do davicjc.com no computador e no celular: o título “Do primeiro commit ao sistema no ar.” ao lado de uma parede com as telas reais dos sistemas" width="100%">
 </p>
 
-### 📸 Telas do sistema
+Portfólio de **Davi Castro**, desenvolvedor full stack em Uberlândia (MG). O site mostra os sistemas que eu construí e mantenho no ar, com telas reais, a situação de cada projeto e os números que dá para conferir. No topo, uma parede de telas acende quando cada sistema responde ao ping, medido no navegador de quem visita.
+
+## O que tem aqui
+
+| Página | O que é |
+| --- | --- |
+| [`/`](https://davicjc.com) e [`/en/`](https://davicjc.com/en/) | Home em português e inglês: parede de produção, estudos de caso, entregas, trajetória e contato |
+| [`/projetos/`](https://davicjc.com/projetos/) | 26 projetos, cada um com página própria nas duas línguas e a situação de hoje (no ar, em desenvolvimento, descontinuado…) |
+| [`/Curriculo/`](https://davicjc.com/Curriculo/) | Currículo em PT e EN gerado dos mesmos dados, com PDF de duas páginas |
+| [`/brand/`](https://davicjc.com/brand/) | Manual da marca, com PDF de 12 páginas e os arquivos para baixar |
+| [`/coffee/`](https://davicjc.com/coffee/) | Me pague um café: Pix com QR gerado na hora, PayPal e cripto |
+| `/adm/` | Painel que edita todo o conteúdo (Firebase Auth + Firestore) |
 
 <p align="center">
-  <img src=".github/readme/telas.png" alt="Telas de PortfolioPessoal" width="100%">
+  <img src=".github/readme/telas.png" alt="Seis sistemas do portfólio: NexusAtlas, Teste de Velocidade Audicom, Audicom Hub, PopManager, Telemetry Portal e Face Safety" width="100%">
 </p>
 
-## O que é
+## Como funciona
 
-Portfólio pessoal com duas partes:
+```mermaid
+flowchart LR
+  adm["/adm<br>(Firebase Auth)"] -- grava --> fs[(Firestore)]
+  fs -- tools/sync.mjs --> json[data/firestore.json]
+  json --> build[tools/build.mjs]
+  overlay[data/overlay.json] --> build
+  build --> paginas["HTML estático PT/EN<br>sitemap · llms.txt"]
+  build --> og["tools/og.mjs<br>cards 1200×630"]
+  build --> pdf["tools/pdf.mjs<br>currículo e manual"]
+  paginas --> cf[Cloudflare Pages]
+```
 
-- **Site** (`index.html`) — home enxuta e aba **Projetos** (`#/projetos`) com layout alternado imagem/texto. Cada projeto com demonstração pública abre dentro do próprio site, num visor com modo computador e celular.
-- **Painel** (`adm/index.html`) — edita todo o conteúdo do site: projetos, trajetória, depoimentos, certificados, clientes, contatos e os textos da home, em português e inglês.
+O conteúdo mora no Firestore e é editado no `/adm`. O site em si é estático: `tools/build.mjs` lê o banco e gera todas as páginas, o sitemap com `hreflang` e imagens, o `llms.txt`, o currículo e o café. Nada de framework e nenhuma dependência: só Node 20+ e, para os cards e PDFs, o Chrome instalado.
 
-O conteúdo mora no **Firestore**. O site é estático, sem etapa de build, e funciona em qualquer hospedagem de arquivos.
+A automação [`atualizar.yml`](.github/workflows/atualizar.yml) roda de hora em hora: puxa o banco, refaz o site e publica só quando algo mudou. O build é determinístico (a data vem do conteúdo, não do relógio), então rodar duas vezes, aqui ou no CI em UTC, gera exatamente os mesmos arquivos.
 
-## Marca
+## Rodar na sua máquina
 
-A marca mora em `brand/` (prancha completa em `brand/index.html`): símbolo **cjc** (o j é o barramento, o pingo é o pacote), monograma **D**, wordmark **davicjc**, assinaturas, ícones e a imagem de compartilhamento `og.png`. Para regenerar os SVGs, use `brand/gerar-marca.js`.
+```bash
+node tools/sync.mjs        # puxa o Firestore (leitura pública) para data/firestore.json
+node tools/build.mjs       # gera as páginas
+node tools/og.mjs          # cards de compartilhamento (usa o Chrome)
+node tools/pdf.mjs         # PDFs do currículo e do manual da marca (usa o Chrome)
+npx serve .                # ou: python -m http.server 8000
+```
 
-## SEO
+As páginas usam caminhos absolutos (`/assets/...`), então sirva a partir da raiz do repositório. Para regenerar a marca, rode `node tools/tokens.mjs` depois de mexer em `brand/tokens.json`, e `python brand/gerar-marca.py` para refazer SVGs e ícones (precisa de fontTools, uharfbuzz, PyMuPDF e Pillow).
 
-O site é uma SPA, mas entrega o conteúdo completo em HTML estático, além de JSON-LD, sitemap com imagens e `llms.txt`. Sempre que mudar o conteúdo pelo painel:
+## Decisões
 
-1. No `/adm`, clique em **Exportar semente** e cole o resultado no `index.html`, entre `/* SEMENTE:INICIO */` e `/* SEMENTE:FIM */`.
-2. Rode `node tools/seo.js`.
-
-Links diretos por idioma: `?lang=en` e `?lang=es`.
+- **Conteúdo honesto.** Cargos e datas seguem o ORCID. Todo projeto declara a situação, e projeto parado não some. Telas de sistemas internos usam dados fictícios, gerados rodando o próprio sistema.
+- **SEO de verdade num site estático.** Uma URL por página e por língua, `hreflang` nos dois sentidos, JSON-LD (`Person` com ORCID, `SoftwareApplication`, `BreadcrumbList`, `ProfilePage`), sitemap com imagens, `llms.txt` e um card de compartilhamento próprio para cada página.
+- **Leve.** Fontes auto-hospedadas em subconjunto latino, imagens WebP com `srcset` de 800 e 1200 px, um CSS e um módulo JS por página.
+- **Acessível.** Contraste AA medido em todas as superfícies, foco visível, abas e escolhas que funcionam pelo teclado, e com `prefers-reduced-motion` tudo aparece direto no estado final.
+- **Marca como sistema.** `brand/tokens.json` é a fonte única de cores, tipos, espaços e movimento. Site, manual, currículo, cards e ícones leem dali.
 
 ## Estrutura
 
 ```
 📦 PortfolioPessoal
-├── index.html              # site: home + aba de projetos + visor embutido
-├── adm/
-│   └── index.html          # painel administrativo (com a carga inicial do banco embutida)
-├── Curriculo/
-│   ├── index.html          # currículo em português (A4, pronto para PDF)
-│   └── en.html             # currículo em inglês
-├── Currículo - Davi Castro Jorge da Costa.pdf
-├── Resume - Davi Castro Jorge da Costa.pdf
-├── fotos/
-│   ├── projetos/           # capturas dos projetos em WebP
-│   ├── me/  logo/  sobremimterceiros/
+├── tools/
+│   ├── sync.mjs            # Firestore → data/firestore.json
+│   ├── build.mjs           # gera o site inteiro
+│   ├── tpl/                # templates: home, projeto, lista, currículo, café, manual da marca
+│   ├── og.mjs · og.html    # cards de compartilhamento
+│   ├── pdf.mjs             # PDFs a partir das próprias páginas
+│   └── tokens.mjs          # brand/tokens.json → assets/css/tokens.css
+├── data/                   # retrato do banco, overlay, café, números do GitHub
+├── assets/                 # CSS, JS (site, easter egg, café, QR), fontes e cards
+├── brand/                  # tokens, SVGs da marca, ícones, gerador e manual em PDF
+├── adm/                    # painel do conteúdo
+├── fotos/                  # telas dos projetos (WebP) e fotos dos depoimentos
 ├── certificados/           # PDFs dos certificados
-├── robots.txt  sitemap.xml
+└── .github/workflows/      # atualização automática do site
 ```
 
-## Como os dados funcionam
+## Easter egg
 
-1. O `index.html` traz uma cópia embutida do conteúdo (a "semente"). A página pinta na hora, buscadores leem tudo e o site continua no ar mesmo se o Firebase cair.
-2. Em seguida, lê o Firestore e, se algo mudou, atualiza a tela. A última leitura fica guardada no navegador para a próxima visita abrir já atualizada.
-3. O painel grava direto no Firestore — a mudança aparece no site na próxima visita.
+Tem um. A dica está no console do navegador.
 
-Para atualizar a semente embutida, use **Banco de dados → Exportar JSON** no painel e cole o conteúdo entre `/* SEMENTE:INICIO */` e `/* SEMENTE:FIM */` no `index.html`.
+## Licença
 
-## Configuração do Firebase (uma vez só)
-
-Projeto: `portfoliopessoal-9aa5b`
-
-1. **Criar o banco** — Console → *Firestore Database* → *Criar banco de dados* → modo **produção** → região `southamerica-east1 (São Paulo)`.
-2. **Publicar as regras** — *Firestore → Regras*, cole e publique:
-   ```
-   rules_version = '2';
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       match /{documento=**} {
-         allow read: if true;
-         allow write: if request.auth != null
-                      && request.auth.token.email == 'davicjc@gmail.com';
-       }
-     }
-   }
-   ```
-3. **Ativar o login** — *Authentication → Começar → Método de login → E-mail/senha → Ativar*. Depois, em *Usuários → Adicionar usuário*, crie `davicjc@gmail.com` com uma senha forte.
-4. **Autorizar os domínios** — *Authentication → Configurações → Domínios autorizados*: adicione `davicjc.com` e `adm.davicjc.com`.
-5. **Popular o banco** — abra o painel (`davicjc.com/adm` depois de publicado, ou o `adm/index.html` direto do disco), entre e clique em **Popular o banco agora**. São 81 documentos: 24 projetos, 5 experiências, 5 depoimentos, 24 certificados, 14 clientes, 4 capacidades, 4 contatos e a configuração da home.
-
-Imagens enviadas pelo painel são comprimidas no navegador. Com o **Storage** ativo, vão para lá; sem ele (plano gratuito), ficam guardadas no próprio documento. As regras do Storage estão no painel, em *Banco de dados*.
-
-## `adm.davicjc.com`
-
-O `index.html` redireciona qualquer acesso por `adm.davicjc.com` para `/adm/`. Basta o subdomínio apontar para o mesmo site:
-
-- **Cloudflare Pages**: no projeto, *Custom domains → Set up a domain → `adm.davicjc.com`*.
-- **GitHub Pages** (aceita só um domínio por repositório): crie no Cloudflare uma *Redirect Rule* de `adm.davicjc.com/*` para `https://davicjc.com/adm/`, com um registro DNS `adm` com proxy ativado.
-
-## Rodar localmente
-
-```bash
-python -m http.server 8000
-# ou
-npx serve .
-```
-
-Abra `http://localhost:8000` (site) e `http://localhost:8000/adm/` (painel). `localhost` já vem autorizado no Firebase.
+O código (`tools/`, `assets/js/`, `assets/css/`, `adm/`) está sob a [licença MIT](LICENSE): pode estudar e reaproveitar. A marca (`brand/`), os textos, as fotos, as telas dos projetos, o currículo e os certificados são de Davi Castro, com todos os direitos reservados. As fontes Archivo e IBM Plex usam a SIL Open Font License.
 
 ---
 
-<p align="center">Desenvolvido e mantido por <strong>Davi Castro</strong> · 2026</p>
+<p align="center">Feito e mantido por <a href="https://davicjc.com"><b>Davi Castro</b></a> · 2026</p>

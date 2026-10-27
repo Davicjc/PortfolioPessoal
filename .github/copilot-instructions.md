@@ -1,33 +1,36 @@
-# Instruções Copilot — Portfólio Davi Castro
+# Instruções para assistentes — Portfólio Davi Castro (davicjc.com, versão 3)
 
 ## Visão geral
-Portfólio pessoal de Davi Castro (davicjc), desenvolvedor full stack e técnico de redes. Site estático, sem etapa de build, com o conteúdo vindo do **Firestore** e editável pelo painel em `/adm`.
+Portfólio de Davi Castro, **desenvolvedor full stack** (rede/provedor é contexto do trabalho na Audicom, não o foco). Site **estático gerado**: o conteúdo mora no Firestore, é editado no painel `/adm` e `tools/build.mjs` gera as páginas. Não há framework nem dependências; só Node 20+ (e o Chrome para cards e PDFs).
 
-## Arquivos
-- `index.html` — o site inteiro: home (`#/`) e aba de projetos (`#/projetos`), roteados por hash. CSS e JS embutidos.
-- `adm/index.html` — painel administrativo (Firebase Auth + Firestore). Não indexado (`robots.txt` e `noindex`). Traz a carga inicial do banco embutida em `<script type="application/json" id="semente">`, usada pelo botão "Popular o banco" — sem requisição de rede, funciona até aberto do disco.
-- `Curriculo/index.html` (PT) e `Curriculo/en.html` (EN) — currículo A4, pensado para impressão em PDF e leitura por ATS. Os dois têm a mesma estrutura: mudou um, mude o outro.
-- `fotos/projetos/*.webp` — capturas dos projetos (1200px, WebP). Mantenha abaixo de ~60KB cada.
-- `certificados/` — PDFs linkados pela lista de certificados.
+## Não edite à mão (são gerados)
+`index.html`, `en/`, `projetos/`, `404.html`, `brand/index.html`, `Curriculo/*.html`, `coffee/`, `sitemap.xml`, `llms.txt`, `data/conteudo.json`, `data/gerados.json`, `assets/css/estilo.css`, `assets/css/curriculo.css`, `assets/css/tokens.css`, `assets/js/cafe-app.js`, `assets/og/*`, os PDFs e os SVGs/ícones de `brand/`.
+Mude a fonte e rode o gerador correspondente.
 
-## Dados
-- **O Firestore é a fonte de verdade.** Coleções: `projetos`, `experiencias`, `depoimentos`, `certificados`, `clientes`, `capacidades`, `contatos`, e o documento `config/site`.
-- Campos traduzíveis usam o par `campo_pt` / `campo_en`. O site lê o idioma atual e cai para `_pt` se `_en` estiver vazio.
-- Todo item tem `id`, `ordem` e `publicado` (`false` oculta do site sem apagar).
-- O `index.html` carrega uma **semente embutida** entre `/* SEMENTE:INICIO */` e `/* SEMENTE:FIM */`: pinta a página na hora, serve aos buscadores e mantém o site de pé se o Firebase falhar. O painel exporta o JSON para atualizá-la.
-- Enquanto `config/site` não existe no banco, coleções vazias no Firestore são ignoradas e a semente vale. Depois que existe, uma coleção vazia no banco esconde a seção no site.
-- Para adicionar um campo: declare-o no esquema da seção em `adm/index.html` (array `SECOES`) e leia-o na função de renderização correspondente em `index.html`.
+## Onde mexer
+- **Templates:** `tools/tpl/` (`inicio.mjs`, `projeto.mjs`, `projetos.mjs`, `curriculo.mjs`, `cafe.mjs`, `marca.mjs`, `comum.mjs` com `<head>`, cabeçalho e rodapé, `textos.mjs` com os textos fixos PT/EN).
+- **Estilos:** `assets/css/site.css` (site), `marca.css` (/brand/), `cv.css` (currículo), `cafe.css` (/coffee/). Tokens só em `brand/tokens.json` → `node tools/tokens.mjs`.
+- **Scripts do navegador:** `assets/js/site.js`, `vox.js` (easter egg), `cafe.js` + `qr.js` (Pix/QR, também usados no build).
+- **Conteúdo:** pelo `/adm` (Firestore). `data/overlay.json` guarda conteúdo novo ainda não importado e **vence o Firestore** no build; depois de importado pelo painel (Banco e publicação → Importar), deve ser esvaziado. `data/cafe.json` tem os meios de pagamento.
 
-## Segurança
-- Todo conteúdo vindo do banco passa por `esc()` antes de entrar no HTML. Nunca concatene valor do banco sem escapar.
-- Links passam por `urlSegura()` (só http(s), mailto, tel e caminhos relativos); imagens por `urlImagem()`, que também aceita `data:image/...`.
-- A escrita no banco é protegida pelas regras do Firestore (e-mail do dono). As regras estão no painel, em "Banco de dados".
+## Comandos
+```
+node tools/sync.mjs    # Firestore → data/firestore.json
+node tools/build.mjs   # gera tudo
+node tools/og.mjs      # cards 1200×630 (Chrome)
+node tools/pdf.mjs     # PDFs do currículo e do manual (Chrome)
+python brand/gerar-marca.py   # SVGs e ícones da marca
+```
+O build é determinístico: a data vem do conteúdo (updateTime do Firestore e `$atualizado` do overlay). Rodar duas vezes não pode mudar nenhum arquivo; a automação `.github/workflows/atualizar.yml` depende disso.
+
+## Regras de conteúdo
+- Cargos e datas exatamente como no ORCID 0009-0005-8485-455X. Números só se forem conferíveis.
+- Campos traduzíveis: `campo_pt` / `campo_en`; o site cai para `_pt` quando falta o `_en`.
+- Telas de sistemas internos sempre com dados fictícios. Nunca usar dados reais de clientes.
+- Todo valor vindo do banco passa por `esc()` antes de entrar no HTML.
 
 ## Design
-- Tipografia: Archivo (títulos), IBM Plex Sans (texto), IBM Plex Mono (rótulos e dados).
-- Paleta em variáveis `:root`, com tema escuro em `:root[data-tema="escuro"]`. Único acento: `--sinal` (verde).
-- Assinatura visual: o diagrama de camadas no hero (interface → aplicação → servidores → rede → dispositivos).
-- Movimento contido; `prefers-reduced-motion` é respeitado.
+Archivo (títulos, sempre largura 112), IBM Plex Sans (texto), IBM Plex Mono (dados, nunca em parágrafo). Fundo tinta `#090C10`, uma cor de destaque (`#46E08C`, o "pacote"), estados por cor (no ar, em desenvolvimento, descontinuado). Movimento só quando leva informação; `prefers-reduced-motion` mostra o estado final. Manual completo em `/brand/`.
 
 ## Deploy
-- Estático puro. `adm.davicjc.com`, se apontar para o mesmo site, é redirecionado para `/adm/` por um script no topo do `index.html`.
+Cloudflare Pages publica a branch `main` (push na main = produção). `adm.davicjc.com` cai em `/adm/` por um script no `<head>`.
