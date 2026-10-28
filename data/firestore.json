@@ -1464,7 +1464,7 @@
    "vitrine": false
   },
   {
-   "_atualizado": "2026-10-27T18:25:12.311598Z",
+   "_atualizado": "2026-10-27T20:11:08.100067Z",
    "ano": "2026",
    "ativo": true,
    "categoria": "cliente",
@@ -1482,7 +1482,7 @@
    "papel_en": "Design and development: site, 3D opening, admin panel and share previews.",
    "papel_pt": "Design e desenvolvimento: site, abertura 3D, painel e prévias de compartilhamento.",
    "privado": true,
-   "publicado": false,
+   "publicado": true,
    "situacao": "desenvolvimento",
    "stack": [
     "JavaScript",
@@ -1870,7 +1870,7 @@
    "vitrine": false
   },
   {
-   "_atualizado": "2026-10-27T17:23:47.211464Z",
+   "_atualizado": "2026-10-27T18:52:59.922879Z",
    "ano": "2026",
    "ativo": false,
    "categoria": "produto",
@@ -2610,7 +2610,7 @@
    "vitrine": false
   },
   {
-   "_atualizado": "2026-10-27T18:25:14.275896Z",
+   "_atualizado": "2026-10-27T20:11:06.940162Z",
    "ano": "2026",
    "ativo": true,
    "categoria": "cliente",
@@ -2628,7 +2628,7 @@
    "papel_en": "Concept, design and development of the demo.",
    "papel_pt": "Concepção, design e desenvolvimento da demonstração.",
    "privado": true,
-   "publicado": false,
+   "publicado": true,
    "situacao": "desenvolvimento",
    "stack": [
     "JavaScript",
@@ -2995,7 +2995,7 @@
    "vitrine": false
   },
   {
-   "_atualizado": "2026-10-27T18:25:13.536178Z",
+   "_atualizado": "2026-10-27T20:11:07.549588Z",
    "ano": "2026",
    "ativo": true,
    "categoria": "cliente",
@@ -3013,7 +3013,7 @@
    "papel_en": "Design and development of the page and its admin panel.",
    "papel_pt": "Design e desenvolvimento da página e do painel.",
    "privado": true,
-   "publicado": false,
+   "publicado": true,
    "situacao": "desenvolvimento",
    "stack": [
     "JavaScript",

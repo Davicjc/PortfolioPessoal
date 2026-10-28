@@ -26,6 +26,9 @@
 ## Outros projetos
 
 - [Cooperbant](https://davicjc.com/projetos/cooperbant/) — Novo site e painel de conteúdo de uma cooperativa de crédito. Situação: desenvolvimento. Tecnologias: JavaScript, HTML5, CSS3, Firebase, Cloudflare Pages, Turnstile.
+- [Minha História no Verdão](https://davicjc.com/projetos/diariodoverdao/) — O jornal de histórias do Uberlândia Esporte Clube, com abertura em 3D. Situação: desenvolvimento. Tecnologias: JavaScript, three.js, Firebase Auth, Firestore, Cloudflare Pages Functions.
+- [Uberlândia Esporte Clube](https://davicjc.com/projetos/uec/) — A página inicial do clube, falando a língua do placar de LED do Parque do Sabiá. Situação: desenvolvimento. Tecnologias: JavaScript, MediaPipe, Firebase, HTML5, CSS3.
+- [Sócio Verdão](https://davicjc.com/projetos/socioverdao/) — Proposta de portal do sócio: carteira digital, contas abertas e voto. Situação: desenvolvimento. Tecnologias: JavaScript, HTML5, CSS3, PWA.
 - [Instituto Elora](https://davicjc.com/projetos/elora/) — Site, área do cliente com chat e painel para clínica de estética. Situação: no_ar. Tecnologias: JavaScript, HTML5, CSS3, Firebase.
 - [Valoria CRM](https://davicjc.com/projetos/alpa/) — ERP de operações de campo white-label: do orçamento à nota fiscal. Situação: no_ar. Tecnologias: JavaScript, Tailwind CSS, Firebase, Chart.js, PDF.
 - [Audicom Tecnologia](https://davicjc.com/projetos/audicomtecnologia/) — Site, catálogo e painel de controle de acesso e ponto eletrônico. Situação: no_ar. Tecnologias: JavaScript, HTML5, CSS3, Firebase.
