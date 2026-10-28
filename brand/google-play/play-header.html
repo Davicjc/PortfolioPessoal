@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>play-header</title>
+<!-- Cabeçalho da página do desenvolvedor no Google Play: 1024×576 CSS, print em escala 4 → 4096×2304.
+     O Play mostra a imagem sempre na largura toda (width:100%; max-height:480px; object-fit:cover):
+     no celular aparece inteira; no computador corta só em cima e embaixo. Em tela de 1920 sobra a
+     faixa central de 160 a 416 px (CSS) — logo e título ficam dentro dela. -->
+<link rel="stylesheet" href="RAIZ/assets/css/tokens.css">
+<style>
+@font-face{font-family:"Archivo";font-weight:500 700;font-stretch:112%;src:url(RAIZ/assets/fonts/archivo-500_700.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:400 600;src:url(RAIZ/assets/fonts/ibm-plex-sans-400.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;src:url(RAIZ/assets/fonts/ibm-plex-mono-500.woff2) format("woff2")}
+*{box-sizing:border-box;margin:0}
+html,body{width:1024px;height:576px;overflow:hidden;background:var(--tinta);color:var(--papel)}
+body{position:relative;font-family:"IBM Plex Sans",sans-serif}
+.cena{position:absolute;inset:0;perspective:1400px;perspective-origin:50% 50%}
+.plano{position:absolute;left:50%;top:50%;display:grid;grid-template-columns:repeat(5,300px);gap:18px;
+  transform:translate(-50%,-50%) translateZ(-300px) rotateX(16deg) rotateY(-14deg) rotateZ(-5deg)}
+.tela{border:1px solid var(--cabo-forte);border-radius:11px;overflow:hidden;background:#040608}
+.tela .barra{height:24px;display:flex;align-items:center;gap:7px;padding:0 11px;background:var(--rack);border-bottom:1px solid var(--cabo);
+  font:500 11px/1 "IBM Plex Mono",monospace;color:var(--papel-3);white-space:nowrap}
+.tela .barra i{width:6px;height:6px;border-radius:50%;background:var(--link)}
+.tela img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:50% 0}
+.mascara{position:absolute;inset:0;background:radial-gradient(ellipse 34% 36% at 50% 50%,var(--tinta) 0,var(--tinta) 40%,rgba(9,12,16,.86) 62%,rgba(9,12,16,.35) 85%,rgba(9,12,16,.12) 100%)}
+.texto{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.marca{display:block;height:165px}
+</style>
+</head>
+<body>
+<div class="cena"><div class="plano" id="plano"></div></div>
+<div class="mascara"></div>
+<div class="texto">
+  <!-- D cjc: o monograma da marca + cjc no mesmo traço (9 na grade do D), apoiado na linha de base do D. Verde só no pacote. -->
+  <svg class="marca" viewBox="21 12 201.5 95.5" aria-label="D cjc">
+    <path d="M30 39V22H48A28 28 0 0 1 48 78H30V61" fill="none" stroke="#E8EDF2" stroke-width="9" stroke-linejoin="round"/>
+    <circle cx="30" cy="50" r="7" fill="#46E08C"/>
+    <g transform="translate(96.5 1.006) scale(1.124)">
+      <g fill="none" stroke="#E8EDF2" stroke-width="8.007" stroke-linecap="round" stroke-linejoin="round"><path d="M37.75 37.62 A18.5 18.5 0 1 0 37.75 62.38"/><path d="M54 32.5V76A13 13 0 0 1 41 89"/><path d="M101.25 37.62 A18.5 18.5 0 1 0 101.25 62.38"/></g>
+      <circle cx="54" cy="17" r="5.5" fill="#E8EDF2"/>
+    </g>
+  </svg>
+</div>
+<script>
+// 5 colunas × 4 linhas cobrindo o quadro todo; o centro fica atrás do logo, então as telas mais
+// fortes vão nas pontas da 2ª e 3ª linha (faixa do meio, que aparece em qualquer tela).
+const telas = [
+  ['Telemetry · roteadores', 'telemetry/roteadores-1200.webp'],
+  ['nexusatlas · agenda', 'nexusatlas/agenda-1200.webp'],
+  ['PopManager · visão geral', 'popmanager/visao-geral-1200.webp'],
+  ['Audicom Hub · módulos', 'audicomhub/modulos-1200.webp'],
+  ['Hub CJC', 'hubcjc.webp'],
+  ['nexusatlas · rota', 'nexusatlas/rota-1200.webp'],
+  ['Audicom Hub · frota', 'audicomhub/frota-custos-1200.webp'],
+  ['Teste de velocidade', 'speedtest/medindo-1200.webp'],
+  ['Telemetry · sonda', 'telemetry/sonda-1200.webp'],
+  ['FitAI', 'fitia.webp'],
+  ['Telemetry Portal', 'telemetry/painel-1200.webp'],
+  ['PopManager · topologia', 'popmanager/topologia-1200.webp'],
+  ['nexusatlas.com.br', 'nexusatlas/mapa-1200.webp'],
+  ['Ecolyra', 'ecolyra.webp'],
+  ['Desenho Mágico', 'desenhobase64.webp'],
+  ['PopManager · monitoramento', 'popmanager/monitoramento-1200.webp'],
+  ['ROAs Monitor', 'roasmonitor.webp'],
+  ['Quiz da Turma', 'quizturma.webp'],
+  ['Valoria CRM', 'alpa/dashboard-1200.webp'],
+  ['nexusatlas · nova OS', 'nexusatlas/nova-os-1200.webp']
+];
+const plano = document.getElementById('plano');
+for (const [nome, src] of telas) {
+  const t = document.createElement('div');
+  t.className = 'tela';
+  t.innerHTML = `<div class="barra"><i></i><span></span></div><img src="RAIZ/fotos/projetos/${src}" alt="">`;
+  t.querySelector('span').textContent = nome;
+  plano.appendChild(t);
+}
+</script>
+</body>
+</html>
