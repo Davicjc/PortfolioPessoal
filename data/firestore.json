@@ -3031,7 +3031,7 @@
   }
  ],
  "site": {
-  "_atualizado": "2026-10-27T17:23:47.211464Z",
+  "_atualizado": "2026-10-29T03:02:44.935396Z",
   "camadas": [
    {
     "itens": [
@@ -3379,8 +3379,8 @@
   "titulo_pt": "Davi Castro",
   "trabalhos_sub_en": "Products I designed, built and maintain, explained the way I would in an interview: the problem, the constraints, the decisions and what changed.",
   "trabalhos_sub_pt": "Produtos que eu concebi, construí e mantenho, explicados como numa entrevista: o problema, as restrições, as decisões e o que mudou.",
-  "trabalhos_titulo_en": "Case studies",
-  "trabalhos_titulo_pt": "Estudos de caso",
+  "trabalhos_titulo_en": "Featured work",
+  "trabalhos_titulo_pt": "Destaques",
   "trajetoria_sub_en": "I started out answering customers and grew from within two telecom companies, taking on more technical responsibility at every step.",
   "trajetoria_sub_pt": "Comecei atendendo clientes e cresci por dentro de duas operadoras, somando responsabilidade técnica a cada etapa.",
   "trajetoria_titulo_en": "From the support desk to the code the operation runs on",

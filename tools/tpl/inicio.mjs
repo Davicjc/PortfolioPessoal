@@ -12,22 +12,29 @@ const palavras = texto => esc(texto).split(' ').map((p, i) => `<span class="pala
 // sentidos alternados (um carrossel em pé). Cada coluna repete a própria lista duas vezes, para o
 // laço não ter emenda. As telas com sonda mostram o ping medido pelo navegador de quem visita.
 const COLUNAS = 7;
-const NO_CELULAR = 5;
+// Colunas que só o PC mostra: no meio do plano, onde ficam à vista já em 1366 px.
+const SO_PC = [3, 5];
 const DURACAO = [96, 124, 106, 136, 114, 128, 100];
 function parede(ctx) {
   const { dados } = ctx;
+  // Primeiro as telas escolhidas no painel (com nome de barra e sonda), depois a imagem de todo
+  // projeto publicado que ainda não está nelas: a parede mostra o portfólio inteiro.
+  const escolhidas = (dados.site.parede || []).map(x => ({ ...x, src: caminhoImg(x.src) }));
+  const ja = new Set(escolhidas.flatMap(x => [x.projeto, x.src]));
+  const demais = publicados(dados.projetos)
+    .filter(p => p.imagem && !ja.has(p.id) && !ja.has(caminhoImg(p.imagem)))
+    .map(p => ({ nome: c(p, 'titulo', 'pt'), src: caminhoImg(p.imagem) }));
   // As telas aparecem pequenas e inclinadas: a versão de 800 px basta, até em tela retina.
-  const telas = (dados.site.parede || []).map(x => {
-    const src = caminhoImg(x.src);
-    const menor = src.replace('-1200', '-800');
-    return { ...x, src: dados._imgs?.[menor] ? menor : src };
+  const telas = [...escolhidas, ...demais].map(x => {
+    const menor = x.src.replace('-1200', '-800');
+    return { ...x, src: dados._imgs?.[menor] ? menor : x.src };
   });
   if (!telas.length) return '';
   const porColuna = 5;
-  // As colunas do celular só usam as primeiras telas (menos coisa para baixar no 4G); as duas
-  // colunas a mais do PC trazem o resto.
-  const doCelular = telas.slice(0, Math.min(telas.length, 9));
-  const doPc = telas.length > doCelular.length ? telas.slice(doCelular.length) : telas;
+  // As colunas do celular só usam as dez primeiras telas (menos coisa para baixar no 4G); as duas
+  // colunas a mais do PC dividem todo o resto, então ficam mais compridas e andam mais rápido.
+  const doCelular = telas.slice(0, Math.min(telas.length, 10));
+  const resto = telas.slice(doCelular.length);
   const tela = (x, preguica) => {
     const meta = dados._imgs?.[x.src] || {};
     return `<figure class="tela"${x.sonda ? ` data-sonda="${esc(x.sonda)}"` : ''}><div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${esc(x.nome)}</span>${x.sonda ? '<span class="tela__ms" data-ms></span>' : ''}</div><img src="${x.src}"${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${preguica ? 'lazy' : 'eager'}" decoding="async"></figure>`;
@@ -35,14 +42,18 @@ function parede(ctx) {
   // As colunas que o celular esconde ficam lazy (e display: none) e não baixam; no PC o site.js as
   // libera, porque o lazy não enxerga a tela dentro do plano inclinado. A segunda cópia de cada
   // coluna usa as mesmas URLs: vem do cache.
-  const colunas = Array.from({ length: COLUNAS }, (_, c) => {
-    const fonte = c < NO_CELULAR ? doCelular : doPc;
+  const colunas = Array.from({ length: COLUNAS }, (_, n) => {
+    let lista;
+    const pc = SO_PC.indexOf(n);
+    if (pc >= 0 && resto.length >= SO_PC.length * 3) lista = resto.filter((_, j) => j % SO_PC.length === pc);
     // Colunas vizinhas dividem algumas telas: nas ímpares a ordem é invertida, para a mesma tela
     // não passar lado a lado.
-    const lista = Array.from({ length: porColuna }, (_, k) => fonte[(c * 2 + k) % fonte.length]);
-    if (c % 2) lista.reverse();
-    const html = lista.map(x => tela(x, c >= NO_CELULAR)).join('');
-    return `<div class="parede__coluna" style="--dur:${DURACAO[c % DURACAO.length]}s;--atraso:${-c * 23}s">${html}${html}</div>`;
+    else lista = Array.from({ length: porColuna }, (_, k) => doCelular[(n * 2 + k) % doCelular.length]);
+    if (n % 2) lista.reverse();
+    const html = lista.map(x => tela(x, pc >= 0)).join('');
+    // Mesma velocidade em px/s: coluna mais comprida leva proporcionalmente mais tempo por volta.
+    const dur = Math.round(DURACAO[n % DURACAO.length] * lista.length / porColuna);
+    return `<div class="parede__coluna${pc >= 0 ? ' parede__coluna--pc' : ''}" style="--dur:${dur}s;--atraso:${-n * 23}s">${html}${html}</div>`;
   });
   return `<div class="parede" aria-hidden="true" data-parede>
     <div class="parede__plano">

@@ -268,7 +268,7 @@ p { text-wrap: pretty; }
   .parede { perspective: 900px; perspective-origin: 60% 10%; }
   .parede__plano { top: -6%; gap: 14px; transform: translateX(-50%) rotateX(30deg) rotateZ(-14deg); }
   .parede__coluna { width: 230px; gap: 14px; padding-bottom: 14px; }
-  .parede__coluna:nth-child(n+6) { display: none; }
+  .parede__coluna--pc { display: none; }
   .tela__barra { height: 20px; padding: 0 8px; font-size: 9px; gap: 5px; }
   .tela__led { width: 5px; height: 5px; }
   .hero__base { justify-items: center; max-width: 34rem; gap: 16px; }
