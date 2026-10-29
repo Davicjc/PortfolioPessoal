@@ -133,8 +133,7 @@ p { text-wrap: pretty; }
 .hero__cafe:hover { color: var(--papel); border-color: var(--papel-3); background: var(--rack); }
 .hero__cafe .ic { width: 20px; height: 20px; }
 .erro .hero__acoes { margin-top: 36px; }
-.hero__ping { display: flex; align-items: center; gap: 10px; color: var(--papel-2); }
-.hero__ping .led { width: 7px; height: 7px; }
+.txt-curto { display: none; }
 
 /* Máscara sólida (sem blur) que garante leitura do título por cima das telas. */
 .parede__mascara { position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -200,7 +199,7 @@ p { text-wrap: pretty; }
   .js .tela.ligando .tela__vidro::after { content: ''; position: absolute; inset: 0; background: #E8EDF2; animation: clarao 560ms ease-out both; pointer-events: none; }
   .js .parede { opacity: 0; transition: opacity 700ms var(--m-saida); }
   .js .pronto .parede { opacity: 1; }
-  .js .hero__kicker, .js .hero__cargo, .js .hero__lead, .js .hero__simular, .js .hero__acoes, .js .hero__ping { opacity: 0; }
+  .js .hero__kicker, .js .hero__cargo, .js .hero__lead, .js .hero__simular, .js .hero__acoes { opacity: 0; }
   .js .hero__titulo .palavra { display: inline-block; opacity: 0; transform: translateY(.32em); }
   .pronto .hero__kicker { animation: surgir .6s var(--m-saida) forwards; }
   .pronto .hero__titulo .palavra { animation: palavra .8s var(--m-saida) forwards; animation-delay: calc(120ms + var(--i) * 70ms); }
@@ -208,7 +207,6 @@ p { text-wrap: pretty; }
   .pronto .hero__lead { animation: surgir .8s var(--m-saida) .5s forwards; }
   .pronto .hero__simular { animation: surgir .8s var(--m-saida) .56s forwards; }
   .pronto .hero__acoes { animation: surgir .8s var(--m-saida) .68s forwards; }
-  .pronto .hero__ping { animation: surgir .6s var(--m-saida) .9s forwards; }
 }
 @keyframes ligar {
   0% { opacity: 1; transform: scale(.55, .006); filter: brightness(3.2); }
@@ -249,13 +247,24 @@ p { text-wrap: pretty; }
   .hero__base { justify-items: center; max-width: 34rem; margin-top: 6px; gap: 16px; }
   .hero__lead { font-size: 1rem; }
   .hero__acoes { justify-content: center; }
-  .hero__ping { justify-content: center; }
 }
+/* Celular em pé: todos os botões cabem na primeira tela. O "Simule" continua o único verde e de
+   largura total, só mais baixo; os outros viram duas fileiras compactas de alvos de 44 px. */
 @media (max-width: 479px) {
-  .hero__acoes .botao { flex: 1 1 auto; padding: 0 14px; }
-  .hero__acoes .botao:first-child { flex-basis: 100%; }
-  .hero__simular { min-height: 72px; padding-left: 20px; gap: 14px; }
+  .hero__simular { min-height: 58px; padding: 8px 8px 8px 18px; gap: 12px; }
+  .hero__simular-txt { gap: 3px; }
+  .hero__simular-nome { font-size: 1.2rem; }
   .hero__simular-sub { font-size: 11px; }
+  .hero__simular-ir { width: 42px; height: 42px; }
+  .hero__simular-ir .ic { width: 20px; height: 20px; }
+  .txt-longo { display: none; }
+  .txt-curto { display: inline; }
+  .hero__acoes { width: 100%; gap: 8px; }
+  .hero__acoes .botao { flex: 1 1 0; min-width: 0; min-height: 44px; padding: 0 8px; gap: 8px; font-size: .875rem; }
+  .hero__acoes .botao .ic { width: 16px; height: 16px; }
+  .hero__redes { flex: 1 1 100%; gap: 8px; }
+  .hero__rede, .hero__cafe { flex: 1 1 0; width: auto; height: 44px; padding: 0; justify-content: center; }
+  .hero__cafe span { display: none; }
   .hero__lead { font-size: .9375rem; line-height: 1.5; }
 }
 

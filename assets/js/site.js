@@ -6,8 +6,8 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const movimento = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 const lang = document.body.dataset.lang || 'pt';
 const TXT = {
-  pt: { resumo: (n, t, ms) => `${n}/${t} sistemas no ar agora · mediana ${ms} ms`, nenhum: 'sem resposta do seu navegador', sem: 'sem resposta', fechar: 'Fechar' },
-  en: { resumo: (n, t, ms) => `${n}/${t} systems live now · median ${ms} ms`, nenhum: 'no reply from your browser', sem: 'no reply', fechar: 'Close' }
+  pt: { sem: 'sem resposta', fechar: 'Fechar' },
+  en: { sem: 'no reply', fechar: 'Close' }
 }[lang];
 
 /* Rotas antigas da SPA (#/projetos, #/sobre, #/contato) continuam funcionando. */
@@ -65,7 +65,6 @@ async function medir(url, limite = 6000) {
   if (!parede) return;
   const plano = $('[data-plano]', parede);
   const telas = $$('.tela', parede);
-  const resumo = $('[data-resumo-texto]');
   const ultimos = new Map();
   const espera = ms => new Promise(r => setTimeout(r, ms));
   let visivel = true;
@@ -85,14 +84,6 @@ async function medir(url, limite = 6000) {
     alvo.textContent = ms == null ? '—' : Math.round(ms) + ' ms';
     alvo.classList.add('nova');
     requestAnimationFrame(() => requestAnimationFrame(() => alvo.classList.remove('nova')));
-  }
-  function atualizarResumo() {
-    if (!resumo) return;
-    const total = pings.size;
-    const vals = [...ultimos.values()].filter(x => x != null).sort((a, b) => a - b);
-    if (!vals.length) { resumo.textContent = TXT.nenhum; return; }
-    const mediana = vals[Math.floor((vals.length - 1) / 2)];
-    resumo.textContent = TXT.resumo(vals.length, total, Math.round(mediana));
   }
   function ligar(tela) {
     const img = $('img', tela);
@@ -115,10 +106,9 @@ async function medir(url, limite = 6000) {
         // Quem tem sonda só liga quando o sistema responde (com teto, para a entrada não travar).
         const ms = await Promise.race([pings.get(tela), espera(1400).then(() => undefined)]);
         if (ms !== undefined) { ultimos.set(tela, ms); mostrarMs(tela, ms); }
-        else pings.get(tela).then(v => { ultimos.set(tela, v); mostrarMs(tela, v); atualizarResumo(); });
+        else pings.get(tela).then(v => { ultimos.set(tela, v); mostrarMs(tela, v); });
       }
       ligar(tela);
-      atualizarResumo();
     }));
   }
 
@@ -128,7 +118,7 @@ async function medir(url, limite = 6000) {
     if (visivel && document.visibilityState === 'visible' && comSonda.length) {
       const t = comSonda[Math.floor(Math.random() * comSonda.length)];
       const ms = await medir(t.dataset.sonda, 4000);
-      if (ms != null || ultimos.get(t) == null) { ultimos.set(t, ms); mostrarMs(t, ms); atualizarResumo(); }
+      if (ms != null || ultimos.get(t) == null) { ultimos.set(t, ms); mostrarMs(t, ms); }
     }
     setTimeout(aoVivo, 3600 + Math.random() * 2000);
   }

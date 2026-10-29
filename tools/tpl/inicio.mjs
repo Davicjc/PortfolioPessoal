@@ -3,6 +3,7 @@ import { T, SITUACAO } from './textos.mjs';
 import { esc, c, v, rotas, icone, img, situacao, led, publicados, documento, pessoaLD, caminhoImg, DOMINIO, linkCv, baixaCv } from './comum.mjs';
 
 const dominio = url => { try { return new URL(url).host.replace(/^www\./, ''); } catch { return ''; } };
+const PLAY_STORE = 'https://play.google.com/store/apps/dev?id=7777556041006462891';
 
 // Título com cada palavra num <span>: o pacote passa por baixo e acende uma de cada vez.
 const palavras = texto => esc(texto).split(' ').map((p, i) => `<span class="palavra" style="--i:${i}">${p}</span>`).join(' ');
@@ -46,18 +47,18 @@ function hero(ctx) {
     <div class="hero__base">
       <p class="hero__lead">${esc(c(s, 'lead', lang))}</p>
       <a class="hero__simular" href="${rotas.pedido(lang)}">
-        <span class="hero__simular-txt"><span class="hero__simular-nome">${t.simular}</span><span class="hero__simular-sub">${t.simular_sub}</span></span>
+        <span class="hero__simular-txt"><span class="hero__simular-nome">${t.simular}</span><span class="hero__simular-sub"><span class="txt-longo">${t.simular_sub}</span><span class="txt-curto">${t.simular_sub_curto}</span></span></span>
         <span class="hero__simular-ir">${icone('seta')}</span>
       </a>
       <div class="hero__acoes">
-        <a class="botao botao--linha" href="#trabalho">${t.ver_casos}${icone('seta')}</a>
+        <a class="botao botao--linha" href="#trabalho"><span class="txt-longo">${t.ver_casos}</span><span class="txt-curto">${t.ver_casos_curto}</span>${icone('seta')}</a>
         <a class="botao botao--linha" href="${linkCv(dados, lang)}"${baixaCv(dados, lang)}>${t.cv_pdf}${icone('baixo')}</a>
-        <span class="hero__redes">${[['ct-github', 'github', 'GitHub'], ['ct-linkedin', 'linkedin', 'LinkedIn']].map(([id, ic, nome]) => {
-          const k = (dados.contatos || []).find(x => x.id === id);
-          return k?.url ? `<a class="hero__rede" href="${esc(k.url)}" rel="me noopener" aria-label="${nome}" title="${nome}">${icone(ic)}</a>` : '';
-        }).join('')}<a class="hero__cafe" href="${rotas.cafe(lang)}">${icone('cafe')}<span>${t.rodape_cafe}</span></a></span>
+        <span class="hero__redes">${[['ct-github', 'github', 'GitHub'], ['ct-linkedin', 'linkedin', 'LinkedIn'], ['ct-googleplay', 'googleplay', t.google_play, PLAY_STORE]].map(([id, ic, nome, padrao]) => {
+          // A Google Play ainda não está no painel: com um contato ct-googleplay lá, ele passa a valer.
+          const url = (dados.contatos || []).find(x => x.id === id)?.url || padrao;
+          return url ? `<a class="hero__rede" href="${esc(url)}" rel="me noopener" aria-label="${esc(nome)}" title="${esc(nome)}">${icone(ic)}</a>` : '';
+        }).join('')}<a class="hero__cafe" href="${rotas.cafe(lang)}" aria-label="${t.rodape_cafe}" title="${t.rodape_cafe}">${icone('cafe')}<span>${t.rodape_cafe}</span></a></span>
       </div>
-      <p class="hero__ping rotulo" data-resumo aria-live="polite"><span class="led" data-situacao="no_ar"></span><span data-resumo-texto>${t.ping_medindo}</span></p>
     </div>
   </div>
 </section>`;
@@ -179,7 +180,7 @@ function trabalho(ctx) {
   const medios = resto.slice(2);
   return `<section id="trabalho" class="secao" aria-labelledby="trabalho-titulo">
   <div class="envelope">
-    ${cabecaSecao({ numero: '01', id: 'trabalho', titulo: c(s, 'trabalhos_titulo', lang) || t.nav_trabalho, sub: c(s, 'trabalhos_sub', lang) })}
+    ${cabecaSecao({ numero: '01', id: 'trabalho', titulo: c(s, 'trabalhos_titulo', lang) || t.nav_destaques, sub: c(s, 'trabalhos_sub', lang) })}
     <div class="barramento" data-barramento>
       <span class="barramento__pacote" aria-hidden="true"></span>
       ${grandes.map((p, i) => casoGrande(ctx, p, i)).join('\n')}

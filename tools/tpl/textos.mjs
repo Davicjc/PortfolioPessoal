@@ -3,9 +3,9 @@ export const T = {
   pt: {
     lang: 'pt-BR', og_locale: 'pt_BR',
     pular: 'Pular para o conteúdo', menu: 'Menu', fechar: 'Fechar',
-    nav_trabalho: 'Trabalho', nav_trajetoria: 'Trajetória', nav_contato: 'Contato', nav_pedido: 'Fazer pedido', simular: 'Simule um projeto', simular_sub: '2 minutos · a maquete se monta enquanto você responde', pedido_rotulo: 'novo projeto', pedido_titulo: 'Monte o seu pedido', pedido_txt: 'Em 2 minutos ou num briefing completo. Você vê o projeto tomando forma enquanto responde.', nav_cv: 'Currículo',
+    nav_trabalho: 'Trabalho', nav_destaques: 'Destaques', nav_trajetoria: 'Trajetória', nav_contato: 'Contato', nav_pedido: 'Fazer pedido', simular: 'Simule um projeto', simular_sub: '2 minutos · a maquete se monta enquanto você responde', simular_sub_curto: '2 min · maquete ao vivo', pedido_rotulo: 'novo projeto', pedido_titulo: 'Monte o seu pedido', pedido_txt: 'Em 2 minutos ou num briefing completo. Você vê o projeto tomando forma enquanto responde.', nav_cv: 'Currículo',
     em_producao: 'Em produção', em: 'em',
-    ver_casos: 'Ver os estudos de caso', cv_pdf: 'Currículo em PDF',
+    ver_casos: 'Ver os destaques', ver_casos_curto: 'Destaques', cv_pdf: 'Currículo em PDF', google_play: 'Meus apps na Google Play',
     ping_titulo: 'Ping ao vivo', ping_sub: 'do seu navegador até sistemas que eu construí',
     ping_medindo: 'medindo…', ping_voce: 'você', ping_sem: 'sem resposta',
     ping_resumo: (n, t, ms) => `${n}/${t} respondendo · mediana ${ms} ms`,
@@ -40,9 +40,9 @@ export const T = {
   en: {
     lang: 'en', og_locale: 'en_US',
     pular: 'Skip to content', menu: 'Menu', fechar: 'Close',
-    nav_trabalho: 'Work', nav_trajetoria: 'Experience', nav_contato: 'Contact', nav_pedido: 'Start a project', simular: 'Simulate your project', simular_sub: '2 minutes · the mockup builds itself as you answer', pedido_rotulo: 'new project', pedido_titulo: 'Build your brief', pedido_txt: 'In 2 minutes or as a full brief. You watch the project take shape as you answer.', nav_cv: 'Résumé',
+    nav_trabalho: 'Work', nav_destaques: 'Featured', nav_trajetoria: 'Experience', nav_contato: 'Contact', nav_pedido: 'Start a project', simular: 'Simulate your project', simular_sub: '2 minutes · the mockup builds itself as you answer', simular_sub_curto: '2 min · live mockup', pedido_rotulo: 'new project', pedido_titulo: 'Build your brief', pedido_txt: 'In 2 minutes or as a full brief. You watch the project take shape as you answer.', nav_cv: 'Résumé',
     em_producao: 'In production', em: 'in',
-    ver_casos: 'See the case studies', cv_pdf: 'Résumé (PDF)',
+    ver_casos: 'See featured work', ver_casos_curto: 'Featured', cv_pdf: 'Résumé (PDF)', google_play: 'My apps on Google Play',
     ping_titulo: 'Live ping', ping_sub: 'from your browser to systems I built',
     ping_medindo: 'measuring…', ping_voce: 'you', ping_sem: 'no reply',
     ping_resumo: (n, t, ms) => `${n}/${t} responding · median ${ms} ms`,

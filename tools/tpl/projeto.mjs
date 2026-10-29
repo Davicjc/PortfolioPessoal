@@ -86,7 +86,7 @@ export function paginaProjeto(ctx, p) {
 
   const corpo = `<article class="projeto" data-projeto="${esc(p.id)}">
   <header class="envelope projeto__cabeca">
-    <nav class="trilha rotulo" aria-label="${lang === 'en' ? 'Breadcrumb' : 'Trilha'}"><a href="${rotas.inicio(lang)}#trabalho">${t.nav_trabalho}</a><span aria-hidden="true">/</span><span aria-current="page">${esc(titulo)}</span></nav>
+    <nav class="trilha rotulo" aria-label="${lang === 'en' ? 'Breadcrumb' : 'Trilha'}"><a href="${rotas.inicio(lang)}#trabalho">${t.nav_destaques}</a><span aria-hidden="true">/</span><span aria-current="page">${esc(titulo)}</span></nav>
     <p class="caso__meta">${situacao(p, lang)}${p.caso ? `<span class="rotulo">${t.caso}</span>` : ''}</p>
     <h1 class="projeto__titulo">${esc(titulo)}</h1>
     <p class="projeto__tagline">${esc(c(p, 'tagline', lang))}</p>

@@ -44,6 +44,7 @@ export const ICONES = {
   cadeado: '<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
   github: '<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>',
   linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>',
+  googleplay: '<path d="M4.5 3.7v16.6a.7.7 0 0 0 1.05.6l14.6-8.4a.55.55 0 0 0 0-.96L5.55 3.1a.7.7 0 0 0-1.05.6z"/><path d="M15 9 4.9 20.4M4.9 3.6 15 15"/>',
   email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
   whatsapp: '<path d="M3 21l1.6-4.7A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 10c.4 1.9 2.1 3.6 4 4l1.2-1.1 2 .9c-.2 1.3-1.3 2-2.6 1.9C10.3 15.4 8.6 13.7 8.3 10.4 8.2 9.1 9 8 10.2 7.8l.9 2z"/>',
   cafe: '<path d="M4 10h13v4.5A5.5 5.5 0 0 1 11.5 20h-2A5.5 5.5 0 0 1 4 14.5z"/><path d="M17 12h1.25a2.75 2.75 0 0 1 0 5.5H16.4"/><path d="M8.5 3.5c-.8 1 .8 2 0 3M12.5 3.5c-.8 1 .8 2 0 3"/>',
@@ -89,7 +90,7 @@ export function cabecalho(ctx) {
   <div class="envelope topo__barra">
     <a class="marca" href="${inicio}" aria-label="Davi Castro — ${lang === 'en' ? 'home' : 'início'}">${monograma()}<span class="marca__nome">davi castro</span></a>
     <nav class="nav" id="nav" aria-label="${lang === 'en' ? 'Main' : 'Principal'}">
-      <a href="${ativo}#trabalho">${t.nav_trabalho}</a>
+      <a href="${ativo}#trabalho">${t.nav_destaques}</a>
       <a href="${ativo}#trajetoria">${t.nav_trajetoria}</a>
       <a href="${ativo}#contato">${t.nav_contato}</a>
       <a class="nav__pedido" href="${rotas.pedido(lang)}"${ctx.pagina === 'pedido' ? ' aria-current="page"' : ''}>${t.nav_pedido}</a>
