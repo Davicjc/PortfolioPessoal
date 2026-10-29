@@ -10,8 +10,6 @@ Ainda não registradas. Na primeira revisão, pergunte ao Davi onde os certifica
 
 ## Pendências conhecidas
 
-- Regras do Firestore com `depoimentos_recebidos` (28/10/2026): têm de ser publicadas no console para o
-  formulário de depoimento gravar. Até lá, o envio falha e a página oferece o e-mail.
 - Turnstile sem validação no servidor: o widget barra quem usa o formulário, mas a API do Firestore ainda
   aceita `create` direto. Fechar exige uma Pages Function que valide o token e um segredo na conta da Cloudflare
   do davicjc.com.
