@@ -258,13 +258,13 @@ p { text-wrap: pretty; }
 
 /* Celular: tudo centralizado por cima da parede, que vira o fundo do topo inteiro. */
 @media (max-width: 899px) {
-  /* O topo ocupa a tela toda: o bloco fica no alto e a parede aparece embaixo, no lugar dos números. */
-  .hero { text-align: center; align-items: flex-start; min-height: calc(100svh - 64px); }
-  .hero__texto { align-items: center; padding-block: 40px 32px; }
-  .hero__kicker { justify-content: center; margin-bottom: 12px; }
+  /* O topo ocupa a tela toda, com o bloco no meio; a parede aparece em cima e embaixo, e os números ficam para a rolagem. */
+  .hero { text-align: center; align-items: center; min-height: calc(100svh - 64px); }
+  .hero__texto { align-items: center; padding-block: 32px; }
+  .hero__kicker { justify-content: center; margin-bottom: 20px; }
   .hero__titulo { max-width: 11ch; font-size: clamp(2.35rem, 10.6vw, 3.4rem); margin-inline: auto; }
-  .parede__mascara { background: linear-gradient(180deg, color-mix(in srgb, var(--tinta) 80%, transparent) 0, color-mix(in srgb, var(--tinta) 86%, transparent) 180px, color-mix(in srgb, var(--tinta) 86%, transparent) 510px, color-mix(in srgb, var(--tinta) 38%, transparent) 640px, color-mix(in srgb, var(--tinta) 38%, transparent) calc(100% - 80px), var(--tinta) 100%); }
-  .hero__cargo { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 10px; font-size: 1.0625rem; }
+  .parede__mascara { background: linear-gradient(180deg, color-mix(in srgb, var(--tinta) 50%, transparent) 0%, color-mix(in srgb, var(--tinta) 86%, transparent) 17%, color-mix(in srgb, var(--tinta) 86%, transparent) 83%, color-mix(in srgb, var(--tinta) 55%, transparent) calc(100% - 50px), var(--tinta) 100%); }
+  .hero__cargo { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 16px; font-size: 1.0625rem; }
   .hero__sep, .hero__kicker > span + span::before { display: none; }
   .hero__kicker { gap: 4px 0; }
   .hero__kicker > span { flex-basis: 100%; justify-content: center; }
@@ -274,8 +274,8 @@ p { text-wrap: pretty; }
   .parede__coluna--pc { display: none; }
   .tela__barra { height: 20px; padding: 0 8px; font-size: 9px; gap: 5px; }
   .tela__led { width: 5px; height: 5px; }
-  .hero__base { justify-items: center; max-width: 34rem; gap: 22px; margin-top: 26px; }
-  .hero__base .hero__acoes { margin-top: -10px; }
+  .hero__base { justify-items: center; max-width: 34rem; gap: 32px; margin-top: 40px; }
+  .hero__base .hero__acoes { margin-top: -14px; }
   .hero__lead { font-size: 1rem; }
   .hero__acoes { justify-content: center; }
 }
@@ -290,10 +290,10 @@ p { text-wrap: pretty; }
   .hero__simular-ir .ic { width: 20px; height: 20px; }
   .txt-longo { display: none; }
   .txt-curto { display: inline; }
-  .hero__acoes { width: 100%; gap: 8px; }
+  .hero__acoes { width: 100%; gap: 10px; }
   .hero__acoes .botao { flex: 1 1 0; min-width: 0; min-height: 44px; padding: 0 8px; gap: 8px; font-size: .875rem; }
   .hero__acoes .botao .ic { width: 16px; height: 16px; }
-  .hero__redes { flex: 1 1 100%; gap: 8px; }
+  .hero__redes { flex: 1 1 100%; gap: 10px; }
   .hero__rede, .hero__cafe { flex: 1 1 0; width: auto; height: 44px; padding: 0; justify-content: center; }
   .hero__cafe span { display: none; }
   .hero__lead { font-size: .9375rem; line-height: 1.5; }
