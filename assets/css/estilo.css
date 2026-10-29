@@ -179,7 +179,10 @@ p { text-wrap: pretty; }
 .hero__kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; margin-bottom: 22px; }
 .hero__kicker > span { display: inline-flex; align-items: center; gap: 9px; }
 .hero__kicker > span + span::before { content: ''; width: 18px; height: 1px; margin: 0 14px; background: var(--cabo-forte); }
-.hero__titulo { max-width: 10.4ch; font-size: clamp(2.6rem, .8rem + 5.6vw, 6.6rem); font-weight: 650; line-height: .95; letter-spacing: -.035em; text-wrap: balance; }
+.hero__titulo { max-width: 10.4ch; font-size: clamp(2.6rem, .8rem + 5.6vw, 6.6rem); font-weight: 650; line-height: .95; letter-spacing: -.035em; text-wrap: balance; touch-action: manipulation; }
+/* Os 13 toques do easter egg: sem zoom de duplo toque (touch-action acima), sem selecionar o
+   texto e sem o flash de toque nas telas de toque. */
+@media (hover: none) { .hero__titulo { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; } }
 /* Nome como manchete (como fazem os portfólios de referência) e, logo abaixo, cargo e empresa. */
 .hero__cargo { margin-top: 18px; font: 500 clamp(1.15rem, .85rem + .9vw, 1.6rem)/1.25 var(--f-display); letter-spacing: -.01em; color: var(--papel); }
 .hero__sep { white-space: pre; color: var(--papel-3); }
