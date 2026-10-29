@@ -58,7 +58,7 @@ export function paginaPedido(ctx, cfg = {}) {
     lang, whats: whats.replace(/^https:\/\/wa\.me\//, ''), email,
     // A gravação no Firestore só liga depois que as regras de firestore.rules forem publicadas
     // (hoje a leitura do banco é pública e o pedido ficaria visível). Até lá, o envio é por WhatsApp ou e-mail.
-    banco: !!cfg.gravar_no_firestore, projeto: 'portfoliopessoal-9aa5b', chave: cfg.chave || ''
+    banco: !!cfg.gravar_no_firestore, projeto: 'portfoliopessoal-9aa5b', chave: cfg.chave || '', turnstile: cfg.turnstile || ''
   }).replace(/</g, '\\u003c')}</script>`;
 
   const jsonld = [{

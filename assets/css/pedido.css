@@ -69,6 +69,11 @@
 .passo__dica { display: flex; gap: 10px; max-width: 58ch; margin-top: 18px; padding: 14px 16px; border: 1px solid color-mix(in srgb, var(--atividade) 35%, var(--cabo)); border-radius: var(--r-peca); background: color-mix(in srgb, var(--atividade) 7%, var(--rack)); color: var(--papel); font-size: .9375rem; line-height: 1.5; }
 .passo__dica::before { content: ''; flex: none; width: 7px; height: 7px; margin-top: 7px; border-radius: 50%; background: var(--atividade); }
 .passo__dica[hidden] { display: none; }
+/* "Não sou robô" (Cloudflare Turnstile): a altura fica reservada para o botão não pular quando ele aparece. */
+.robo { display: grid; gap: 10px; max-width: 420px; margin-top: 22px; }
+.robo__widget { min-height: 65px; }
+.robo__aviso { color: var(--alarme); font-size: .875rem; line-height: 1.45; }
+.robo__aviso[hidden] { display: none; }
 .passo__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
 .passo__acoes [data-proximo] { margin-left: auto; }
 .passo__acoes .botao .ic { width: 18px; height: 18px; }

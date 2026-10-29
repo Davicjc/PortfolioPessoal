@@ -2,6 +2,8 @@
 // Um motor só, guiado por dados: cada pergunta declara em que modo aparece (rápido, completo ou os dois),
 // e a maquete é uma função do estado inteiro. Responder qualquer coisa redesenha a prévia na hora.
 
+import { naoRobo } from './robo.js';
+
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const raiz = $('[data-pedido]');
@@ -22,7 +24,7 @@ const T = L({
     completo: 'Análise completa', completo_meta: '~10 min · 15 perguntas',
     completo_txt: 'Um briefing de verdade: cores, páginas, funções, referências. Sai daqui com tudo que eu preciso para orçar sem reunião.',
     recomendado: 'mais detalhado', continuar: 'Continuar de onde parei', continuar_meta: (n, t) => `passo ${n} de ${t}`,
-    voltar: 'Voltar', proximo: 'Próximo', pular: 'Pular esta', gerar: 'Gerar meu pedido',
+    voltar: 'Voltar', proximo: 'Próximo', pular: 'Pular esta', gerar: 'Gerar meu pedido', robo_falta: 'Falta só confirmar que você não é um robô, logo acima.',
     porque: 'por que pergunto', passo: 'passo', de: 'de', faltam: m => (m <= 1 ? 'falta menos de 1 min' : `faltam ~${m} min`),
     escolha_varios: 'Pode marcar quantos quiser.', escolha_um: 'Escolha uma.',
     obrigatorio: 'obrigatório', opcional: 'opcional',
@@ -53,7 +55,7 @@ const T = L({
     completo: 'Complete brief', completo_meta: '~10 min · 15 questions',
     completo_txt: 'A real brief: colors, pages, features, references. You leave with everything I need to quote without a meeting.',
     recomendado: 'most detailed', continuar: 'Pick up where I left off', continuar_meta: (n, t) => `step ${n} of ${t}`,
-    voltar: 'Back', proximo: 'Next', pular: 'Skip this one', gerar: 'Build my brief',
+    voltar: 'Back', proximo: 'Next', pular: 'Skip this one', gerar: 'Build my brief', robo_falta: 'Just confirm you are not a robot, right above.',
     porque: 'why I ask', passo: 'step', de: 'of', faltam: m => (m <= 1 ? 'under a minute left' : `~${m} min left`),
     escolha_varios: 'Pick as many as you like.', escolha_um: 'Pick one.',
     obrigatorio: 'required', opcional: 'optional',
@@ -489,6 +491,8 @@ const atualizar = () => { desenharMaquete(); desenharFicha(); rascunho.gravar();
 /* ───────── O palco: os passos ───────── */
 const palco = $('[data-palco]');
 let direcao = 1;
+let robo = false;
+let soltarRobo = null;
 
 function trilho() {
   const qs = lista();
@@ -639,6 +643,7 @@ function renderPasso() {
     <p class="passo__porque"><span class="rotulo">${T.porque}</span>${esc(L(q.p))}</p>
     ${corpoPergunta(q)}
     <p class="passo__dica" data-dica${dica ? '' : ' hidden'}>${esc(dica || '')}</p>
+    ${q.tipo === 'contato' ? `<div class="robo"><div class="robo__widget" data-robo></div><p class="robo__aviso" data-robo-aviso hidden>${T.robo_falta}</p></div>` : ''}
     <div class="passo__acoes">
       <button type="button" class="botao botao--linha" data-voltar>${svg('volta')}${T.voltar}</button>
       ${pulavel && !respondida(q) ? `<button type="button" class="passo__pular" data-pular>${T.pular}</button>` : ''}
@@ -698,6 +703,18 @@ function ligarCena(cena) {
     irPara(salvo.passo || 0);
   });
   const form = $('form.passo', cena);
+  // O "não sou robô" vive só no passo do contato; sair dele remove o widget.
+  soltarRobo?.();
+  soltarRobo = null;
+  robo = false;
+  const alvoRobo = $('[data-robo]', cena);
+  if (alvoRobo) {
+    soltarRobo = naoRobo(alvoRobo, {
+      chave: CFG.turnstile, lang,
+      aoPassar: () => { robo = true; $('[data-robo-aviso]', cena).hidden = true; },
+      aoExpirar: () => { robo = false; }
+    });
+  }
   if (!form) {
     ligarFinal(cena);
     return;
@@ -775,6 +792,7 @@ function avancar(q, form) {
     const v = contatoValido(estado.r);
     if (!v.ok) { mostrarErros(form, v.erros); return; }
     if (($('[name="site_url"]', form)?.value || '').trim()) return; // robô
+    if (!robo) { $('[data-robo-aviso]', form).hidden = false; return; }
     concluir();
     return;
   }

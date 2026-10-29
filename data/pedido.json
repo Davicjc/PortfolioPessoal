@@ -1,5 +1,7 @@
 {
   "$descricao": "Configuração da página de pedido (/pedido/ e /en/order/). Com gravar_no_firestore em true o pedido também é gravado na coleção pedidos (só o dono lê, pelas regras de firestore.rules publicadas em 27/10/2026). Em false ele sai só pelo WhatsApp ou e-mail.",
   "gravar_no_firestore": true,
-  "chave": "AIzaSyD9juzHnTpUhzUYy84Wa31b6sNT2uSxDVc"
+  "chave": "AIzaSyD9juzHnTpUhzUYy84Wa31b6sNT2uSxDVc",
+  "turnstile": "0x4AAAAAAFqe4TmVrT9SRdPm",
+  "$turnstile": "Chave pública do \"não sou robô\" (Cloudflare Turnstile, widget criado na conta Nevoria.com.br para davicjc.com e www). Vale também para /depoimento/. Fora do davicjc.com o site usa a chave de teste da Cloudflare."
 }
