@@ -125,6 +125,7 @@ export function janela(dados, p, lang, { prioridade = false, sizes = '(min-width
 function casoGrande(ctx, p, i) {
   const { dados, lang, t } = ctx;
   return `<article class="caso" data-caso="${esc(p.id)}">
+  <span class="caso__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
   <div class="caso__texto">
     <p class="caso__meta">${situacao(p, lang)}<span class="rotulo">${esc(c(p, 'periodo', lang) || p.ano || '')}</span></p>
     <h3 class="caso__titulo"><a href="${rotas.projeto(lang, p.id)}">${esc(c(p, 'titulo', lang))}</a></h3>

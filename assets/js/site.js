@@ -223,6 +223,74 @@ async function medir(url, limite = 6000) {
   else new MutationObserver((_, obs) => { if (document.body.classList.contains('pronto')) { obs.disconnect(); comecar(); } }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
 })();
 
+/* ───────── Fundo: ao sair do topo, a parede vira o fundo da página ─────────
+   As mesmas telas (o navegador já as tem) numa parede inclinada que cobre a tela inteira, atrás de
+   um véu. Ela cresce e acende enquanto o topo sai de cena; depois, cada coluna corre na vertical,
+   em sentidos alternados, puxada pela rolagem e por uma deriva lenta, como um carrossel em pé.
+   Com movimento reduzido, a parede aparece parada. */
+(() => {
+  const hero = $('.hero');
+  const origem = $$('.parede .tela');
+  if (!hero || !origem.length) return;
+
+  function montar() {
+    const telas = origem.map(t => ({ nome: $('.tela__nome', t)?.textContent || '', src: $('img', t)?.currentSrc })).filter(t => t.src);
+    if (telas.length < 3) return;
+    const colunas = innerWidth < 900 ? 3 : 5;
+    const porColuna = Math.max(4, Math.ceil(telas.length / colunas) + 2);
+    const fundo = document.createElement('div');
+    fundo.className = 'fundo';
+    fundo.setAttribute('aria-hidden', 'true');
+    const plano = document.createElement('div');
+    plano.className = 'fundo__plano';
+    // Cada coluna começa num ponto diferente da lista e é repetida duas vezes: o laço não tem emenda.
+    plano.innerHTML = Array.from({ length: colunas }, (_, c) => {
+      const lista = Array.from({ length: porColuna }, (_, k) => telas[(c * 3 + k) % telas.length]);
+      const html = lista.map(t => `<figure class="fundo__tela"><div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${t.nome.replace(/</g, '&lt;')}</span></div><img src="${t.src}" alt="" decoding="async"></figure>`).join('');
+      return `<div class="fundo__coluna">${html}${html}</div>`;
+    }).join('');
+    fundo.append(plano);
+    document.body.prepend(fundo);
+    document.body.classList.add('com-fundo');
+
+    const cols = $$('.fundo__coluna', plano).map((el, i) => ({ el, vel: [.22, .34, .27, .4, .3][i % 5], dir: i % 2 ? 1 : -1, meia: 0 }));
+    const medir = () => cols.forEach(c => { c.meia = c.el.scrollHeight / 2; });
+    medir();
+    addEventListener('resize', medir);
+
+    let deriva = 0;
+    let antes = performance.now();
+    let rodando = false;
+    // 0 com o topo inteiro na tela; 1 quando ele já saiu uns 70%.
+    const progresso = () => Math.min(1, Math.max(0, scrollY / (hero.offsetHeight * .7)));
+    function quadro(agora) {
+      const dt = Math.min(64, agora - antes);
+      antes = agora;
+      const p = progresso();
+      fundo.style.opacity = p.toFixed(3);
+      plano.style.setProperty('--fundo-escala', (.86 + p * .14).toFixed(4));
+      if (movimento && p > 0) {
+        deriva += dt * .014;
+        for (const c of cols) {
+          if (!c.meia) continue;
+          const d = (scrollY * c.vel + deriva) % c.meia;
+          c.el.style.transform = `translate3d(0, ${c.dir < 0 ? -d : d - c.meia}px, 0)`;
+        }
+      }
+      // Só continua desenhando enquanto o fundo aparece, a aba está visível e há movimento.
+      if (movimento && p > 0 && document.visibilityState === 'visible') requestAnimationFrame(quadro);
+      else rodando = false;
+    }
+    const acordar = () => { if (!rodando) { rodando = true; antes = performance.now(); requestAnimationFrame(quadro); } };
+    addEventListener('scroll', acordar, { passive: true });
+    document.addEventListener('visibilitychange', acordar);
+    acordar();
+  }
+  // Depois que a página carregou: o fundo não disputa banda nem CPU com a entrada do topo.
+  const depois = () => setTimeout(() => ('requestIdleCallback' in window ? requestIdleCallback(montar, { timeout: 1500 }) : montar()), 400);
+  if (document.readyState === 'complete') depois(); else addEventListener('load', depois, { once: true });
+})();
+
 
 /* ───────── Barramento: o pacote desce acompanhando a leitura ───────── */
 (() => {

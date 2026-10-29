@@ -205,6 +205,7 @@ p { text-wrap: pretty; }
 .hero__cafe .ic { width: 20px; height: 20px; }
 .erro .hero__acoes { margin-top: 36px; }
 .txt-curto { display: none; }
+:root { --painel: color-mix(in srgb, var(--rack) 94%, transparent); --painel-pad: clamp(20px, 3.2vw, 48px); --painel-vao: clamp(20px, 3vw, 36px); }
 
 /* Máscara sólida (sem blur) que garante leitura do título por cima das telas. */
 .parede__mascara { position: absolute; inset: 0; z-index: 1; pointer-events: none;
@@ -340,6 +341,27 @@ p { text-wrap: pretty; }
 }
 
 
+/* ───────── fundo da home: a parede continua atrás da página ─────────
+   Montado pelo site.js com as mesmas telas do topo (já em cache). Fica fixo, inclinado como a
+   parede, atrás de um véu escuro; as colunas sobem e descem com a rolagem, em sentidos alternados.
+   As faixas sólidas (provas, entregas, trajetória, rodapé) cobrem o fundo e separam as seções. */
+.fundo { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: 0; perspective: 1500px; perspective-origin: 70% 20%; }
+.fundo::after { content: ''; position: absolute; inset: 0; background: color-mix(in srgb, var(--tinta) 84%, transparent); }
+.fundo__plano { position: absolute; left: 50%; top: -18%; display: flex; gap: 26px; transform-origin: 50% 0; transform: translateX(-46%) rotateX(24deg) rotateY(-20deg) rotateZ(-9deg) scale(var(--fundo-escala, 1)); }
+.fundo__coluna { display: flex; flex-direction: column; gap: 26px; width: 400px; flex: none; }
+.fundo__tela { margin: 0; overflow: hidden; border: 1px solid var(--cabo-forte); border-radius: 10px; background: #040608; }
+.fundo__tela .tela__barra { height: 26px; font-size: 12px; }
+.fundo__tela .tela__led { background: var(--link); }
+.fundo__tela img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 0; }
+body.com-fundo { background: transparent; }
+@media (max-width: 899px) {
+  .fundo { perspective: 900px; perspective-origin: 60% 10%; }
+  .fundo__plano { top: -10%; gap: 14px; transform: translateX(-50%) rotateX(30deg) rotateZ(-14deg) scale(var(--fundo-escala, 1)); }
+  .fundo__coluna { width: 230px; gap: 14px; }
+  .fundo__tela .tela__barra { height: 20px; padding: 0 8px; font-size: 9px; gap: 5px; }
+  .fundo__tela .tela__led { width: 5px; height: 5px; }
+}
+
 /* ───────── provas ───────── */
 .provas { border-block: 1px solid var(--cabo); background: var(--rack); }
 .provas__grade { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -359,6 +381,10 @@ p { text-wrap: pretty; }
 .secao--topo { padding-top: clamp(48px, 7vw, 104px); }
 .secao__cabeca { display: grid; gap: 18px; max-width: 900px; margin-bottom: clamp(48px, 6vw, 88px); }
 .secao__num { color: var(--link); }
+/* Na home, o número abre a seção com um fio: com a parede no fundo, é ele que marca onde cada parte começa. */
+.pagina-inicio .secao__cabeca .secao__num { display: flex; align-items: center; gap: 14px; }
+.pagina-inicio .secao__cabeca .secao__num::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cabo-forte), transparent); }
+.pagina-inicio .secao:not(.secao--faixa) + .secao:not(.secao--faixa) { border-top: 1px solid var(--cabo); }
 .secao__num a:hover { color: var(--papel); }
 .secao__titulo { font-size: var(--fs-h1); }
 .secao__sub { max-width: 60ch; font-size: var(--fs-lead); line-height: 1.55; color: var(--papel-2); }
@@ -371,15 +397,17 @@ p { text-wrap: pretty; }
   .barramento::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--cabo-forte), var(--cabo) 85%, transparent); }
   .barramento__pacote { display: block; position: absolute; left: 4px; top: 0; z-index: 1; width: 5px; height: 40px; border-radius: 3px; background: linear-gradient(180deg, transparent, var(--link)); transform: translateY(var(--pacote-y, 0px)); }
   .caso::before, .rede::before, .medios::before { content: ''; position: absolute; left: -75px; top: 8px; width: 11px; height: 11px; border-radius: 50%; background: var(--tinta); border: 1.5px solid var(--cabo-forte); transition: border-color var(--m-base), background-color var(--m-base); }
-  .caso:not(:first-child)::before { top: calc(clamp(40px, 5vw, 72px) + 8px); }
-  .rede::before { top: calc(clamp(48px, 6vw, 88px) + 8px); }
-  .medios::before { top: calc(clamp(48px, 6vw, 88px) + 4px); }
+  .caso::before, .rede::before { top: calc(var(--painel-pad) + 8px); }
+  .medios::before { top: 4px; }
   .caso.aceso::before, .rede.aceso::before, .medios.aceso::before { border-color: var(--link); background: var(--link); }
 }
 
-/* ───────── estudo de caso grande ───────── */
-.caso { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4.5vw, 72px); align-items: center; padding-block: clamp(40px, 5vw, 72px); border-top: 1px solid var(--cabo); }
-.caso:first-child { border-top: 0; padding-top: 0; }
+/* ───────── destaque grande ─────────
+   Cada sistema é um painel próprio, quase opaco: com a parede passando no fundo, a borda e o
+   espaço entre os painéis é que dizem onde um sistema termina e o outro começa. */
+.caso { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4.5vw, 72px); align-items: center; padding: var(--painel-pad); border: 1px solid var(--cabo-forte); border-radius: var(--r-cartao); background: var(--painel); }
+.caso + .caso, .caso + .rede, .rede + .medios, .caso + .medios { margin-top: var(--painel-vao); }
+.caso__n { position: absolute; top: 0; right: clamp(18px, 2.4vw, 32px); translate: 0 -50%; padding: 4px 10px; border: 1px solid var(--cabo-forte); border-radius: var(--r-selo); background: var(--tinta); font: 500 11px/1 var(--f-dados); letter-spacing: .08em; color: var(--papel-3); }
 .caso__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-bottom: 18px; }
 .caso__titulo { font-size: var(--fs-h2); }
 .caso__titulo a { background: linear-gradient(var(--link), var(--link)) 0 100% / 0 2px no-repeat; transition: background-size var(--m-lento) var(--m-saida); }
@@ -422,7 +450,7 @@ p { text-wrap: pretty; }
 }
 
 /* ───────── trio de observabilidade de rede ───────── */
-.rede { position: relative; padding-block: clamp(48px, 6vw, 88px); border-top: 1px solid var(--cabo); }
+.rede { position: relative; padding: var(--painel-pad); border: 1px solid var(--cabo-forte); border-radius: var(--r-cartao); background: var(--painel); }
 .rede__cabeca { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 16px 48px; align-items: end; margin-bottom: 36px; }
 .rede__titulo { font-size: var(--fs-h2); }
 .rede__sub { max-width: 58ch; color: var(--papel-2); }
@@ -443,10 +471,10 @@ p { text-wrap: pretty; }
   .rede__grade { grid-template-columns: minmax(0, 1fr); }
 }
 
-.medios { position: relative; padding-top: clamp(48px, 6vw, 88px); border-top: 1px solid var(--cabo); }
+.medios { position: relative; }
 .medios__titulo { margin-bottom: 28px; }
 .medios__grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 28px; }
-.medio { display: flex; flex-direction: column; gap: 12px; }
+.medio { display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 22px; border: 1px solid var(--cabo-forte); border-radius: var(--r-cartao); background: var(--painel); }
 @media (max-width: 999px) { .medios__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 639px) { .medios__grade { grid-template-columns: minmax(0, 1fr); } }
 
