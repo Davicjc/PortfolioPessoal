@@ -493,9 +493,12 @@ const SECOES = [
   { id:'pedidos', nome:'Pedidos', pedidos:true,
     descricao:'O que chega pela página /pedido/. Só leitura: os pedidos ficam fora da cópia de segurança e da importação.' },
 
+  { id:'recebidos', nome:'Depoimentos recebidos', recebidos:true,
+    descricao:'O que clientes e colegas mandam pela página /depoimento/. Nada aparece no site até você aprovar; aprovar copia para Depoimentos (publicado) e tira daqui.' },
+
   { id:'banco', nome:'Banco e publicação', ferramentas:true },
 ];
-const COLECOES = SECOES.filter(s => !s.doc && !s.ferramentas && !s.pedidos).map(s => s.id);
+const COLECOES = SECOES.filter(s => !s.doc && !s.ferramentas && !s.pedidos && !s.recebidos).map(s => s.id);
 /* O site novo não usa estas coleções, mas elas continuam no banco: entram na cópia de segurança e na importação. */
 const TODAS = [...COLECOES, 'capacidades', 'clientes', 'categorias'];
 
@@ -658,7 +661,7 @@ function bancoVazio(){ return totalDocs() === 0; }
 /* ══════════════ NAVEGAÇÃO ══════════════ */
 function renderNav(){
   const html = SECOES.map(s => {
-    const n = s.doc || s.ferramentas ? '' : s.pedidos ? (estado.pedidos ? estado.pedidos.length : '') : (estado.carregado ? estado.dados[s.id].length : '');
+    const n = s.doc || s.ferramentas ? '' : s.pedidos ? (estado.pedidos ? estado.pedidos.length : '') : s.recebidos ? (estado.recebidos ? estado.recebidos.length : '') : (estado.carregado ? estado.dados[s.id].length : '');
     const sep = s.ferramentas ? '<div class="nav-sep"></div>' : '';
     return sep + `<button data-ir="${s.id}" aria-current="${estado.secao === s.id}">${esc(s.nome)}<em>${n}</em></button>`;
   }).join('');
@@ -693,6 +696,7 @@ function renderPrincipal(){
   }
   if (s.ferramentas) return renderFerramentas(alvo);
   if (s.pedidos) return renderPedidos(alvo);
+  if (s.recebidos) return renderRecebidos(alvo);
   if (s.doc) return renderDocumento(alvo, s);
   renderLista(alvo, s);
 }
@@ -732,6 +736,108 @@ async function renderPedidos(alvo){
     if (!confirm('Apagar este pedido de vez?')) return;
     await deleteDoc(doc(bd, 'pedidos', b.dataset.id));
     renderPedidos(alvo);
+  }));
+}
+
+/* ══════════════ DEPOIMENTOS RECEBIDOS ══════════════
+   Como os pedidos: lidos sob demanda e fora da cópia de segurança. Aprovar grava em
+   "depoimentos" (já publicado) e apaga daqui, numa operação só. */
+const SITE = 'https://davicjc.com';
+const ORIGEM_DEP = { trabalho:'Trabalhamos juntos', indicacao:'Indicação', linkedin:'LinkedIn', instagram:'Instagram', google:'Google', github:'GitHub', outro:'Outro' };
+function linkDepoimento(lingua, projeto){
+  const base = SITE + (lingua === 'en' ? '/en/testimonial/' : '/depoimento/');
+  return projeto ? base + '?projeto=' + encodeURIComponent(projeto) : base;
+}
+async function renderRecebidos(alvo){
+  const s = secao('recebidos');
+  const acoes = `<button class="btn" data-acao-rec="recarregar">Atualizar</button>`;
+  alvo.innerHTML = cabecalho(s.nome, s.descricao, acoes) + `<div class="carregando"><span class="giro"></span>lendo os depoimentos recebidos…</div>`;
+  let erro = null;
+  try {
+    const snap = await comTempo(getDocs(collection(bd, 'depoimentos_recebidos')), 15000, 'tempo esgotado');
+    estado.recebidos = snap.docs.map(d => Object.assign({}, d.data(), { id: d.id })).sort((a, b) => String(b.criado_em || '').localeCompare(String(a.criado_em || '')));
+  } catch (e) { erro = e; estado.recebidos = []; }
+  renderNav();
+  const data = iso => { try { return new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(iso)); } catch (e) { return iso || ''; } };
+  const projetos = (estado.dados.projetos || []).filter(p => p.publicado !== false).map(p => p.titulo_pt).filter(Boolean).sort();
+  const compartilhar = `<div class="cartao" style="margin-bottom:16px">
+      <span class="rotulo">pedir um depoimento</span>
+      <h2>Link só com o formulário</h2>
+      <p>Abre uma página sem menu nem rodapé, com o "não sou robô" no fim. Escolha o projeto para ele já vir preenchido.</p>
+      <div class="linha-acoes" style="align-items:center">
+        <select id="rec-projeto" aria-label="Projeto"><option value="">Sem projeto</option>${projetos.map(p => `<option>${esc(p)}</option>`).join('')}</select>
+        <select id="rec-lingua" aria-label="Idioma"><option value="pt">Português</option><option value="en">English</option></select>
+        <button class="btn btn-forte" data-acao-rec="compartilhar">Compartilhar</button>
+        <button class="btn" data-acao-rec="copiar">Copiar link</button>
+      </div>
+      <p class="rotulo" id="rec-link" style="margin-top:.8rem;word-break:break-all">${esc(linkDepoimento('pt', ''))}</p>
+    </div>`;
+  const lista = estado.recebidos;
+  const vazio = erro
+    ? `<div class="cartao aviso"><p>${esc(explicarErro(erro))}</p><p>Se for falta de permissão, publique as regras novas em Banco e publicação (elas incluem a coleção depoimentos_recebidos).</p></div>`
+    : `<div class="cartao"><h2>Nenhum depoimento esperando</h2><p>Quando alguém enviar pela página /depoimento/, ele aparece aqui para você aprovar ou apagar.</p></div>`;
+  alvo.innerHTML = cabecalho(s.nome, s.descricao, acoes) + compartilhar + (!lista.length ? vazio : lista.map(r => `<div class="cartao" style="margin-bottom:12px">
+      <span class="rotulo">${esc(data(r.criado_em))} · ${r.lang === 'en' ? 'em inglês' : 'em português'}${r.origem ? ' · me conheceu por: ' + esc(ORIGEM_DEP[r.origem] || r.origem) : ''}</span>
+      <div style="display:flex;gap:14px;align-items:center;margin:.6rem 0">
+        ${r.foto ? `<img src="${esc(r.foto)}" alt="" width="56" height="56" style="width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none">` : ''}
+        <div><h2 style="margin:0">${esc(r.nome || '')}</h2><p style="margin:0">${esc(r.cargo || '')}${r.projeto ? ' · sobre ' + esc(r.projeto) : ''}</p></div>
+      </div>
+      <blockquote style="margin:0 0 .8rem;white-space:pre-wrap">“${esc(r.texto || '')}”</blockquote>
+      <p class="rotulo">${[r.email && esc(r.email), r.linkedin && `<a href="${esc(r.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a>`].filter(Boolean).join(' · ') || 'sem e-mail nem LinkedIn'}</p>
+      <div class="linha-acoes">
+        <button class="btn btn-forte" data-acao-rec="aprovar" data-id="${esc(r.id)}">Aprovar e publicar</button>
+        <button class="btn" data-acao-rec="apagar" data-id="${esc(r.id)}">Apagar</button>
+      </div></div>`).join(''));
+  const link = () => linkDepoimento($('#rec-lingua').value, $('#rec-projeto').value);
+  const mostrarLink = () => { $('#rec-link').textContent = link(); };
+  $('#rec-projeto').addEventListener('change', mostrarLink);
+  $('#rec-lingua').addEventListener('change', mostrarLink);
+  alvo.querySelectorAll('[data-acao-rec]').forEach(b => b.addEventListener('click', async () => {
+    const acao = b.dataset.acaoRec;
+    if (acao === 'recarregar') return renderRecebidos(alvo);
+    if (acao === 'copiar' || acao === 'compartilhar'){
+      const url = link();
+      const lingua = $('#rec-lingua').value;
+      if (acao === 'compartilhar' && navigator.share){
+        try { await navigator.share({ title: 'Davi Castro', text: lingua === 'en' ? 'Could you leave a short testimonial about our work? It takes 2 minutes:' : 'Pode deixar um depoimento rápido sobre o nosso trabalho? Leva 2 minutos:', url }); } catch (e) {}
+        return;
+      }
+      try { await navigator.clipboard.writeText(url); avisar('Link copiado.'); } catch (e) { avisar('Não consegui copiar. O link está logo abaixo.', 'erro'); }
+      return;
+    }
+    const r = estado.recebidos.find(x => x.id === b.dataset.id);
+    if (!r) return;
+    if (acao === 'apagar'){
+      if (!confirm('Apagar o depoimento de ' + (r.nome || 'esta pessoa') + ' de vez?')) return;
+      await deleteDoc(doc(bd, 'depoimentos_recebidos', r.id));
+      return renderRecebidos(alvo);
+    }
+    if (acao === 'aprovar'){
+      b.disabled = true; b.textContent = 'Publicando…';
+      try {
+        const deps = estado.dados.depoimentos || [];
+        const ordem = deps.reduce((m, d) => Math.max(m, Number(d.ordem) || 0), 0) + 1;
+        let id = 'dep-' + String(ordem).padStart(2, '0');
+        if (deps.some(d => d.id === id)) id += '-' + Date.now().toString(36).slice(-4);
+        // Em inglês: o texto vale para as duas línguas até alguém traduzir no editor de Depoimentos.
+        const novo = Object.fromEntries(Object.entries({
+          nome: r.nome, cargo_pt: r.cargo, cargo_en: r.lang === 'en' ? r.cargo : '',
+          texto_pt: r.texto, texto_en: r.lang === 'en' ? r.texto : '',
+          projeto_vinculado: r.projeto, linkedin: r.linkedin, foto: r.foto, origem: r.origem,
+          recebido_em: r.criado_em, publicado: true, ordem
+        }).filter(([, v]) => v !== '' && v != null));
+        const lote = writeBatch(bd);
+        lote.set(doc(bd, 'depoimentos', id), novo);
+        lote.delete(doc(bd, 'depoimentos_recebidos', r.id));
+        await comTempo(lote.commit(), 15000, 'tempo esgotado');
+        deps.push(Object.assign({}, novo, { id }));
+        avisar('Publicado. Entra no site na próxima atualização (até 1 hora).', 'ok', 5000);
+        renderRecebidos(alvo);
+      } catch (e) {
+        b.disabled = false; b.textContent = 'Aprovar e publicar';
+        avisar(explicarErro(e), 'erro');
+      }
+    }
   }));
 }
 
@@ -1198,7 +1304,7 @@ async function salvar(){
 
 /* ══════════════ BANCO E PUBLICAÇÃO ══════════════ */
 const ACAO_ATUALIZAR = 'https://github.com/Davicjc/PortfolioPessoal/actions/workflows/atualizar.yml';
-// Cópia de firestore.rules (a versão publicada no console em 27/10/2026).
+// Cópia de firestore.rules. Atualizada em 28/10/2026 com depoimentos_recebidos: publicar no console.
 const REGRAS_FIRESTORE = String.raw`rules_version = '2';
 
 service cloud.firestore {
@@ -1223,6 +1329,12 @@ service cloud.firestore {
       allow create: if pedidoValido(request.resource.data) && id.size() <= 40;
     }
 
+    // Depoimentos enviados por /depoimento/: entram numa fila que só o dono lê, aprova ou apaga.
+    // Nada daqui vai para o site sem ser copiado para "depoimentos" pelo painel.
+    match /depoimentos_recebidos/{id} {
+      allow create: if depoimentoValido(request.resource.data) && id.size() <= 40;
+    }
+
     function texto(v, min, max) {
       return v is string && v.size() >= min && v.size() <= max;
     }
@@ -1238,6 +1350,21 @@ service cloud.firestore {
         && (!('cnpj' in d) || texto(d.cnpj, 0, 18))
         && texto(d.resumo, 1, 12000)
         && (!('respostas' in d) || d.respostas is map);
+    }
+    function depoimentoValido(d) {
+      return d.keys().hasOnly(['nome', 'cargo', 'projeto', 'texto', 'foto', 'linkedin', 'email', 'origem', 'lang', 'criado_em', 'autoriza'])
+        && d.keys().hasAll(['nome', 'texto', 'autoriza', 'criado_em'])
+        && texto(d.nome, 2, 120)
+        && texto(d.texto, 20, 1500)
+        && d.autoriza == true
+        && texto(d.criado_em, 10, 40)
+        && (!('cargo' in d) || texto(d.cargo, 0, 160))
+        && (!('projeto' in d) || texto(d.projeto, 0, 120))
+        && (!('foto' in d) || (texto(d.foto, 30, 80000) && d.foto.matches('^data:image/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$')))
+        && (!('linkedin' in d) || texto(d.linkedin, 0, 200))
+        && (!('email' in d) || texto(d.email, 0, 160))
+        && (!('origem' in d) || texto(d.origem, 0, 40))
+        && (!('lang' in d) || d.lang in ['pt', 'en']);
     }
   }
 }`;

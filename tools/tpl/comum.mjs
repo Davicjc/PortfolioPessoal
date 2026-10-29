@@ -18,7 +18,8 @@ export const rotas = {
   cv: lang => (lang === 'en' ? '/Curriculo/en.html' : '/Curriculo/'),
   cvPdf: lang => (lang === 'en' ? '/Curriculo/Davi-Castro-Resume.pdf' : '/Curriculo/Davi-Castro-Curriculo.pdf'),
   cafe: lang => (lang === 'en' ? '/en/coffee/' : '/coffee/'),
-  pedido: lang => (lang === 'en' ? '/en/order/' : '/pedido/')
+  pedido: lang => (lang === 'en' ? '/en/order/' : '/pedido/'),
+  depoimento: lang => (lang === 'en' ? '/en/testimonial/' : '/depoimento/')
 };
 
 // Link do currículo: o PDF quando ele já existe no site; senão, a página do currículo.

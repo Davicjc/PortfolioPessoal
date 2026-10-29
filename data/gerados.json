@@ -62,5 +62,7 @@
  "coffee/index.html",
  "en/coffee/index.html",
  "pedido/index.html",
- "en/order/index.html"
+ "en/order/index.html",
+ "depoimento/index.html",
+ "en/testimonial/index.html"
 ]

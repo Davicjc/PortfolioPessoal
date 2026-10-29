@@ -8,6 +8,7 @@ rules_version = '2';
 //   • só o dono escreve no conteúdo, pelo painel /adm;
 //   • os pedidos (/pedido/) podem ser CRIADOS por qualquer visitante, com campos e tamanhos
 //     conferidos aqui, mas só o dono lê, edita ou apaga. Ninguém lista os pedidos de fora.
+//   • os depoimentos enviados por /depoimento/ seguem a mesma regra (coleção depoimentos_recebidos).
 //
 // Antes de publicar: confira no console se existe alguma coleção que não está na lista
 // CONTEUDO abaixo e que o site precise ler. Coleção fora da lista fica fechada para leitura.
@@ -33,6 +34,12 @@ service cloud.firestore {
       allow create: if pedidoValido(request.resource.data) && id.size() <= 40;
     }
 
+    // Depoimentos enviados por /depoimento/: entram numa fila que só o dono lê, aprova ou apaga.
+    // Nada daqui vai para o site sem ser copiado para "depoimentos" pelo painel.
+    match /depoimentos_recebidos/{id} {
+      allow create: if depoimentoValido(request.resource.data) && id.size() <= 40;
+    }
+
     function texto(v, min, max) {
       return v is string && v.size() >= min && v.size() <= max;
     }
@@ -48,6 +55,21 @@ service cloud.firestore {
         && (!('cnpj' in d) || texto(d.cnpj, 0, 18))
         && texto(d.resumo, 1, 12000)
         && (!('respostas' in d) || d.respostas is map);
+    }
+    function depoimentoValido(d) {
+      return d.keys().hasOnly(['nome', 'cargo', 'projeto', 'texto', 'foto', 'linkedin', 'email', 'origem', 'lang', 'criado_em', 'autoriza'])
+        && d.keys().hasAll(['nome', 'texto', 'autoriza', 'criado_em'])
+        && texto(d.nome, 2, 120)
+        && texto(d.texto, 20, 1500)
+        && d.autoriza == true
+        && texto(d.criado_em, 10, 40)
+        && (!('cargo' in d) || texto(d.cargo, 0, 160))
+        && (!('projeto' in d) || texto(d.projeto, 0, 120))
+        && (!('foto' in d) || (texto(d.foto, 30, 80000) && d.foto.matches('^data:image/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$')))
+        && (!('linkedin' in d) || texto(d.linkedin, 0, 200))
+        && (!('email' in d) || texto(d.email, 0, 160))
+        && (!('origem' in d) || texto(d.origem, 0, 40))
+        && (!('lang' in d) || d.lang in ['pt', 'en']);
     }
   }
 }

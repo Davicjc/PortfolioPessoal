@@ -305,6 +305,10 @@ function depoimentos(ctx) {
     <div class="depoimentos">
       ${outros.map(d => `<figure class="depoimento"><blockquote><p>${esc(c(d, 'texto', lang))}</p></blockquote><figcaption>${pessoa(d)}</figcaption></figure>`).join('\n      ')}
     </div>
+    <div class="depoimentos__convite">
+      <p>${t.dep_convite}</p>
+      <a class="botao botao--linha" href="${rotas.depoimento(lang)}">${t.dep_botao}${icone('seta')}</a>
+    </div>
   </div>
 </section>`;
 }

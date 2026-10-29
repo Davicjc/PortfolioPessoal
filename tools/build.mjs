@@ -17,6 +17,7 @@ import { paginaMarca } from './tpl/marca.mjs';
 import { paginaCurriculo } from './tpl/curriculo.mjs';
 import { paginaCafe } from './tpl/cafe.mjs';
 import { paginaPedido } from './tpl/pedido.mjs';
+import { paginaDepoimento } from './tpl/depoimento.mjs';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 // Fim de linha sempre LF: no Windows o checkout vem com CRLF e no CI com LF; sem isto os hashes ?v= e os
@@ -232,7 +233,7 @@ async function principal() {
   dados._og = existsSync(join(RAIZ, 'assets/og')) ? readdirSync(join(RAIZ, 'assets/og')).sort() : [];
   // Com os PDFs gerados (tools/pdf.mjs), o botão "Currículo em PDF" baixa o arquivo em vez de abrir a página.
   const cvPdf = { pt: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Curriculo.pdf')), en: existsSync(join(RAIZ, 'Curriculo/Davi-Castro-Resume.pdf')) };
-  dados._build = { ts, cvPdf, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe), pedido: hash(ler('assets/css/pedido.css')), pedidoJs: hash(ler('assets/js/pedido.js')) } };
+  dados._build = { ts, cvPdf, versoes: { css: hash(css), js: hash(js), vox: hash(vox), marca: hash(ler('assets/css/marca.css')), cv: hash(cssCv), cafe: hash(ler('assets/css/cafe.css')), cafeJs: hash(jsCafe), pedido: hash(ler('assets/css/pedido.css')), pedidoJs: hash(ler('assets/js/pedido.js')), depoimento: hash(ler('assets/css/depoimento.css')), depoimentoJs: hash(ler('assets/js/depoimento.js')) } };
 
   // Páginas
   const gerados = [];
@@ -252,6 +253,7 @@ async function principal() {
   for (const lang of LINGUAS) pagina(rotas.cafe(lang).slice(1) + 'index.html', paginaCafe({ dados, lang, t: T[lang] }, cafe));
   const pedido = existsSync(join(RAIZ, 'data/pedido.json')) ? lerJSON('data/pedido.json') : {};
   for (const lang of LINGUAS) pagina(rotas.pedido(lang).slice(1) + 'index.html', paginaPedido({ dados, lang, t: T[lang] }, pedido));
+  for (const lang of LINGUAS) pagina(rotas.depoimento(lang).slice(1) + 'index.html', paginaDepoimento({ dados, lang, t: T[lang] }, pedido));
 
   // Remove páginas de projetos que saíram do ar desde o último build.
   const manifesto = join(RAIZ, 'data/gerados.json');
