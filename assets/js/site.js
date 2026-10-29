@@ -6,8 +6,8 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const movimento = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 const lang = document.body.dataset.lang || 'pt';
 const TXT = {
-  pt: { sem: 'sem resposta', fechar: 'Fechar' },
-  en: { sem: 'no reply', fechar: 'Close' }
+  pt: { sem: 'sem resposta', fechar: 'Fechar', ovos: 'Duvido você achar os easter eggs da página!' },
+  en: { sem: 'no reply', fechar: 'Close', ovos: 'Bet you can’t find this site’s easter eggs!' }
 }[lang];
 
 /* Rotas antigas da SPA (#/projetos, #/sobre, #/contato) continuam funcionando. */
@@ -325,6 +325,30 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
   x.addEventListener('click', () => { caixa.remove(); try { localStorage.setItem('davicjc.idioma', 'dispensado'); } catch {} });
   caixa.append(x);
   setTimeout(() => document.body.append(caixa), 2600);
+})();
+
+/* ───────── Provocação: um balão discreto na primeira visita (e, depois, só de vez em quando) ───────── */
+(() => {
+  if (document.body.classList.contains('pagina-avaliacao')) return;
+  let ja = null;
+  try { ja = localStorage.getItem('provocacao'); } catch {}
+  if (ja && Math.random() > .03) return;
+  const mostrar = () => setTimeout(() => {
+    if (document.documentElement.classList.contains('vox-on')) return;
+    const balao = document.createElement('div');
+    balao.className = 'provoca';
+    balao.setAttribute('role', 'status');
+    balao.innerHTML = `<span>${TXT.ovos}</span><button type="button" aria-label="${TXT.fechar}">×</button>`;
+    // Se a sugestão de idioma estiver embaixo, o balão sobe para não ficar por cima dela.
+    if ($('.aviso-idioma')) balao.style.bottom = '84px';
+    document.body.append(balao);
+    requestAnimationFrame(() => requestAnimationFrame(() => balao.classList.add('on')));
+    const sair = () => { balao.classList.remove('on'); setTimeout(() => balao.remove(), 500); };
+    $('button', balao).addEventListener('click', sair);
+    setTimeout(sair, 7000);
+    try { localStorage.setItem('provocacao', '1'); } catch {}
+  }, 2000);
+  if (document.readyState === 'complete') mostrar(); else addEventListener('load', mostrar, { once: true });
 })();
 
 /* ───────── Easter egg: ↑ ↑ ↓ ↓ ← → ← → (ou 13 toques em "Davi Castro" no celular) ───────── */
