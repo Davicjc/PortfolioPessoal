@@ -15,8 +15,6 @@ Ainda não registradas. Na primeira revisão, pergunte ao Davi onde os certifica
 - Turnstile sem validação no servidor: o widget barra quem usa o formulário, mas a API do Firestore ainda
   aceita `create` direto. Fechar exige uma Pages Function que valide o token e um segredo na conta da Cloudflare
   do davicjc.com.
-- Título da seção de projetos no banco: o painel ainda diz "Estudos de caso"; o nome combinado é "Destaques"
-  ("Featured work" em inglês).
 
 ## Revisões
 
