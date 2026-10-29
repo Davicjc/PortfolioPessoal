@@ -98,20 +98,20 @@ p { text-wrap: pretty; }
 }
 
 /* ───────── hero: a parede de produção ───────── */
-/* Um objeto só domina a primeira dobra: uma parede de monitores com telas reais dos sistemas,
-   em perspectiva, sangrando para a direita. O título fica por cima de uma máscara sólida. */
-.hero { position: relative; isolation: isolate; display: flex; align-items: center; min-height: calc(100svh - 64px); overflow: clip; }
-.hero__texto { padding-block: clamp(32px, 6vh, 72px) clamp(40px, 7vh, 88px); }
+/* Um objeto só domina a primeira dobra: colunas de telas reais dos sistemas, inclinadas, cobrindo
+   o topo inteiro e correndo na vertical. O texto fica por cima de um véu escuro. */
+/* O nome abre o topo lá em cima e os botões fecham lá embaixo; no meio, a parede aparece. */
+.hero { position: relative; isolation: isolate; display: flex; align-items: stretch; min-height: calc(100svh - 64px); overflow: clip; }
+.hero__texto { display: flex; flex-direction: column; padding-block: clamp(24px, 5vh, 56px) clamp(24px, 4.5vh, 48px); }
 .hero__kicker, .hero__titulo, .hero__cargo, .hero__base { position: relative; z-index: 2; }
 .hero__kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; margin-bottom: clamp(20px, 3.4vh, 36px); }
 .hero__kicker > span { display: inline-flex; align-items: center; gap: 9px; }
 .hero__kicker > span + span::before { content: ''; width: 18px; height: 1px; margin: 0 14px; background: var(--cabo-forte); }
-.hero__estado { color: var(--papel); }
 .hero__titulo { max-width: 10.4ch; font-size: clamp(2.6rem, .8rem + 5.6vw, 6.6rem); font-weight: 650; line-height: .95; letter-spacing: -.035em; text-wrap: balance; }
 /* Nome como manchete (como fazem os portfólios de referência) e, logo abaixo, cargo e empresa. */
 .hero__cargo { margin-top: clamp(14px, 2.2vh, 24px); font: 500 clamp(1.15rem, .85rem + .9vw, 1.6rem)/1.25 var(--f-display); letter-spacing: -.01em; color: var(--papel); }
 .hero__sep { white-space: pre; color: var(--papel-3); }
-.hero__base { display: grid; gap: 22px; max-width: 560px; margin-top: clamp(22px, 3.6vh, 40px); }
+.hero__base { display: grid; gap: 22px; max-width: 560px; margin-top: auto; padding-top: clamp(28px, 5vh, 56px); }
 .hero__lead { max-width: 520px; font-size: var(--fs-lead); line-height: 1.55; color: var(--papel-2); }
 .hero__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 /* O botão grande do topo: leva para o pedido guiado (/pedido/). */
@@ -134,71 +134,35 @@ p { text-wrap: pretty; }
 .hero__cafe .ic { width: 20px; height: 20px; }
 .erro .hero__acoes { margin-top: 36px; }
 .txt-curto { display: none; }
-:root { --painel: color-mix(in srgb, var(--rack) 94%, transparent); --painel-pad: clamp(20px, 3.2vw, 48px); --painel-vao: clamp(20px, 3vw, 36px); }
+:root { --caso-pad: clamp(56px, 7vw, 104px); }
 
-/* Máscara sólida (sem blur) que garante leitura do título por cima das telas. */
+/* Véu (sem blur): mais fechado atrás do texto, mais aberto à direita, onde as telas aparecem. */
 .parede__mascara { position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(90deg, var(--tinta) 0%, var(--tinta) 35%, color-mix(in srgb, var(--tinta) 72%, transparent) 42%, transparent 51%),
-    linear-gradient(0deg, var(--tinta) 0%, transparent 12%),
-    linear-gradient(180deg, var(--tinta) 0%, transparent 9%); }
+    linear-gradient(90deg, color-mix(in srgb, var(--tinta) 94%, transparent) 0%, color-mix(in srgb, var(--tinta) 86%, transparent) 36%, color-mix(in srgb, var(--tinta) 58%, transparent) 64%, color-mix(in srgb, var(--tinta) 46%, transparent) 100%),
+    linear-gradient(0deg, var(--tinta) 0%, color-mix(in srgb, var(--tinta) 40%, transparent) 9%, transparent 22%),
+    linear-gradient(180deg, color-mix(in srgb, var(--tinta) 70%, transparent) 0%, transparent 12%); }
 
-/* As telas têm tamanho grande no CSS e o plano é empurrado para trás (translateZ): o navegador
-   rasteriza em resolução alta e a perspectiva só reduz — por isso a parede fica nítida. */
-/* --px/--py mudam a cada quadro (balanço + ponteiro): sem herança, só o plano recalcula o estilo. */
-@property --px { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-@property --py { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-@property --dx { syntax: '<length>'; inherits: false; initial-value: 0px; }
-@property --dy { syntax: '<length>'; inherits: false; initial-value: 0px; }
-.parede { position: absolute; z-index: 0; inset: 0; perspective: 1700px; perspective-origin: 22% 28%; pointer-events: none; }
-.parede__plano {
-  --rx: 13deg; --ry: -27deg; --rz: -6deg; --px: 0deg; --py: 0deg; --z: -1050px;
-  position: absolute; left: 37%; top: 1%;
-  display: grid; grid-template-columns: repeat(4, 440px); gap: 26px;
-  transform-origin: 0 0;
-  transform: translateZ(var(--z)) translate(var(--dx), var(--dy)) rotateX(calc(var(--rx) + var(--py))) rotateY(calc(var(--ry) + var(--px))) rotateZ(var(--rz));
-}
-.tela { position: relative; margin: 0; border: 1px solid var(--cabo-forte); border-radius: 10px; background: #040608; overflow: hidden; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, .85); }
-.tela__barra { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-bottom: 1px solid var(--cabo); background: var(--rack); font: 500 13px/1 var(--f-dados); color: var(--papel-3); white-space: nowrap; }
-.tela__led { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--desligado); transition: background-color var(--m-base); }
+/* Colunas lado a lado num plano inclinado; cada uma repete a lista duas vezes e anda 50% da
+   própria altura por volta (o padding-bottom igual ao vão fecha a emenda). Só transform anima. */
+.parede { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; perspective: 1500px; perspective-origin: 70% 20%; }
+.parede__plano { position: absolute; left: 50%; top: -20%; display: flex; gap: 26px; transform-origin: 50% 0; transform: translateX(-46%) rotateX(24deg) rotateY(-20deg) rotateZ(-9deg); }
+.parede__coluna { display: flex; flex-direction: column; flex: none; gap: 26px; width: 400px; padding-bottom: 26px; }
+.tela { position: relative; margin: 0; overflow: hidden; border: 1px solid var(--cabo-forte); border-radius: 10px; background: #040608; }
+.tela__barra { display: flex; align-items: center; gap: 8px; height: 26px; padding: 0 11px; border-bottom: 1px solid var(--cabo); background: var(--rack); font: 500 12px/1 var(--f-dados); color: var(--papel-3); white-space: nowrap; }
+.tela__led { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--link); transition: background-color var(--m-base); }
+.tela.sem-resposta .tela__led { background: var(--desligado); }
 .tela__nome { overflow: hidden; text-overflow: ellipsis; }
 .tela__ms { margin-left: auto; color: var(--papel-2); font-variant-numeric: tabular-nums; transition: color 1.2s var(--m-saida); }
 .tela__ms.nova { color: var(--link); transition: color 0s; }
-.tela__vidro { position: relative; aspect-ratio: 16 / 10; background: radial-gradient(120% 90% at 30% 20%, #0b0f14, #030405); overflow: hidden; }
-.tela__vidro img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; opacity: 0; transition: opacity 900ms var(--m-entrada-saida); }
-.tela__vidro img.ativa { opacity: 1; }
-.tela.ligada .tela__led { background: var(--link); }
+.tela img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 0; background: #030405; }
+@keyframes correr { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -50%, 0); } }
 
-/* Chiado de TV: granulado (gerado no navegador, em --chiado) + linhas de varredura + uma faixa
-   clara que rola. Na troca de canal a imagem nova entra por baixo do chiado, sem fade longo. */
-.tela__vidro::before { content: ''; position: absolute; inset: 0; z-index: 2; opacity: 0; pointer-events: none;
-  background:
-    linear-gradient(180deg, transparent 0%, rgba(232, 237, 242, .22) 46%, rgba(232, 237, 242, .34) 50%, transparent 58%) 0 -120% / 100% 60% no-repeat,
-    repeating-linear-gradient(180deg, rgba(0, 0, 0, .42) 0 1px, transparent 1px 3px),
-    var(--chiado, none) 0 0 / 180px 180px;
-  image-rendering: pixelated; }
 @media (prefers-reduced-motion: no-preference) {
-  .tela.chiando .tela__vidro::before { animation: chiado-grao 180ms steps(1) infinite, chiado-vida var(--chiado-ms, 560ms) cubic-bezier(.3, 0, .2, 1) both; }
-  .tela.chiando .tela__vidro img { transition-duration: 140ms; }
-  .tela.chiando .tela__vidro img.ativa { animation: tremor 90ms steps(1) infinite; }
-  .tela.chiando .tela__led { background: var(--papel-3); }
-}
-@keyframes chiado-grao {
-  0%   { background-position: 0 -120%, 0 0, 0 0; }
-  20%  { background-position: 0 -20%, 0 1px, -61px 37px; }
-  40%  { background-position: 0 60%, 0 2px, 23px -88px; }
-  60%  { background-position: 0 140%, 0 0, -97px -14px; }
-  80%  { background-position: 0 220%, 0 1px, 44px 71px; }
-}
-@keyframes chiado-vida { 0% { opacity: 0; } 14% { opacity: var(--chiado-forca, .92); } 72% { opacity: var(--chiado-forca, .92); } 100% { opacity: 0; } }
-@keyframes tremor { 0% { transform: translate(0, 0); } 33% { transform: translate(-2px, 1px) skewX(-1deg); } 66% { transform: translate(3px, -1px); } }
-
-/* Ligar como um monitor: uma linha de luz que abre na vertical e assenta. */
-@media (prefers-reduced-motion: no-preference) {
-  .js .tela:not(.ligada) .tela__vidro img { opacity: 0; }
-  .js .tela.ligando .tela__vidro img.ativa { animation: ligar 620ms cubic-bezier(.2, .8, .2, 1) both; }
-  .js .tela.ligando .tela__vidro::after { content: ''; position: absolute; inset: 0; background: #E8EDF2; animation: clarao 560ms ease-out both; pointer-events: none; }
-  .js .parede { opacity: 0; transition: opacity 700ms var(--m-saida); }
+  .parede__coluna { animation: correr var(--dur, 110s) linear var(--atraso, 0s) infinite; }
+  .parede__coluna:nth-child(even) { animation-direction: reverse; }
+  .parede.parada .parede__coluna { animation-play-state: paused; }
+  .js .parede { opacity: 0; transition: opacity 900ms var(--m-saida); }
   .js .pronto .parede { opacity: 1; }
   .js .hero__kicker, .js .hero__cargo, .js .hero__lead, .js .hero__simular, .js .hero__acoes { opacity: 0; }
   .js .hero__titulo .palavra { display: inline-block; opacity: 0; transform: translateY(.32em); }
@@ -209,43 +173,34 @@ p { text-wrap: pretty; }
   .pronto .hero__simular { animation: surgir .8s var(--m-saida) .56s forwards; }
   .pronto .hero__acoes { animation: surgir .8s var(--m-saida) .68s forwards; }
 }
-@keyframes ligar {
-  0% { opacity: 1; transform: scale(.55, .006); filter: brightness(3.2); }
-  38% { opacity: 1; transform: scale(1, .006); filter: brightness(3.2); }
-  70% { opacity: 1; transform: scale(1, 1.02); filter: brightness(1.35); }
-  100% { opacity: 1; transform: none; filter: none; }
-}
-@keyframes clarao { 0% { opacity: 0; } 30% { opacity: .38; } 100% { opacity: 0; } }
 @keyframes palavra { to { opacity: 1; transform: none; } }
 @keyframes surgir { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 1279px) and (min-width: 900px) {
-  .parede__plano { --z: -760px; left: 42%; top: 9%; }
   .hero__titulo { font-size: clamp(2.6rem, .6rem + 5.4vw, 5.2rem); }
 }
 @media (max-height: 800px) and (min-width: 900px) {
   .hero__titulo { font-size: clamp(2.6rem, 1rem + 4.6vw, 5.4rem); }
-  .parede__plano { --z: -680px; top: 2%; }
 }
 
-/* Celular: título em cima, a parede centralizada no meio, texto e botões embaixo. */
+/* Celular: tudo centralizado por cima da parede, que vira o fundo do topo inteiro. */
 @media (max-width: 899px) {
   .hero { text-align: center; }
-  .hero__texto { display: flex; flex-direction: column; align-items: center; padding-block: 20px 28px; }
+  .hero__texto { align-items: center; padding-block: 18px 22px; }
   .hero__kicker { justify-content: center; margin-bottom: 14px; }
   .hero__titulo { max-width: 11ch; font-size: clamp(2.35rem, 10.6vw, 3.4rem); margin-inline: auto; }
-  .parede__mascara { display: none; }
+  .parede__mascara { background: linear-gradient(180deg, color-mix(in srgb, var(--tinta) 90%, transparent) 0%, color-mix(in srgb, var(--tinta) 82%, transparent) 24%, color-mix(in srgb, var(--tinta) 40%, transparent) 38%, color-mix(in srgb, var(--tinta) 40%, transparent) 50%, color-mix(in srgb, var(--tinta) 88%, transparent) 62%, color-mix(in srgb, var(--tinta) 94%, transparent) 100%); }
   .hero__cargo { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 10px; font-size: 1.0625rem; }
   .hero__sep, .hero__kicker > span + span::before { display: none; }
   .hero__kicker { gap: 4px 0; }
   .hero__kicker > span { flex-basis: 100%; justify-content: center; }
-  .parede { position: relative; inset: auto; width: calc(100% + 2 * var(--margem)); height: clamp(220px, 58vw, 300px); margin: 12px calc(-1 * var(--margem)) 4px; perspective: 900px; perspective-origin: 50% 0%; overflow: hidden; }
-  .parede::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--tinta) 0%, transparent 18%, transparent 70%, var(--tinta) 100%), linear-gradient(90deg, var(--tinta) 0%, transparent 12%, transparent 88%, var(--tinta) 100%); }
-  .parede__plano { --rx: 46deg; --ry: 0deg; --rz: -18deg; --z: -260px; left: 50%; top: 4%; grid-template-columns: repeat(4, 230px); gap: 14px; transform-origin: 50% 0; translate: -50% 0; }
-  .tela__barra { height: 22px; padding: 0 8px; font-size: 10px; gap: 5px; }
+  .parede { perspective: 900px; perspective-origin: 60% 10%; }
+  .parede__plano { top: -6%; gap: 14px; transform: translateX(-50%) rotateX(30deg) rotateZ(-14deg); }
+  .parede__coluna { width: 230px; gap: 14px; padding-bottom: 14px; }
+  .parede__coluna:nth-child(n+6) { display: none; }
+  .tela__barra { height: 20px; padding: 0 8px; font-size: 9px; gap: 5px; }
   .tela__led { width: 5px; height: 5px; }
-  .tela:nth-child(n+9) { display: none; }
-  .hero__base { justify-items: center; max-width: 34rem; margin-top: 6px; gap: 16px; }
+  .hero__base { justify-items: center; max-width: 34rem; gap: 16px; }
   .hero__lead { font-size: 1rem; }
   .hero__acoes { justify-content: center; }
 }
@@ -270,27 +225,6 @@ p { text-wrap: pretty; }
 }
 
 
-/* ───────── fundo da home: a parede continua atrás da página ─────────
-   Montado pelo site.js com as mesmas telas do topo (já em cache). Fica fixo, inclinado como a
-   parede, atrás de um véu escuro; as colunas sobem e descem com a rolagem, em sentidos alternados.
-   As faixas sólidas (provas, entregas, trajetória, rodapé) cobrem o fundo e separam as seções. */
-.fundo { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: 0; perspective: 1500px; perspective-origin: 70% 20%; }
-.fundo::after { content: ''; position: absolute; inset: 0; background: color-mix(in srgb, var(--tinta) 84%, transparent); }
-.fundo__plano { position: absolute; left: 50%; top: -18%; display: flex; gap: 26px; transform-origin: 50% 0; transform: translateX(-46%) rotateX(24deg) rotateY(-20deg) rotateZ(-9deg) scale(var(--fundo-escala, 1)); }
-.fundo__coluna { display: flex; flex-direction: column; gap: 26px; width: 400px; flex: none; }
-.fundo__tela { margin: 0; overflow: hidden; border: 1px solid var(--cabo-forte); border-radius: 10px; background: #040608; }
-.fundo__tela .tela__barra { height: 26px; font-size: 12px; }
-.fundo__tela .tela__led { background: var(--link); }
-.fundo__tela img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 0; }
-body.com-fundo { background: transparent; }
-@media (max-width: 899px) {
-  .fundo { perspective: 900px; perspective-origin: 60% 10%; }
-  .fundo__plano { top: -10%; gap: 14px; transform: translateX(-50%) rotateX(30deg) rotateZ(-14deg) scale(var(--fundo-escala, 1)); }
-  .fundo__coluna { width: 230px; gap: 14px; }
-  .fundo__tela .tela__barra { height: 20px; padding: 0 8px; font-size: 9px; gap: 5px; }
-  .fundo__tela .tela__led { width: 5px; height: 5px; }
-}
-
 /* ───────── provas ───────── */
 .provas { border-block: 1px solid var(--cabo); background: var(--rack); }
 .provas__grade { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -310,7 +244,7 @@ body.com-fundo { background: transparent; }
 .secao--topo { padding-top: clamp(48px, 7vw, 104px); }
 .secao__cabeca { display: grid; gap: 18px; max-width: 900px; margin-bottom: clamp(48px, 6vw, 88px); }
 .secao__num { color: var(--link); }
-/* Na home, o número abre a seção com um fio: com a parede no fundo, é ele que marca onde cada parte começa. */
+/* Na home, o número abre a seção com um fio que marca onde cada parte começa. */
 .pagina-inicio .secao__cabeca .secao__num { display: flex; align-items: center; gap: 14px; }
 .pagina-inicio .secao__cabeca .secao__num::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cabo-forte), transparent); }
 .pagina-inicio .secao:not(.secao--faixa) + .secao:not(.secao--faixa) { border-top: 1px solid var(--cabo); }
@@ -326,17 +260,15 @@ body.com-fundo { background: transparent; }
   .barramento::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--cabo-forte), var(--cabo) 85%, transparent); }
   .barramento__pacote { display: block; position: absolute; left: 4px; top: 0; z-index: 1; width: 5px; height: 40px; border-radius: 3px; background: linear-gradient(180deg, transparent, var(--link)); transform: translateY(var(--pacote-y, 0px)); }
   .caso::before, .rede::before, .medios::before { content: ''; position: absolute; left: -75px; top: 8px; width: 11px; height: 11px; border-radius: 50%; background: var(--tinta); border: 1.5px solid var(--cabo-forte); transition: border-color var(--m-base), background-color var(--m-base); }
-  .caso::before, .rede::before { top: calc(var(--painel-pad) + 8px); }
-  .medios::before { top: 4px; }
+  .caso:not(:first-child)::before, .rede::before { top: calc(var(--caso-pad) + 8px); }
+  .medios::before { top: calc(var(--caso-pad) + 4px); }
   .caso.aceso::before, .rede.aceso::before, .medios.aceso::before { border-color: var(--link); background: var(--link); }
 }
 
 /* ───────── destaque grande ─────────
-   Cada sistema é um painel próprio, quase opaco: com a parede passando no fundo, a borda e o
-   espaço entre os painéis é que dizem onde um sistema termina e o outro começa. */
-.caso { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4.5vw, 72px); align-items: center; padding: var(--painel-pad); border: 1px solid var(--cabo-forte); border-radius: var(--r-cartao); background: var(--painel); }
-.caso + .caso, .caso + .rede, .rede + .medios, .caso + .medios { margin-top: var(--painel-vao); }
-.caso__n { position: absolute; top: 0; right: clamp(18px, 2.4vw, 32px); translate: 0 -50%; padding: 4px 10px; border: 1px solid var(--cabo-forte); border-radius: var(--r-selo); background: var(--tinta); font: 500 11px/1 var(--f-dados); letter-spacing: .08em; color: var(--papel-3); }
+   Sem cartão: o que separa um sistema do outro é o respiro grande e um fio inteiro, mais visível. */
+.caso { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4.5vw, 72px); align-items: center; padding-block: var(--caso-pad); border-top: 1px solid var(--cabo-forte); }
+.caso:first-child { border-top: 0; padding-top: 0; }
 .caso__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-bottom: 18px; }
 .caso__titulo { font-size: var(--fs-h2); }
 .caso__titulo a { background: linear-gradient(var(--link), var(--link)) 0 100% / 0 2px no-repeat; transition: background-size var(--m-lento) var(--m-saida); }
@@ -379,7 +311,7 @@ body.com-fundo { background: transparent; }
 }
 
 /* ───────── trio de observabilidade de rede ───────── */
-.rede { position: relative; padding: var(--painel-pad); border: 1px solid var(--cabo-forte); border-radius: var(--r-cartao); background: var(--painel); }
+.rede { position: relative; padding-block: var(--caso-pad); border-top: 1px solid var(--cabo-forte); }
 .rede__cabeca { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 16px 48px; align-items: end; margin-bottom: 36px; }
 .rede__titulo { font-size: var(--fs-h2); }
 .rede__sub { max-width: 58ch; color: var(--papel-2); }
@@ -400,10 +332,10 @@ body.com-fundo { background: transparent; }
   .rede__grade { grid-template-columns: minmax(0, 1fr); }
 }
 
-.medios { position: relative; }
+.medios { position: relative; padding-top: var(--caso-pad); border-top: 1px solid var(--cabo-forte); }
 .medios__titulo { margin-bottom: 28px; }
 .medios__grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 28px; }
-.medio { display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 22px; border: 1px solid var(--cabo-forte); border-radius: var(--r-cartao); background: var(--painel); }
+.medio { display: flex; flex-direction: column; gap: 12px; }
 @media (max-width: 999px) { .medios__grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 639px) { .medios__grade { grid-template-columns: minmax(0, 1fr); } }
 
@@ -493,11 +425,11 @@ body.com-fundo { background: transparent; }
 .pessoa strong a:hover { color: var(--link); }
 .pessoa span span { display: block; font-size: .8125rem; color: var(--papel-3); }
 /* Convite para quem ainda não deixou o seu: vai para /depoimento/ e cai na fila do painel. */
-.depoimentos__convite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: clamp(48px, 6vw, 72px); padding: 22px 24px; border: 1px dashed var(--cabo-forte); border-radius: var(--r-cartao); }
+.depoimentos__convite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: clamp(48px, 6vw, 72px); padding-top: clamp(28px, 4vw, 40px); border-top: 1px solid var(--cabo); }
 .depoimentos__convite p { color: var(--papel-2); }
 @media (max-width: 799px) {
   .depoimentos { grid-template-columns: minmax(0, 1fr); }
-  .depoimentos__convite { flex-direction: column; align-items: stretch; text-align: center; }
+  .depoimentos__convite { flex-direction: column; align-items: stretch; }
 }
 
 /* ───────── contato ───────── */

@@ -8,42 +8,61 @@ const PLAY_STORE = 'https://play.google.com/store/apps/dev?id=777755604100646289
 // Título com cada palavra num <span>: o pacote passa por baixo e acende uma de cada vez.
 const palavras = texto => esc(texto).split(' ').map((p, i) => `<span class="palavra" style="--i:${i}">${p}</span>`).join(' ');
 
-// A parede de produção: telas reais dos sistemas, numa parede em perspectiva. Na entrada elas
-// ligam uma a uma (como os monitores de uma sala de controle); as que têm sonda só ligam
-// quando o sistema responde ao ping feito pelo navegador de quem visita.
+// A parede do topo: colunas de telas reais dos sistemas, inclinadas, correndo na vertical em
+// sentidos alternados (um carrossel em pé). Cada coluna repete a própria lista duas vezes, para o
+// laço não ter emenda. As telas com sonda mostram o ping medido pelo navegador de quem visita.
+const COLUNAS = 7;
+const NO_CELULAR = 5;
+const DURACAO = [96, 124, 106, 136, 114, 128, 100];
 function parede(ctx) {
   const { dados } = ctx;
-  const telas = dados.site.parede || [];
+  // As telas aparecem pequenas e inclinadas: a versão de 800 px basta, até em tela retina.
+  const telas = (dados.site.parede || []).map(x => {
+    const src = caminhoImg(x.src);
+    const menor = src.replace('-1200', '-800');
+    return { ...x, src: dados._imgs?.[menor] ? menor : src };
+  });
+  if (!telas.length) return '';
+  const porColuna = 5;
+  // As colunas do celular só usam as primeiras telas (menos coisa para baixar no 4G); as duas
+  // colunas a mais do PC trazem o resto.
+  const doCelular = telas.slice(0, Math.min(telas.length, 9));
+  const doPc = telas.length > doCelular.length ? telas.slice(doCelular.length) : telas;
+  const tela = (x, preguica) => {
+    const meta = dados._imgs?.[x.src] || {};
+    return `<figure class="tela"${x.sonda ? ` data-sonda="${esc(x.sonda)}"` : ''}><div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${esc(x.nome)}</span>${x.sonda ? '<span class="tela__ms" data-ms></span>' : ''}</div><img src="${x.src}"${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${preguica ? 'lazy' : 'eager'}" decoding="async"></figure>`;
+  };
+  // As colunas que o celular esconde ficam lazy (e display: none) e não baixam; no PC o site.js as
+  // libera, porque o lazy não enxerga a tela dentro do plano inclinado. A segunda cópia de cada
+  // coluna usa as mesmas URLs: vem do cache.
+  const colunas = Array.from({ length: COLUNAS }, (_, c) => {
+    const fonte = c < NO_CELULAR ? doCelular : doPc;
+    // Colunas vizinhas dividem algumas telas: nas ímpares a ordem é invertida, para a mesma tela
+    // não passar lado a lado.
+    const lista = Array.from({ length: porColuna }, (_, k) => fonte[(c * 2 + k) % fonte.length]);
+    if (c % 2) lista.reverse();
+    const html = lista.map(x => tela(x, c >= NO_CELULAR)).join('');
+    return `<div class="parede__coluna" style="--dur:${DURACAO[c % DURACAO.length]}s;--atraso:${-c * 23}s">${html}${html}</div>`;
+  });
   return `<div class="parede" aria-hidden="true" data-parede>
-      <div class="parede__plano" data-plano>
-        ${telas.map((x, i) => {
-          const imagens = [x.src, ...(x.alt || [])].map(caminhoImg);
-          const meta = dados._imgs?.[imagens[0]] || {};
-          // Telas grandes na perspectiva pedem a versão de 1200 px; o celular fica com a de 800.
-          const menor = imagens[0].replace('-1200', '-800');
-          const srcset = menor !== imagens[0] && dados._imgs?.[menor] ? ` srcset="${menor} 800w, ${imagens[0]} 1200w" sizes="(max-width: 899px) 300px, 1100px"` : '';
-          return `<figure class="tela" style="--i:${i}" data-imagens="${esc(imagens.join('|'))}"${x.sonda ? ` data-sonda="${esc(x.sonda)}"` : ''}>
-          <div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${esc(x.nome)}</span><span class="tela__ms" data-ms></span></div>
-          <div class="tela__vidro"><img src="${imagens[0]}"${srcset}${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${i < 12 ? 'eager' : 'lazy'}" decoding="async"${i === 5 ? ' fetchpriority="high"' : ''}></div>
-        </figure>`;
-        }).join('\n        ')}
-      </div>
-    </div>`;
+    <div class="parede__plano">
+      ${colunas.join('\n      ')}
+    </div>
+  </div>`;
 }
 
 function hero(ctx) {
   const { dados, lang, t } = ctx;
   const s = dados.site;
   return `<section class="hero" aria-labelledby="hero-titulo">
+  ${parede(ctx)}
   <div class="parede__mascara" aria-hidden="true"></div>
   <div class="envelope hero__texto">
     <p class="hero__kicker rotulo">
-      <span class="hero__estado">${led('no_ar')}${t.em_producao}</span>
       <span>Uberlândia, MG · <span data-relogio>UTC−3</span></span>
     </p>
     <h1 id="hero-titulo" class="hero__titulo">${palavras(c(s, 'titulo', lang))}</h1>
     <p class="hero__cargo"><span>${esc(c(s, 'cargo', lang))}</span>${s.empresa ? `<span class="hero__sep" aria-hidden="true"> · </span><span>${esc(s.empresa)}</span>` : ''}</p>
-    ${parede(ctx)}
     <div class="hero__base">
       <p class="hero__lead">${esc(c(s, 'lead', lang))}</p>
       <a class="hero__simular" href="${rotas.pedido(lang)}">
@@ -125,7 +144,6 @@ export function janela(dados, p, lang, { prioridade = false, sizes = '(min-width
 function casoGrande(ctx, p, i) {
   const { dados, lang, t } = ctx;
   return `<article class="caso" data-caso="${esc(p.id)}">
-  <span class="caso__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
   <div class="caso__texto">
     <p class="caso__meta">${situacao(p, lang)}<span class="rotulo">${esc(c(p, 'periodo', lang) || p.ano || '')}</span></p>
     <h3 class="caso__titulo"><a href="${rotas.projeto(lang, p.id)}">${esc(c(p, 'titulo', lang))}</a></h3>

@@ -49,7 +49,10 @@ const TXT = {
 /* Entrada do hero só depois das fontes, para nada pular de lugar. */
 (document.fonts?.ready || Promise.resolve()).then(() => requestAnimationFrame(() => document.body.classList.add('pronto')));
 
-/* ───────── A parede de produção: pings reais ligam as telas ───────── */
+/* ───────── A parede de produção: telas reais correndo, com ping de verdade ─────────
+   O movimento é todo CSS (só transform). Aqui: a parede para quando o topo sai da tela, e cada
+   sistema com sonda é medido do navegador de quem visita; o tempo aparece na barra de todas as
+   cópias daquela tela. */
 async function medir(url, limite = 6000) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), limite);
@@ -63,232 +66,39 @@ async function medir(url, limite = 6000) {
 (() => {
   const parede = $('[data-parede]');
   if (!parede) return;
-  const plano = $('[data-plano]', parede);
-  const telas = $$('.tela', parede);
-  const ultimos = new Map();
-  const espera = ms => new Promise(r => setTimeout(r, ms));
+  // Colunas que só o PC mostra: o lazy não as acha dentro do plano inclinado, então carregam já.
+  if (matchMedia('(min-width: 900px)').matches) $$('img[loading="lazy"]', parede).forEach(i => { i.loading = 'eager'; });
   let visivel = true;
-  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; }).observe(parede);
+  new IntersectionObserver(([e]) => { visivel = e.isIntersecting; parede.classList.toggle('parada', !visivel); }).observe(parede);
 
+  const sondas = [...new Set($$('[data-sonda]', parede).map(t => t.dataset.sonda))];
+  function mostrar(url, ms) {
+    $$('[data-sonda]', parede).filter(t => t.dataset.sonda === url).forEach(t => {
+      t.classList.toggle('sem-resposta', ms == null);
+      const alvo = $('[data-ms]', t);
+      if (!alvo) return;
+      alvo.textContent = ms == null ? TXT.sem : Math.round(ms) + ' ms';
+      alvo.classList.add('nova');
+      requestAnimationFrame(() => requestAnimationFrame(() => alvo.classList.remove('nova')));
+    });
+  }
   // Duas medições por destino: a primeira abre a conexão (DNS + TLS), a segunda mede o caminho.
-  const pings = new Map(telas.filter(t => t.dataset.sonda).map(t => [t, (async () => {
-    const a = await medir(t.dataset.sonda);
-    if (a == null) return null;
-    const b = await medir(t.dataset.sonda);
-    return b == null ? a : Math.min(a, b);
-  })()]));
-
-  function mostrarMs(tela, ms) {
-    const alvo = $('[data-ms]', tela);
-    if (!alvo) return;
-    alvo.textContent = ms == null ? '—' : Math.round(ms) + ' ms';
-    alvo.classList.add('nova');
-    requestAnimationFrame(() => requestAnimationFrame(() => alvo.classList.remove('nova')));
+  async function primeira(url) {
+    const a = await medir(url);
+    const b = a == null ? null : await medir(url);
+    mostrar(url, b == null ? a : Math.min(a, b));
   }
-  function ligar(tela) {
-    const img = $('img', tela);
-    img.classList.add('ativa');
-    if (!movimento) { tela.classList.add('ligada'); return; }
-    tela.classList.add('ligando', 'ligada');
-    setTimeout(() => tela.classList.remove('ligando'), 700);
-  }
-
-  // Ordem da onda: da tela mais próxima do título para as do fundo (diagonal).
-  const colunas = getComputedStyle(plano).gridTemplateColumns.split(' ').length || 3;
-  const ordem = telas.map((t, i) => ({ t, peso: (i % colunas) + Math.floor(i / colunas) * 0.8 })).sort((a, b) => a.peso - b.peso).map(x => x.t);
-
-  async function entrada() {
-    const inicio = movimento ? 520 : 0;
-    await espera(inicio);
-    await Promise.all(ordem.map(async (tela, k) => {
-      await espera(movimento ? k * 135 : 0);
-      if (pings.has(tela)) {
-        // Quem tem sonda só liga quando o sistema responde (com teto, para a entrada não travar).
-        const ms = await Promise.race([pings.get(tela), espera(1400).then(() => undefined)]);
-        if (ms !== undefined) { ultimos.set(tela, ms); mostrarMs(tela, ms); }
-        else pings.get(tela).then(v => { ultimos.set(tela, v); mostrarMs(tela, v); });
-      }
-      ligar(tela);
-    }));
-  }
-
-  // Ao vivo: de tempos em tempos um sistema é medido de novo.
+  // Ao vivo: de tempos em tempos um sistema é medido de novo, só com o topo à vista.
   async function aoVivo() {
-    const comSonda = telas.filter(t => t.dataset.sonda);
-    if (visivel && document.visibilityState === 'visible' && comSonda.length) {
-      const t = comSonda[Math.floor(Math.random() * comSonda.length)];
-      const ms = await medir(t.dataset.sonda, 4000);
-      if (ms != null || ultimos.get(t) == null) { ultimos.set(t, ms); mostrarMs(t, ms); }
+    if (visivel && document.visibilityState === 'visible' && sondas.length) {
+      const url = sondas[Math.floor(Math.random() * sondas.length)];
+      const ms = await medir(url, 4000);
+      if (ms != null) mostrar(url, ms);
     }
     setTimeout(aoVivo, 3600 + Math.random() * 2000);
   }
-
-  // Granulado do chiado: um quadro de ruído desenhado uma vez só e reaproveitado por todas as telas.
-  if (movimento) {
-    const quadro = document.createElement('canvas');
-    quadro.width = quadro.height = 90;
-    const g = quadro.getContext('2d');
-    const px = g.createImageData(90, 90);
-    for (let i = 0; i < px.data.length; i += 4) {
-      const v = Math.random() < .5 ? Math.random() * 70 : 120 + Math.random() * 135;
-      px.data[i] = px.data[i + 1] = px.data[i + 2] = v; px.data[i + 3] = 255;
-    }
-    g.putImageData(px, 0, 0);
-    quadro.toBlob(b => b && parede.style.setProperty('--chiado', `url(${URL.createObjectURL(b)})`));
-  }
-  function chiar(tela, ms, forca) {
-    tela.style.setProperty('--chiado-ms', ms + 'ms');
-    tela.style.setProperty('--chiado-forca', forca);
-    tela.classList.remove('chiando');
-    void tela.offsetWidth;
-    tela.classList.add('chiando');
-    clearTimeout(tela._chiado);
-    tela._chiado = setTimeout(() => tela.classList.remove('chiando'), ms);
-  }
-  const sorteia = lista => lista[Math.floor(Math.random() * lista.length)];
-  const ativa = () => visivel && document.visibilityState === 'visible';
-
-  // Troca de canal: a tela chia, a imagem nova entra por baixo do chiado e ele some.
-  function trocarCanal() {
-    if (ativa()) {
-      const t = sorteia(telas.filter(t => t.classList.contains('ligada') && !t.classList.contains('chiando') && (t.dataset.imagens || '').includes('|')));
-      if (t) {
-        const lista = t.dataset.imagens.split('|');
-        const vidro = $('.tela__vidro', t);
-        const atual = $('img.ativa', vidro);
-        const atualSrc = (atual.getAttribute('src') || '').replace('-800', '-1200');
-        const prox = lista[(lista.indexOf(atualSrc) + 1) % lista.length];
-        const nova = new Image();
-        nova.alt = ''; nova.decoding = 'async'; nova.src = innerWidth < 900 ? prox.replace('-1200', '-800') : prox;
-        nova.onload = () => {
-          chiar(t, 620, .94);
-          setTimeout(() => {
-            vidro.append(nova);
-            requestAnimationFrame(() => requestAnimationFrame(() => { nova.classList.add('ativa'); atual.classList.remove('ativa'); }));
-            setTimeout(() => atual.remove(), 1100);
-          }, 200);
-        };
-      }
-    }
-    setTimeout(trocarCanal, 3400 + Math.random() * 1800);
-  }
-
-  // Interferência: de vez em quando uma tela qualquer dá uma chiadinha rápida, sem trocar de canal.
-  function interferencia() {
-    if (ativa()) {
-      const t = sorteia(telas.filter(t => t.classList.contains('ligada') && !t.classList.contains('chiando') && t.offsetParent));
-      if (t) chiar(t, 240 + Math.random() * 160, .45 + Math.random() * .25);
-    }
-    setTimeout(interferencia, 1900 + Math.random() * 2600);
-  }
-
-  // Balanço: a parede flutua sozinha, devagar (duas ondas que não se repetem juntas), e o mouse
-  // soma uma inclinação por cima. Amortecimento por tempo, então fica igual em 60 ou 120 Hz.
-  if (movimento) {
-    const fino = matchMedia('(pointer: fine)').matches;
-    // Dois filtros em série: o mouse puxa um ponto intermediário e ele puxa a parede. Assim ela
-    // não acompanha a velocidade do mouse; arranca devagar e assenta devagar, como algo pesado.
-    let alvoX = 0, alvoY = 0, ix = 0, iy = 0, mx = 0, my = 0, antes = 0, pedido = 0;
-    const passo = agora => {
-      pedido = 0;
-      if (!ativa()) { antes = 0; return; }
-      const dt = antes ? Math.min(.05, (agora - antes) / 1000) : 0;
-      antes = agora;
-      const k = 1 - Math.exp(-dt * 2.6);
-      ix += (alvoX - ix) * k; iy += (alvoY - iy) * k;
-      mx += (ix - mx) * k; my += (iy - my) * k;
-      const s = agora / 1000;
-      const entra = Math.min(1, s / 3);
-      // Ondas de ~10 a 20 s: dá para ver a parede andando, sem parecer que está balançando.
-      const ox = Math.sin(s * .52) + Math.sin(s * .83 + 1.3) * .4;
-      const oy = Math.sin(s * .41 + .8) + Math.sin(s * .71) * .35;
-      plano.style.setProperty('--px', ((ox * 3.2) * entra + mx).toFixed(3) + 'deg');
-      plano.style.setProperty('--py', ((oy * 1.8) * entra + my).toFixed(3) + 'deg');
-      plano.style.setProperty('--dx', ((ox * 34) * entra + mx * 9).toFixed(2) + 'px');
-      plano.style.setProperty('--dy', ((oy * 22) * entra - my * 9).toFixed(2) + 'px');
-      pedido = requestAnimationFrame(passo);
-    };
-    const seguir = () => { if (!pedido && ativa()) pedido = requestAnimationFrame(passo); };
-    new IntersectionObserver(([e]) => { visivel = e.isIntersecting; seguir(); }).observe(parede);
-    document.addEventListener('visibilitychange', seguir);
-    if (fino) addEventListener('pointermove', e => {
-      alvoX = (e.clientX / innerWidth - 0.5) * 9;
-      alvoY = (0.5 - e.clientY / innerHeight) * 5;
-    }, { passive: true });
-    seguir();
-  }
-
-  const comecar = () => entrada().then(() => { setTimeout(aoVivo, 2600); if (movimento) { setTimeout(trocarCanal, 3200); setTimeout(interferencia, 5200); } });
-  if (document.body.classList.contains('pronto')) comecar();
-  else new MutationObserver((_, obs) => { if (document.body.classList.contains('pronto')) { obs.disconnect(); comecar(); } }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-})();
-
-/* ───────── Fundo: ao sair do topo, a parede vira o fundo da página ─────────
-   As mesmas telas (o navegador já as tem) numa parede inclinada que cobre a tela inteira, atrás de
-   um véu. Ela cresce e acende enquanto o topo sai de cena; depois, cada coluna corre na vertical,
-   em sentidos alternados, puxada pela rolagem e por uma deriva lenta, como um carrossel em pé.
-   Com movimento reduzido, a parede aparece parada. */
-(() => {
-  const hero = $('.hero');
-  const origem = $$('.parede .tela');
-  if (!hero || !origem.length) return;
-
-  function montar() {
-    const telas = origem.map(t => ({ nome: $('.tela__nome', t)?.textContent || '', src: $('img', t)?.currentSrc })).filter(t => t.src);
-    if (telas.length < 3) return;
-    const colunas = innerWidth < 900 ? 3 : 5;
-    const porColuna = Math.max(4, Math.ceil(telas.length / colunas) + 2);
-    const fundo = document.createElement('div');
-    fundo.className = 'fundo';
-    fundo.setAttribute('aria-hidden', 'true');
-    const plano = document.createElement('div');
-    plano.className = 'fundo__plano';
-    // Cada coluna começa num ponto diferente da lista e é repetida duas vezes: o laço não tem emenda.
-    plano.innerHTML = Array.from({ length: colunas }, (_, c) => {
-      const lista = Array.from({ length: porColuna }, (_, k) => telas[(c * 3 + k) % telas.length]);
-      const html = lista.map(t => `<figure class="fundo__tela"><div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${t.nome.replace(/</g, '&lt;')}</span></div><img src="${t.src}" alt="" decoding="async"></figure>`).join('');
-      return `<div class="fundo__coluna">${html}${html}</div>`;
-    }).join('');
-    fundo.append(plano);
-    document.body.prepend(fundo);
-    document.body.classList.add('com-fundo');
-
-    const cols = $$('.fundo__coluna', plano).map((el, i) => ({ el, vel: [.22, .34, .27, .4, .3][i % 5], dir: i % 2 ? 1 : -1, meia: 0 }));
-    const medir = () => cols.forEach(c => { c.meia = c.el.scrollHeight / 2; });
-    medir();
-    addEventListener('resize', medir);
-
-    let deriva = 0;
-    let antes = performance.now();
-    let rodando = false;
-    // 0 com o topo inteiro na tela; 1 quando ele já saiu uns 70%.
-    const progresso = () => Math.min(1, Math.max(0, scrollY / (hero.offsetHeight * .7)));
-    function quadro(agora) {
-      const dt = Math.min(64, agora - antes);
-      antes = agora;
-      const p = progresso();
-      fundo.style.opacity = p.toFixed(3);
-      plano.style.setProperty('--fundo-escala', (.86 + p * .14).toFixed(4));
-      if (movimento && p > 0) {
-        deriva += dt * .014;
-        for (const c of cols) {
-          if (!c.meia) continue;
-          const d = (scrollY * c.vel + deriva) % c.meia;
-          c.el.style.transform = `translate3d(0, ${c.dir < 0 ? -d : d - c.meia}px, 0)`;
-        }
-      }
-      // Só continua desenhando enquanto o fundo aparece, a aba está visível e há movimento.
-      if (movimento && p > 0 && document.visibilityState === 'visible') requestAnimationFrame(quadro);
-      else rodando = false;
-    }
-    const acordar = () => { if (!rodando) { rodando = true; antes = performance.now(); requestAnimationFrame(quadro); } };
-    addEventListener('scroll', acordar, { passive: true });
-    document.addEventListener('visibilitychange', acordar);
-    acordar();
-  }
-  // Depois que a página carregou: o fundo não disputa banda nem CPU com a entrada do topo.
-  const depois = () => setTimeout(() => ('requestIdleCallback' in window ? requestIdleCallback(montar, { timeout: 1500 }) : montar()), 400);
-  if (document.readyState === 'complete') depois(); else addEventListener('load', depois, { once: true });
+  const comecar = () => { sondas.forEach(primeira); setTimeout(aoVivo, 4000); };
+  if (document.readyState === 'complete') comecar(); else addEventListener('load', comecar, { once: true });
 })();
 
 
@@ -437,7 +247,7 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
   setTimeout(() => document.body.append(caixa), 2600);
 })();
 
-/* ───────── Easter egg: ↑ ↑ ↓ ↓ ← → ← → (ou 5 toques em "● Em produção" no celular) ───────── */
+/* ───────── Easter egg: ↑ ↑ ↓ ↓ ← → ← → (ou 5 toques em "Uberlândia, MG" no celular) ───────── */
 (() => {
   const codigo = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
   let pos = 0, carregando = false;
@@ -454,7 +264,7 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
     pos = e.key === codigo[pos] ? pos + 1 : (e.key === codigo[0] ? 1 : 0);
     if (pos === codigo.length) { pos = 0; abrir(); }
   });
-  const estado = $('.hero__estado');
+  const estado = $('.hero__kicker');
   if (estado) {
     let toques = [];
     estado.addEventListener('pointerdown', () => {
@@ -464,7 +274,7 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
     });
   }
   const dica = lang === 'en'
-    ? ['%c📺 Psst… a VoxTek signal is leaking into this site.', '%cType ↑ ↑ ↓ ↓ ← → ← → anywhere on the page (on a phone: tap “● In production” 5 times).']
-    : ['%c📺 Psst… tem um sinal da VoxTek vazando neste site.', '%cDigite ↑ ↑ ↓ ↓ ← → ← → em qualquer lugar da página (no celular: toque 5 vezes em “● Em produção”).'];
+    ? ['%c📺 Psst… a VoxTek signal is leaking into this site.', '%cType ↑ ↑ ↓ ↓ ← → ← → anywhere on the page (on a phone: tap “Uberlândia, MG” 5 times).']
+    : ['%c📺 Psst… tem um sinal da VoxTek vazando neste site.', '%cDigite ↑ ↑ ↓ ↓ ← → ← → em qualquer lugar da página (no celular: toque 5 vezes em “Uberlândia, MG”).'];
   console.log(dica[0] + '\n' + dica[1], 'color:#7fe7ff;font:600 14px/1.6 monospace', 'color:#a9b3bf;font:12px/1.6 monospace');
 })();
