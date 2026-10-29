@@ -258,11 +258,12 @@ p { text-wrap: pretty; }
 
 /* Celular: tudo centralizado por cima da parede, que vira o fundo do topo inteiro. */
 @media (max-width: 899px) {
-  .hero { text-align: center; min-height: 0; }
-  .hero__texto { align-items: center; padding-block: 36px 40px; }
+  /* O topo ocupa a tela toda: o bloco fica no alto e a parede aparece embaixo, no lugar dos números. */
+  .hero { text-align: center; align-items: flex-start; min-height: calc(100svh - 64px); }
+  .hero__texto { align-items: center; padding-block: 40px 32px; }
   .hero__kicker { justify-content: center; margin-bottom: 12px; }
   .hero__titulo { max-width: 11ch; font-size: clamp(2.35rem, 10.6vw, 3.4rem); margin-inline: auto; }
-  .parede__mascara { background: linear-gradient(180deg, color-mix(in srgb, var(--tinta) 76%, transparent) 0%, color-mix(in srgb, var(--tinta) 84%, transparent) 35%, color-mix(in srgb, var(--tinta) 86%, transparent) 85%, var(--tinta) 100%); }
+  .parede__mascara { background: linear-gradient(180deg, color-mix(in srgb, var(--tinta) 80%, transparent) 0, color-mix(in srgb, var(--tinta) 86%, transparent) 180px, color-mix(in srgb, var(--tinta) 86%, transparent) 510px, color-mix(in srgb, var(--tinta) 38%, transparent) 640px, color-mix(in srgb, var(--tinta) 38%, transparent) calc(100% - 80px), var(--tinta) 100%); }
   .hero__cargo { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 10px; font-size: 1.0625rem; }
   .hero__sep, .hero__kicker > span + span::before { display: none; }
   .hero__kicker { gap: 4px 0; }
