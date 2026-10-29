@@ -135,7 +135,8 @@ async function medir(url, limite = 6000) {
       }, 220);
     });
   }
-  const ativa = () => visivel && document.visibilityState === 'visible';
+  // Durante o easter egg (html.vox-on) a VoxTek manda nas telas: nada de trocar canal por baixo.
+  const ativa = () => visivel && document.visibilityState === 'visible' && !document.documentElement.classList.contains('vox-on');
   // Interferência: de vez em quando uma tela chia rápido; uma em três vezes, troca de canal.
   function interferencia() {
     if (ativa()) {
@@ -343,6 +344,8 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
     pos = e.key === codigo[pos] ? pos + 1 : (e.key === codigo[0] ? 1 : 0);
     if (pos === codigo.length) { pos = 0; abrir(); }
   });
+  // Disparado em outra página: a transmissão começa quando a home abre.
+  try { if (sessionStorage.getItem('vox-pendente') && $('[data-parede]')) { sessionStorage.removeItem('vox-pendente'); abrir(); } } catch {}
   const estado = $('.hero__kicker');
   if (estado) {
     let toques = [];

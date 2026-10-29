@@ -1,217 +1,335 @@
-// Easter egg: uma cabeça de TV sequestra a transmissão do site (homenagem a Hazbin Hotel).
-// Carregado só depois do código ↑ ↑ ↓ ↓ ← → ← → (ou 5 toques em "● Em produção" no celular).
-// O personagem é um desenho original; as músicas tocam pelos vídeos OFICIAIS do Prime Video no
-// YouTube (incorporados, nada é hospedado aqui).
+// Easter egg: a VoxTek invade o site (homenagem a Hazbin Hotel).
+// Carregado só depois do código ↑ ↑ ↓ ↓ ← → ← → (ou 5 toques em "Uberlândia, MG" no celular).
+// Leva ao topo, as telas da parede chiam e viram o Vox, a página vai ficando vermelha, a
+// transmissão toma a tela inteira (chiando, sem nunca voltar direito) e, aos 25 s, a TV desliga
+// e tudo volta ao normal. A música toca chiada pelo Web Audio; nada fica rodando depois.
 
-const CANAIS = [
-  { titulo: "Don't You Forget", pt: 'rxpdF0V8j8M', en: 'aljv1mbIYBQ', fonte: { pt: 'Prime Video Brasil · dublada', en: 'Prime Video · sing-along' } },
-  { titulo: 'VOX POPULI', pt: 'iDB-HyrwHjQ', en: 'PrmkVVlbfrE', fonte: { pt: 'Prime Video Brasil · dublada', en: 'Prime Video · sing-along' } },
-  { titulo: 'Poison', pt: 'xEGWKXwUb54', en: 'xEGWKXwUb54', angel: true, fonte: { pt: 'Prime Video · em inglês (sem dublagem oficial no YouTube)', en: 'Prime Video' } }
-];
+const DURACAO = 25;
+const FOTOS = [1, 2, 3, 4, 5].map(n => `/assets/vox/vox-${n}.webp`);
+// O crachá VoxTek do Davi aparece de vez em quando, não sempre (cerca de 1 em 8).
+const CRACHA = '/assets/vox/voxtek-id.webp';
+const MUSICA = '/assets/vox/musica.m4a';
+const VIDEO = '/assets/vox/video.mp4';
+const movimento = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sorteia = l => l[Math.floor(Math.random() * l.length)];
+const entre = (a, b) => a + Math.random() * (b - a);
+const fotoVox = () => (Math.random() < .12 ? CRACHA : sorteia(FOTOS));
 
 const TXT = {
-  pt: { sinal: 'Sinal sequestrado', aoVivo: 'AO VIVO', canal: 'Canal', trocar: 'trocar de canal', desligar: 'Desligar', restaurado: 'Sinal restaurado. Pode voltar ao portfólio.', fala: 'Este portfólio agora tem um patrocinador.', angel: 'Ei, ei! Esse canal agora é meu, docinho.', anterior: 'Canal anterior', proximo: 'Próximo canal', rotulo: 'Transmissão sequestrada' },
-  en: { sinal: 'Signal hijacked', aoVivo: 'LIVE', canal: 'Channel', trocar: 'switch channel', desligar: 'Turn off', restaurado: 'Signal restored. Back to the portfolio.', fala: 'This portfolio now has a sponsor.', angel: 'Hey, hey! This channel is mine now, sugar.', anterior: 'Previous channel', proximo: 'Next channel', rotulo: 'Hijacked broadcast' }
+  pt: { vivo: 'AO VIVO', sinal: 'VoxTek · sinal sequestrado', desligar: 'Desligar', sintonizar: 'Sintonizar a VoxTek', tela: 'VOXTEK · AO VIVO' },
+  en: { vivo: 'LIVE', sinal: 'VoxTek · signal hijacked', desligar: 'Turn off', sintonizar: 'Tune in to VoxTek', tela: 'VOXTEK · LIVE' }
 };
 
 const CSS = `
-.vox{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:radial-gradient(120% 90% at 30% 20%,#0d2236 0%,#060b14 55%,#03050a 100%);color:#e8f6ff;font-family:var(--f-texto);overflow:hidden;opacity:0;transition:opacity .35s ease}
-.vox.on{opacity:1}
-.vox::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);pointer-events:none;mix-blend-mode:overlay}
-.vox__topo{position:absolute;top:18px;left:20px;right:20px;display:flex;align-items:center;gap:14px;font:500 12px/1 var(--f-dados);letter-spacing:.12em;text-transform:uppercase}
-.vox__vivo{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:4px;background:#e2313d;color:#fff}
-.vox__vivo i{width:8px;height:8px;border-radius:50%;background:#fff}
-.vox__sinal{color:#7fe7ff}
-.vox__fechar{margin-left:auto;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid rgba(127,231,255,.4);border-radius:6px;background:rgba(5,12,22,.6);color:#e8f6ff;font:500 13px/1 var(--f-texto);letter-spacing:0;text-transform:none;cursor:pointer}
-.vox__fechar:hover{border-color:#7fe7ff}
-.vox__palco{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:clamp(12px,3vw,40px);width:min(1180px,94vw)}
-.vox__tv{position:relative;padding:clamp(10px,1.4vw,18px);border-radius:26px;background:linear-gradient(160deg,#2c6aa8,#16365a 60%,#0e2440);box-shadow:inset 0 2px 0 rgba(255,255,255,.18),0 40px 90px -30px rgba(0,0,0,.9)}
-.vox__tela{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}
-.vox__tela iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.vox__estatica{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;opacity:0;pointer-events:none;transition:opacity .2s}
-.vox__estatica.on{opacity:1}
-.vox__rodape{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:12px;font:500 12px/1.4 var(--f-dados);color:#9fd8ee}
-.vox__rodape b{color:#fff;font-weight:600;letter-spacing:.04em}
-.vox__botoes{margin-left:auto;display:flex;gap:6px}
-.vox__botoes button{width:40px;height:36px;border:1px solid rgba(127,231,255,.35);border-radius:6px;background:rgba(5,12,22,.5);color:#e8f6ff;font:600 15px/1 var(--f-dados);cursor:pointer}
-.vox__botoes button:hover{border-color:#7fe7ff}
-.vox__boneco{position:relative;width:clamp(150px,20vw,260px);transform:translateY(120%);transition:transform .9s cubic-bezier(.2,1.3,.4,1)}
-.vox.on .vox__boneco{transform:none}
-.vox__balao{position:absolute;bottom:100%;right:10%;width:max-content;max-width:230px;margin-bottom:10px;padding:10px 12px;border-radius:10px;background:#e8f6ff;color:#08121e;font:600 13px/1.35 var(--f-texto);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
-.vox__balao.on{opacity:1;transform:none}
-.vox__olhos{transition:transform .35s cubic-bezier(.3,.9,.3,1)}
-.vox__boca{transform-origin:110px 112px;animation:vox-fala 1.1s ease-in-out infinite}
-@keyframes vox-fala{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.82)}}
-.vox__angel{position:absolute;right:-10px;bottom:24%;width:clamp(120px,16vw,200px);transform:translateX(130%) rotate(-8deg);transition:transform .7s cubic-bezier(.2,1.2,.4,1);pointer-events:none}
-.vox__angel.on{transform:translateX(18%) rotate(-8deg)}
-.vox__angel .vox__balao{right:auto;left:-40%;bottom:96%}
-.vox__aviso{position:fixed;left:50%;bottom:22px;z-index:201;translate:-50% 0;padding:10px 16px;border-radius:8px;background:#0f1318;border:1px solid #313b47;color:#e8edf2;font:500 13px/1.4 var(--f-texto);opacity:0;transition:opacity .4s}
-.vox__aviso.on{opacity:1}
-html.vox-glitch body>*:not(.vox){animation:vox-glitch .5s steps(2) 2}
-@keyframes vox-glitch{0%{transform:translateX(0);filter:none}25%{transform:translateX(-6px) skewX(-4deg);filter:hue-rotate(80deg) saturate(2)}50%{transform:translateX(5px);filter:invert(.1)}75%{transform:translateX(-3px) skewX(3deg)}100%{transform:none;filter:none}}
-html.vox-aberto{overflow:hidden}
-html.vox-aberto body>*:not(.vox):not(.vox__aviso){transform:perspective(1400px) rotateX(7deg) scale(.94);filter:brightness(.35) saturate(.2);transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .7s}
-@media (max-width:760px){.vox__palco{grid-template-columns:1fr;justify-items:center}.vox__boneco{order:-1;width:130px}.vox__balao{right:auto;left:70%}.vox__topo{flex-wrap:wrap}.vox__rodape{justify-content:center}.vox__botoes{margin-left:0}}
-@media (prefers-reduced-motion:reduce){.vox,.vox__boneco,.vox__angel{transition:none}.vox__boca{animation:none}html.vox-glitch body>*:not(.vox){animation:none}}
+html.vox-on{overflow:hidden}
+.vox-vermelho{position:fixed;inset:0;z-index:150;pointer-events:none;opacity:0;mix-blend-mode:multiply;background:radial-gradient(120% 90% at 50% 40%,#ff3347 0%,#b3001b 55%,#3a0006 100%);transition:opacity 9s cubic-bezier(.4,0,.6,1)}
+.vox-vermelho.on{opacity:.82}
+.vox-vermelho::after{content:'';position:absolute;inset:0;mix-blend-mode:screen;background:repeating-linear-gradient(180deg,rgba(255,40,60,.07) 0 1px,transparent 1px 3px)}
+html.vox-on .tela .tela__led{background:#ff2b3d!important}
+html.vox-on .parede .tela__vidro::before{opacity:.42;animation:chiado-grao 140ms steps(1) infinite}
+html.vox-on .parede .tela.chiando .tela__vidro::before{animation:chiado-grao 90ms steps(1) infinite,chiado-vida var(--chiado-ms,560ms) cubic-bezier(.3,0,.2,1) both}
+html.vox-on .parede .tela.chiando .tela__vidro img{animation:tremor 70ms steps(1) infinite}
+html.vox-glitch .hero__titulo,.vox-rgb{animation:vox-rgb .14s steps(2) infinite}
+.vox-artefatos{position:fixed;inset:0;z-index:210;pointer-events:none;overflow:hidden}
+.vox-artefatos i{position:absolute;display:block}
+.vox-faixa{left:-80px;right:-80px;backdrop-filter:var(--f);-webkit-backdrop-filter:var(--f);transform:translateX(var(--dx));border-block:1px solid rgba(255,255,255,.18)}
+.vox-bloco{mix-blend-mode:difference;opacity:.9}
+.vox-ruido{background:var(--chiado,#777) 0 0/96px 96px;mix-blend-mode:screen;image-rendering:pixelated}
+.vox-barras{left:0;right:0;background:linear-gradient(90deg,#fff 0 14%,#ff0 14% 28%,#0ff 28% 42%,#0f0 42% 57%,#f0f 57% 71%,#f00 71% 85%,#00f 85%);mix-blend-mode:difference;opacity:.75}
+main.vox-tranco{transform-origin:50% 50vh;transform:translate(var(--tx),var(--ty)) skewX(var(--sk))}
+@keyframes vox-rgb{0%{text-shadow:-3px 0 #ff2b3d,3px 0 #22e0ff;transform:translateX(0)}50%{text-shadow:4px 0 #ff2b3d,-2px 0 #22e0ff;transform:translateX(-2px) skewX(-3deg)}100%{text-shadow:-1px 0 #ff2b3d,1px 0 #22e0ff;transform:translateX(1px)}}
+.vox-hud{position:fixed;top:0;left:0;right:0;z-index:230;display:flex;align-items:center;gap:12px;height:64px;padding:0 16px;border-bottom:1px solid #6b0f1c;background:linear-gradient(180deg,#22030a,#140106);font:600 12px/1 var(--f-dados);letter-spacing:.12em;text-transform:uppercase;color:#ffd7db;pointer-events:none;opacity:0;transition:opacity .4s}
+.vox-hud span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.vox-hud.on{opacity:1}
+.vox-hud b{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:4px;background:#e2313d;color:#fff}
+.vox-hud b i{width:8px;height:8px;border-radius:50%;background:#fff;animation:vox-pisca 1s steps(2) infinite}
+@keyframes vox-pisca{50%{opacity:0}}
+.vox-hud button{margin-left:auto;pointer-events:auto;min-height:40px;padding:0 14px;border:1px solid rgba(255,90,105,.6);border-radius:6px;background:rgba(20,0,4,.7);color:#fff;font:500 13px/1 var(--f-texto);letter-spacing:0;text-transform:none;cursor:pointer}
+.vox-tv{position:fixed;inset:0;z-index:200;overflow:hidden;background:#000;opacity:0;transition:opacity .25s}
+.vox-tv.on{opacity:1}
+.vox-tv video,.vox-tv img{position:absolute;left:50%;top:50%;width:100vw;height:100vh;object-fit:cover;translate:-50% -50%;filter:saturate(1.35) contrast(1.15)}
+.vox-tv .deitado{width:100vh;height:100vw;rotate:90deg}
+.vox-tv canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;mix-blend-mode:screen;opacity:.6}
+.vox-tv::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(0,0,0,.45) 0 1px,transparent 1px 3px),radial-gradient(130% 100% at 50% 50%,transparent 55%,rgba(60,0,8,.85) 100%)}
+.vox-tv::after{content:'';position:absolute;left:0;right:0;height:22%;z-index:3;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(255,220,225,.16) 45%,rgba(255,255,255,.28) 50%,transparent);animation:vox-rolo 2.6s linear infinite}
+@keyframes vox-rolo{from{top:-25%}to{top:105%}}
+.vox-tv.desligando{animation:vox-desliga .62s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes vox-desliga{0%{transform:none;filter:none}45%{transform:scale(1,.006);filter:brightness(4)}100%{transform:scale(0,.006);filter:brightness(6);opacity:0}}
+.vox-play{position:fixed;left:50%;top:50%;z-index:240;translate:-50% -50%;display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 24px;border:1px solid #ff5a69;border-radius:12px;background:#1a0004;color:#fff;font:600 1.05rem/1 var(--f-display);cursor:pointer;box-shadow:0 0 0 6px rgba(226,49,61,.25),0 30px 80px -20px #000}
+@media (prefers-reduced-motion:reduce){html.vox-on .parede .tela__vidro::before{animation:none}.vox-vermelho{transition-duration:1s}html.vox-glitch .hero__titulo{animation:none}.vox-tv::after{animation:none;display:none}}
 `;
 
-// Personagem original: cabeça de TV de tubo com sorriso de pixel, terno e gravata vermelha.
-const BONECO = `<svg viewBox="0 0 220 300" aria-hidden="true">
-  <path d="M60 200 L110 230 L160 200 L178 300 L42 300 Z" fill="#141c2e"/>
-  <path d="M84 196 L110 300 L136 196 Z" fill="#e8f6ff"/>
-  <path d="M104 204 L116 204 L120 262 L110 276 L100 262 Z" fill="#e2313d"/>
-  <path d="M60 200 L96 214 L84 268 Z M160 200 L124 214 L136 268 Z" fill="#0b1120"/>
-  <rect x="96" y="176" width="28" height="22" rx="4" fill="#1e3d63"/>
-  <rect x="18" y="38" width="184" height="146" rx="26" fill="#2c6aa8"/>
-  <rect x="18" y="38" width="184" height="146" rx="26" fill="url(#vox-brilho)"/>
-  <rect x="34" y="52" width="152" height="118" rx="18" fill="#06121f"/>
-  <path d="M74 38 L58 6 M146 38 L162 6" stroke="#1e3d63" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="58" cy="6" r="6" fill="#e2313d"/><circle cx="162" cy="6" r="6" fill="#e2313d"/>
-  <g class="vox__olhos" fill="#7fe7ff">
-    <rect x="66" y="78" width="26" height="22" rx="6"/>
-    <rect x="128" y="78" width="26" height="22" rx="6"/>
-  </g>
-  <g class="vox__boca">
-    <path d="M62 116 Q110 152 158 116 L150 112 Q110 140 70 112 Z" fill="#7fe7ff"/>
-    <path d="M76 120 L80 130 M90 124 L92 136 M104 126 L104 139 M118 126 L118 139 M132 124 L130 136 M146 120 L142 130" stroke="#06121f" stroke-width="3"/>
-  </g>
-  <defs><linearGradient id="vox-brilho" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
-</svg>`;
+// Som de TV um pouco fora de sintonia: a música perde só o extremo grave e agudo, com uma
+// saturação leve; por cima, um chiadinho de ruído branco que sobe e desce. Volume baixo.
+function curva(k) {
+  const n = 1024, c = new Float32Array(n);
+  for (let i = 0; i < n; i++) { const x = i * 2 / n - 1; c[i] = (1 + k) * x / (1 + k * Math.abs(x)); }
+  return c;
+}
+function montarSom() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return null;
+  const ctx = new AC();
+  const el = new Audio(MUSICA);
+  el.preload = 'auto';
+  const fonte = ctx.createMediaElementSource(el);
+  const grave = ctx.createBiquadFilter(); grave.type = 'highpass'; grave.frequency.value = 110;
+  const agudo = ctx.createBiquadFilter(); agudo.type = 'lowpass'; agudo.frequency.value = 7800;
+  const sujo = ctx.createWaveShaper(); sujo.curve = curva(2.5); sujo.oversample = '2x';
+  const musica = ctx.createGain(); musica.gain.value = .6;
+  const mestre = ctx.createGain(); mestre.gain.value = 0;
+  fonte.connect(grave).connect(agudo).connect(sujo).connect(musica).connect(mestre).connect(ctx.destination);
+  const buf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const ruido = ctx.createBufferSource(); ruido.buffer = buf; ruido.loop = true;
+  const faixa = ctx.createBiquadFilter(); faixa.type = 'bandpass'; faixa.frequency.value = 2400; faixa.Q.value = .7;
+  const chiado = ctx.createGain(); chiado.gain.value = .025;
+  ruido.connect(faixa).connect(chiado).connect(mestre);
+  let ligado = false;
+  return {
+    async tocar() {
+      await ctx.resume();
+      await el.play();
+      if (!ligado) { ruido.start(); ligado = true; }
+      const t = ctx.currentTime;
+      mestre.gain.cancelScheduledValues(t);
+      mestre.gain.setValueAtTime(0, t);
+      mestre.gain.linearRampToValueAtTime(.38, t + .5);
+    },
+    // Chiado sobe e desce; de vez em quando a música some por um instante (sinal caindo).
+    mexer() {
+      const t = ctx.currentTime;
+      chiado.gain.setTargetAtTime(entre(.01, .045), t, .08);
+      if (Math.random() < .05) { musica.gain.setTargetAtTime(.38, t, .03); musica.gain.setTargetAtTime(.6, t + entre(.06, .16), .05); }
+    },
+    parar() {
+      const t = ctx.currentTime;
+      mestre.gain.cancelScheduledValues(t);
+      mestre.gain.setTargetAtTime(0, t, .12);
+      setTimeout(() => { el.pause(); ctx.close().catch(() => {}); }, 700);
+    }
+  };
+}
 
-// Participação: um demônio-aranha fofo, branco e rosa, com quatro mãos acenando (desenho original).
-const ANGEL = `<svg viewBox="0 0 200 220" aria-hidden="true">
-  <ellipse cx="100" cy="120" rx="62" ry="70" fill="#f6eef3"/>
-  <circle cx="64" cy="70" r="26" fill="#ffffff"/><circle cx="100" cy="56" r="30" fill="#ffffff"/><circle cx="136" cy="70" r="26" fill="#ffffff"/>
-  <circle cx="74" cy="132" r="11" fill="#f4a3c4"/><circle cx="126" cy="150" r="9" fill="#f4a3c4"/>
-  <ellipse cx="82" cy="100" rx="11" ry="13" fill="#2a0f22"/><ellipse cx="118" cy="100" rx="11" ry="13" fill="#2a0f22"/>
-  <circle cx="85" cy="96" r="4" fill="#ff6fb1"/><circle cx="121" cy="96" r="4" fill="#ff6fb1"/>
-  <path d="M84 122 Q100 136 116 122" stroke="#2a0f22" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <rect x="104" y="124" width="6" height="7" rx="1" fill="#f2c94c"/>
-  <path d="M86 160 L100 168 L114 160 L114 176 L100 168 L86 176 Z" fill="#e2313d"/>
-  <g fill="#f6eef3" stroke="#e8c9d8" stroke-width="2">
-    <path d="M40 120 Q12 104 14 84"/><circle cx="14" cy="80" r="9"/>
-    <path d="M160 120 Q188 104 186 84"/><circle cx="186" cy="80" r="9"/>
-    <path d="M44 150 Q18 150 10 136"/><circle cx="8" cy="132" r="8"/>
-    <path d="M156 150 Q182 150 190 136"/><circle cx="192" cy="132" r="8"/>
-  </g>
-</svg>`;
+// Estática em tela cheia: um quadro pequeno redesenhado a cada frame e esticado (pixelado).
+function estatica(canvas) {
+  canvas.width = 160; canvas.height = 90;
+  const g = canvas.getContext('2d');
+  const px = g.createImageData(160, 90);
+  return () => {
+    for (let i = 0; i < px.data.length; i += 4) {
+      const v = Math.random() < .55 ? Math.random() * 60 : 110 + Math.random() * 145;
+      px.data[i] = v; px.data[i + 1] = v * .82; px.data[i + 2] = v * .86; px.data[i + 3] = 255;
+    }
+    g.putImageData(px, 0, 0);
+  };
+}
 
-let aberto = null;
+let rodando = false;
 
 export function iniciar({ lang = 'pt' } = {}) {
-  if (aberto) return;
-  const t = TXT[lang] || TXT.pt;
-  const movimento = !matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!document.getElementById('vox-css')) {
-    const s = document.createElement('style'); s.id = 'vox-css'; s.textContent = CSS; document.head.append(s);
+  if (rodando) return;
+  const parede = document.querySelector('[data-parede]');
+  // Fora da home: vai para o topo da home e a transmissão começa lá.
+  if (!parede) {
+    try { sessionStorage.setItem('vox-pendente', '1'); } catch {}
+    location.assign(lang === 'en' ? '/en/' : '/');
+    return;
   }
-  const anterior = document.activeElement;
-  const raiz = document.createElement('div');
-  raiz.className = 'vox';
-  raiz.setAttribute('role', 'dialog');
-  raiz.setAttribute('aria-modal', 'true');
-  raiz.setAttribute('aria-label', t.rotulo);
-  raiz.innerHTML = `
-    <div class="vox__topo"><span class="vox__vivo"><i></i>${t.aoVivo}</span><span class="vox__sinal">VoxTek · ${t.sinal}</span>
-      <button type="button" class="vox__fechar" data-fechar>${t.desligar} <kbd>Esc</kbd></button></div>
-    <div class="vox__palco">
-      <div>
-        <div class="vox__tv"><div class="vox__tela" data-tela><canvas class="vox__estatica" width="160" height="90" data-estatica></canvas></div></div>
-        <div class="vox__rodape"><span><b data-canal-num></b> · <span data-canal-titulo></span> — <span data-canal-fonte></span></span>
-          <span class="vox__botoes"><button type="button" data-ant aria-label="${t.anterior}">←</button><button type="button" data-prox aria-label="${t.proximo}">→</button></span></div>
-      </div>
-      <div class="vox__boneco">${BONECO}<div class="vox__balao" data-balao>${t.fala}</div></div>
-    </div>
-    <div class="vox__angel" data-angel>${ANGEL}<div class="vox__balao" data-balao-angel>${t.angel}</div></div>`;
-  document.body.append(raiz);
+  rodando = true;
+  const T = TXT[lang] || TXT.pt;
+  const raiz = document.documentElement;
 
-  const tela = raiz.querySelector('[data-tela]');
-  const estatica = raiz.querySelector('[data-estatica]');
-  const olhos = raiz.querySelector('.vox__olhos');
-  const balao = raiz.querySelector('[data-balao]');
-  const angel = raiz.querySelector('[data-angel]');
-  const balaoAngel = raiz.querySelector('[data-balao-angel]');
-  let canal = 0, ruidoId = 0, timers = [];
-  const depois = (ms, f) => timers.push(setTimeout(f, ms));
+  const estilo = document.createElement('style');
+  estilo.textContent = CSS;
+  document.head.append(estilo);
 
-  // Chiado de TV entre um canal e outro.
-  function chiado(ms = 650) {
+  const som = montarSom();
+  const vermelho = Object.assign(document.createElement('div'), { className: 'vox-vermelho' });
+  const hud = Object.assign(document.createElement('div'), { className: 'vox-hud' });
+  hud.innerHTML = `<b><i></i>${T.vivo}</b><span>${T.sinal}</span><button type="button">${T.desligar} ×</button>`;
+  document.body.append(vermelho, hud);
+
+  // As telas da parede guardam o que mostravam, para voltar igualzinho no fim.
+  const telas = [...parede.querySelectorAll('.tela')];
+  telas.forEach(t => { const img = t.querySelector('img'); t.dataset.voxSrc = img.getAttribute('src'); t.dataset.voxNome = t.querySelector('.tela__nome').textContent; });
+
+  const timers = [];
+  const depois = (s, f) => timers.push(setTimeout(f, s * 1000));
+  let tv = null, desenhar = null, quadro = 0, fim = false;
+
+  // Artefatos de sinal ruim por cima de tudo: faixas rasgadas (filtro no que está atrás),
+  // blocos de cor estourada, pedaços de estática e barras de cor. Cada um vive uma fração de segundo.
+  const artefatos = Object.assign(document.createElement('div'), { className: 'vox-artefatos' });
+  artefatos.style.setProperty('--chiado', getComputedStyle(parede).getPropertyValue('--chiado') || 'none');
+  document.body.append(artefatos);
+  const FILTROS = ['invert(1)', 'hue-rotate(150deg) saturate(3)', 'contrast(3) brightness(1.5)', 'grayscale(1) contrast(5)', 'invert(1) hue-rotate(180deg)', 'saturate(6) hue-rotate(-40deg)'];
+  const CORES = ['#ff2b3d', '#22e0ff', '#ffffff', '#7a00ff', '#00ff6a', '#ffe600'];
+  function artefato(forca) {
+    const el = document.createElement('i');
+    const W = innerWidth, H = innerHeight, sorte = Math.random();
+    if (sorte < .42) {
+      el.className = 'vox-faixa';
+      el.style.cssText = `top:${entre(0, H)}px;height:${entre(3, 14 + 46 * forca)}px;--dx:${entre(-90, 90) * forca}px;--f:${sorteia(FILTROS)}`;
+    } else if (sorte < .78) {
+      el.className = 'vox-bloco';
+      el.style.cssText = `left:${entre(-40, W)}px;top:${entre(0, H)}px;width:${entre(20, 120 + 260 * forca)}px;height:${entre(6, 30 + 90 * forca)}px;background:${sorteia(CORES)}`;
+    } else if (sorte < .94) {
+      el.className = 'vox-ruido';
+      el.style.cssText = `left:${entre(-40, W)}px;top:${entre(0, H)}px;width:${entre(60, 200 + 300 * forca)}px;height:${entre(20, 60 + 140 * forca)}px;background-position:${entre(0, 96)}px ${entre(0, 96)}px`;
+    } else {
+      el.className = 'vox-barras';
+      el.style.cssText = `top:${entre(0, H)}px;height:${entre(10, 40 + 80 * forca)}px`;
+    }
+    artefatos.append(el);
+    setTimeout(() => el.remove(), entre(50, 140 + 160 * forca));
+  }
+  const principal = document.querySelector('main');
+  const textos = [...document.querySelectorAll('.hero__kicker, .hero__cargo, .hero__lead, .hero__simular, .hero__acoes')];
+  function tranco(forca) {
+    if (!principal) return;
+    principal.style.setProperty('--tx', `${entre(-14, 14) * forca}px`);
+    principal.style.setProperty('--ty', `${entre(-8, 8) * forca}px`);
+    principal.style.setProperty('--sk', `${entre(-1.6, 1.6) * forca}deg`);
+    principal.classList.add('vox-tranco');
+    setTimeout(() => principal.classList.remove('vox-tranco'), entre(50, 110));
+    const txt = sorteia(textos);
+    if (txt) { txt.classList.add('vox-rgb'); setTimeout(() => txt.classList.remove('vox-rgb'), entre(120, 420)); }
+  }
+  // Intensidade: começa fraca, cresce até a TV e segue forte durante a transmissão.
+  const forcaEm = s => Math.min(1, Math.max(.15, (s - 1) / 8));
+  function agendarBugs() {
     if (!movimento) return;
-    const c = estatica.getContext('2d');
-    const img = c.createImageData(160, 90);
-    estatica.classList.add('on');
-    const fim = performance.now() + ms;
-    cancelAnimationFrame(ruidoId);
-    const quadro = agora => {
-      for (let i = 0; i < img.data.length; i += 4) { const v = Math.random() * 255; img.data[i] = v * .8; img.data[i + 1] = v; img.data[i + 2] = v; img.data[i + 3] = 255; }
-      c.putImageData(img, 0, 0);
-      if (agora < fim) ruidoId = requestAnimationFrame(quadro); else estatica.classList.remove('on');
+    for (let s = 1; s < DURACAO - .8; s += entre(.05, .16)) {
+      depois(s, () => {
+        const f = forcaEm(s);
+        for (let k = 0, n = 1 + Math.floor(Math.random() * (1 + 4 * f)); k < n; k++) artefato(f);
+        if (Math.random() < .18 + .3 * f) tranco(f);
+      });
+    }
+  }
+
+  function viraVox(t, forte, trocar = true) {
+    if (forte && movimento) {
+      t.style.setProperty('--chiado-ms', Math.round(entre(320, 900)) + 'ms');
+      t.style.setProperty('--chiado-forca', '.96');
+      t.classList.remove('chiando'); void t.offsetWidth; t.classList.add('chiando');
+      setTimeout(() => t.classList.remove('chiando'), 900);
+    }
+    if (!trocar) return;
+    setTimeout(() => {
+      if (fim) return;
+      t.querySelector('img').src = fotoVox();
+      t.querySelector('.tela__nome').textContent = T.tela;
+    }, forte ? 160 : 0);
+  }
+
+  // Invasão: as telas à vista viram uma a uma, chiando; as outras viram de uma vez no fim.
+  function invadir() {
+    const h = parede.getBoundingClientRect();
+    const vistas = telas.filter(t => { const r = t.getBoundingClientRect(); return t.offsetParent && r.bottom > h.top && r.top < h.bottom && r.right > h.left && r.left < h.right; });
+    vistas.sort(() => Math.random() - .5).forEach((t, i) => depois(i * entre(.08, .2), () => viraVox(t, true)));
+    depois(7, () => telas.filter(t => !vistas.includes(t)).forEach(t => viraVox(t, false)));
+    // Depois de virar, as telas não param de chiar: rajadas de 1 a 3 telas a cada fração de
+    // segundo, metade delas trocando de Vox, até a TV entrar.
+    const alvo = () => sorteia(vistas.length ? vistas : telas);
+    for (let s = 1.2; s < 10; s += entre(.07, .17)) depois(s, () => { for (let k = 0, n = 1 + Math.floor(Math.random() * 3); k < n; k++) viraVox(alvo(), true, Math.random() < .5); });
+  }
+
+  // A transmissão em tela cheia: o vídeo (deitado em tela larga) ou, sem ele, as fotos.
+  function ligarTv() {
+    tv = Object.assign(document.createElement('div'), { className: 'vox-tv', role: 'img' });
+    tv.setAttribute('aria-label', T.sinal);
+    const largo = innerWidth > innerHeight;
+    const video = Object.assign(document.createElement('video'), { muted: true, loop: true, autoplay: true, playsInline: true, src: VIDEO });
+    if (largo) video.classList.add('deitado');
+    const canvas = document.createElement('canvas');
+    desenhar = estatica(canvas);
+    tv.append(video, canvas);
+    document.body.append(tv);
+    requestAnimationFrame(() => tv.classList.add('on'));
+    let fotos = null;
+    video.addEventListener('error', () => {
+      video.remove();
+      // As fotos já são horizontais: não giram.
+      const img = Object.assign(document.createElement('img'), { src: fotoVox(), alt: '' });
+      tv.insertBefore(img, canvas);
+      fotos = setInterval(() => { if (!fim) img.src = fotoVox(); }, 1300);
+      timers.push(fotos);
+    }, { once: true });
+    video.play?.().catch(() => {});
+  }
+
+  // Um frame: estática (sempre um pouco, nunca limpa), tremor e o vermelho da HUD.
+  function loop() {
+    if (fim) return;
+    quadro++;
+    if (tv && desenhar) {
+      if (quadro % 2 === 0) desenhar();
+      const canvas = tv.querySelector('canvas');
+      // "Volta mas nunca volta bem": a estática oscila e às vezes toma a tela.
+      const alvo = movimento ? (Math.random() < .08 ? entre(.8, .97) : entre(.28, .62)) : .4;
+      canvas.style.opacity = alvo.toFixed(2);
+      const midia = tv.querySelector('video, img');
+      if (midia && movimento) midia.style.transform = Math.random() < .12 ? `translate(${entre(-14, 14)}px, ${entre(-6, 6)}px) skewX(${entre(-4, 4)}deg)` : '';
+    }
+    requestAnimationFrame(loop);
+  }
+
+  function encerrar() {
+    if (fim) return;
+    fim = true;
+    timers.forEach(id => { clearTimeout(id); clearInterval(id); });
+    som?.parar();
+    hud.classList.remove('on');
+    raiz.classList.remove('vox-glitch');
+    const limpar = () => {
+      tv?.remove();
+      vermelho.style.transition = 'opacity .8s ease';
+      vermelho.classList.remove('on');
+      telas.forEach(t => {
+        t.classList.remove('chiando');
+        t.querySelector('img').src = t.dataset.voxSrc;
+        t.querySelector('.tela__nome').textContent = t.dataset.voxNome;
+        delete t.dataset.voxSrc; delete t.dataset.voxNome;
+      });
+      setTimeout(() => {
+        vermelho.remove(); hud.remove(); artefatos.remove(); estilo.remove();
+        principal?.classList.remove('vox-tranco');
+        textos.forEach(t => t.classList.remove('vox-rgb'));
+        raiz.classList.remove('vox-on');
+        removeEventListener('keydown', tecla);
+        rodando = false;
+      }, 850);
     };
-    ruidoId = requestAnimationFrame(quadro);
+    if (tv && movimento) { tv.classList.add('desligando'); setTimeout(limpar, 640); } else limpar();
+  }
+  const tecla = e => { if (e.key === 'Escape') encerrar(); };
+  addEventListener('keydown', tecla);
+  hud.querySelector('button').addEventListener('click', encerrar);
+
+  function comecar() {
+    raiz.classList.add('vox-on');
+    scrollTo({ top: 0, behavior: movimento ? 'smooth' : 'auto' });
+    hud.classList.add('on');
+    depois(.4, invadir);
+    agendarBugs();
+    depois(2, () => { vermelho.classList.add('on'); if (movimento) raiz.classList.add('vox-glitch'); });
+    depois(10, ligarTv);
+    if (som) for (let s = .5; s < DURACAO; s += entre(.25, .6)) depois(s, () => som.mexer());
+    depois(DURACAO - .6, encerrar);
+    requestAnimationFrame(loop);
   }
 
-  function sintonizar(n) {
-    canal = (n + CANAIS.length) % CANAIS.length;
-    const c = CANAIS[canal];
-    const id = c[lang] || c.en;
-    chiado();
-    tela.querySelector('iframe')?.remove();
-    const f = document.createElement('iframe');
-    f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
-    f.title = c.titulo;
-    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-    f.referrerPolicy = 'strict-origin-when-cross-origin';
-    tela.prepend(f);
-    raiz.querySelector('[data-canal-num]').textContent = `${t.canal} ${canal + 1}/${CANAIS.length}`;
-    raiz.querySelector('[data-canal-titulo]').textContent = c.titulo;
-    raiz.querySelector('[data-canal-fonte]').textContent = c.fonte[lang] || c.fonte.en;
-    angel.classList.toggle('on', !!c.angel);
-    balaoAngel.classList.toggle('on', !!c.angel);
-  }
-
-  // Ele olha para um lado, para o outro, e encara quem está vendo.
-  function olhar() {
-    if (!movimento) return;
-    const passos = [[-14, 0], [14, 0], [-14, 2], [0, 0]];
-    passos.forEach(([x, y], i) => depois(500 + i * 650, () => { olhos.style.transform = `translate(${x}px, ${y}px)`; }));
-    depois(3300, () => balao.classList.add('on'));
-    depois(7800, () => balao.classList.remove('on'));
-  }
-
-  function fechar() {
-    timers.forEach(clearTimeout);
-    cancelAnimationFrame(ruidoId);
-    document.removeEventListener('keydown', teclas, true);
-    raiz.classList.remove('on');
-    document.documentElement.classList.remove('vox-aberto');
-    setTimeout(() => raiz.remove(), 380);
-    const aviso = document.createElement('div');
-    aviso.className = 'vox__aviso'; aviso.setAttribute('role', 'status'); aviso.textContent = t.restaurado;
-    document.body.append(aviso);
-    requestAnimationFrame(() => aviso.classList.add('on'));
-    setTimeout(() => { aviso.classList.remove('on'); setTimeout(() => aviso.remove(), 500); }, 2600);
-    anterior?.focus?.();
-    aberto = null;
-  }
-  function teclas(e) {
-    if (e.key === 'Escape') { e.preventDefault(); fechar(); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); sintonizar(canal + 1); }
-    else if (e.key === 'ArrowLeft') { e.preventDefault(); sintonizar(canal - 1); }
-  }
-  raiz.querySelector('[data-fechar]').addEventListener('click', fechar);
-  raiz.querySelector('[data-prox]').addEventListener('click', () => sintonizar(canal + 1));
-  raiz.querySelector('[data-ant]').addEventListener('click', () => sintonizar(canal - 1));
-  document.addEventListener('keydown', teclas, true);
-
-  // Entrada: a página treme, tomba para trás e a transmissão entra no ar.
-  const html = document.documentElement;
-  if (movimento) { html.classList.add('vox-glitch'); setTimeout(() => html.classList.remove('vox-glitch'), 1000); }
-  setTimeout(() => {
-    html.classList.add('vox-aberto');
-    raiz.classList.add('on');
-    sintonizar(0);
-    olhar();
-    raiz.querySelector('[data-fechar]').focus({ preventScroll: true });
-  }, movimento ? 520 : 0);
-  aberto = { fechar };
+  // A música precisa de um gesto do usuário. O código (ou os toques) quase sempre basta; se o
+  // navegador barrar (iPhone, ou quando veio de outra página), aparece um botão para sintonizar.
+  if (!som) { comecar(); return; }
+  som.tocar().then(comecar).catch(() => {
+    const botao = Object.assign(document.createElement('button'), { className: 'vox-play', type: 'button' });
+    botao.innerHTML = `▶ ${T.sintonizar}`;
+    document.body.append(botao);
+    hud.classList.add('on');
+    botao.addEventListener('click', () => { botao.remove(); som.tocar().catch(() => {}).finally(comecar); }, { once: true });
+  });
 }
