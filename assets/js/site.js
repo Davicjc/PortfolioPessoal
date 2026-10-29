@@ -71,6 +71,85 @@ async function medir(url, limite = 6000) {
   let visivel = true;
   new IntersectionObserver(([e]) => { visivel = e.isIntersecting; parede.classList.toggle('parada', !visivel); }).observe(parede);
 
+  // A cada visita, cada coluna embaralha a própria ordem. As duas metades continuam iguais
+  // (é o que deixa o laço sem emenda), então a segunda é refeita como cópia da primeira.
+  const sorteia = lista => lista[Math.floor(Math.random() * lista.length)];
+  for (const col of $$('.parede__coluna', parede)) {
+    const metade = [...col.children].slice(0, col.children.length / 2);
+    for (let i = metade.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [metade[i], metade[j]] = [metade[j], metade[i]]; }
+    col.replaceChildren(...metade, ...metade.map(t => t.cloneNode(true)));
+  }
+  // A tela gêmea (mesma posição na outra metade) muda junto, senão o laço pularia na emenda.
+  const gemea = t => { const irmas = [...t.parentNode.children], i = irmas.indexOf(t), n = irmas.length / 2; return irmas[(i + n) % irmas.length]; };
+
+  // Chiado de TV: um quadro de ruído desenhado uma vez só e reaproveitado por todas as telas.
+  if (movimento) {
+    const quadro = document.createElement('canvas');
+    quadro.width = quadro.height = 90;
+    const g = quadro.getContext('2d');
+    const px = g.createImageData(90, 90);
+    for (let i = 0; i < px.data.length; i += 4) {
+      const v = Math.random() < .5 ? Math.random() * 70 : 120 + Math.random() * 135;
+      px.data[i] = px.data[i + 1] = px.data[i + 2] = v; px.data[i + 3] = 255;
+    }
+    g.putImageData(px, 0, 0);
+    quadro.toBlob(b => b && parede.style.setProperty('--chiado', `url(${URL.createObjectURL(b)})`));
+  }
+  function chiar(tela, ms, forca) {
+    for (const t of [tela, gemea(tela)]) {
+      t.style.setProperty('--chiado-ms', ms + 'ms');
+      t.style.setProperty('--chiado-forca', forca);
+      t.classList.remove('chiando');
+      void t.offsetWidth;
+      t.classList.add('chiando');
+      clearTimeout(t._chiado);
+      t._chiado = setTimeout(() => t.classList.remove('chiando'), ms);
+    }
+  }
+  // Só as telas que estão aparecendo agora, dentro do topo.
+  const naTela = () => {
+    const h = parede.getBoundingClientRect();
+    return $$('.tela', parede).filter(t => {
+      if (!t.offsetParent) return false;
+      const r = t.getBoundingClientRect();
+      return r.bottom > h.top + 40 && r.top < h.bottom - 40 && r.right > h.left + 40 && r.left < h.right - 40;
+    });
+  };
+  // Canais: as telas sem sonda (as com sonda ficam fixas, por causa do ping).
+  const canais = [...new Map($$('.tela:not([data-sonda])', parede).map(t => [$('img', t).getAttribute('src'), { src: $('img', t).getAttribute('src'), nome: $('.tela__nome', t).textContent, w: $('img', t).getAttribute('width'), h: $('img', t).getAttribute('height') }])).values()];
+  function trocarCanal(tela) {
+    const atual = $('img', tela).getAttribute('src');
+    const prox = sorteia(canais.filter(c => c.src !== atual));
+    if (!prox) return;
+    const pre = new Image();
+    pre.src = prox.src;
+    pre.decode().catch(() => {}).finally(() => {
+      chiar(tela, 640, .94);
+      setTimeout(() => {
+        for (const t of [tela, gemea(tela)]) {
+          const img = $('img', t);
+          img.src = prox.src;
+          if (prox.w) { img.width = +prox.w; img.height = +prox.h; }
+          $('.tela__nome', t).textContent = prox.nome;
+        }
+      }, 220);
+    });
+  }
+  const ativa = () => visivel && document.visibilityState === 'visible';
+  // Interferência: de vez em quando uma tela chia rápido; uma em três vezes, troca de canal.
+  function interferencia() {
+    if (ativa()) {
+      const telas = naTela();
+      const t = sorteia(telas.filter(x => !x.classList.contains('chiando')));
+      if (t) {
+        if (!t.dataset.sonda && Math.random() < .35) trocarCanal(t);
+        else chiar(t, 240 + Math.random() * 200, .45 + Math.random() * .3);
+      }
+    }
+    setTimeout(interferencia, 1400 + Math.random() * 2200);
+  }
+  if (movimento) setTimeout(interferencia, 2600);
+
   const sondas = [...new Set($$('[data-sonda]', parede).map(t => t.dataset.sonda))];
   function mostrar(url, ms) {
     $$('[data-sonda]', parede).filter(t => t.dataset.sonda === url).forEach(t => {

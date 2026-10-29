@@ -30,14 +30,15 @@ function parede(ctx) {
     return { ...x, src: dados._imgs?.[menor] ? menor : x.src };
   });
   if (!telas.length) return '';
-  const porColuna = 5;
+  // Oito telas por volta: a coluna é sempre mais comprida que a tela, então o fim dela nunca aparece.
+  const porColuna = 8;
   // As colunas do celular só usam as dez primeiras telas (menos coisa para baixar no 4G); as duas
   // colunas a mais do PC dividem todo o resto, então ficam mais compridas e andam mais rápido.
   const doCelular = telas.slice(0, Math.min(telas.length, 10));
   const resto = telas.slice(doCelular.length);
   const tela = (x, preguica) => {
     const meta = dados._imgs?.[x.src] || {};
-    return `<figure class="tela"${x.sonda ? ` data-sonda="${esc(x.sonda)}"` : ''}><div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${esc(x.nome)}</span>${x.sonda ? '<span class="tela__ms" data-ms></span>' : ''}</div><img src="${x.src}"${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${preguica ? 'lazy' : 'eager'}" decoding="async"></figure>`;
+    return `<figure class="tela"${x.sonda ? ` data-sonda="${esc(x.sonda)}"` : ''}><div class="tela__barra"><span class="tela__led"></span><span class="tela__nome">${esc(x.nome)}</span>${x.sonda ? '<span class="tela__ms" data-ms></span>' : ''}</div><div class="tela__vidro"><img src="${x.src}"${meta.w ? ` width="${meta.w}" height="${meta.h}"` : ''} alt="" loading="${preguica ? 'lazy' : 'eager'}" decoding="async"></div></figure>`;
   };
   // As colunas que o celular esconde ficam lazy (e display: none) e não baixam; no PC o site.js as
   // libera, porque o lazy não enxerga a tela dentro do plano inclinado. A segunda cópia de cada
@@ -45,14 +46,18 @@ function parede(ctx) {
   const colunas = Array.from({ length: COLUNAS }, (_, n) => {
     let lista;
     const pc = SO_PC.indexOf(n);
-    if (pc >= 0 && resto.length >= SO_PC.length * 3) lista = resto.filter((_, j) => j % SO_PC.length === pc);
+    if (pc >= 0 && resto.length >= SO_PC.length * 3) {
+      lista = resto.filter((_, j) => j % SO_PC.length === pc);
+      for (let k = 0, base = lista.length; lista.length < porColuna; k++) lista.push(lista[k % base]);
+    }
     // Colunas vizinhas dividem algumas telas: nas ímpares a ordem é invertida, para a mesma tela
     // não passar lado a lado.
     else lista = Array.from({ length: porColuna }, (_, k) => doCelular[(n * 2 + k) % doCelular.length]);
     if (n % 2) lista.reverse();
     const html = lista.map(x => tela(x, pc >= 0)).join('');
-    // Mesma velocidade em px/s: coluna mais comprida leva proporcionalmente mais tempo por volta.
-    const dur = Math.round(DURACAO[n % DURACAO.length] * lista.length / porColuna);
+    // DURACAO é o tempo de 5 telas: coluna mais comprida leva proporcionalmente mais tempo por volta,
+    // e todas andam no mesmo ritmo em px/s.
+    const dur = Math.round(DURACAO[n % DURACAO.length] * lista.length / 5);
     return `<div class="parede__coluna${pc >= 0 ? ' parede__coluna--pc' : ''}" style="--dur:${dur}s;--atraso:${-n * 23}s">${html}${html}</div>`;
   });
   return `<div class="parede" aria-hidden="true" data-parede>

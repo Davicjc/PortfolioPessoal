@@ -157,8 +157,32 @@ p { text-wrap: pretty; }
 .tela__nome { overflow: hidden; text-overflow: ellipsis; }
 .tela__ms { margin-left: auto; color: var(--papel-2); font-variant-numeric: tabular-nums; transition: color 1.2s var(--m-saida); }
 .tela__ms.nova { color: var(--link); transition: color 0s; }
+.tela__vidro { position: relative; overflow: hidden; }
 .tela img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 0; background: #030405; }
 @keyframes correr { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -50%, 0); } }
+
+/* Chiado de TV: granulado (gerado no navegador, em --chiado) + linhas de varredura + uma faixa clara
+   que rola. De vez em quando uma tela chia; às vezes troca de canal por baixo do chiado. */
+.tela__vidro::before { content: ''; position: absolute; inset: 0; z-index: 2; opacity: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(232, 237, 242, .22) 46%, rgba(232, 237, 242, .34) 50%, transparent 58%) 0 -120% / 100% 60% no-repeat,
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, .42) 0 1px, transparent 1px 3px),
+    var(--chiado, none) 0 0 / 180px 180px;
+  image-rendering: pixelated; }
+@media (prefers-reduced-motion: no-preference) {
+  .tela.chiando .tela__vidro::before { animation: chiado-grao 180ms steps(1) infinite, chiado-vida var(--chiado-ms, 560ms) cubic-bezier(.3, 0, .2, 1) both; }
+  .tela.chiando .tela__vidro img { animation: tremor 90ms steps(1) infinite; }
+  .tela.chiando .tela__led { background: var(--papel-3); }
+}
+@keyframes chiado-grao {
+  0%   { background-position: 0 -120%, 0 0, 0 0; }
+  20%  { background-position: 0 -20%, 0 1px, -61px 37px; }
+  40%  { background-position: 0 60%, 0 2px, 23px -88px; }
+  60%  { background-position: 0 140%, 0 0, -97px -14px; }
+  80%  { background-position: 0 220%, 0 1px, 44px 71px; }
+}
+@keyframes chiado-vida { 0% { opacity: 0; } 14% { opacity: var(--chiado-forca, .92); } 72% { opacity: var(--chiado-forca, .92); } 100% { opacity: 0; } }
+@keyframes tremor { 0% { transform: translate(0, 0); } 33% { transform: translate(-2px, 1px) skewX(-1deg); } 66% { transform: translate(3px, -1px); } }
 
 @media (prefers-reduced-motion: no-preference) {
   .parede__coluna { animation: correr var(--dur, 110s) linear var(--atraso, 0s) infinite; }
@@ -304,14 +328,15 @@ p { text-wrap: pretty; }
 .janela__quadro.ativo { opacity: 1; transition: opacity 360ms var(--m-saida) 180ms; }
 .janela__quadro img { width: 100%; height: 100%; object-fit: contain; }
 
-/* Telefone: fora da janela, com a tela inteira (sem recorte) e a moldura fina da marca. */
-.vitrine { position: relative; }
-.celular { width: min(42%, 180px); margin: 18px auto 0; padding: 5px; border-radius: 24px; border: 1px solid var(--cabo-forte); background: #05070A; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); }
-.celular img { width: 100%; height: auto; aspect-ratio: 390 / 844; border-radius: 19px; object-fit: cover; object-position: 50% 0; }
-@media (min-width: 640px) {
-  .vitrine { padding: 0 9% 8% 0; }
-  .celular { position: absolute; right: 0; bottom: 0; width: 19%; max-width: 230px; margin: 0; border-radius: clamp(16px, 2vw, 24px); }
-  .celular img { border-radius: clamp(12px, 1.6vw, 19px); }
+/* Telefone: sobreposto no canto da janela, com a tela inteira (sem recorte) e a moldura fina da
+   marca. No celular também: um pouco maior em proporção, para continuar legível. */
+.vitrine { position: relative; padding: 0 9% 8% 0; }
+.celular { position: absolute; right: 0; bottom: 0; width: 19%; max-width: 230px; padding: 5px; border: 1px solid var(--cabo-forte); border-radius: clamp(16px, 2vw, 24px); background: #05070A; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .8); }
+.celular img { width: 100%; height: auto; aspect-ratio: 390 / 844; border-radius: clamp(12px, 1.6vw, 19px); object-fit: cover; object-position: 50% 0; }
+@media (max-width: 639px) {
+  .vitrine { padding: 0 11% 10% 0; }
+  .celular { width: 24%; padding: 3px; border-radius: 12px; }
+  .celular img { border-radius: 9px; }
 }
 
 /* ───────── trio de observabilidade de rede ───────── */

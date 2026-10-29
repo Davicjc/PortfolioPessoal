@@ -3324,8 +3324,8 @@
     "chave": "contribuicoes",
     "rotulo_en": "GitHub contributions in the last 12 months",
     "rotulo_pt": "contribuições no GitHub nos últimos 12 meses",
-    "valor": "1.224",
-    "valor_en": "1,224"
+    "valor": "1.225",
+    "valor_en": "1,225"
    },
    {
     "rotulo_en": "academic projects, with Face Safety",
@@ -3449,8 +3449,8 @@
    "en": true
   },
   "versoes": {
-   "css": "8ac653d628",
-   "js": "6a38836b9c",
+   "css": "07bf2d5432",
+   "js": "b7c0bd4666",
    "vox": "348744478b",
    "marca": "9b126f2e13",
    "cv": "2e68b8e58d",
