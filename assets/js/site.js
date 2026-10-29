@@ -327,7 +327,7 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
   setTimeout(() => document.body.append(caixa), 2600);
 })();
 
-/* ───────── Easter egg: ↑ ↑ ↓ ↓ ← → ← → (ou 5 toques em "Uberlândia, MG" no celular) ───────── */
+/* ───────── Easter egg: ↑ ↑ ↓ ↓ ← → ← → (ou 13 toques em "Davi Castro" no celular) ───────── */
 (() => {
   const codigo = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
   let pos = 0, carregando = false;
@@ -346,17 +346,17 @@ $$('[data-copiar]').forEach(b => b.addEventListener('click', async () => {
   });
   // Disparado em outra página: a transmissão começa quando a home abre.
   try { if (sessionStorage.getItem('vox-pendente') && $('[data-parede]')) { sessionStorage.removeItem('vox-pendente'); abrir(); } } catch {}
-  const estado = $('.hero__kicker');
+  const estado = $('.hero__titulo');
   if (estado) {
     let toques = [];
     estado.addEventListener('pointerdown', () => {
       const agora = Date.now();
-      toques = toques.filter(t => agora - t < 2500).concat(agora);
-      if (toques.length >= 5) { toques = []; abrir(); }
+      toques = toques.filter(t => agora - t < 6000).concat(agora);
+      if (toques.length >= 13) { toques = []; abrir(); }
     });
   }
   const dica = lang === 'en'
-    ? ['%c📺 Psst… a VoxTek signal is leaking into this site.', '%cType ↑ ↑ ↓ ↓ ← → ← → anywhere on the page (on a phone: tap “Uberlândia, MG” 5 times).']
-    : ['%c📺 Psst… tem um sinal da VoxTek vazando neste site.', '%cDigite ↑ ↑ ↓ ↓ ← → ← → em qualquer lugar da página (no celular: toque 5 vezes em “Uberlândia, MG”).'];
+    ? ['%c📺 Psst… a VoxTek signal is leaking into this site.', '%cType ↑ ↑ ↓ ↓ ← → ← → anywhere on the page (on a phone: tap “Davi Castro” 13 times).']
+    : ['%c📺 Psst… tem um sinal da VoxTek vazando neste site.', '%cDigite ↑ ↑ ↓ ↓ ← → ← → em qualquer lugar da página (no celular: toque 13 vezes em “Davi Castro”).'];
   console.log(dica[0] + '\n' + dica[1], 'color:#7fe7ff;font:600 14px/1.6 monospace', 'color:#a9b3bf;font:12px/1.6 monospace');
 })();

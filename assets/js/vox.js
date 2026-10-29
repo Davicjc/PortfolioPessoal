@@ -1,5 +1,5 @@
 // Easter egg: a VoxTek invade o site (homenagem a Hazbin Hotel).
-// Carregado só depois do código ↑ ↑ ↓ ↓ ← → ← → (ou 5 toques em "Uberlândia, MG" no celular).
+// Carregado só depois do código ↑ ↑ ↓ ↓ ← → ← → (ou 13 toques em "Davi Castro" no celular).
 // Leva ao topo, as telas da parede chiam e viram o Vox, a página vai ficando vermelha, a
 // transmissão toma a tela inteira (chiando, sem nunca voltar direito) e, aos 25 s, a TV desliga
 // e tudo volta ao normal. A música toca chiada pelo Web Audio; nada fica rodando depois.
@@ -16,8 +16,8 @@ const entre = (a, b) => a + Math.random() * (b - a);
 const fotoVox = () => (Math.random() < .12 ? CRACHA : sorteia(FOTOS));
 
 const TXT = {
-  pt: { vivo: 'AO VIVO', sinal: 'VoxTek · sinal sequestrado', desligar: 'Desligar', sintonizar: 'Sintonizar a VoxTek', tela: 'VOXTEK · AO VIVO' },
-  en: { vivo: 'LIVE', sinal: 'VoxTek · signal hijacked', desligar: 'Turn off', sintonizar: 'Tune in to VoxTek', tela: 'VOXTEK · LIVE' }
+  pt: { vivo: 'AO VIVO', sinal: 'VoxTek · sinal sequestrado', desligar: 'Desligar', sintonizar: 'Sintonizar a VoxTek', tela: 'VOXTEK · AO VIVO', fita: 'Sinal sequestrado pela VoxTek ◆ Não mude de canal ◆ Este portfólio agora tem um patrocinador ◆ Fique ligado ◆ ' },
+  en: { vivo: 'LIVE', sinal: 'VoxTek · signal hijacked', desligar: 'Turn off', sintonizar: 'Tune in to VoxTek', tela: 'VOXTEK · LIVE', fita: 'Signal hijacked by VoxTek ◆ Do not change the channel ◆ This portfolio now has a sponsor ◆ Stay tuned ◆ ' }
 };
 
 const CSS = `
@@ -38,17 +38,41 @@ html.vox-glitch .hero__titulo,.vox-rgb{animation:vox-rgb .14s steps(2) infinite}
 .vox-barras{left:0;right:0;background:linear-gradient(90deg,#fff 0 14%,#ff0 14% 28%,#0ff 28% 42%,#0f0 42% 57%,#f0f 57% 71%,#f00 71% 85%,#00f 85%);mix-blend-mode:difference;opacity:.75}
 main.vox-tranco{transform-origin:50% 50vh;transform:translate(var(--tx),var(--ty)) skewX(var(--sk))}
 @keyframes vox-rgb{0%{text-shadow:-3px 0 #ff2b3d,3px 0 #22e0ff;transform:translateX(0)}50%{text-shadow:4px 0 #ff2b3d,-2px 0 #22e0ff;transform:translateX(-2px) skewX(-3deg)}100%{text-shadow:-1px 0 #ff2b3d,1px 0 #22e0ff;transform:translateX(1px)}}
-.vox-hud{position:fixed;top:0;left:0;right:0;z-index:230;display:flex;align-items:center;gap:12px;height:64px;padding:0 16px;border-bottom:1px solid #6b0f1c;background:linear-gradient(180deg,#22030a,#140106);font:600 12px/1 var(--f-dados);letter-spacing:.12em;text-transform:uppercase;color:#ffd7db;pointer-events:none;opacity:0;transition:opacity .4s}
-.vox-hud span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.vox-hud.on{opacity:1}
-.vox-hud b{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:4px;background:#e2313d;color:#fff}
-.vox-hud b i{width:8px;height:8px;border-radius:50%;background:#fff;animation:vox-pisca 1s steps(2) infinite}
+/* Cabeçalho da transmissão: logo VoxTek, letreiro correndo, AO VIVO com contagem e o × para sair.
+   No celular vira duas linhas: marca e controles em cima, letreiro embaixo. */
+.vox-hud{position:fixed;top:0;left:0;right:0;z-index:230;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:20px;height:64px;padding:0 16px;background:linear-gradient(180deg,#2c040b 0%,#13010a 100%);border-bottom:1px solid #8a1424;box-shadow:0 10px 34px -12px rgba(255,30,60,.55);font:600 12px/1 var(--f-dados);letter-spacing:.14em;text-transform:uppercase;color:#ffc9cf;opacity:0;transform:translateY(-100%);transition:opacity .35s,transform .45s cubic-bezier(.2,1,.3,1);pointer-events:none}
+.vox-hud.on{opacity:1;transform:none}
+.vox-hud::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(255,255,255,.04) 0 1px,transparent 1px 3px)}
+.vox-hud__marca{grid-column:1;grid-row:1;display:flex;align-items:center;gap:10px;color:#fff;font:700 15px/1 var(--f-display);letter-spacing:.22em;white-space:nowrap}
+.vox-hud__logo{width:30px;height:30px;flex:none;color:#ff2b3d;filter:drop-shadow(0 0 6px rgba(255,43,61,.75))}
+.vox-hud__fita{grid-column:2;grid-row:1;overflow:hidden;white-space:nowrap;color:#ffb3bb;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.vox-hud__fita span{display:inline-block;animation:vox-fita 16s linear infinite}
+@keyframes vox-fita{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.vox-hud__dir{grid-column:3;grid-row:1;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.vox-hud__vivo{display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 10px;border-radius:4px;background:#e2313d;color:#fff;box-shadow:0 0 16px rgba(226,49,61,.65)}
+.vox-hud__vivo i{width:7px;height:7px;border-radius:50%;background:#fff;animation:vox-pisca 1s steps(2) infinite}
 @keyframes vox-pisca{50%{opacity:0}}
-.vox-hud button{margin-left:auto;pointer-events:auto;min-height:40px;padding:0 14px;border:1px solid rgba(255,90,105,.6);border-radius:6px;background:rgba(20,0,4,.7);color:#fff;font:500 13px/1 var(--f-texto);letter-spacing:0;text-transform:none;cursor:pointer}
+.vox-hud__tempo{min-width:46px;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.08em;text-align:right}
+.vox-hud__fechar{pointer-events:auto;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid rgba(255,90,105,.6);border-radius:8px;background:rgba(30,0,6,.85);color:#fff;cursor:pointer;transition:background-color .2s,border-color .2s}
+.vox-hud__fechar:hover{background:#e2313d;border-color:#e2313d}
+.vox-hud__fechar svg{width:18px;height:18px}
+@media (max-width:640px){
+  .vox-hud{grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:56px 26px;height:auto;gap:0 10px;padding:0 12px}
+  .vox-hud__marca{font-size:13px;letter-spacing:.18em}
+  .vox-hud__logo{width:26px;height:26px}
+  .vox-hud__dir{grid-column:3;gap:8px}
+  .vox-hud__vivo{height:26px;padding:0 8px;font-size:11px}
+  .vox-hud__tempo{min-width:38px;font-size:11px}
+  .vox-hud__fechar{width:38px;height:38px}
+  .vox-hud__fita{grid-column:1/-1;grid-row:2;align-self:stretch;display:flex;align-items:center;margin:0 -12px;padding:0 12px;border-top:1px solid rgba(255,60,80,.28);background:rgba(0,0,0,.25);font-size:10px}
+}
 .vox-tv{position:fixed;inset:0;z-index:200;overflow:hidden;background:#000;opacity:0;transition:opacity .25s}
 .vox-tv.on{opacity:1}
 .vox-tv video,.vox-tv img{position:absolute;left:50%;top:50%;width:100vw;height:100vh;object-fit:cover;translate:-50% -50%;filter:saturate(1.35) contrast(1.15)}
-.vox-tv .deitado{width:100vh;height:100vw;rotate:90deg}
+/* Vídeo esticado até as bordas (max-width:none: a regra geral do site limitava a largura).
+   Em tela larga ele gira para deitar; no celular em pé fica na posição original dele. */
+.vox-tv video{max-width:none;object-fit:fill}
+@media (orientation:landscape){.vox-tv video{width:100vh;height:100vw;rotate:-90deg}}
 .vox-tv canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;mix-blend-mode:screen;opacity:.6}
 .vox-tv::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(180deg,rgba(0,0,0,.45) 0 1px,transparent 1px 3px),radial-gradient(130% 100% at 50% 50%,transparent 55%,rgba(60,0,8,.85) 100%)}
 .vox-tv::after{content:'';position:absolute;left:0;right:0;height:22%;z-index:3;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(255,220,225,.16) 45%,rgba(255,255,255,.28) 50%,transparent);animation:vox-rolo 2.6s linear infinite}
@@ -148,7 +172,11 @@ export function iniciar({ lang = 'pt' } = {}) {
   const som = montarSom();
   const vermelho = Object.assign(document.createElement('div'), { className: 'vox-vermelho' });
   const hud = Object.assign(document.createElement('div'), { className: 'vox-hud' });
-  hud.innerHTML = `<b><i></i>${T.vivo}</b><span>${T.sinal}</span><button type="button">${T.desligar} ×</button>`;
+  hud.innerHTML = `<div class="vox-hud__marca"><svg class="vox-hud__logo" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.6 9.8A13 13 0 0 1 26.4 9.8M26.9 21.5A13 13 0 0 1 5.1 21.5"/><path d="M8.6 8.6 16 26l7.4-17.4"/><path d="M12.6 12.4a5 5 0 0 1 6.8 0M10.7 10.3a7.7 7.7 0 0 1 10.6 0" stroke-width="1.8"/><circle cx="16" cy="15.4" r="1.4" fill="currentColor" stroke="none"/></svg><strong>VOXTEK</strong></div>
+    <div class="vox-hud__fita" aria-hidden="true"><span>${T.fita.repeat(3)}${T.fita.repeat(3)}</span></div>
+    <div class="vox-hud__dir"><b class="vox-hud__vivo"><i></i>${T.vivo}</b><span class="vox-hud__tempo" data-tempo>00:${DURACAO}</span><button class="vox-hud__fechar" type="button" aria-label="${T.desligar}" title="${T.desligar}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`;
+  hud.setAttribute('role', 'status');
+  hud.setAttribute('aria-label', T.sinal);
   document.body.append(vermelho, hud);
 
   // As telas da parede guardam o que mostravam, para voltar igualzinho no fim.
@@ -237,13 +265,12 @@ export function iniciar({ lang = 'pt' } = {}) {
     for (let s = 1.2; s < 10; s += entre(.07, .17)) depois(s, () => { for (let k = 0, n = 1 + Math.floor(Math.random() * 3); k < n; k++) viraVox(alvo(), true, Math.random() < .5); });
   }
 
-  // A transmissão em tela cheia: o vídeo (deitado em tela larga) ou, sem ele, as fotos.
+  // A transmissão em tela cheia: o vídeo (deitado em tela larga, na posição original no celular)
+  // ou, sem ele, as fotos.
   function ligarTv() {
     tv = Object.assign(document.createElement('div'), { className: 'vox-tv', role: 'img' });
     tv.setAttribute('aria-label', T.sinal);
-    const largo = innerWidth > innerHeight;
     const video = Object.assign(document.createElement('video'), { muted: true, loop: true, autoplay: true, playsInline: true, src: VIDEO });
-    if (largo) video.classList.add('deitado');
     const canvas = document.createElement('canvas');
     desenhar = estatica(canvas);
     tv.append(video, canvas);
@@ -299,6 +326,7 @@ export function iniciar({ lang = 'pt' } = {}) {
         principal?.classList.remove('vox-tranco');
         textos.forEach(t => t.classList.remove('vox-rgb'));
         raiz.classList.remove('vox-on');
+        raiz.style.scrollBehavior = '';
         removeEventListener('keydown', tecla);
         rodando = false;
       }, 850);
@@ -310,8 +338,11 @@ export function iniciar({ lang = 'pt' } = {}) {
   hud.querySelector('button').addEventListener('click', encerrar);
 
   function comecar() {
+    // Pula para o topo antes de travar a rolagem: o scroll suave era cortado no meio pela trava.
+    raiz.style.scrollBehavior = 'auto';
+    scrollTo({ top: 0, behavior: 'instant' });
     raiz.classList.add('vox-on');
-    scrollTo({ top: 0, behavior: movimento ? 'smooth' : 'auto' });
+    requestAnimationFrame(() => scrollTo({ top: 0, behavior: 'instant' }));
     hud.classList.add('on');
     depois(.4, invadir);
     agendarBugs();
@@ -319,6 +350,9 @@ export function iniciar({ lang = 'pt' } = {}) {
     depois(10, ligarTv);
     if (som) for (let s = .5; s < DURACAO; s += entre(.25, .6)) depois(s, () => som.mexer());
     depois(DURACAO - .6, encerrar);
+    const tempo = hud.querySelector('[data-tempo]');
+    const inicio = performance.now();
+    timers.push(setInterval(() => { const r = Math.max(0, Math.ceil(DURACAO - (performance.now() - inicio) / 1000)); tempo.textContent = '00:' + String(r).padStart(2, '0'); }, 250));
     requestAnimationFrame(loop);
   }
 
