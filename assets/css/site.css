@@ -100,18 +100,20 @@ p { text-wrap: pretty; }
 /* ───────── hero: a parede de produção ───────── */
 /* Um objeto só domina a primeira dobra: colunas de telas reais dos sistemas, inclinadas, cobrindo
    o topo inteiro e correndo na vertical. O texto fica por cima de um véu escuro. */
-/* O nome abre o topo lá em cima e os botões fecham lá embaixo; no meio, a parede aparece. */
-.hero { position: relative; isolation: isolate; display: flex; align-items: stretch; min-height: calc(100svh - 64px); overflow: clip; }
-.hero__texto { display: flex; flex-direction: column; padding-block: clamp(24px, 5vh, 56px) clamp(24px, 4.5vh, 48px); }
+/* Um bloco só, com ritmo regular: local, nome, cargo, texto e botões, sempre juntos. O topo tem a
+   altura do bloco com um respiro igual em cima e embaixo (com teto, para não sobrar vão em tela alta). */
+.hero { position: relative; isolation: isolate; display: flex; align-items: center; min-height: min(calc(100svh - 64px), 860px); overflow: clip; }
+.hero__texto { display: flex; flex-direction: column; padding-block: clamp(48px, 8vh, 96px); }
 .hero__kicker, .hero__titulo, .hero__cargo, .hero__base { position: relative; z-index: 2; }
-.hero__kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; margin-bottom: clamp(20px, 3.4vh, 36px); }
+.hero__kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; margin-bottom: 22px; }
 .hero__kicker > span { display: inline-flex; align-items: center; gap: 9px; }
 .hero__kicker > span + span::before { content: ''; width: 18px; height: 1px; margin: 0 14px; background: var(--cabo-forte); }
 .hero__titulo { max-width: 10.4ch; font-size: clamp(2.6rem, .8rem + 5.6vw, 6.6rem); font-weight: 650; line-height: .95; letter-spacing: -.035em; text-wrap: balance; }
 /* Nome como manchete (como fazem os portfólios de referência) e, logo abaixo, cargo e empresa. */
-.hero__cargo { margin-top: clamp(14px, 2.2vh, 24px); font: 500 clamp(1.15rem, .85rem + .9vw, 1.6rem)/1.25 var(--f-display); letter-spacing: -.01em; color: var(--papel); }
+.hero__cargo { margin-top: 18px; font: 500 clamp(1.15rem, .85rem + .9vw, 1.6rem)/1.25 var(--f-display); letter-spacing: -.01em; color: var(--papel); }
 .hero__sep { white-space: pre; color: var(--papel-3); }
-.hero__base { display: grid; gap: 22px; max-width: 560px; margin-top: auto; padding-top: clamp(28px, 5vh, 56px); }
+.hero__base { display: grid; gap: 28px; max-width: 560px; margin-top: 36px; }
+.hero__base .hero__acoes { margin-top: -12px; }
 .hero__lead { max-width: 520px; font-size: var(--fs-lead); line-height: 1.55; color: var(--papel-2); }
 .hero__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 /* O botão grande do topo: leva para o pedido guiado (/pedido/). */
@@ -185,11 +187,11 @@ p { text-wrap: pretty; }
 
 /* Celular: tudo centralizado por cima da parede, que vira o fundo do topo inteiro. */
 @media (max-width: 899px) {
-  .hero { text-align: center; }
-  .hero__texto { align-items: center; padding-block: 18px 22px; }
-  .hero__kicker { justify-content: center; margin-bottom: 14px; }
+  .hero { text-align: center; min-height: 0; }
+  .hero__texto { align-items: center; padding-block: 36px 40px; }
+  .hero__kicker { justify-content: center; margin-bottom: 12px; }
   .hero__titulo { max-width: 11ch; font-size: clamp(2.35rem, 10.6vw, 3.4rem); margin-inline: auto; }
-  .parede__mascara { background: linear-gradient(180deg, color-mix(in srgb, var(--tinta) 90%, transparent) 0%, color-mix(in srgb, var(--tinta) 82%, transparent) 24%, color-mix(in srgb, var(--tinta) 40%, transparent) 38%, color-mix(in srgb, var(--tinta) 40%, transparent) 50%, color-mix(in srgb, var(--tinta) 88%, transparent) 62%, color-mix(in srgb, var(--tinta) 94%, transparent) 100%); }
+  .parede__mascara { background: linear-gradient(180deg, color-mix(in srgb, var(--tinta) 76%, transparent) 0%, color-mix(in srgb, var(--tinta) 84%, transparent) 35%, color-mix(in srgb, var(--tinta) 86%, transparent) 85%, var(--tinta) 100%); }
   .hero__cargo { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 10px; font-size: 1.0625rem; }
   .hero__sep, .hero__kicker > span + span::before { display: none; }
   .hero__kicker { gap: 4px 0; }
@@ -200,7 +202,8 @@ p { text-wrap: pretty; }
   .parede__coluna--pc { display: none; }
   .tela__barra { height: 20px; padding: 0 8px; font-size: 9px; gap: 5px; }
   .tela__led { width: 5px; height: 5px; }
-  .hero__base { justify-items: center; max-width: 34rem; gap: 16px; }
+  .hero__base { justify-items: center; max-width: 34rem; gap: 22px; margin-top: 26px; }
+  .hero__base .hero__acoes { margin-top: -10px; }
   .hero__lead { font-size: 1rem; }
   .hero__acoes { justify-content: center; }
 }
