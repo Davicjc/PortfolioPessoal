@@ -99,7 +99,7 @@ Tem um. A dica está no console do navegador.
 
 ## Licença
 
-O código (`tools/`, `assets/js/`, `assets/css/`, `adm/`) está sob a [licença MIT](LICENSE): pode estudar e reaproveitar. A marca (`brand/`), os textos, as fotos, as telas dos projetos, o currículo e os certificados são de Davi Castro, com todos os direitos reservados. As fontes Archivo e IBM Plex usam a SIL Open Font License.
+O código (`tools/`, `assets/js/`, `assets/css/`, `adm/`) está sob a [licença MIT](LICENSE), com crédito de autoria obrigatório: pode estudar e reaproveitar, mantendo o selo visível. A marca (`brand/`), os textos, as fotos, as telas dos projetos, o currículo e os certificados são de Davi Castro, com todos os direitos reservados. As fontes Archivo e IBM Plex usam a SIL Open Font License.
 
 ---
 
